@@ -1,10 +1,5 @@
 # School of Computing &mdash; Year 4 Project Proposal Form
 
-> Edit (then commit and push) this document to complete your proposal form.
-> Make use of figures / diagrams where appropriate.
->
-> Do not rename this file.
-
 ## SECTION A
 
 |                     |                       |
@@ -16,20 +11,9 @@
 |Student 2 ID:        | 17518149              |
 |Project Supervisor:  | Dr. Donal Fitzpatrick |
 
-> Ensure that the Supervisor formally agrees to supervise your project; this is only recognised once the
-> Supervisor assigns herself/himself via the project Dashboard.
->
-> Project proposals without an assigned
-> Supervisor will not be accepted for presentation to the Approval Panel.
+
 
 ## SECTION B
-
-> Guidance: This document is expected to be approximately 3 pages in length, but it can exceed this page limit.
-> It is also permissible to carry forward content from this proposal to your later documents (e.g. functional
-> specification) as appropriate.
->
-> Your proposal must include *at least* the following sections.
-
 
 ### Introduction
 
@@ -84,6 +68,7 @@ The services we are planning on using are the following:
 * NoSQL (DynamoDB)
 * Storage (S3 bucket)
 * Montioring (CloudWatch)
+* Project Management (Amplify)
 * Websockets
 
 The following frameworks will be used:
@@ -102,35 +87,35 @@ The following agile development tools:
 
 ### Hardware
 
-> Describe any non-standard hardware components which will be required.
+There will be no hardware requirements for this development.
 
 ### Learning Challenges
 
 > List the main new things (technologies, languages, tools, etc) that you will have to learn.
 
+Over the course of this development, we will encounter a number of new technologies/frameworks. The framework we will be learning for this project is React. Enzyme will also be used for midlevel testing of our front end design, this has never been used by either party. A number of new services/tools will all be used such as AWS services (API Gateway, Amplify, DynamoDB) and web sockets. We will also require extensive knowledge of third-party APIs so we can obtain the data required for the fixtures/results. In terms of the teams probabilities, it is an area in which neither of us have encountered before. Due to this we will need to conduct our own research on this topic before creating the scripts to determine the win percentages of each team. We plan on implementing an agile work enviroment. To do so we will be using Jira, which will help with sprint management and communication between both parties in regards to tasks. 
+
 ### Breakdown of work
 
-> Clearly identify who will undertake which parts of the project.
->
-> It must be clear from the explanation of this breakdown of work both that each student is responsible for
-> separate, clearly-defined tasks, and that those responsibilities substantially cover all of the work required
-> for the project.
+The majority of the work we will do together. Pair Programming will be used throughout the development, as it is very beneficial for the standard of code. As most of these tasks will contain new learning opportunities, they will be tackled together to make sure we are both understanding the new tool/technology/framework. Each part of the development will be lead by a different team member. This insures that each of us get a chance to lead on a certain part of the development. Below is a breakdown of what task each student will lead on.
 
-#### Student 1
+#### Student 1 (Tom Callaghan)
 
-> *Student 1 should complete this section.*
+* Logged in/Logged out homepages
+* Create / Join Leagues
+* Locking of league (Cloudwatch)
+* Authentification of user (Cognito)
+* Setting up API
+* Amplify
+* Probabilty Scripts
 
-#### Student 2
 
-> *Student 2 should complete this section.*
+#### Student 2 (Philip Donnelly)
 
-## Example
-
-> Example: Here's how you can include images in markdown documents...
-
-<!-- Basically, just use HTML! -->
-
-<p align="center">
-  <img src="./res/cat.png" width="300px">
-</p>
-
+* User Sign In / Sign Up
+* Fixtures / Results
+* Players status in leagues
+* Interacting with third party apis
+* Lambda Functions
+* DynamoDB set up
+* Live Scores (Web Sockets)
