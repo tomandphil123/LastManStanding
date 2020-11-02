@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-lastmanstanding-dev-171839-authRole",
+            "UnauthRoleArn": "arn:aws:iam::706350010776:role/amplify-lastmanstanding-dev-171839-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::706350010776:role/amplify-lastmanstanding-dev-171839-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-lastmanstanding-dev-171839-deployment",
+            "UnauthRoleName": "amplify-lastmanstanding-dev-171839-unauthRole",
+            "StackName": "amplify-lastmanstanding-dev-171839",
+            "StackId": "arn:aws:cloudformation:eu-west-1:706350010776:stack/amplify-lastmanstanding-dev-171839/8365d710-1d2f-11eb-a81f-069d5f57c92e",
+            "AmplifyAppId": "dfgzyukcab87y"
+        }
+    }
+}
