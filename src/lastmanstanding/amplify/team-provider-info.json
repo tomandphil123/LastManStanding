@@ -12,15 +12,8 @@
             "AmplifyAppId": "dfgzyukcab87y"
         },
         "categories": {
-            "function": {
-                "lastmanstanding8c8ad8858c8ad885CustomMessage": {
-                    "REDIRECTURL": "",
-                    "EMAILSUBJECT": "Account Confirmation",
-                    "EMAILMESSAGE": "Account Confirmed."
-                }
-            },
             "auth": {
-                "lastmanstanding8c8ad8858c8ad885": {}
+                "lastmanstandingd1e79f19": {}
             }
         }
     }

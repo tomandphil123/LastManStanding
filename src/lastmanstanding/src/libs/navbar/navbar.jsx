@@ -72,29 +72,58 @@ export default function Navbar() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const isLoggedIn = true;
+
   return (
-    <div className={classes.root}>
-      <AppBar position="static" className={classes.header}>
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-          <Tab label="Home" className={classes.tabs} icon={<HomeIcon/>} {...a11yProps(0)} />
-          <Tab label="Profile" className={classes.tabs} icon={<AccountCircleIcon/>} {...a11yProps(1)} />
-          <Tab label="My Leagues" className={classes.tabs} icon={<ListAltIcon/>} {...a11yProps(2)} />
-          <Tab label="Contact" className={classes.tabs} icon={<PhoneIcon/>} {...a11yProps(3)} />
-          <Tab label="Sign Out" className={classes.signOutTab} icon={<ExitToAppIcon/>} {...a11yProps(4)} />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={value} index={0}>
-        Home
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Profile
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        My Leagues
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Contact
-      </TabPanel>
-    </div>
+    isLoggedIn
+    ? (
+      <>
+        <div className={classes.root}>
+          <AppBar position="static" className={classes.header}>
+            <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+              <Tab label="Home" className={classes.tabs} icon={<HomeIcon/>} {...a11yProps(0)} />
+              <Tab label="Profile" className={classes.tabs} icon={<AccountCircleIcon/>} {...a11yProps(1)} />
+              <Tab label="My Leagues" className={classes.tabs} icon={<ListAltIcon/>} {...a11yProps(2)} />
+              <Tab label="Contact" className={classes.tabs} icon={<PhoneIcon/>} {...a11yProps(3)} />
+              <Tab label="Sign Out" className={classes.signOutTab} icon={<ExitToAppIcon/>} {...a11yProps(4)} />
+            </Tabs>
+          </AppBar>
+          <TabPanel value={value} index={0}>
+            Home
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            Profile
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            My Leagues
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            Contact
+          </TabPanel>
+        </div>
+      </>
+    ) : (
+      <>
+        <div className={classes.root}>
+        <AppBar position="static" className={classes.header}>
+          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+            <Tab label="Home" className={classes.tabs} icon={<HomeIcon/>} {...a11yProps(0)} />
+            <Tab label="Sign In" className={classes.tabs} icon={<ExitToAppIcon/>} {...a11yProps(1)} />
+            <Tab label="Sign Up" className={classes.tabs} icon={<ExitToAppIcon/>} {...a11yProps(2)} />
+          </Tabs>
+        </AppBar>
+        <TabPanel value={value} index={0}>
+          Home
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          Sign In
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          Sign Up
+        </TabPanel>
+      </div>
+      </>
+    )
   );
 }

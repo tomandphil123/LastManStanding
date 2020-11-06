@@ -1,26 +1,11 @@
 {
-	"function": {
-		"lastmanstanding8c8ad8858c8ad885CustomMessage": {
-			"build": true,
-			"providerPlugin": "awscloudformation",
-			"service": "Lambda"
-		}
-	},
+	"function": {},
 	"auth": {
-		"lastmanstanding8c8ad8858c8ad885": {
+		"lastmanstandingd1e79f19": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
-			"dependsOn": [
-				{
-					"category": "function",
-					"resourceName": "lastmanstanding8c8ad8858c8ad885CustomMessage",
-					"triggerProvider": "Cognito",
-					"attributes": [
-						"Arn",
-						"Name"
-					]
-				}
-			]
+			"dependsOn": [],
+			"customAuth": false
 		}
 	}
 }
