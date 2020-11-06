@@ -1,8 +1,7 @@
 .header img {
   float: left;
   padding-top: 20px;
-  width: 100px;
-  height: 100px;
+  padding-left: 20%;
 }
 
 .header h1 {
@@ -10,6 +9,7 @@
   top:15px;
   font-size: 25px;
   color: #3D195B;
+  text-align: center;
 }
 
 .title{

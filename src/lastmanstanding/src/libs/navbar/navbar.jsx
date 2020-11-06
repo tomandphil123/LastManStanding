@@ -11,6 +11,9 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import PhoneIcon from '@material-ui/icons/Phone';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import SignIn from '../signIn/signIn';
+import SignUp from '../signUp/signUp';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,7 +50,7 @@ function a11yProps(index) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: '20px 0px 100px 100px',
+    paddingTop: '20px'
   },
   header: {
     backgroundColor: "#3D195B",
@@ -57,12 +60,18 @@ const useStyles = makeStyles((theme) => ({
     color:"white",
     fontWeight: "bold"
   },
-  signOutTab: {
+  signInTab: {
+    color:"white",
+    fontWeight: "bold",
+    right: "150px",
+    position: "fixed",
+  },
+  signUpTab: {
     color:"white",
     fontWeight: "bold",
     right: "0px",
     position: "fixed",
-  }
+  },
 }));
 
 export default function Navbar() {
@@ -73,7 +82,7 @@ export default function Navbar() {
     setValue(newValue);
   };
 
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     isLoggedIn
@@ -86,7 +95,7 @@ export default function Navbar() {
               <Tab label="Profile" className={classes.tabs} icon={<AccountCircleIcon/>} {...a11yProps(1)} />
               <Tab label="My Leagues" className={classes.tabs} icon={<ListAltIcon/>} {...a11yProps(2)} />
               <Tab label="Contact" className={classes.tabs} icon={<PhoneIcon/>} {...a11yProps(3)} />
-              <Tab label="Sign Out" className={classes.signOutTab} icon={<ExitToAppIcon/>} {...a11yProps(4)} />
+              <Tab label="Sign Out" className={classes.signUpTab} icon={<ExitToAppIcon/>} {...a11yProps(4)} />
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
@@ -109,18 +118,18 @@ export default function Navbar() {
         <AppBar position="static" className={classes.header}>
           <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
             <Tab label="Home" className={classes.tabs} icon={<HomeIcon/>} {...a11yProps(0)} />
-            <Tab label="Sign In" className={classes.tabs} icon={<ExitToAppIcon/>} {...a11yProps(1)} />
-            <Tab label="Sign Up" className={classes.tabs} icon={<ExitToAppIcon/>} {...a11yProps(2)} />
+            <Tab label="Sign In" className={classes.signInTab} icon={<ExitToAppIcon/>} {...a11yProps(1)} />
+            <Tab label="Sign Up" className={classes.signUpTab} icon={<PersonAddIcon/>} {...a11yProps(2)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          Home
+          Hello
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Sign In
+          <SignIn/>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          Sign Up
+          <SignUp/>
         </TabPanel>
       </div>
       </>
