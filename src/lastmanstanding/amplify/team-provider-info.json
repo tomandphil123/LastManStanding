@@ -10,6 +10,18 @@
             "StackName": "amplify-lastmanstanding-dev-171839",
             "StackId": "arn:aws:cloudformation:eu-west-1:706350010776:stack/amplify-lastmanstanding-dev-171839/8365d710-1d2f-11eb-a81f-069d5f57c92e",
             "AmplifyAppId": "dfgzyukcab87y"
+        },
+        "categories": {
+            "function": {
+                "lastmanstanding8c8ad8858c8ad885CustomMessage": {
+                    "REDIRECTURL": "",
+                    "EMAILSUBJECT": "Account Confirmation",
+                    "EMAILMESSAGE": "Account Confirmed."
+                }
+            },
+            "auth": {
+                "lastmanstanding8c8ad8858c8ad885": {}
+            }
         }
     }
 }
