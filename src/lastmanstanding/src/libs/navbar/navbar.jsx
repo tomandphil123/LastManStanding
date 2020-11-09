@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar() {
+export default function Navbar(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -82,10 +82,8 @@ export default function Navbar() {
     setValue(newValue);
   };
 
-  const isLoggedIn = false;
-
   return (
-    isLoggedIn
+    props.auth.isAuthenticated
     ? (
       <>
         <div className={classes.root}>

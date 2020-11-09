@@ -44,7 +44,6 @@ class SignIn extends Component {
       passwordmatch: false
   }}
 
-  
   clearErrorState = () => {
     this.setState({
       errors: {
@@ -71,11 +70,13 @@ class SignIn extends Component {
     console.log(username, email, password);
     try {
       console.log(username, email, password);
-      const signInResponse = await Auth.signIn({
+      const user = await Auth.signIn({
         username,
         password,
       });
-      console.log(signInResponse);
+      this.props.auth.setAuthStatus(true);
+      this.props.auth.setUser(user);
+      console.log(user);
     } catch (error) {
       let err = null;
       !error.message ? err = { "message": error } : err = error;
@@ -87,7 +88,6 @@ class SignIn extends Component {
       });
     }
   }
-
   render () {
     return (
       <Container component="main" maxWidth="xs">
