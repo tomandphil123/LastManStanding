@@ -14,6 +14,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import SignIn from '../signIn/signIn';
 import SignUp from '../signUp/signUp';
+import { Auth } from 'aws-amplify'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -78,9 +79,25 @@ export default function Navbar(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
+  const setIsLoggedIn = async => {
+    console.log('called');
+    props.auth.setAuthStatus(true);
+  }
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const handleLogOut = async event => {
+    event.preventDefault();
+    try {
+      Auth.signOut();
+      props.auth.setAuthStatus(false);
+      props.auth.setUser(null);
+    } catch(error) {
+      console.log(error.message);
+    }
+  }
 
   return (
     props.auth.isAuthenticated
@@ -93,7 +110,7 @@ export default function Navbar(props) {
               <Tab label="Profile" className={classes.tabs} icon={<AccountCircleIcon/>} {...a11yProps(1)} />
               <Tab label="My Leagues" className={classes.tabs} icon={<ListAltIcon/>} {...a11yProps(2)} />
               <Tab label="Contact" className={classes.tabs} icon={<PhoneIcon/>} {...a11yProps(3)} />
-              <Tab label="Sign Out" className={classes.signUpTab} icon={<ExitToAppIcon/>} {...a11yProps(4)} />
+              <Tab label="Sign Out" className={classes.signUpTab} icon={<ExitToAppIcon/>} {...a11yProps(4)} onClick={event => handleLogOut(event)} />
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
@@ -124,7 +141,7 @@ export default function Navbar(props) {
           Hello
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <SignIn/>
+          <SignIn isLoggedIn={setIsLoggedIn}/>
         </TabPanel>
         <TabPanel value={value} index={2}>
           <SignUp/>

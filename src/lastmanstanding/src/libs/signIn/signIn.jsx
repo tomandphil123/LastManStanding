@@ -64,19 +64,16 @@ class SignIn extends Component {
     event.preventDefault()
     
     this.clearErrorState();
-    console.log('clicked');
 
-    const { username, email, password } = this.state;
-    console.log(username, email, password);
+    const { username, password } = this.state;
     try {
-      console.log(username, email, password);
       const user = await Auth.signIn({
         username,
         password,
       });
+      this.setIsLoggedIn();
       this.props.auth.setAuthStatus(true);
       this.props.auth.setUser(user);
-      console.log(user);
     } catch (error) {
       let err = null;
       !error.message ? err = { "message": error } : err = error;
@@ -87,6 +84,10 @@ class SignIn extends Component {
         }
       });
     }
+  }
+
+  setIsLoggedIn = (event) => {
+    this.props.isLoggedIn()
   }
   render () {
     return (
