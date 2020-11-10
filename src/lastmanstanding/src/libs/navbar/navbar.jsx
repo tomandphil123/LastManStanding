@@ -80,7 +80,6 @@ export default function Navbar(props) {
   const [value, setValue] = React.useState(0);
 
   const setIsLoggedIn = async => {
-    console.log('called');
     props.auth.setAuthStatus(true);
   }
 
@@ -105,12 +104,12 @@ export default function Navbar(props) {
       <>
         <div className={classes.root}>
           <AppBar position="static" className={classes.header}>
-            <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-              <Tab label="Home" className={classes.tabs} icon={<HomeIcon/>} {...a11yProps(0)} />
-              <Tab label="Profile" className={classes.tabs} icon={<AccountCircleIcon/>} {...a11yProps(1)} />
-              <Tab label="My Leagues" className={classes.tabs} icon={<ListAltIcon/>} {...a11yProps(2)} />
-              <Tab label="Contact" className={classes.tabs} icon={<PhoneIcon/>} {...a11yProps(3)} />
-              <Tab label="Sign Out" className={classes.signUpTab} icon={<ExitToAppIcon/>} {...a11yProps(4)} onClick={event => handleLogOut(event)} />
+            <Tabs e={value} onChange={handleChange} aria-label="simple tabs example">
+              <Tab label={<div><HomeIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Home </div>} className={classes.tabs} {...a11yProps(0)}/>
+              <Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Profile </div>} className={classes.tabs} {...a11yProps(1)} />
+              <Tab label={<div><ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Leagues </div>} className={classes.tabs} {...a11yProps(2)} />
+              <Tab label={<div><PhoneIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Contact Us </div>} className={classes.tabs} {...a11yProps(3)} />
+              <Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Out </div>} className={classes.signUpTab} {...a11yProps(4)} onClick={event => handleLogOut(event)} />
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
@@ -132,9 +131,9 @@ export default function Navbar(props) {
         <div className={classes.root}>
         <AppBar position="static" className={classes.header}>
           <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-            <Tab label="Home" className={classes.tabs} icon={<HomeIcon/>} {...a11yProps(0)} />
-            <Tab label="Sign In" className={classes.signInTab} icon={<ExitToAppIcon/>} {...a11yProps(1)} />
-            <Tab label="Sign Up" className={classes.signUpTab} icon={<PersonAddIcon/>} {...a11yProps(2)} />
+            <Tab label={<div><HomeIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Home </div>} className={classes.tabs} {...a11yProps(0)} />
+            <Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab} {...a11yProps(1)} />
+            <Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>}  className={classes.signUpTab} {...a11yProps(2)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>

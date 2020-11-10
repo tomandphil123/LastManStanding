@@ -66,17 +66,15 @@ class SignUp extends Component {
     console.log('clicked');
 
     const { username, email, password } = this.state;
-    console.log(username, email, password);
     try {
-      console.log(username, email, password);
-      const signUpResponse = await Auth.signUp({
+      Auth.signUp({
         username,
         password,
         attributes: {
           email: email
         }
       });
-      console.log(signUpResponse);
+      alert("Please verify email before signing in.");
     } catch (error) {
       let err = null;
       !error.message ? err = { "message": error } : err = error;
