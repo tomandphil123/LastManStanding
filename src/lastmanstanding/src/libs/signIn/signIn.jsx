@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
+import React, { useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Auth } from "aws-amplify";
+import { Link, useHistory } from "react-router-dom";
 
-const styles = theme => ({
+
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -30,76 +30,52 @@ const styles = theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
     backgroundColor: '#3D195B'
-  },
-});
-
-class SignIn extends Component {
-  state = {
-    email: "",
-    password: "",
-    confirmpassword: "",
-    errors: {
-      cognito: null,
-      blankfield: false,
-      passwordmatch: false
-  }}
-
-  clearErrorState = () => {
-    this.setState({
-      errors: {
-        cognito: null,
-        blankfield: false,
-        passwordmatch: false
-      }
-    });
   }
+}));
 
-  onInputChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  }
+export default function SignIn(props){
 
-  handleSubmit = async event => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const classes = useStyles();
+  const history = useHistory();
+
+  const handleSubmit = async event => {
     event.preventDefault()
-    
-    this.clearErrorState();
 
-    const { username, password } = this.state;
     try {
       const user = await Auth.signIn({
         username,
         password,
       });
-      this.setIsLoggedIn();
-      this.props.auth.setAuthStatus(true);
-      this.props.auth.setUser(user);
+      setIsLoggedIn();
+      props.auth.setAuthStatus(true);
+      props.auth.setUser(user);
     } catch (error) {
-      let err = null;
-      !error.message ? err = { "message": error } : err = error;
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          cognito: err
-        }
-      });
+      console.log(error)
     }
   }
 
-  setIsLoggedIn = (event) => {
-    this.props.isLoggedIn()
+  const setIsLoggedIn = (event) => {
+    props.isLoggedIn()
+  }  
+  
+  const getBack = () => {
+    history.push("/ForgotPassword");
   }
-  render () {
-    return (
+
+  return (
+    <>
       <Container component="main" maxWidth="xs">
-        <div className={this.props.classes.paper}>
-          <Avatar className={this.props.classes.avatar}>
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={this.props.classes.form} noValidate>
+          <form className={classes.form} noValidate>
             <TextField
               variant="outlined"
               margin="normal"
@@ -110,7 +86,7 @@ class SignIn extends Component {
               name="username"
               autoComplete="uname"
               autoFocus
-              onChange= {event => this.onInputChange(event)}
+              onChange= {event => setUsername(event.target.value)}
             />
             <TextField
               variant="outlined"
@@ -122,7 +98,7 @@ class SignIn extends Component {
               type="password"
               id="password"
               autoComplete="current-password"
-              onChange= {event => this.onInputChange(event)}
+              onChange= {event => setPassword(event.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -133,29 +109,19 @@ class SignIn extends Component {
               fullWidth
               variant="contained"
               color="primary"
-              className={this.props.classes.submit}
-              onClick={event => this.handleSubmit(event)}
+              className={classes.submit}
+              onClick={event => handleSubmit(event)}
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
+              <div>
+                <Link onClick={event => getBack()} >
+                  Forgot Password?
                 </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+              </div>
           </form>
         </div>
       </Container>
-    );
-  }
+    </>
+  );
 }
-
-
-export default withStyles(styles, {withTheme: true})(SignIn);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -14,10 +14,13 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import SignIn from '../signIn/signIn';
 import SignUp from '../signUp/signUp';
-import { Auth } from 'aws-amplify'
+import ForgotPassword from '../forgotPassword/forgotPassword';
+import { Auth } from 'aws-amplify';
+import { Route, Link, BrowserRouter} from "react-router-dom";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
+  
 
   return (
     <div
@@ -42,12 +45,6 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,15 +74,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
 
   const setIsLoggedIn = async => {
     props.auth.setAuthStatus(true);
   }
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   const handleLogOut = async event => {
     event.preventDefault();
@@ -102,50 +94,55 @@ export default function Navbar(props) {
     props.auth.isAuthenticated
     ? (
       <>
+      <BrowserRouter>
         <div className={classes.root}>
           <AppBar position="static" className={classes.header}>
-            <Tabs e={value} onChange={handleChange} aria-label="simple tabs example">
-              <Tab label={<div><HomeIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Home </div>} className={classes.tabs} {...a11yProps(0)}/>
-              <Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Profile </div>} className={classes.tabs} {...a11yProps(1)} />
-              <Tab label={<div><ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Leagues </div>} className={classes.tabs} {...a11yProps(2)} />
-              <Tab label={<div><PhoneIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Contact Us </div>} className={classes.tabs} {...a11yProps(3)} />
-              <Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Out </div>} className={classes.signUpTab} {...a11yProps(4)} onClick={event => handleLogOut(event)} />
-            </Tabs>
+          <Route
+              path="/"
+              render={({ location }) => (
+                <Fragment>
+                <Tabs value={location.pathname}>
+                  <Tab label={<div><HomeIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Home </div>} className={classes.tabs} value = "/" component={Link} to="/"/>
+                  <Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Profile </div>} className={classes.tabs} value="/Profile" component={Link} to="/Profile" />
+                  <Tab label={<div><ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Leagues </div>} className={classes.tabs} value="/MyLeagues" component={Link} to="/MyLeagues" />
+                  <Tab label={<div><PhoneIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Contact Us </div>} className={classes.tabs}  value="/ContactUs" component={Link} to="/ContactUs" />
+                  <Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Out </div>} className={classes.signUpTab} onClick={event => handleLogOut(event)} />
+                </Tabs>
+            </Fragment>
+            )}
+          />
           </AppBar>
-          <TabPanel value={value} index={0}>
-            Home
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            Profile
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            My Leagues
-          </TabPanel>
-          <TabPanel value={value} index={3}>
-            Contact
-          </TabPanel>
+          <Route path="/"/>
+          <Route path="/Profile"/>
+          <Route path="/MyLeagues" />
+          <Route path="/ContactUs" />
         </div>
+      </BrowserRouter>
       </>
     ) : (
       <>
+      <BrowserRouter>
         <div className={classes.root}>
-        <AppBar position="static" className={classes.header}>
-          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-            <Tab label={<div><HomeIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Home </div>} className={classes.tabs} {...a11yProps(0)} />
-            <Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab} {...a11yProps(1)} />
-            <Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>}  className={classes.signUpTab} {...a11yProps(2)} />
-          </Tabs>
-        </AppBar>
-        <TabPanel value={value} index={0}>
-          Hello
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <SignIn isLoggedIn={setIsLoggedIn}/>
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <SignUp/>
-        </TabPanel>
-      </div>
+          <AppBar position="static" className={classes.header}>
+            <Route
+              path="/"
+              render={({ location }) => (
+                <Fragment>
+                  <Tabs value={location.pathname}>
+                    <Tab label={<div><HomeIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Home </div>} className={classes.tabs}  value = "/" component={Link} to="/"/>
+                    <Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab}  value="/SignIn" component={Link} to="/SignIn"/>
+                    <Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>}  className={classes.signUpTab} value="/SignUp" component={Link} to="/SignUp" />
+                  </Tabs>
+                </Fragment>
+              )}
+            />
+          </AppBar>
+            <Route path="/"/>
+            <Route path="/SignIn" component={() => <SignIn isLoggedIn={setIsLoggedIn} />}/>
+            <Route path="/SignUp" component={SignUp} />
+            <Route path="/ForgotPassword" component={ForgotPassword} />
+        </div>
+      </BrowserRouter>
       </>
     )
   );
