@@ -9,8 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Auth } from "aws-amplify";
 import { useHistory, Link } from "react-router-dom";
-
-
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,17 +45,17 @@ export default function SignUp(props) {
     event.preventDefault()
 
     try {
-      Auth.signUp({
+      await Auth.signUp({
         username,
         password,
         attributes: {
           email: email
         }
+      }).then((response) => {
+          history.push("/SignIn");
       });
-      alert("Please verify email before signing in.");
-      history.push("/SignIn");
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      alert(e.message);      
     }
   }
 

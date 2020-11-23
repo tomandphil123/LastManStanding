@@ -53,7 +53,7 @@ export default function SignIn(props){
       props.auth.setAuthStatus(true);
       props.auth.setUser(user);
     } catch (error) {
-      console.log(error)
+      alert(error.message);
     }
   }
 
