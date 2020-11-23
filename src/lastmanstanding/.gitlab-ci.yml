@@ -5,8 +5,7 @@ stages:
 build:
     stage: build
     image: node
-    script:
-      - cd ./src/lastmanstanding 
+    script: 
       - echo "Start building App"
       - npm install
       - npm build
@@ -16,7 +15,6 @@ test:
     stage: test
     image: node
     script:
-      - cd ./src/lastmanstanding
       - echo "Testing App"
       - npm install
       - CI=true npm test
