@@ -45,10 +45,10 @@ export default function ForgotPassword(props) {
         event.preventDefault()
     
         try {
-          Auth.forgotPassword(username)
+          await Auth.forgotPassword(username)
           handleCodeSent();
         } catch (error) {
-          console.log(error);
+          alert(error.message);
         }
     }
 
@@ -56,13 +56,14 @@ export default function ForgotPassword(props) {
         setIsCodeSent(!isCodeSent)
     }
 
-    const handleCodeSubmit = (event) => {
+    const handleCodeSubmit = async event => {
         event.preventDefault();
         try {
-          Auth.forgotPasswordSubmit(username, code, password);
-          history.push("/SignIn")
+          await Auth.forgotPasswordSubmit(username, code, password).then((response) => {
+            history.push("/SignIn");
+          })
         } catch (error){
-          console.log(error);
+          alert(error.message);
         }
     }
 
