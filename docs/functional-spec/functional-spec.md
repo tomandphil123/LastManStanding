@@ -61,6 +61,7 @@ database
 
 **Services:**
 AWS Cognito
+AWS Cloud Watch
 
 **General:**
 
@@ -141,6 +142,35 @@ The join / create leagues functionality is encountered when the user navigates t
 This is a criticality requirement. Without this requirement / functionality the users would not be able to get involved in the competition.
 
 ### Technical issues
-
+The implementation of the admin system for league owners will be technically difficult. It will require the user to have admin access to the league they have ownership over but be a regualr user for any other league.
 
 ### Dependencies with Other Requirements
+This feature is highly dependant on the user authentication feature. With the user authentication, the league can not be created as users could no take ownership of these leagues without an account.
+
+## 3.3 League Functionality (Team Selection / Elimination)
+### Description
+The league functionality is accessible in each league page. On the 'My leagues' page a user will click the league they want to go into and a page with league data will be displayed. On this page, users are given the option of which team they would like to chopose for the upcoming round. It will display which teams they have already chosent and the teams they can choose. It will also display the other player's choices for the upcoming round. A user can also find out if they have been knowcked out of the competition on this page.
+The league will also need to be locked before the weekend games have commenced. This is to prevent a user from picking a team during a game whilst the team is winning or even picking a team once the game is complete.
+
+### Criticality
+There are certain elements of this component which are vital for the functionality of the game however not all featues in this component are not highly critical. A users ability to choose their next round team choice is vital along with finding out if they have been eliminated. The likes of diplaying other users pick for the upcoming round is not a crital feature for the game to work properly.
+The locking of the league is a highly critcal component of the web application. This enables the competition to work effectivly.
+
+### Technical issues
+one of the big technical issues with the league functionality is in relation to locking the leagues. The first issue is in relation to the time at which to lock the league. Premier league games are subject to change. This means that we cannot lock the leagues at a certain time each Friday. On some occasions, there is a Friday night game and some weeks there is not. This means that the locking of the leagues will need to be dynamic to the week involved. We hope to create our own script with the use of AWS Cloud Watch to help with the tracking of league locking.
+
+### Dependencies with Other Requirements
+The league functionality feature is highly dependant on users being able to join and create leagues. Without this feature, users cannot use the league functionality feature
+
+## 3.4 Team Probabilty
+### Description
+The team probabilty feature is mostly for the users who are not knowledgable about football and the Premier League particularly. This feature will provide the probability of a team winning their game. It will be displayed on the league page beside each teams logo.
+
+### Criticality
+For the web app to work this feature is not a highly critical component. However, for user experience and increasing user diversity, it is a highly critical component.
+
+### Technical Issues
+The big technical issue is the fact that we hope to create our own probabiltiy script. The issue with this is that it will need to be consistent and correct. We dont want users not trusting the probability scores they see. We can't guarentee that they will also be correct because they're probabilities based around football which is unpredictable but we hope to have similar probabilities to betting apps.
+
+### Dependencies with Other Requirements
+This feature does not have any requirements for any other feature. It works as an indepentant feature to the rest of the web application.
