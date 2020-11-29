@@ -174,3 +174,18 @@ The big technical issue is the fact that we hope to create our own probabiltiy s
 
 ### Dependencies with Other Requirements
 This feature does not have any requirements for any other feature. It works as an indepentant feature to the rest of the web application.
+
+## 3.4 Live Scores
+### Description
+The live score feature will be predominant during a premier league weekend. For each match, there will be a live score which will be updated every two minutes. This love score feature will be visible on the logged-in home page. The live score will provide the time and minute of the match.
+
+### Criticality
+Similar to team probabilities, live scores is not a critical feature for the competition to work on _LastManStanding_. However, live scores would be a critical feature in terms of users interacting with _LastManStanding_ and adds a better user experience.
+
+### Technical Issues
+A technical issue with the live score feature is how we can get a live feed of the current live games. At first, we looked into creating a WebSocket for each live game to have a constant flow of data between _LastManStanding_ and the third party API endpoint. However, we believed this would be too costly and time-consuming to dynamically create WebSockets. Due to this, we feel an API call every two minutes ould be sufficient for the task at hand.
+
+### Dependencies
+The live score system does not have any requirements with any other functional requirement.
+
+# System Architecture:
