@@ -189,3 +189,5 @@ A technical issue with the live score feature is how we can get a live feed of t
 The live score system does not have any requirements with any other functional requirement.
 
 # System Architecture:
+
+![System Architecture](./images/SystemArchitectureDiagram.png)
