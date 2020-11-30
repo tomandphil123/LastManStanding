@@ -18,20 +18,15 @@
 	* 3.1 Authentication Flow
 	* 3.2 Joining / Creating Leagues
 	* 3.3 League Functionality (Team Selection / Elimination)
-	* 3.4 Top Probability
+	* 3.4 Team Probability
 	* 3.5 Live Scores
 4. **System Architecture**
-	* 4.1 
-	* 4.2 
-	* 4.3 
-	* 4.4 
+	* 4.1 System Architecture
 5. **High Level Design**
 	* 5.1 High Level Design Diagrams
-	* 5.2 High Level Design Description
-	* 5.3 Top Level Context Diagram
-	* 5.4 Data Flow Diagram
+	* 5.2 Data Flow Diagram
 6. **Preliminary Schedule**
-	* 6.1 Preliminary Schedule Description
+	* 6.1 Project Plan
 	* 6.2 Gantt Chart
 7. **Appendicies**
 ******
@@ -54,18 +49,34 @@ There are several business contexts that our project could undertake. After look
 ## 1.3 glossary
 
 **Technical:**
-- AWS - Amazon Web Services
-Third Party API Enpoints
-Serverless
-database
+* AWS - Amazon Web Services
+
+* REST API - Representational state transfer is a software architectural style that defines a set of constraints to be used for creating Web services
+
+* Serverless - Serverless is a method of providing backend services on an as-used basis. Servers are still used, but a company that gets backend services from a serverless vendor is charged based on usage, not a fixed amount of bandwidth or number of servers.
+
+* NoSql Database - NoSQL database provides a mechanism for storage and retrieval of data that is modeled in means other than the tabular relations used in relational databases
+
 
 **Services:**
-AWS Cognito
-AWS Cloud Watch
 
-**General:**
+* AWS Cognito - Authentication
 
-# General Description:
+* AWS CloudWatch - Monitor applications
+
+* AWS Step Functions - Trigger action in ordered steps
+
+* AWS lambda - Action based functions that can perform code
+
+* S3 Bucket - Blob storage
+
+* DynamoDB - noSQL Database
+
+* API Gateway - REST API
+
+* AWS Event Bridges - Trigger lambda functions at certain time / event
+
+# 2. General Description:
 
 ## 2.1 Product / System Functions
 ### Leagues
@@ -117,7 +128,7 @@ _LastManStanding_ will require many different aws services and third party API e
 ### Time
 Time is a large constraint for _LastManStanding_. The web application requires a lot of different services. In order for _LastManStanding_ to be a worthwhile service for users, we need to implement a number of features which aids with the enjoyment of playing _LastManStanding_ such as the probability and live scores features.
 
-# Functional Requirements:
+# 3. Functional Requirements:
 
 ## 3.1 Authentication flow
 ### Description
@@ -188,6 +199,52 @@ A technical issue with the live score feature is how we can get a live feed of t
 ### Dependencies
 The live score system does not have any requirements with any other functional requirement.
 
-# System Architecture:
+# 4. System Architecture:
 
 ![System Architecture](./images/SystemArchitectureDiagram.png)
+
+Originally, it was decided that we would have the site running on AWS EC2 box. This meant that the application would be a client / server based application. As this application has a chance to become very scalable as more users start using it, it was decided that we should go with a serverless architecture. The main benefits to going serverless is scalability and cost. Serveless allow applications to scale at a rapid rate without any interuptions. Also, with serverless architecture, you only pay for what you use, therefore, the costs for this application would be lowered.
+
+The application will be monitored and managed by AWS CloudFront. AWS CloudFront uses an S3 Bucket to store the website. In order to authenticate the users on the application, AWS Cognito will be used. The user will simply sign in or sign up to Cognito, Cognito will then check the authentication token, and respond accordingly. AWS Amplify will be used to build the enviroment of the application. This enables developers to build and deploy secure, full stack applications.
+
+API Gateway will be used to deal with all HTTP requests from the frontend. This is a Rest API with endpoints. There will be a number of different AWS Lambda functions used throughout the application. Each Lambda is an API endpoint, that is triggered. The different lambdas are listed below.
+
+- All Leagues Lambda
+- Specific League Lambda
+- Player Profile Lambda
+- PLStandings Lambda
+- Fixtures/Results Lambda
+
+The data that is sent through the HTTP Post requests will be manipulated in the Lambda fuctions and then stored in DynamoDB. DynamoDb is a noSQL database, that is scalable and easy to retrieve data from.
+
+AWS Event Bridges will be used to trigger lambda functions to send API requests to third party APIs to retrieve information such as fixtures, standings, results and live-scores.
+
+In order to ensure that the information is retrived from the third party API before preforming our probabilty scripts, AWS Step functions will be used. This will make sure that the probability script will only ever be run after new information is received.
+
+# 5. High-Level Design
+## 5.1 High-Level Design Diagram
+![High Level Design Diagram](./images/HighLevelDiagram.png)
+
+## 5.2 Data Flow Diagrams
+![Data Flow Diagram](./images/Data-flow.png)
+
+# 6. Preliminary Schedule
+## 6.1 Project Plan
+When designing our preliminary schedule we decided to split the project into four key parts. These are highlighted in the Grantt Chart below.
+
+We have designed our project schedule in a way to optimise time working together and seperately. We have also allowed time for individual goals within fourth year for both of us to meet our desired expectations. We both expect to have different challenges in the project with some tasks possibly taking longer and some tasks take a shorter time than expected. We have thought thoroughly about our expectations in regards to timings. With this in mind each task has a definite start and end time with space for extra time if needed.
+
+We also plan on meeting our project supervisor Dr. Donal Fitzpatrick on a bi-weekly basis at the beginning and moving to weekly meetings closer o the deadline. We hope that this will give us small targets to meet and we will be able to get advice during the implementation of a feature rather than afterwards. 
+
+Below we have designed a Grantt chart of our preliminary schedule.
+
+## 6.2 Grantt Chart
+![Grantt Chart](./images/Grantt.png)
+
+# 7. Appendices
+
+* Amazon Web Services - https://aws.amazon.com/
+
+* Football API (Standings, Results, Fixtures) - https://www.football-data.org/
+
+* Live score API - http://live-score-api.com/
