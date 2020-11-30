@@ -22,8 +22,8 @@
 	* 3.5 Live Scores
 4. **System Architecture**
 	* 4.1 System Architecture
-5. **High Level Design**
-	* 5.1 High Level Design Diagrams
+5. **High-Level Design**
+	* 5.1 High-Level Design Diagrams
 	* 5.2 Data Flow Diagram
 6. **Preliminary Schedule**
 	* 6.1 Project Plan
@@ -55,7 +55,7 @@ There are several business contexts that our project could undertake. After look
 
 * Serverless - Serverless is a method of providing backend services on an as-used basis. Servers are still used, but a company that gets backend services from a serverless vendor is charged based on usage, not a fixed amount of bandwidth or number of servers.
 
-* NoSql Database - NoSQL database provides a mechanism for storage and retrieval of data that is modeled in means other than the tabular relations used in relational databases
+* NoSql Database - NoSQL database provides a mechanism for storage and retrieval of data that is modelled in means other than the tabular relations used in relational databases
 
 
 **Services:**
@@ -74,7 +74,7 @@ There are several business contexts that our project could undertake. After look
 
 * API Gateway - REST API
 
-* AWS Event Bridges - Trigger lambda functions at certain time / event
+* AWS Event Bridges - Trigger lambda functions at certain time/event
 
 # 2. General Description:
 
@@ -106,7 +106,7 @@ When a user first enters _LastManStanding_ web application they will be greeted 
 
 If this is a user first time using _LastManStanding_ they will be required to sign up. Once they click the signup button a form will be displayed requiring the user to enter a new username, their email and a new password. Once submitted, the user will be required to confirm their email. This will be done by clicking a link which _LastManStanding_ has sent to their email.
 
-If the user is a previous user of _LastManStanding_ they will simply need to sign-in. For this the user will click the sign-in button, then the sign in option will display. A user will simply enter the username they created their account with as well as their password. Once signed in the user will be redirected to the logged-in user interface.
+If the user is a previous user of _LastManStanding_ they will simply need to sign-in. For this the user will click the sign-in button, then the sign-in option will display. A user will simply enter the username they created their account with as well as their password. Once signed in the user will be redirected to the logged-in user interface.
 
 ### League Creation / Join
 To join or create a league a user must be signed in. A user will click the 'My Leagues' tab in the navigation bar. This will bring them to their league's page. On their league's page, it will display all of their current leagues.
@@ -117,7 +117,7 @@ Similar to the league join if a user wants to create a league the option to do s
 
 ## 2.4 Constraints
 ### Site Speed
-As the site will have a lot of different features/components, the site speed will be a constraint. A main contributor to slow site speed are images. In order to ensure the site speed is timely, all images being displayed will be compressed before uploading to the site.
+As the site will have a lot of different features/components, the site speed will be a constraint. The main contributor to slow site speed are images. In order to ensure the site speed is timely, all images being displayed will be compressed before uploading to the site.
 
 ### Accessibility
 As the site will be used by a large number of users, it must be very accessible. In order to ensure that the site is accessible a number of tools will be used such as Lighthouse. The library we are using for design is MaterialUI, this has built-in accessibility.
@@ -137,7 +137,7 @@ The authentication flow is when a user signs in or signs up. It will user AWS Co
 ![Cognito Data Flow](./images/Cognito.png)
 
 ### Criticality
-This is a high criticality requirement. Without the authentication flow users would not be able to sign in to _LastManStanding_ thus not being able to join or create leagues.
+This is a high criticality requirement. Without the authentication flow, users would not be able to sign in to _LastManStanding_ thus not being able to join or create leagues.
 
 ### Technical issues
 Some technical issues with the authentication flow are getting AWS Cognito set up correctly and introducing error handling. We need to set up AWS Cognito specific to our needs which requires a lot of research and being particular with the service. After AWS Cognito is set up we need to implement correct error handling for all circumstances that a user may encounter which could cause issues.
@@ -147,44 +147,44 @@ There are no other dependencies on any other requirements.
 
 ## 3.2 Join / Create Leagues
 ### Description
-The join / create leagues functionality is encountered when the user navigates to the "My leagues" tab. They will be prompted to either join or create leagues, as well as the leagues they have already joined. When creating a league the user will input the name of the league, they will then receive a league code. This code will be given to other users in order to join the league. When the user wants to join a league they have to retrieve the code from the league owner. Once they have the code they will be added into the league.
+The join/create leagues functionality is encountered when the user navigates to the "My leagues" tab. They will be prompted to either join or create leagues, as well as the leagues they have already joined. When creating a league the user will input the name of the league, they will then receive a league code. This code will be given to other users in order to join the league. When the user wants to join a league they have to retrieve the code from the league owner. Once they have the code they will be added into the league.
 
 ### Criticality
-This is a criticality requirement. Without this requirement / functionality the users would not be able to get involved in the competition.
+This is a criticality requirement. Without this requirement/functionality the users would not be able to get involved in the competition.
 
 ### Technical issues
-The implementation of the admin system for league owners will be technically difficult. It will require the user to have admin access to the league they have ownership over but be a regualr user for any other league.
+The implementation of the admin system for league owners will be technically difficult. It will require the user to have admin access to the league they have ownership over but be a regular user for any other league.
 
 ### Dependencies with Other Requirements
 This feature is highly dependant on the user authentication feature. With the user authentication, the league can not be created as users could no take ownership of these leagues without an account.
 
 ## 3.3 League Functionality (Team Selection / Elimination)
 ### Description
-The league functionality is accessible in each league page. On the 'My leagues' page a user will click the league they want to go into and a page with league data will be displayed. On this page, users are given the option of which team they would like to chopose for the upcoming round. It will display which teams they have already chosent and the teams they can choose. It will also display the other player's choices for the upcoming round. A user can also find out if they have been knowcked out of the competition on this page.
+The league functionality is accessible in each league page. On the 'My leagues' page a user will click the league they want to go into and a page with league data will be displayed. On this page, users are given the option of which team they would like to choose for the upcoming round. It will display which teams they have already chosen and the teams they can choose. It will also display the other player's choices for the upcoming round. A user can also find out if they have been knocked out of the competition on this page.
 The league will also need to be locked before the weekend games have commenced. This is to prevent a user from picking a team during a game whilst the team is winning or even picking a team once the game is complete.
 
 ### Criticality
-There are certain elements of this component which are vital for the functionality of the game however not all featues in this component are not highly critical. A users ability to choose their next round team choice is vital along with finding out if they have been eliminated. The likes of diplaying other users pick for the upcoming round is not a crital feature for the game to work properly.
-The locking of the league is a highly critcal component of the web application. This enables the competition to work effectivly.
+There are certain elements of this component which are vital for the functionality of the game however not all features in this component are not highly critical. A users ability to choose their next round team choice is vital along with finding out if they have been eliminated. The likes of displaying other users pick for the upcoming round is not a critical feature for the game to work properly.
+The locking of the league is a highly critical component of the web application. This enables the competition to work effectively.
 
 ### Technical issues
-one of the big technical issues with the league functionality is in relation to locking the leagues. The first issue is in relation to the time at which to lock the league. Premier league games are subject to change. This means that we cannot lock the leagues at a certain time each Friday. On some occasions, there is a Friday night game and some weeks there is not. This means that the locking of the leagues will need to be dynamic to the week involved. We hope to create our own script with the use of AWS Cloud Watch to help with the tracking of league locking.
+one of the big technical issues with the league functionality is in relation to locking the leagues. The first issue is in relation to the time at which to lock the league. Premier League games are subject to change. This means that we cannot lock the leagues at a certain time each Friday. On some occasions, there is a Friday night game and some weeks there is not. This means that the locking of the leagues will need to be dynamic to the week involved. We hope to create our own script with the use of AWS Cloud Watch to help with the tracking of league locking.
 
 ### Dependencies with Other Requirements
 The league functionality feature is highly dependant on users being able to join and create leagues. Without this feature, users cannot use the league functionality feature
 
-## 3.4 Team Probabilty
+## 3.4 Team Probability
 ### Description
-The team probabilty feature is mostly for the users who are not knowledgable about football and the Premier League particularly. This feature will provide the probability of a team winning their game. It will be displayed on the league page beside each teams logo.
+The team Probability feature is mostly for the users who are not knowledgable about football and the Premier League particularly. This feature will provide the probability of a team winning their game. It will be displayed on the league page beside each teams logo.
 
 ### Criticality
 For the web app to work this feature is not a highly critical component. However, for user experience and increasing user diversity, it is a highly critical component.
 
 ### Technical Issues
-The big technical issue is the fact that we hope to create our own probabiltiy script. The issue with this is that it will need to be consistent and correct. We dont want users not trusting the probability scores they see. We can't guarentee that they will also be correct because they're probabilities based around football which is unpredictable but we hope to have similar probabilities to betting apps.
+The big technical issue is the fact that we hope to create our own Probability script. The issue with this is that it will need to be consistent and correct. We don't want users not trusting the probability scores they see. We can't guarantee that they will also be correct because they're probabilities based around football which is unpredictable but we hope to have similar probabilities to betting apps.
 
 ### Dependencies with Other Requirements
-This feature does not have any requirements for any other feature. It works as an indepentant feature to the rest of the web application.
+This feature does not have any requirements for any other feature. It works as an independent feature to the rest of the web application.
 
 ## 3.4 Live Scores
 ### Description
@@ -203,9 +203,9 @@ The live score system does not have any requirements with any other functional r
 
 ![System Architecture](./images/SystemArchitectureDiagram.png)
 
-Originally, it was decided that we would have the site running on AWS EC2 box. This meant that the application would be a client / server based application. As this application has a chance to become very scalable as more users start using it, it was decided that we should go with a serverless architecture. The main benefits to going serverless is scalability and cost. Serveless allow applications to scale at a rapid rate without any interuptions. Also, with serverless architecture, you only pay for what you use, therefore, the costs for this application would be lowered.
+Originally, it was decided that we would have the site running on AWS EC2 box. This meant that the application would be a client / server-based application. As this application has a chance to become very scalable as more users start using it, it was decided that we should go with a serverless architecture. The main benefits of going serverless are scalability and cost. Serverless allow applications to scale at a rapid rate without any interruptions. Also, with serverless architecture, you only pay for what you use, therefore, the costs for this application would be lowered.
 
-The application will be monitored and managed by AWS CloudFront. AWS CloudFront uses an S3 Bucket to store the website. In order to authenticate the users on the application, AWS Cognito will be used. The user will simply sign in or sign up to Cognito, Cognito will then check the authentication token, and respond accordingly. AWS Amplify will be used to build the enviroment of the application. This enables developers to build and deploy secure, full stack applications.
+The application will be monitored and managed by AWS CloudFront. AWS CloudFront uses an S3 Bucket to store the website. In order to authenticate the users on the application, AWS Cognito will be used. The user will simply sign in or sign up to Cognito, Cognito will then check the authentication token, and respond accordingly. AWS Amplify will be used to build the environment of the application. This enables developers to build and deploy secure, full-stack applications.
 
 API Gateway will be used to deal with all HTTP requests from the frontend. This is a Rest API with endpoints. There will be a number of different AWS Lambda functions used throughout the application. Each Lambda is an API endpoint, that is triggered. The different lambdas are listed below.
 
@@ -215,11 +215,11 @@ API Gateway will be used to deal with all HTTP requests from the frontend. This 
 - PLStandings Lambda
 - Fixtures/Results Lambda
 
-The data that is sent through the HTTP Post requests will be manipulated in the Lambda fuctions and then stored in DynamoDB. DynamoDb is a noSQL database, that is scalable and easy to retrieve data from.
+The data that is sent through the HTTP Post requests will be manipulated in the Lambda functions and then stored in DynamoDB. DynamoDb is a NoSQL database, that is scalable and easy to retrieve data from.
 
-AWS Event Bridges will be used to trigger lambda functions to send API requests to third party APIs to retrieve information such as fixtures, standings, results and live-scores.
+AWS Event Bridges will be used to trigger lambda functions to send API requests to third party APIs to retrieve information such as fixtures, standings, results and live scores.
 
-In order to ensure that the information is retrived from the third party API before preforming our probabilty scripts, AWS Step functions will be used. This will make sure that the probability script will only ever be run after new information is received.
+In order to ensure that the information is retrieved from the third-party API before preforming our probability scripts, AWS Step functions will be used. This will make sure that the probability script will only ever be run after new information is received.
 
 # 5. High-Level Design
 ## 5.1 High-Level Design Diagram
@@ -232,9 +232,9 @@ In order to ensure that the information is retrived from the third party API bef
 ## 6.1 Project Plan
 When designing our preliminary schedule we decided to split the project into four key parts. These are highlighted in the Grantt Chart below.
 
-We have designed our project schedule in a way to optimise time working together and seperately. We have also allowed time for individual goals within fourth year for both of us to meet our desired expectations. We both expect to have different challenges in the project with some tasks possibly taking longer and some tasks take a shorter time than expected. We have thought thoroughly about our expectations in regards to timings. With this in mind each task has a definite start and end time with space for extra time if needed.
+We have designed our project schedule in a way to optimise time working together and separately. We have also allowed time for individual goals within fourth year for both of us to meet our desired expectations. We both expect to have different challenges in the project with some tasks possibly taking longer and some tasks take a shorter time than expected. We have thought thoroughly about our expectations in regards to timings. With this in mind, each task has a definite start and end time with space for extra time if needed.
 
-We also plan on meeting our project supervisor Dr. Donal Fitzpatrick on a bi-weekly basis at the beginning and moving to weekly meetings closer o the deadline. We hope that this will give us small targets to meet and we will be able to get advice during the implementation of a feature rather than afterwards. 
+We also plan on meeting our project supervisor Dr Donal Fitzpatrick on a bi-weekly basis at the beginning and moving to weekly meetings closer o the deadline. We hope that this will give us small targets to meet and we will be able to get advice during the implementation of a feature rather than afterwards.
 
 Below we have designed a Grantt chart of our preliminary schedule.
 
