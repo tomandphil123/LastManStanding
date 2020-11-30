@@ -6,7 +6,7 @@
 ## Table of Contents:
 
  1. **Introduction**
-	 * 1.1. Overview
+	 * 1.1 Overview
 	 * 1.2 Business Context
 	 * 1.3 Glossary
 2. **General Description**
@@ -16,14 +16,14 @@
 	* 2.4 Constraints
 3. **Functional Requirements**
 	* 3.1 Authentication Flow
-	* 3.2 Joining / Creating Leagues
+	* 3.2 Join / Create Leagues
 	* 3.3 League Functionality (Team Selection / Elimination)
 	* 3.4 Team Probability
 	* 3.5 Live Scores
 4. **System Architecture**
 	* 4.1 System Architecture
 5. **High-Level Design**
-	* 5.1 High-Level Design Diagrams
+	* 5.1 High-Level Design Diagram
 	* 5.2 Data Flow Diagram
 6. **Preliminary Schedule**
 	* 6.1 Project Plan
@@ -224,9 +224,12 @@ In order to ensure that the information is retrieved from the third-party API be
 # 5. High-Level Design
 ## 5.1 High-Level Design Diagram
 ![High Level Design Diagram](./images/HighLevelDiagram.png)
+This is a structured walkthrough from the user perspective from when the app is downloaded and
+installed. This is used to ensure the overall process of the app stays the same out the development process. It contains the main steps at each stage of the walkthrough.
 
 ## 5.2 Data Flow Diagrams
 ![Data Flow Diagram](./images/Data-flow.png)
+The above Data Flow Diagram is used to illustrate the data flow of each step the user may take when using the Application. It shows how data is retrieved and stored.
 
 # 6. Preliminary Schedule
 ## 6.1 Project Plan
@@ -236,10 +239,10 @@ We have designed our project schedule in a way to optimise time working together
 
 We also plan on meeting our project supervisor Dr Donal Fitzpatrick on a bi-weekly basis at the beginning and moving to weekly meetings closer o the deadline. We hope that this will give us small targets to meet and we will be able to get advice during the implementation of a feature rather than afterwards.
 
-Below we have designed a Grantt chart of our preliminary schedule.
+Below we have designed a Gantt chart of our preliminary schedule.
 
 ## 6.2 Grantt Chart
-![Grantt Chart](./images/Grantt.png)
+![Gantt Chart](./images/Gantt.png)
 
 # 7. Appendices
 
