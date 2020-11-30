@@ -241,7 +241,7 @@ We also plan on meeting our project supervisor Dr Donal Fitzpatrick on a bi-week
 
 Below we have designed a Gantt chart of our preliminary schedule.
 
-## 6.2 Grantt Chart
+## 6.2 Gantt Chart
 ![Gantt Chart](./images/Gantt.png)
 
 # 7. Appendices
