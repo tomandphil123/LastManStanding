@@ -27,6 +27,7 @@
 5. **High-Level Design**
 	* 5.1 High-Level Design Diagram
 	* 5.2 Data Flow Diagram
+	* 5.3 Use Case Diagram
 6. **Preliminary Schedule**
 	* 6.1 Project Plan
 	* 6.2 Gantt Chart
@@ -232,6 +233,10 @@ installed. This is used to ensure the overall process of the app stays the same 
 ## 5.2 Data Flow Diagrams
 ![Data Flow Diagram](./images/Data-flow.png)
 The above Data Flow Diagram is used to illustrate the data flow of each step the user may take when using the Application. It shows how data is retrieved and stored.
+
+## 5.3 Use Case Diagram
+![Use Case Diagram](./images/UseCaseDiagram.png)
+The above use case diagram is used to illustrate the use case flow of a client.
 
 # 6. Preliminary Schedule
 ## 6.1 Project Plan
