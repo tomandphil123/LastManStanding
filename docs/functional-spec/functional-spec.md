@@ -2,6 +2,8 @@
 ## CA400 4th Year Project
 **Philip Donnelly & Tom Callaghan**
 
+**Date Finished: 1/12/20**
+
 ******
 ## Table of Contents:
 
@@ -85,17 +87,17 @@ Within _LastManStanding_ there will be a large number of leagues. These leagues 
 The users will be allowed to pick from all teams within the Premier League in the first week. When a player picks a team, they will not be able to pick that team for the rest of the competition. The only scenario where a player can pick the team for a second time is if they have picked all the available teams within the one competition. Users will be able to change their picked team up until the night before the first kick-off in the Premier League. At this point, the league will be locked until all Premier League matches of that week have been completed. Once all matches are completed, the users that picked a team that lost or drew their match will be knocked out of the competition. The users that picked a winning team will progress to the next game week. If all users are knocked out, the league will be reset and everyone will restart will all teams available.
 
 ### News & Updates
-Users will be able to keep up to date with the Premier League. Fixtures, results and news updates will be displayed on the front page of the web application. This way the users will be able to keep track of each team's progress and form. This will help make team selections for the following weeks.
+Users will be able to keep up to date with the Premier League. Fixtures, results and news updates will be displayed on the front page of the web application. This way the users will be able to keep track of each team's progress and form. This will help make team selections for the following weeks. This will help them to participate in the competition by aiding in their team selection thus having a chance to win.
 
 ### Probability
-To accommodate for users that may only be participating in the competition for charity reasons or if they have no knowledge of the Premier League, there will a probability of each team winning calculated every week. This will help them to participate in the competition by aiding in their team selection thus having a chance to win.
+To cater for users that may only be participating in the competition for charity reasons or if they have no knowledge of the Premier League, we will use an algorithm to provide a probability of a given team winning their match. This will help them to participate in the competition by aiding their team selection, thus having a chance to win.
 
 ### Live Scores
-During a game weekend when matches are underway there will be live scores visible during live games. The live score will be a basic score display of both teams and the minute in the match. Users can keep an eye on the live scores to get an idea if they'll progress to the next round. The live scores will be updated every two minutes during a match giving users a speedy update in relation to the team choice.
+When matches are underway there will be live scores visible during live games. The live score will be a basic score display of both teams and the minute in the match. Users can keep an eye on the live scores to get an idea if they'll progress to the next round. The live scores will be updated every two minutes during a match giving users a speedy update in relation to the team choice.
 
 ## 2.2 User Characteristics and Objectives
 ### User Demographic
-Last Man Standing is a game played by many different groups of people. From charity run competitions to work communities. Therefore, the user demographic for _LastManStanding_ web application will be football fans that currently run this competition using Excel sheets or any other manual processes. Although the demographic is mostly football fans, users that get involved with no knowledge of the Premier league are also within the demographic.
+Last Man Standing is a game played by many different groups of people. From charity run competitions to work communities. Therefore, the user demographic for _LastManStanding_ web application will be football fans that currently run this competition using Excel sheets or any other manual processes. Although the audience is mostly football fans, users that get involved with no knowledge of the Premier league are also within the demographic.
 
 ### User Expectations
 It is expected that the majority of the users will have some level of knowledge of the Premier League. From research, we found that there is a number of users with no knowledge of the Premier League. In order to accommodate these users, some features will be added to the web application in order to aid these sorts of users, in making educated team selections.
@@ -104,14 +106,14 @@ It is expected that the majority of the users will have some level of knowledge 
 ### User Sign Up / Sign In
 When a user first enters _LastManStanding_ web application they will be greeted on the home page. This will explain what _LastManStanding_ is. On the top right users will have an option to sign in or sign up.
 
-If this is a user first time using _LastManStanding_ they will be required to sign up. Once they click the signup button a form will be displayed requiring the user to enter a new username, their email and a new password. Once submitted, the user will be required to confirm their email. This will be done by clicking a link which _LastManStanding_ has sent to their email.
+If this is a user's first time using _LastManStanding_ they will be required to sign up. Once they click the signup button a form will be displayed requiring the user to enter a new username, their email and a new password. Once submitted, the user will be required to confirm their email. This will be done by clicking a link which _LastManStanding_ has sent to their email.
 
 If the user is a previous user of _LastManStanding_ they will simply need to sign-in. For this the user will click the sign-in button, then the sign-in option will display. A user will simply enter the username they created their account with as well as their password. Once signed in the user will be redirected to the logged-in user interface.
 
 ### League Creation / Join
 To join or create a league a user must be signed in. A user will click the 'My Leagues' tab in the navigation bar. This will bring them to their league's page. On their league's page, it will display all of their current leagues.
 
-On the top of the page, the user will have the option to join a league. This will display a simple input box in which they enter the invitation code they received from the league owner. Once submitted, the new league will be displayed in their 'My Leagues' tab.
+On the top of the page, the user will have the option to join a league. This will display a simple input box in which they enter the invitation code they received from the league owner. Once submitted, the new league will be displayed in their 'My Leagues' tab. Another solution to joining leagues will be that the league owner can send an invitation link via email, that can then be clicked to join the league.
 
 Similar to the league join if a user wants to create a league the option to do so will be on the top of the 'My Leagues' tab. The user will click the 'create league' button. This will display an input field where they enter the name of their new league. They simply click 'create league' and the league will be displayed in their 'My leagues' section. The league creator will receive an email with the invitation code for them to distribute to who they wish. The invitation code will also be visible on the top of the league they created.
 
@@ -120,7 +122,7 @@ Similar to the league join if a user wants to create a league the option to do s
 As the site will have a lot of different features/components, the site speed will be a constraint. The main contributor to slow site speed are images. In order to ensure the site speed is timely, all images being displayed will be compressed before uploading to the site.
 
 ### Accessibility
-As the site will be used by a large number of users, it must be very accessible. In order to ensure that the site is accessible a number of tools will be used such as Lighthouse. The library we are using for design is MaterialUI, this has built-in accessibility.
+As the site will be used by a large number of users, it must be very accessible. In order to ensure that the site is accessible a number of tools will be used such as Lighthouse. All UI libraries used within the implementation will be compatible with WCAG2.1.
 
 ### Cost
 _LastManStanding_ will require many different aws services and third party API endpoints. Due to this, there will be a monthly cost for running _LastManStanding_. We plan on using serverless architecture to reduce the cost of running _LastManStanding_.
@@ -132,12 +134,12 @@ Time is a large constraint for _LastManStanding_. The web application requires a
 
 ## 3.1 Authentication flow
 ### Description
-The authentication flow is when a user signs in or signs up. It will user AWS Cognito to help create users and authenticate users signing in. When a user creates an account a post request will be sent to AWS Cognito with their username, email and password. These details will be saved into our user pool. When signing in, a post request will be sent to the user pool with the user's username and password. AWS Cognito will check these credentials against users in the pool and return access and an ID token to the user if successful. The user has now logged in.
+The authentication flow occurs when a user signs in or signs up. It will use AWS Cognito to help create users and authenticate users signing in. When a user creates an account a post request will be sent to AWS Cognito with their username, email and password. These details will be saved into our user pool. When signing in, a post request will be sent to the user pool with the user's username and password. AWS Cognito will check these credentials against users in the pool and return access and an ID token to the user if successful. The user has now logged in.
 
 ![Cognito Data Flow](./images/Cognito.png)
 
 ### Criticality
-This is a high criticality requirement. Without the authentication flow, users would not be able to sign in to _LastManStanding_ thus not being able to join or create leagues.
+This is a critical requirement. Without the authentication flow, users would not be able to sign in to _LastManStanding_ thus not being able to join or create leagues.
 
 ### Technical issues
 Some technical issues with the authentication flow are getting AWS Cognito set up correctly and introducing error handling. We need to set up AWS Cognito specific to our needs which requires a lot of research and being particular with the service. After AWS Cognito is set up we need to implement correct error handling for all circumstances that a user may encounter which could cause issues.
@@ -153,7 +155,7 @@ The join/create leagues functionality is encountered when the user navigates to 
 This is a criticality requirement. Without this requirement/functionality the users would not be able to get involved in the competition.
 
 ### Technical issues
-The implementation of the admin system for league owners will be technically difficult. It will require the user to have admin access to the league they have ownership over but be a regular user for any other league.
+The implementation of the admin system for league owners will be technically difficult. It will require the user to have admin access to the league they have ownership over but be a regular user for any other league. Role based permissions will be implemented, this way there can be multiple admins per league.
 
 ### Dependencies with Other Requirements
 This feature is highly dependant on the user authentication feature. With the user authentication, the league can not be created as users could no take ownership of these leagues without an account.
@@ -161,7 +163,7 @@ This feature is highly dependant on the user authentication feature. With the us
 ## 3.3 League Functionality (Team Selection / Elimination)
 ### Description
 The league functionality is accessible in each league page. On the 'My leagues' page a user will click the league they want to go into and a page with league data will be displayed. On this page, users are given the option of which team they would like to choose for the upcoming round. It will display which teams they have already chosen and the teams they can choose. It will also display the other player's choices for the upcoming round. A user can also find out if they have been knocked out of the competition on this page.
-The league will also need to be locked before the weekend games have commenced. This is to prevent a user from picking a team during a game whilst the team is winning or even picking a team once the game is complete.
+The league will also need to be locked before the games have commenced. This is to prevent a user from picking a team during a game whilst the team is winning or even picking a team once the game is complete. Leagues will have unlimited number players, unless the admin sets a maximum number of players. Admins will also be able to select whether players can see others weekly picks.
 
 ### Criticality
 There are certain elements of this component which are vital for the functionality of the game however not all features in this component are not highly critical. A users ability to choose their next round team choice is vital along with finding out if they have been eliminated. The likes of displaying other users pick for the upcoming round is not a critical feature for the game to work properly.
@@ -188,7 +190,7 @@ This feature does not have any requirements for any other feature. It works as a
 
 ## 3.4 Live Scores
 ### Description
-The live score feature will be predominant during a premier league weekend. For each match, there will be a live score which will be updated every two minutes. This love score feature will be visible on the logged-in home page. The live score will provide the time and minute of the match.
+The live score feature will be predominantly during a Premier League weekend. For each match, there will be a live score which will be updated every two minutes. This love score feature will be visible on the logged-in home page. The live score will provide the time and minute of the match.
 
 ### Criticality
 Similar to team probabilities, live scores is not a critical feature for the competition to work on _LastManStanding_. However, live scores would be a critical feature in terms of users interacting with _LastManStanding_ and adds a better user experience.
