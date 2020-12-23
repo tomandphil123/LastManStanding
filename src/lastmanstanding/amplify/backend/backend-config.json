@@ -1,11 +1,53 @@
 {
-	"function": {},
-	"auth": {
-		"lastmanstandingd1e79f19": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [],
-			"customAuth": false
-		}
-	}
+    "function": {
+        "lastmanstandingd1e79f19PostConfirmation": {
+            "build": true,
+            "providerPlugin": "awscloudformation",
+            "service": "Lambda"
+        }
+    },
+    "auth": {
+        "lastmanstandingd1e79f19": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [
+                {
+                    "category": "function",
+                    "resourceName": "lastmanstandingd1e79f19PostConfirmation",
+                    "triggerProvider": "Cognito",
+                    "attributes": [
+                        "Arn",
+                        "Name"
+                    ]
+                }
+            ],
+            "customAuth": false
+        }
+    },
+    "storage": {
+        "PlayerDB": {
+            "service": "DynamoDB",
+            "providerPlugin": "awscloudformation"
+        },
+        "LeaguesDB": {
+            "service": "DynamoDB",
+            "providerPlugin": "awscloudformation"
+        },
+        "LeaguePlayerDB": {
+            "service": "DynamoDB",
+            "providerPlugin": "awscloudformation"
+        },
+        "PlStandingsDB": {
+            "service": "DynamoDB",
+            "providerPlugin": "awscloudformation"
+        },
+        "PlFixturesDB": {
+            "service": "DynamoDB",
+            "providerPlugin": "awscloudformation"
+        },
+        "PlResultsDB": {
+            "service": "DynamoDB",
+            "providerPlugin": "awscloudformation"
+        }
+    }
 }

@@ -1,6 +1,4 @@
 {
-    "identityPoolName": "lastmanstandingd1e79f19_identitypool_d1e79f19",
-    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "lastmad1e79f19",
     "userPoolName": "lastmanstandingd1e79f19_userpool_d1e79f19",
     "autoVerifiedAttributes": [
@@ -12,8 +10,8 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Your verification code",
-    "emailVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification link",
+    "emailVerificationMessage": "'Please click the link below to verify your email address. {####}'",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
@@ -31,7 +29,7 @@
     "userpoolClientLambdaRole": "lastmad1e79f19_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
     "resourceName": "lastmanstandingd1e79f19",
-    "authSelections": "identityPoolAndUserPool",
+    "authSelections": "userPoolOnly",
     "authRoleArn": {
         "Fn::GetAtt": [
             "AuthRole",
@@ -44,7 +42,25 @@
             "Arn"
         ]
     },
-    "useDefault": "default",
+    "useDefault": "manual",
     "userPoolGroupList": [],
-    "dependsOn": []
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "lastmanstandingd1e79f19PostConfirmation",
+            "triggerProvider": "Cognito",
+            "attributes": [
+                "Arn",
+                "Name"
+            ]
+        }
+    ],
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "triggers": "{\"PostConfirmation\":[\"custom\"]}",
+    "hostedUI": false,
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": []
 }
