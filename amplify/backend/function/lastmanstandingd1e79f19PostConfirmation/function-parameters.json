@@ -1,0 +1,15 @@
+{
+    "trigger": true,
+    "modules": [
+        "custom"
+    ],
+    "parentResource": "lastmanstandingd1e79f19",
+    "functionName": "lastmanstandingd1e79f19PostConfirmation",
+    "resourceName": "lastmanstandingd1e79f19PostConfirmation",
+    "parentStack": "auth",
+    "triggerEnvs": [],
+    "triggerDir": "/usr/local/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/utils/../triggers/PostConfirmation",
+    "triggerTemplate": "PostConfirmation.json.ejs",
+    "roleName": "lastmanstandingd1e79f19PostConfirmation",
+    "skipEdit": true
+}

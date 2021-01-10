@@ -1,0 +1,5 @@
+{
+    "tableName": "LeaguesDB",
+    "partitionKeyName": "LeagueID",
+    "partitionKeyType": "S"
+}

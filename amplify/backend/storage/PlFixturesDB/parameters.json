@@ -1,0 +1,5 @@
+{
+    "tableName": "PlFixturesDB",
+    "partitionKeyName": "HomeTeam",
+    "partitionKeyType": "S"
+}
