@@ -59,7 +59,11 @@ def handler(event, context):
 			homeTeam = fixture["homeTeam"]["name"]
 			awayTeam = fixture["awayTeam"]["name"]
 			gameWeek = fixture["season"]["currentMatchday"]
-			score = fixture["score"]["fullTime"]
+			homeTeamScore = fixture["score"]["fullTime"]["homeTeam"]
+			awayTeamScore = fixture["score"]["fullTime"]["awayTeam"]
+			if homeTeamScore == None and awayTeamScore == None:
+				homeTeamScore = "-"
+				awayTeamScore = "-"
 			if fixture["score"]["winner"] == "HOME_TEAM":
 				winner = fixture["homeTeam"]["name"]
 			else:
@@ -71,7 +75,8 @@ def handler(event, context):
 					'AwayTeam': awayTeam,
 					'GameWeek': str(gameWeek),
 					'Winner': winner,
-					'Score': str(score),
+					'HomeScore': str(homeTeamScore),
+					'AwayScore': str(awayTeamScore),
 					'createdTime': str(datetime.today())
 				}
 			)
