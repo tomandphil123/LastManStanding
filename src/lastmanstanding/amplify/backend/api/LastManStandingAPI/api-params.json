@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/premierLeagueInfo",
+            "lambdaFunction": "getPremierLeagueInfo",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/premierLeagueInfo"
+        }
+    ],
+    "resourceName": "LastManStandingAPI",
+    "apiName": "LastManStandingAPI",
+    "functionArns": [
+        {
+            "lambdaFunction": "getPremierLeagueInfo"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-lastmanstanding-dev-171839-authRole",
+        "unAuthRoleName": "amplify-lastmanstanding-dev-171839-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "getPremierLeagueInfo",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
