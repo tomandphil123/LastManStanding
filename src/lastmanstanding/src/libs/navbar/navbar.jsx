@@ -16,6 +16,7 @@ import SignIn from '../signIn/signIn';
 import SignUp from '../signUp/signUp';
 import ForgotPassword from '../forgotPassword/forgotPassword';
 import { Auth } from 'aws-amplify';
+import LoggedInHomePage from '../homePage/loggedInHomePage';
 import { Route, Link, BrowserRouter} from "react-router-dom";
 
 function TabPanel(props) {
@@ -112,7 +113,7 @@ export default function Navbar(props) {
             )}
           />
           </AppBar>
-          <Route path="/"/>
+          <Route path= "/" component={LoggedInHomePage}/>
           <Route path="/Profile"/>
           <Route path="/MyLeagues" />
           <Route path="/ContactUs" />
