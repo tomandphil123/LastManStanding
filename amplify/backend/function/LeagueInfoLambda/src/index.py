@@ -34,14 +34,14 @@ def handler(event, context):
 		table.put_item(
 			Item={
 				'TeamName': TeamName,
-				'position': position,
+				'position': str(position),
 				'crestUrl': crestUrl,
-				'gamesPlayed': gamesPlayed,
-				'won': won,
-				'draw': draw,
-				'lost': lost,
-				'points': points,
-				'goalDifference': goalDifference,
+				'gamesPlayed': str(gamesPlayed),
+				'won': str(won),
+				'draw': str(draw),
+				'lost': str(lost),
+				'points': str(points),
+				'goalDifference': str(goalDifference),
 				'createdTime': str(datetime.today())
 			}
 		)
@@ -69,9 +69,9 @@ def handler(event, context):
 				Item={
 					'HomeTeam': homeTeam,
 					'AwayTeam': awayTeam,
-					'GameWeek': gameWeek,
+					'GameWeek': str(gameWeek),
 					'Winner': winner,
-					'Score': score,
+					'Score': str(score),
 					'createdTime': str(datetime.today())
 				}
 			)
@@ -86,7 +86,7 @@ def handler(event, context):
 				Item={
 					'HomeTeam': homeTeam,
 					'AwayTeam': awayTeam,
-					'GameWeek': gameWeek,
+					'GameWeek': str(gameWeek),
 					'createdTime': str(datetime.today())
 				}
 			)
