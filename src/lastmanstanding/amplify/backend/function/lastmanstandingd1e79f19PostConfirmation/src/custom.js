@@ -1,10 +1,5 @@
 var AWS = require("aws-sdk");
 
-// AWS.config.update({
-//   region: process.env.REGION,
-//   endpoint: "https://dynamodb.eu-west-1.amazonaws.com",
-// });
-
 var docClient = new AWS.DynamoDB.DocumentClient();
 var table = "PlayerDB-dev";
 
