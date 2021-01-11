@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '20px'
   },
   header: {
-    backgroundColor: "#3D195B",
+    background: "#37003c",
     boxShadow: "10px 10px 10px 10px"
   },
   tabs:{
