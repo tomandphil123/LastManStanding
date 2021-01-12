@@ -44,14 +44,12 @@ export default function PremierLeagueFixtures(props) {
         function fetchMyAPI() {
             axios.get('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/premierLeagueInfo')
             .then(response => { 
-                console.log(response)
                 setResults(response["data"])
             })   
           }
         fetchMyAPI()
     }, [])
 
-    console.log(results)
     return (
         <div>
             <h1 align='center' style={{color: " white", paddingBottom: "2%"}}>Premier League Fixtures</h1>

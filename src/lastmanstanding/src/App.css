@@ -4,12 +4,8 @@
   padding-left: 20%;
 }
 
-.header h1 {
-  position: relative;
-  top:15px;
-  font-size: 25px;
-  color: #3D195B;
-  text-align: center;
-  padding-bottom: 10px
-}
+/* .App {
+  display: flex;
+  flex-direction: row;
+} */
 

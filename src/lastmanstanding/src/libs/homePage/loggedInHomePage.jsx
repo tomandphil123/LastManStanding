@@ -7,7 +7,8 @@ import Box from '@material-ui/core/Box';
 const styles = {
     homePage : {
         backgroundImage: `url("https://cdn.wallpapersafari.com/43/53/vsk4GN.jpg")`,
-        height: 900
+        height: 900,
+        width:"95%",
     }
 }
 
@@ -21,7 +22,6 @@ export default function LoggedInHomePage(props) {
             m={1}
             padding = "3%"
             style={styles.homePage}
-            css={{maxWidth:"100%"}}
         >
                 <Box paddingRight="4%"><PremierLeagueStandings/></Box>
                 <Box paddingRight="4%"><PremierLeagueFixtures/></Box>
