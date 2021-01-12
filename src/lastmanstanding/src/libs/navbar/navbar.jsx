@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -12,11 +12,8 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import PhoneIcon from '@material-ui/icons/Phone';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import SignIn from '../signIn/signIn';
-import SignUp from '../signUp/signUp';
-import ForgotPassword from '../forgotPassword/forgotPassword';
 import { Auth } from 'aws-amplify';
-import { Route, Link, BrowserRouter} from "react-router-dom";
+import { useHistory, Link, withRouter} from "react-router-dom";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -48,43 +45,63 @@ TabPanel.propTypes = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingTop: '20px'
+    // paddingTop: '3%',
+    display: "flex",
   },
   header: {
-    backgroundColor: "#3D195B",
-    boxShadow: "10px 10px 10px 10px"
+    background: "#37003c",
+    // boxShadow: "5px 5px 5px 5px",
   },
   tabs:{
     color:"white",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   signInTab: {
     color:"white",
     fontWeight: "bold",
-    right: "150px",
-    position: "fixed",
+    left: "80%",
+    position: "sticky"
   },
   signUpTab: {
     color:"white",
     fontWeight: "bold",
-    right: "0px",
-    position: "fixed",
+    left: "90%",
+    position: "sticky",
+  },
+  signOutTab: {
+    color:"white",
+    fontWeight: "bold",
+    left: "90%",
+    position: "sticky",
+  },
+  contactTab: {
+    color:"white",
+    fontWeight: "bold",
+    left: "77%",
+    position: "sticky",
+  },
+  logo:{
+    display: "flex",
+    order: 1
+  },
+  nav:{
+    display: "flex",
+    order: 2,
+    width: "100%",
   },
 }));
 
-export default function Navbar(props) {
+function Navbar(props) {
   const classes = useStyles();
-
-  const setIsLoggedIn = async => {
-    props.auth.setAuthStatus(true);
-  }
+  const history = useHistory();
 
   const handleLogOut = async event => {
     event.preventDefault();
     try {
       Auth.signOut();
       props.auth.setAuthStatus(false);
-      props.auth.setUser(null);
+	  props.auth.setUser(null);
+	  history.push("/")
     } catch(error) {
       console.log(error.message);
     }
@@ -94,56 +111,47 @@ export default function Navbar(props) {
     props.auth.isAuthenticated
     ? (
       <>
-      <BrowserRouter>
+      <nav>
         <div className={classes.root}>
-          <AppBar position="static" className={classes.header}>
-          <Route
-              path="/"
-              render={({ location }) => (
-                <Fragment>
-                <Tabs value={location.pathname}>
-                  <Tab label={<div><HomeIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Home </div>} className={classes.tabs} value = "/" component={Link} to="/"/>
-                  <Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Profile </div>} className={classes.tabs} value="/Profile" component={Link} to="/Profile" />
-                  <Tab label={<div><ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Leagues </div>} className={classes.tabs} value="/MyLeagues" component={Link} to="/MyLeagues" />
-                  <Tab label={<div><PhoneIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Contact Us </div>} className={classes.tabs}  value="/ContactUs" component={Link} to="/ContactUs" />
-                  <Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Out </div>} className={classes.signUpTab} onClick={event => handleLogOut(event)} />
-                </Tabs>
-            </Fragment>
-            )}
-          />
-          </AppBar>
-          <Route path="/"/>
-          <Route path="/Profile"/>
-          <Route path="/MyLeagues" />
-          <Route path="/ContactUs" />
+        <div className={classes.logo}>
+          <img src={require("../../images/logo3.png")} class={classes.Applogo} alt="logo" width="100px" textcolor="inherit" value="0"></img>
         </div>
-      </BrowserRouter>
+			<div className={classes.nav}>
+				<AppBar position="sticky" className={classes.header}>
+					<Tabs>
+						<Tab label={<div><HomeIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Home </div>} className={classes.tabs} value = "/" component={Link} to="/"/>
+						<Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Profile </div>} className={classes.tabs} value="/Profile" component={Link} to="/Profile" />
+						<Tab label={<div><ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Leagues </div>} className={classes.tabs} value="/MyLeagues" component={Link} to="/MyLeagues" />
+						<Tab label={<div><PhoneIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Contact Us </div>} className={classes.contactTab}  value="/ContactUs" component={Link} to="/ContactUs" />
+						<Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Out </div>} className={classes.signOutTab} onClick={event => handleLogOut(event)} />
+					</Tabs>
+				</AppBar>
+			</div>
+        </div>
+      </nav>
       </>
     ) : (
       <>
-      <BrowserRouter>
+      <nav>
         <div className={classes.root}>
-          <AppBar position="static" className={classes.header}>
-            <Route
-              path="/"
-              render={({ location }) => (
-                <Fragment>
-                  <Tabs value={location.pathname}>
-                    <Tab label={<div><HomeIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Home </div>} className={classes.tabs}  value = "/" component={Link} to="/"/>
-                    <Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab}  value="/SignIn" component={Link} to="/SignIn"/>
-                    <Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>}  className={classes.signUpTab} value="/SignUp" component={Link} to="/SignUp" />
-                  </Tabs>
-                </Fragment>
-              )}
-            />
-          </AppBar>
-            <Route path="/"/>
-            <Route path="/SignIn" component={() => <SignIn isLoggedIn={setIsLoggedIn} />}/>
-            <Route path="/SignUp" component={SignUp} />
-            <Route path="/ForgotPassword" component={ForgotPassword} />
+			<div className={classes.logo}>
+				<img src={require("../../images/logo3.png")} class={classes.Applogo} width="100px" alt="logo" textcolor="inherit" value="0"></img>
+			</div>
+      <div className={classes.logoBackground}></div>
+			<div className={classes.nav}>
+				<AppBar position="sticky" className={classes.header}>
+					<Tabs>
+						<Tab label={<div><HomeIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Home </div>} className={classes.tabs}  value = "/" component={Link} to="/"/>
+						<Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab}  value="/SignIn" component={Link} to="/SignIn"/>
+						<Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>}  className={classes.signUpTab} value="/SignUp" component={Link} to="/SignUp" />
+					</Tabs>
+				</AppBar>
+			</div>
         </div>
-      </BrowserRouter>
+      </nav>
       </>
     )
   );
 }
+
+export default withRouter(Navbar);

@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import Navbar from './libs/navbar/navbar';
 import './App.css';
 import { Auth } from 'aws-amplify';
+import { Route, BrowserRouter,Switch } from 'react-router-dom';
+import LoggedInHomePage from './libs/homePage/loggedInHomePage';
+import SignIn from './libs/signIn/signIn';
+import SignUp from './libs/signUp/signUp';
+import ForgotPassword from './libs/forgotPassword/forgotPassword';
 
 class App extends Component {
   state = {
     isAuthenticated: false,
     isAuthenticating: true,
-    user: null
+    user: null,
   }
 
   setAuthStatus = authenticated => {
@@ -22,7 +27,6 @@ class App extends Component {
     try {
       const session = await Auth.currentSession();
       this.setAuthStatus(true);
-      console.log(session);
       const user = await Auth.currentAuthenticatedUser();
       this.setUser(user);
     } catch(error) {
@@ -33,6 +37,11 @@ class App extends Component {
   
     this.setState({ isAuthenticating: false });
   }
+  
+  setIsLoggedIn = async => {
+    this.setAuthStatus(true);
+    // history.push("/")
+  }
 
   render() {
     const authProps = {
@@ -41,16 +50,37 @@ class App extends Component {
       setAuthStatus: this.setAuthStatus,
       setUser: this.setUser
     }
+
     
     return (
-      <div className="App">
-        <header className="App-header">
-          <div className="header h1">
-            <h1>Last Man Standing</h1>
+      <BrowserRouter>
+          <Navbar auth={authProps} />
+          <div>
+            <Switch>
+              <Route exact path="/">
+                <LoggedInHomePage/>
+              </Route>
+              <Route path="/SignIn">
+                <SignIn isLoggedIn = {this.setIsLoggedIn}/>
+              </Route>
+              <Route path="/SignUp">
+                <SignUp/>
+              </Route>
+              <Route path="/Profile">
+                <h1>Profile</h1>
+              </Route>
+              <Route path="/MyLeagues">
+                <h1>My Leagues</h1>
+              </Route>
+              <Route path="/ContactUs">
+                <h1>Contact Us</h1>
+              </Route>
+              <Route path="/ForgotPassword">
+                <ForgotPassword/>
+              </Route>
+            </Switch>
           </div>
-        </header>
-        <Navbar auth={authProps}/>
-      </div>
+      </BrowserRouter>
     );
   }
 }
