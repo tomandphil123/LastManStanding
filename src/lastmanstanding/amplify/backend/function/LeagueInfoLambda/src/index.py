@@ -34,14 +34,14 @@ def handler(event, context):
 		table.put_item(
 			Item={
 				'TeamName': TeamName,
-				'position': position,
+				'position': str(position),
 				'crestUrl': crestUrl,
-				'gamesPlayed': gamesPlayed,
-				'won': won,
-				'draw': draw,
-				'lost': lost,
-				'points': points,
-				'goalDifference': goalDifference,
+				'gamesPlayed': str(gamesPlayed),
+				'won': str(won),
+				'draw': str(draw),
+				'lost': str(lost),
+				'points': str(points),
+				'goalDifference': str(goalDifference),
 				'createdTime': str(datetime.today())
 			}
 		)
@@ -59,7 +59,11 @@ def handler(event, context):
 			homeTeam = fixture["homeTeam"]["name"]
 			awayTeam = fixture["awayTeam"]["name"]
 			gameWeek = fixture["season"]["currentMatchday"]
-			score = fixture["score"]["fullTime"]
+			homeTeamScore = fixture["score"]["fullTime"]["homeTeam"]
+			awayTeamScore = fixture["score"]["fullTime"]["awayTeam"]
+			if homeTeamScore == None and awayTeamScore == None:
+				homeTeamScore = "-"
+				awayTeamScore = "-"
 			if fixture["score"]["winner"] == "HOME_TEAM":
 				winner = fixture["homeTeam"]["name"]
 			else:
@@ -69,9 +73,10 @@ def handler(event, context):
 				Item={
 					'HomeTeam': homeTeam,
 					'AwayTeam': awayTeam,
-					'GameWeek': gameWeek,
+					'GameWeek': str(gameWeek),
 					'Winner': winner,
-					'Score': score,
+					'HomeScore': str(homeTeamScore),
+					'AwayScore': str(awayTeamScore),
 					'createdTime': str(datetime.today())
 				}
 			)
@@ -86,7 +91,7 @@ def handler(event, context):
 				Item={
 					'HomeTeam': homeTeam,
 					'AwayTeam': awayTeam,
-					'GameWeek': gameWeek,
+					'GameWeek': str(gameWeek),
 					'createdTime': str(datetime.today())
 				}
 			)

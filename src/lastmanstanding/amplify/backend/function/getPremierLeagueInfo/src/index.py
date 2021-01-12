@@ -6,7 +6,9 @@ def handler(event, context):
 
 	table1 = dynamodb.Table('PlStandingsDB-dev')
 	response1 = table1.scan()
-	standingsData = response1['Items']
+	res = response1['Items']
+	standingsData = sorted(res, key = lambda i: int(i["position"]))
+	print(standingsData)
 
 	table2 = dynamodb.Table('PlFixturesDB-dev')
 	response2 = table2.scan()
@@ -16,4 +18,14 @@ def handler(event, context):
 	response3 = table3.scan()
 	resultsData = response3['Items']
 
-	return standingsData, fixturesData, resultsData
+	lst = [standingsData, fixturesData, resultsData]
+
+	return {
+	'statusCode': 200,
+	'headers': {
+	'Access-Control-Allow-Headers': 'Content-Type',
+	'Access-Control-Allow-Origin': '*',
+	'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+	},
+	'body': json.dumps(lst)
+	}
