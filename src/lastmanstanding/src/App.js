@@ -8,6 +8,7 @@ import SignIn from './libs/signIn/signIn';
 import SignUp from './libs/signUp/signUp';
 import ForgotPassword from './libs/forgotPassword/forgotPassword';
 import axios from 'axios';
+import Leagues from './libs/leagues/leagues';
 
 class App extends Component {
   state = {
