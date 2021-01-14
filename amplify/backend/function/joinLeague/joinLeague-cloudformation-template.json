@@ -57,12 +57,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "createLeague",
+            "joinLeague",
             {
               "Fn::Join": [
                 "",
                 [
-                  "createLeague",
+                  "joinLeague",
                   "-",
                   {
                     "Ref": "env"
@@ -111,7 +111,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-dev-171839-deployment",
-          "S3Key": "amplify-builds/createLeague-41462b4c3865526d5032-build.zip"
+          "S3Key": "amplify-builds/joinLeague-7056526a4130386f416e-build.zip"
         }
       }
     },
@@ -121,12 +121,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lastmanstandingLambdaRole01047dbe",
+            "lastmanstandingLambdaRole14e06c3b",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lastmanstandingLambdaRole01047dbe",
+                  "lastmanstandingLambdaRole14e06c3b",
                   "-",
                   {
                     "Ref": "env"

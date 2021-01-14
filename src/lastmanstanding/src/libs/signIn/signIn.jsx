@@ -45,7 +45,7 @@ export default function SignIn(props){
     event.preventDefault()
 
     try {
-      const user = await Auth.signIn({
+      await Auth.signIn({
         username,
         password,
       });

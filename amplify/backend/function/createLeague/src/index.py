@@ -9,6 +9,7 @@ def handler(event, context):
 	leagueID = result['leagueName'] +"-"+ str(randint(100000, 999999))
 	leagueName = result['leagueName']
 	admin = result['sub']
+	email = result['email']
 	createdDate = str(datetime.today())
 	invitationCode = str(randint(100000, 999999))
 	username = result['username']
@@ -54,5 +55,5 @@ def handler(event, context):
 	'Access-Control-Allow-Origin': '*',
 	'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
 	},
-	'body': "hello tom"
+	'body': "hello"
 	}
