@@ -10,29 +10,29 @@
     "env": {
       "Type": "String"
     },
-    "storagePlStandingsDBName": {
+    "storagePlayerDBName": {
       "Type": "String",
-      "Default": "storagePlStandingsDBName"
+      "Default": "storagePlayerDBName"
     },
-    "storagePlStandingsDBArn": {
+    "storagePlayerDBArn": {
       "Type": "String",
-      "Default": "storagePlStandingsDBArn"
+      "Default": "storagePlayerDBArn"
     },
-    "storagePlFixturesDBName": {
+    "storageLeaguesDBName": {
       "Type": "String",
-      "Default": "storagePlFixturesDBName"
+      "Default": "storageLeaguesDBName"
     },
-    "storagePlFixturesDBArn": {
+    "storageLeaguesDBArn": {
       "Type": "String",
-      "Default": "storagePlFixturesDBArn"
+      "Default": "storageLeaguesDBArn"
     },
-    "storagePlResultsDBName": {
+    "storageLeaguePlayerDBName": {
       "Type": "String",
-      "Default": "storagePlResultsDBName"
+      "Default": "storageLeaguePlayerDBName"
     },
-    "storagePlResultsDBArn": {
+    "storageLeaguePlayerDBArn": {
       "Type": "String",
-      "Default": "storagePlResultsDBArn"
+      "Default": "storageLeaguePlayerDBArn"
     }
   },
   "Conditions": {
@@ -57,12 +57,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "LeagueInfoLambda",
+            "createLeague",
             {
               "Fn::Join": [
                 "",
                 [
-                  "LeagueInfoLambda",
+                  "createLeague",
                   "-",
                   {
                     "Ref": "env"
@@ -80,23 +80,23 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "STORAGE_PLSTANDINGSDB_NAME": {
-              "Ref": "storagePlStandingsDBName"
+            "STORAGE_PLAYERDB_NAME": {
+              "Ref": "storagePlayerDBName"
             },
-            "STORAGE_PLSTANDINGSDB_ARN": {
-              "Ref": "storagePlStandingsDBArn"
+            "STORAGE_PLAYERDB_ARN": {
+              "Ref": "storagePlayerDBArn"
             },
-            "STORAGE_PLFIXTURESDB_NAME": {
-              "Ref": "storagePlFixturesDBName"
+            "STORAGE_LEAGUESDB_NAME": {
+              "Ref": "storageLeaguesDBName"
             },
-            "STORAGE_PLFIXTURESDB_ARN": {
-              "Ref": "storagePlFixturesDBArn"
+            "STORAGE_LEAGUESDB_ARN": {
+              "Ref": "storageLeaguesDBArn"
             },
-            "STORAGE_PLRESULTSDB_NAME": {
-              "Ref": "storagePlResultsDBName"
+            "STORAGE_LEAGUEPLAYERDB_NAME": {
+              "Ref": "storageLeaguePlayerDBName"
             },
-            "STORAGE_PLRESULTSDB_ARN": {
-              "Ref": "storagePlResultsDBArn"
+            "STORAGE_LEAGUEPLAYERDB_ARN": {
+              "Ref": "storageLeaguePlayerDBArn"
             }
           }
         },
@@ -108,10 +108,10 @@
         },
         "Runtime": "python3.8",
         "Layers": [],
-        "Timeout": "40",
+        "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-dev-171839-deployment",
-          "S3Key": "amplify-builds/LeagueInfoLambda-537671694f426c397936-build.zip"
+          "S3Key": "amplify-builds/createLeague-6244465a6e476b61596f-build.zip"
         }
       }
     },
@@ -121,12 +121,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lastmanstandingLambdaRolec6081809",
+            "lastmanstandingLambdaRole01047dbe",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lastmanstandingLambdaRolec6081809",
+                  "lastmanstandingLambdaRole01047dbe",
                   "-",
                   {
                     "Ref": "env"
@@ -230,14 +230,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagePlStandingsDBArn"
+                  "Ref": "storagePlayerDBArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagePlStandingsDBArn"
+                        "Ref": "storagePlayerDBArn"
                       },
                       "index/*"
                     ]
@@ -263,14 +263,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagePlFixturesDBArn"
+                  "Ref": "storageLeaguesDBArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagePlFixturesDBArn"
+                        "Ref": "storageLeaguesDBArn"
                       },
                       "index/*"
                     ]
@@ -296,14 +296,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagePlResultsDBArn"
+                  "Ref": "storageLeaguePlayerDBArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagePlResultsDBArn"
+                        "Ref": "storageLeaguePlayerDBArn"
                       },
                       "index/*"
                     ]
@@ -311,45 +311,6 @@
                 }
               ]
             }
-          ]
-        }
-      }
-    },
-    "CloudWatchEvent": {
-      "Type": "AWS::Events::Rule",
-      "Properties": {
-        "Description": "Schedule rule for Lambda",
-        "ScheduleExpression": {
-          "Ref": "CloudWatchRule"
-        },
-        "State": "ENABLED",
-        "Targets": [
-          {
-            "Arn": {
-              "Fn::GetAtt": [
-                "LambdaFunction",
-                "Arn"
-              ]
-            },
-            "Id": {
-              "Ref": "LambdaFunction"
-            }
-          }
-        ]
-      }
-    },
-    "PermissionForEventsToInvokeLambda": {
-      "Type": "AWS::Lambda::Permission",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "LambdaFunction"
-        },
-        "Action": "lambda:InvokeFunction",
-        "Principal": "events.amazonaws.com",
-        "SourceArn": {
-          "Fn::GetAtt": [
-            "CloudWatchEvent",
-            "Arn"
           ]
         }
       }
@@ -377,11 +338,6 @@
     "LambdaExecutionRole": {
       "Value": {
         "Ref": "LambdaExecutionRole"
-      }
-    },
-    "CloudWatchEventRule": {
-      "Value": {
-        "Ref": "CloudWatchEvent"
       }
     }
   }

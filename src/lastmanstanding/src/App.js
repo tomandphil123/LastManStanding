@@ -7,6 +7,7 @@ import LoggedInHomePage from './libs/homePage/loggedInHomePage';
 import SignIn from './libs/signIn/signIn';
 import SignUp from './libs/signUp/signUp';
 import ForgotPassword from './libs/forgotPassword/forgotPassword';
+import Leagues from './libs/leagues/leagues';
 
 class App extends Component {
   state = {
@@ -25,7 +26,6 @@ class App extends Component {
 
   async componentDidMount() {
     try {
-      const session = await Auth.currentSession();
       this.setAuthStatus(true);
       const user = await Auth.currentAuthenticatedUser();
       this.setUser(user);
@@ -40,7 +40,6 @@ class App extends Component {
   
   setIsLoggedIn = async => {
     this.setAuthStatus(true);
-    // history.push("/")
   }
 
   render() {
@@ -51,7 +50,6 @@ class App extends Component {
       setUser: this.setUser
     }
 
-    
     return (
       <BrowserRouter>
           <Navbar auth={authProps} />
@@ -70,7 +68,7 @@ class App extends Component {
                 <h1>Profile</h1>
               </Route>
               <Route path="/MyLeagues">
-                <h1>My Leagues</h1>
+                <Leagues user={authProps.user}/>
               </Route>
               <Route path="/ContactUs">
                 <h1>Contact Us</h1>

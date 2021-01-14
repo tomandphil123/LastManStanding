@@ -11,7 +11,7 @@ import Paper from '@material-ui/core/Paper';
 
 function getResults(results) {
     if (typeof results === 'undefined'){
-        console.log("Results is undefined")
+        // console.log("Results is undefined")
     } else {
         return (
             <TableContainer component={Paper} style={{ maxHeight: 820 }}>
@@ -43,14 +43,14 @@ export default function PremierLeagueResults(props) {
         function fetchMyAPI() {
             axios.get('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/premierLeagueInfo')
             .then(response => { 
-                console.log(response)
+                // console.log(response)
                 setResults(response["data"])
             })   
           }
         fetchMyAPI()
     }, [])
 
-    console.log(results)
+
     return (
         <div>
             <h1 align='center' style={{color: " white", paddingBottom: "2%"}}>Premier League Results</h1>
