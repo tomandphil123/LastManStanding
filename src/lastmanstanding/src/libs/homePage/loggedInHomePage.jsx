@@ -23,9 +23,9 @@ export default function LoggedInHomePage(props) {
             padding = "3%"
             style={styles.homePage}
         >
-                <Box paddingRight="4%"><PremierLeagueStandings/></Box>
-                <Box paddingRight="4%"><PremierLeagueFixtures/></Box>
-                <Box ><PremierLeagueResults/></Box>
+                <Box paddingRight="4%"><PremierLeagueStandings results={props.results}/></Box>
+                <Box paddingRight="4%"><PremierLeagueFixtures results={props.results}/></Box>
+                <Box ><PremierLeagueResults results={props.results}/></Box>
             </Box>
         </> 
     )
