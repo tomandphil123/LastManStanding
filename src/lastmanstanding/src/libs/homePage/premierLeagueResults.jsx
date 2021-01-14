@@ -10,9 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 function getResults(results) {
-    if (typeof results === 'undefined'){
-        console.log("Results is undefined")
-    } else {
+    if (typeof results !== 'undefined'){
         return (
             <TableContainer component={Paper} style={{ maxHeight: 820 }}>
             <Table aria-label="simple table">
@@ -38,23 +36,10 @@ function getResults(results) {
 
 export default function PremierLeagueResults(props) {
 
-    const [results, setResults] = useState();
-    useLayoutEffect(() => {
-        function fetchMyAPI() {
-            axios.get('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/premierLeagueInfo')
-            .then(response => { 
-                console.log(response)
-                setResults(response["data"])
-            })   
-          }
-        fetchMyAPI()
-    }, [])
-
-    console.log(results)
     return (
         <div>
             <h1 align='center' style={{color: " white", paddingBottom: "2%"}}>Premier League Results</h1>
-            {getResults(results)}
+            {getResults(props.results["data"])}
         </div>
     )
 }

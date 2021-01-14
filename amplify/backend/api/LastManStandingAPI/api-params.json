@@ -7,6 +7,13 @@
                 "open": true
             },
             "policyResourceName": "/premierLeagueInfo"
+        },
+        {
+            "name": "/createLeague",
+            "lambdaFunction": "createLeague",
+            "privacy": {
+                "open": true
+            }
         }
     ],
     "resourceName": "LastManStandingAPI",
@@ -14,6 +21,9 @@
     "functionArns": [
         {
             "lambdaFunction": "getPremierLeagueInfo"
+        },
+        {
+            "lambdaFunction": "createLeague"
         }
     ],
     "privacy": {
@@ -30,6 +40,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "createLeague",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
-    ]
+    ],
+    "uuid": "df678dd6"
 }

@@ -7,12 +7,15 @@ import LoggedInHomePage from './libs/homePage/loggedInHomePage';
 import SignIn from './libs/signIn/signIn';
 import SignUp from './libs/signUp/signUp';
 import ForgotPassword from './libs/forgotPassword/forgotPassword';
+import axios from 'axios';
+import createWriteStream from 'fs';
 
 class App extends Component {
   state = {
     isAuthenticated: false,
     isAuthenticating: true,
     user: null,
+    response: {}
   }
 
   setAuthStatus = authenticated => {
@@ -34,13 +37,15 @@ class App extends Component {
         console.log(error);
       }
     }
-  
+    axios.get('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/premierLeagueInfo')
+    .then(response => {
+        this.setState({response: response})
+    })
     this.setState({ isAuthenticating: false });
   }
   
   setIsLoggedIn = async => {
     this.setAuthStatus(true);
-    // history.push("/")
   }
 
   render() {
@@ -58,7 +63,7 @@ class App extends Component {
           <div>
             <Switch>
               <Route exact path="/">
-                <LoggedInHomePage/>
+                <LoggedInHomePage results={this.state.response}/>
               </Route>
               <Route path="/SignIn">
                 <SignIn isLoggedIn = {this.setIsLoggedIn}/>
