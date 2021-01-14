@@ -23,7 +23,7 @@ export default function Leagues(props) {
         <Button variant="contained" color="primary" onClick={() => leagueCreation()}>Create League</Button>
         <Button variant="contained" color="primary" onClick={() => leagueJoin()}>Join League</Button>
         { createLeague ? (
-            <CreateLeagues/>
+            <CreateLeagues user={props.user}/>
         ) : (
             <div></div>
         )}

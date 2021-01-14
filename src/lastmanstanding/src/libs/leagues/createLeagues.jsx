@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Auth } from "aws-amplify";
-import { Link, useHistory } from "react-router-dom";
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -39,8 +36,10 @@ export default function CreateLeagues(props) {
 
     const handleSubmit = async event => {
         event.preventDefault()
-    
-        console.log(leagueName)
+        axios.post('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/createLeague', {leagueName: leagueName, sub: props.user['attributes']['sub']})
+          .then(response => { 
+              console.log(response)
+          })   
       }
 
     return (

@@ -66,6 +66,37 @@
           ]
         }
       ]
+    },
+    "createLeague": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "auth": {
@@ -120,6 +151,14 @@
         {
           "category": "function",
           "resourceName": "getPremierLeagueInfo",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "createLeague",
           "attributes": [
             "Name",
             "Arn"
