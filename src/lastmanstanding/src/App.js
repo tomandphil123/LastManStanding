@@ -64,7 +64,7 @@ class App extends Component {
                 <LoggedInHomePage results={this.state.response}/>
               </Route>
               <Route path="/SignIn">
-                <SignIn isLoggedIn = {this.setIsLoggedIn}/>
+                <SignIn isLoggedIn = {this.setIsLoggedIn} setUser = {this.setUser}/>
               </Route>
               <Route path="/SignUp">
                 <SignUp/>

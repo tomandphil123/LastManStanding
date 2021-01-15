@@ -28,7 +28,7 @@ export default function Leagues(props) {
             <div></div>
         )}
         { joinLeague ? (
-            <JoinLeagues/>
+            <JoinLeagues user={props.user}/>
         ) : (
             <div></div>
         )}

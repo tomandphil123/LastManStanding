@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Auth } from "aws-amplify";
-import { Link, useHistory } from "react-router-dom";
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -33,15 +30,17 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default function JoinLeagues(props) {
-    const [leagueName, setleagueName] = useState('');
+  const [leagueCode, setleagueCode] = useState('');
 
-    const classes = useStyles();
-
-    const handleSubmit = async event => {
-        event.preventDefault()
-    
-        console.log("hello")
-      }
+  const classes = useStyles();
+  const handleSubmit = async event => {
+      event.preventDefault()
+      axios.post('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/joinLeague', {leagueCode: leagueCode, sub: props.user['attributes']['sub'], username: props.user['username']})
+        .then(response => { 
+			console.log(response)
+            alert("Successfully Joined League!")
+        })   
+    }
 
     return (
         <>
@@ -64,7 +63,7 @@ export default function JoinLeagues(props) {
                 name="leagueName"
                 autoComplete="uname"
                 autoFocus
-                onChange= {event => setleagueName(event.target.value)}
+                onChange= {event => setleagueCode(event.target.value)}
               />
               <Button
                 type="submit"

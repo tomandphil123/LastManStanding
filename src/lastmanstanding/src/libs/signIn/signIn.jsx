@@ -51,7 +51,7 @@ export default function SignIn(props){
       });
       setIsLoggedIn();
       //props.auth.setAuthStatus(true);
-      //props.auth.setUser(user);
+      props.setUser(user);
       history.push("/")
     } catch (error) {
       alert(error.message);
