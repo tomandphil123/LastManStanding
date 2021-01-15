@@ -3,6 +3,8 @@ import Navbar from './libs/navbar/navbar';
 import './App.css';
 import { Auth } from 'aws-amplify';
 import { Route, BrowserRouter,Switch } from 'react-router-dom';
+import {Helmet} from 'react-helmet';
+
 import LoggedInHomePage from './libs/homePage/loggedInHomePage';
 import SignIn from './libs/signIn/signIn';
 import SignUp from './libs/signUp/signUp';
@@ -58,7 +60,10 @@ class App extends Component {
     return (
       <BrowserRouter>
           <Navbar auth={authProps} />
-          <div>
+          <div className="App">
+            <Helmet>
+                <style>{'body { background-Image: url("https://cdn.wallpapersafari.com/43/53/vsk4GN.jpg") }'}</style>
+            </Helmet>
             <Switch>
               <Route exact path="/">
                 <LoggedInHomePage results={this.state.response}/>

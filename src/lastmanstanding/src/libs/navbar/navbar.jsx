@@ -45,12 +45,10 @@ TabPanel.propTypes = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // paddingTop: '3%',
     display: "flex",
   },
   header: {
     background: "#37003c",
-    // boxShadow: "5px 5px 5px 5px",
   },
   tabs:{
     color:"white",
@@ -114,7 +112,7 @@ function Navbar(props) {
       <nav>
         <div className={classes.root}>
         <div className={classes.logo}>
-          <img src={require("../../images/logo3.png")} class={classes.Applogo} alt="logo" width="100px" textcolor="inherit" value="0"></img>
+          <img src={require("../../images/logo3.png")} className={classes.Applogo} alt="logo" width="100px" textcolor="inherit" value="0"></img>
         </div>
 			<div className={classes.nav}>
 				<AppBar position="sticky" className={classes.header}>
@@ -135,7 +133,7 @@ function Navbar(props) {
       <nav>
         <div className={classes.root}>
 			<div className={classes.logo}>
-				<img src={require("../../images/logo3.png")} class={classes.Applogo} width="100px" alt="logo" textcolor="inherit" value="0"></img>
+				<img src={require("../../images/logo3.png")} className={classes.Applogo} width="1%" alt="logo" textcolor="inherit" value="0"></img>
 			</div>
       <div className={classes.logoBackground}></div>
 			<div className={classes.nav}>

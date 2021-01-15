@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
       margin: theme.spacing(1),
-      backgroundColor: '#3D195B',
+      backgroundColor: '#37003c',
     },
     form: {
       width: '100%', 
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
       margin: theme.spacing(3, 0, 2),
-      backgroundColor: '#3D195B'
+      backgroundColor: '#37003c'
     }
   }));
 
@@ -44,7 +44,7 @@ export default function JoinLeagues(props) {
 
     return (
         <>
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs" style={{backgroundColor: '#fff', opacity: '0.90'}}>
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />

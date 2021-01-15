@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
       margin: theme.spacing(1),
-      backgroundColor: '#3D195B',
+      backgroundColor: '#37003c',
     },
     form: {
       width: '100%', 
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
       margin: theme.spacing(3, 0, 2),
-      backgroundColor: '#3D195B'
+      backgroundColor: '#37003c'
     }
   }));
 
@@ -35,7 +35,6 @@ export default function CreateLeagues(props) {
     const classes = useStyles();
     const handleSubmit = async event => {
         event.preventDefault()
-        console.log(props.user)
         axios.post('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/createLeague', {leagueName: leagueName, sub: props.user['attributes']['sub'], email: props.user['attributes']['email'], username: props.user['username']})
           .then(response => { 
               alert("Successfully Created League!")
@@ -44,7 +43,7 @@ export default function CreateLeagues(props) {
 
     return (
         <>
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs" style={{backgroundColor: '#fff', opacity: '0.90'}}>
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
