@@ -7,6 +7,27 @@
                 "open": true
             },
             "policyResourceName": "/premierLeagueInfo"
+        },
+        {
+            "name": "/createLeague",
+            "lambdaFunction": "createLeague",
+            "privacy": {
+                "open": true
+            }
+        },
+        {
+            "name": "/joinLeague",
+            "lambdaFunction": "joinLeague",
+            "privacy": {
+                "open": true
+            }
+        },
+        {
+            "name": "/myLeagues",
+            "lambdaFunction": "myLeagues",
+            "privacy": {
+                "open": true
+            }
         }
     ],
     "resourceName": "LastManStandingAPI",
@@ -14,6 +35,15 @@
     "functionArns": [
         {
             "lambdaFunction": "getPremierLeagueInfo"
+        },
+        {
+            "lambdaFunction": "createLeague"
+        },
+        {
+            "lambdaFunction": "joinLeague"
+        },
+        {
+            "lambdaFunction": "myLeagues"
         }
     ],
     "privacy": {
@@ -30,6 +60,31 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "createLeague",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "joinLeague",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "myLeagues",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
-    ]
+    ],
+    "uuid": "c19c4c5d"
 }
