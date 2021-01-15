@@ -1,6 +1,7 @@
 import json
 import boto3
 from datetime import datetime
+from boto3.dynamodb.conditions import Key
 
 def handler(event, context):
   print('received event:')
@@ -46,6 +47,25 @@ def handler(event, context):
 				'createdTime': createdDate,
 				'UnpickedTeams': []
       })
+
+  table3 = dynamodb.Table('PlayerDB-dev')
+  data = table3.query(
+    KeyConditionExpression=Key('Sub').eq(sub)
+  )
+
+  resp = data['Items']
+  leagueIDs = resp[0]['leagueIDs']
+  leagueIDs.append(leagueID)
+  resp2 = table3.update_item(
+    Key={
+            'Sub': sub
+        },
+        UpdateExpression="set leagueIDs=:l",
+        ExpressionAttributeValues={
+            ':l': leagueIDs
+        },
+        ReturnValues="UPDATED_NEW"
+  )
 
   return {
     'statusCode': 200,
