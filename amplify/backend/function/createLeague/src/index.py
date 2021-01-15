@@ -53,7 +53,7 @@ def handler(event, context):
 		}
 	})
 
-	# User gets added to league database
+	# User gets added to league-player database
 	tableName2 = "LeaguePlayerDB-dev"
 	table2 = dynamodb.Table(tableName2)
 
