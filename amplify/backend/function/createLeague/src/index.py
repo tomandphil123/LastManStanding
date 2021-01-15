@@ -1,21 +1,26 @@
 import json
 from datetime import datetime
 import boto3
+from boto3.dynamodb.conditions import Key
 from random import randint
 
 def handler(event, context):
 	result = json.loads(event['body'])
 
-	leagueID = result['leagueName'] +"-"+ str(randint(100000, 999999))
+	# Take in info from front end post request
+	leagueID = result['leagueName'] +"#"+ str(randint(100000, 999999))
 	leagueName = result['leagueName']
 	admin = result['sub']
+	sub = result['sub']
 	email = result['email']
 	createdDate = str(datetime.today())
 	invitationCode = str(randint(100000, 999999))
 	username = result['username']
+	lmsEmail = 'mylastmanstanding123@gmail.com'
 
 	dynamodb = boto3.resource('dynamodb')
 
+	# Creating League in the leagues Database
 	tableName = "LeaguesDB-dev"
 	table = dynamodb.Table(tableName)
 
@@ -28,10 +33,27 @@ def handler(event, context):
 				'invitationCode': invitationCode
 			})
 
+	# Send confirmation email with invitation code for users to join the league
 	leaguePlayerID = leagueID +'/'+ result['sub']
+	boto3.client('ses', 'eu-west-1').send_email(
+		Source = 'mylastmanstanding123@gmail.com',
+		Destination={
+			'ToAddresses': [
+				email
+			]
+		},
+		Message={
+			'Subject': {
+				'Data': "Successful League Creation: " + leagueName
+			},
+			'Body': {
+			'Text': {
+				'Data':  "\n" + "Congratulations on creating a new league."+ "\n\n"+"League ID: " + leagueID + "\n\n" + "Invitation code: " + invitationCode + "\n\n" + "Send the above code to people you would like in your Last Man Standing League."
+			}
+		}
+	})
 
-	dynamodb = boto3.resource('dynamodb')
-
+	# User gets added to league database
 	tableName2 = "LeaguePlayerDB-dev"
 	table2 = dynamodb.Table(tableName2)
 
@@ -47,6 +69,26 @@ def handler(event, context):
 				'createdTime': createdDate,
 				'UnpickedTeams': []
 			})
+	
+	# League is added to User's list of leagues (PlayerDB)
+	table3 = dynamodb.Table('PlayerDB-dev')
+	data = table3.query(
+		KeyConditionExpression=Key('Sub').eq(sub)
+	)
+
+	resp = data['Items']
+	leagueIDs = resp[0]['leagueIDs']
+	leagueIDs.append(leagueID)
+	resp2 = table3.update_item(
+		Key={
+            'Sub': sub
+        },
+        UpdateExpression="set leagueIDs=:l",
+        ExpressionAttributeValues={
+            ':l': leagueIDs
+        },
+        ReturnValues="UPDATED_NEW"
+	)
 
 	return {
 	'statusCode': 200,
@@ -55,5 +97,5 @@ def handler(event, context):
 	'Access-Control-Allow-Origin': '*',
 	'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
 	},
-	'body': "hello"
+	'body': invitationCode
 	}

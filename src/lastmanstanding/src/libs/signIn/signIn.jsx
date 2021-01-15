@@ -45,13 +45,13 @@ export default function SignIn(props){
     event.preventDefault()
 
     try {
-      await Auth.signIn({
+      const user = await Auth.signIn({
         username,
         password,
       });
       setIsLoggedIn();
       //props.auth.setAuthStatus(true);
-      //props.auth.setUser(user);
+      props.setUser(user);
       history.push("/")
     } catch (error) {
       alert(error.message);

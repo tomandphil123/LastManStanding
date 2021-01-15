@@ -35,6 +35,7 @@ export default function CreateLeagues(props) {
     const classes = useStyles();
     const handleSubmit = async event => {
         event.preventDefault()
+        console.log(props.user)
         axios.post('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/createLeague', {leagueName: leagueName, sub: props.user['attributes']['sub'], email: props.user['attributes']['email'], username: props.user['username']})
           .then(response => { 
               alert("Successfully Created League!")
