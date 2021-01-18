@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -43,8 +44,9 @@ export default function CreateLeagues(props) {
 
     return (
         <>
-        <Container component="main" maxWidth="xs" style={{backgroundColor: '#fff', opacity: '0.90'}}>
+        <Container component="main" maxWidth="xs" style={{backgroundColor: '#fff'}}>
           <div className={classes.paper}>
+          <Button color="primary" onClick={() => props.leagueCreation()}><CloseIcon/></Button>
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>

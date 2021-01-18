@@ -1,40 +1,28 @@
-import React, {useState, useLayoutEffect} from 'react';
+import React, {useState} from 'react';
 import CreateLeagues from './createLeagues';
 import JoinLeagues from './joinLeagues';
 import Button from '@material-ui/core/Button';
 import LeagueCard from './leagueCard';
-import axios from 'axios';
+import IndividualLeague from './individualLeague';
 import './leagues.css';
 
-function displayLeagues(response) {
-    if (typeof response !== 'undefined'){
-        return (
-            response.map((item) => (
-            <div className = "leagueCard">
-                <LeagueCard leagueId = {item[0]['LeagueID']} leagueStatus={item[0]['Status']}/>
-            </div>
-        )))
-    }
-}
 
 export default function Leagues(props) {
 
     const [createLeague, setCreateLeague] = useState(false);
     const [joinLeague, setJoinLeague] = useState(false);
-    const [results, setResults] = useState();
+    const [individualLeague, setIndividualLeague] = useState(false)
 
-    useLayoutEffect(() => {
-        function fetchMyAPI() {
-            if (props.user !== null ) {
-                axios.post('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/myLeagues', {sub: props.user['attributes']['sub']})
-                .then(response => {
-                    setResults(response["data"])
-                })   
-            }
-          }
-        fetchMyAPI()
-    }, [])
-
+    const displayLeague = () => {
+        if (typeof props.myLeaguesInfo !== 'undefined'){
+            return (
+                props.myLeaguesInfo.map((item) => (
+                <div className = "leagueCard">
+                    <LeagueCard leagueId = {item[0]['LeagueID']} leagueStatus={item[0]['Status']} openLeague={openLeague}/>
+                </div>
+            )))
+        }
+    }
 
     const leagueCreation = () => {
         setCreateLeague(!createLeague);
@@ -46,6 +34,10 @@ export default function Leagues(props) {
         setCreateLeague(false);
     }
 
+    const openLeague = () => {
+        setIndividualLeague(!individualLeague);
+    }
+
     return (
         <>
         <div className="myLeagues">
@@ -54,17 +46,22 @@ export default function Leagues(props) {
                 <Button variant="contained" style={{backgroundColor: "#37003c", color: "#fff", margin: "10px", width: 250,}} onClick={() => leagueJoin()}><h4>Join League</h4></Button>
             </div>
             { createLeague ? (
-                <CreateLeagues user={props.user}/>
+                <CreateLeagues user={props.user} leagueCreation = {leagueCreation}/>
             ) : (
                 <div></div>
             )}
             { joinLeague ? (
-                <JoinLeagues user={props.user}/>
+                <JoinLeagues user={props.user} leagueJoin = {leagueJoin}/>
             ) : (
                 <div></div>
             )}
+            { individualLeague ? (
+                <IndividualLeague openLeague={openLeague}/>
+            ) : (
+                <div/>
+            )}
             <div className="leagues">
-            { displayLeagues(results) }
+            { displayLeague() }
             </div>
         </div>
         </>
