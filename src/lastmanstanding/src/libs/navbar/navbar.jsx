@@ -5,6 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import Toolbar from '@material-ui/core/Toolbar';
 import Box from '@material-ui/core/Box';
 import HomeIcon from '@material-ui/icons/Home';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -51,40 +52,38 @@ const useStyles = makeStyles((theme) => ({
     background: "#37003c",
   },
   tabs:{
-    color:"white",
+    color:"#fff",
     fontWeight: "bold",
   },
   signInTab: {
-    color:"white",
+    color:"#fff",
     fontWeight: "bold",
     left: "80%",
     position: "sticky"
   },
   signUpTab: {
-    color:"white",
+    color:"#fff",
     fontWeight: "bold",
     left: "90%",
     position: "sticky",
   },
   signOutTab: {
-    color:"white",
+    color:"#fff",
     fontWeight: "bold",
     left: "90%",
     position: "sticky",
   },
   contactTab: {
-    color:"white",
+    color:"#ffff",
     fontWeight: "bold",
     left: "77%",
     position: "sticky",
   },
   logo:{
-    display: "flex",
-    order: 1
+    height: 30,
+    width: 70
   },
   nav:{
-    display: "flex",
-    order: 2,
     width: "100%",
   },
 }));
@@ -115,9 +114,9 @@ function Navbar(props) {
           <img src={require("../../images/logo3.png")} className={classes.Applogo} alt="logo" width="100px" textcolor="inherit" value="0"></img>
         </div>
 			<div className={classes.nav}>
-				<AppBar position="sticky" className={classes.header}>
+				<AppBar position="fixed" className={classes.header}>
 					<Tabs>
-						<Tab label={<div><HomeIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Home </div>} className={classes.tabs} value = "/" component={Link} to="/"/>
+						<Tab label={<div><img src={require("../../images/logo4.png")} className={classes.logo} alt="logo" textcolor="inherit" value="0"></img></div>} className={classes.tabs} value = "/" component={Link} to="/"/>
 						<Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Profile </div>} className={classes.tabs} value="/Profile" component={Link} to="/Profile" />
 						<Tab label={<div><ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Leagues </div>} className={classes.tabs} value="/MyLeagues" component={Link} to="/MyLeagues" />
 						<Tab label={<div><PhoneIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Contact Us </div>} className={classes.contactTab}  value="/ContactUs" component={Link} to="/ContactUs" />
@@ -137,7 +136,7 @@ function Navbar(props) {
 			</div>
       <div className={classes.logoBackground}></div>
 			<div className={classes.nav}>
-				<AppBar position="sticky" className={classes.header}>
+				<AppBar position="fixed" className={classes.header}>
 					<Tabs>
 						<Tab label={<div><HomeIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Home </div>} className={classes.tabs}  value = "/" component={Link} to="/"/>
 						<Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab}  value="/SignIn" component={Link} to="/SignIn"/>

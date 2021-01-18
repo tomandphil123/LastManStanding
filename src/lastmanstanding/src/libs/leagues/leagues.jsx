@@ -5,22 +5,30 @@ import Button from '@material-ui/core/Button';
 import LeagueCard from './leagueCard';
 import IndividualLeague from './individualLeague';
 import './leagues.css';
-
+import axios from 'axios';
+import LeagueTable from './leagueTable';
+import PremierLeagueFixtures from '../homePage/premierLeagueFixtures';
+import PremierLeagueResults from '../homePage/premierLeagueResults';
+import Box from '@material-ui/core/Box';
 
 export default function Leagues(props) {
 
     const [createLeague, setCreateLeague] = useState(false);
     const [joinLeague, setJoinLeague] = useState(false);
-    const [individualLeague, setIndividualLeague] = useState(false)
+    const [individualLeague, setIndividualLeague] = useState(false);
+    const [leagueInfo, setLeagueInfo] = useState();
 
     const displayLeague = () => {
         if (typeof props.myLeaguesInfo !== 'undefined'){
             return (
-                props.myLeaguesInfo.map((item) => (
-                <div className = "leagueCard">
-                    <LeagueCard leagueId = {item[0]['LeagueID']} leagueStatus={item[0]['Status']} openLeague={openLeague}/>
-                </div>
-            )))
+                <LeagueTable table={props.myLeaguesInfo} openLeague={openLeague}/>
+            )
+            // return (
+            //     props.myLeaguesInfo.map((item) => (
+            //     <div className = "leagueCard">
+            //         <LeagueCard leagueId = {item[0]['LeagueID']} leagueStatus={item[0]['Status']} openLeague={openLeague}/>
+            //     </div>
+            // )))
         }
     }
 
@@ -34,7 +42,15 @@ export default function Leagues(props) {
         setCreateLeague(false);
     }
 
-    const openLeague = () => {
+    const openLeague = (leagueId) => {
+        axios.post('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/getLeagueInfo', {leagueId: leagueId})
+          .then(response => { 
+              setLeagueInfo(response)
+          }) 
+        setIndividualLeague(!individualLeague);
+    }
+
+    const closeLeague = () => {
         setIndividualLeague(!individualLeague);
     }
 
@@ -56,13 +72,17 @@ export default function Leagues(props) {
                 <div></div>
             )}
             { individualLeague ? (
-                <IndividualLeague openLeague={openLeague}/>
+                <IndividualLeague closeLeague={closeLeague} user={leagueInfo}/>
             ) : (
                 <div/>
             )}
-            <div className="leagues">
-            { displayLeague() }
-            </div>
+            <Box display="flex" flexWrap="nowrap" p={1} m={1} padding = "3%">
+                <Box paddingRight="4%">{ displayLeague() }</Box>
+                <Box display="block" style={{align: 'right'}} p={1} m={1} padding = "3%">
+                    <Box paddingRight="4%"><PremierLeagueFixtures results={props.results}/></Box>
+                    <Box><PremierLeagueResults results={props.results}/></Box>
+                </Box>
+            </Box>
         </div>
         </>
     );

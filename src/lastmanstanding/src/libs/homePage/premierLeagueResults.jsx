@@ -10,21 +10,21 @@ import Paper from '@material-ui/core/Paper';
 function getResults(results) {
     if (typeof results !== 'undefined'){
         return (
-            <TableContainer component={Paper} style={{ maxHeight: 820 }}>
+            <TableContainer component={Paper} className='tableContainer'>
             <Table aria-label="simple table">
               <TableHead>
-                <TableRow>
-                    <TableCell>Home Team</TableCell>
-                    <TableCell align="center">Score</TableCell>
-                    <TableCell>Away Team</TableCell>
+                <TableRow className="tableRowTitles">
+                    <TableCell className='tableCell'>Home Team</TableCell>
+                    <TableCell align="center" className='tableCell'>Score</TableCell>
+                    <TableCell className='tableCell'>Away Team</TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>
+              <TableBody className='tableBody'>
                 {results[2].map((item) => (
                   <TableRow key={item.HomeTeam}>
-                    <TableCell >{item.HomeTeam}</TableCell>
-                    <TableCell align="center">{item.HomeScore} : {item.AwayScore}</TableCell>
-                    <TableCell >{item.AwayTeam}</TableCell>
+                    <TableCell className='tableCell'>{item.HomeTeam}</TableCell>
+                    <TableCell align="center" className='tableCell'>{item.HomeScore} : {item.AwayScore}</TableCell>
+                    <TableCell className='tableCell'>{item.AwayTeam}</TableCell>
                   </TableRow>))}
               </TableBody>
             </Table>

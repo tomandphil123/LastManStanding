@@ -28,6 +28,13 @@
             "privacy": {
                 "open": true
             }
+        },
+        {
+            "name": "/getLeagueInfo",
+            "lambdaFunction": "getLeagueInfo",
+            "privacy": {
+                "open": true
+            }
         }
     ],
     "resourceName": "LastManStandingAPI",
@@ -44,6 +51,9 @@
         },
         {
             "lambdaFunction": "myLeagues"
+        },
+        {
+            "lambdaFunction": "getLeagueInfo"
         }
     ],
     "privacy": {
@@ -84,7 +94,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getLeagueInfo",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "c19c4c5d"
+    "uuid": "44db32f3"
 }

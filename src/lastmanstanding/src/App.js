@@ -3,7 +3,6 @@ import Navbar from './libs/navbar/navbar';
 import './App.css';
 import { Auth } from 'aws-amplify';
 import { Route, BrowserRouter,Switch } from 'react-router-dom';
-import {Helmet} from 'react-helmet';
 
 import LoggedInHomePage from './libs/homePage/loggedInHomePage';
 import SignIn from './libs/signIn/signIn';
@@ -65,9 +64,6 @@ class App extends Component {
       <BrowserRouter>
           <Navbar auth={authProps} />
           <div className="App">
-            <Helmet>
-                <style>{'body { background-Image: url("https://cdn.wallpapersafari.com/43/53/vsk4GN.jpg") }'}</style>
-            </Helmet>
             <Switch>
               <Route exact path="/">
                 <LoggedInHomePage results={this.state.premierLeagueInfo}/>
@@ -82,7 +78,7 @@ class App extends Component {
                 <h1>Profile</h1>
               </Route>
               <Route path="/MyLeagues">
-                <Leagues user={authProps.user} myLeaguesInfo = {this.state.myLeaguesInfo} />
+                <Leagues user={authProps.user} myLeaguesInfo = {this.state.myLeaguesInfo} results={this.state.premierLeagueInfo}/>
               </Route>
               <Route path="/ContactUs">
                 <h1>Contact Us</h1>

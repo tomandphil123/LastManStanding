@@ -30,7 +30,7 @@ export default function LeagueCard(props) {
 
     return (
 
-<button onClick={() => props.openLeague()}>
+        <button onClick={() => props.openLeague(props.leagueId)}>
         <Card className={classes.root}>
         <CardContent>
             <Typography variant="h5" component="h4" >
