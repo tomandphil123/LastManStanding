@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import CreateLeagues from './createLeagues';
 import JoinLeagues from './joinLeagues';
 import Button from '@material-ui/core/Button';
-import LeagueCard from './leagueCard';
 import IndividualLeague from './individualLeague';
 import './leagues.css';
 import axios from 'axios';
@@ -66,16 +65,18 @@ export default function Leagues(props) {
                 <div></div>
             )}
             { individualLeague ? (
-                <Box display="flex" flexWrap="nowrap" p={1} m={1} padding = "3%"><IndividualLeague closeLeague={closeLeague} user={leagueInfo} username={props.user['username']}/></Box>
+                <Box display="flex" flexWrap="nowrap" p={1} m={1} padding = "3%"><IndividualLeague closeLeague={closeLeague} user={leagueInfo} username={props.user['username']} /></Box>
             ) : (
-                <Box display="flex" flexWrap="nowrap" p={1} m={1} padding = "3%">
-                    <Box paddingRight="4%">{ displayLeague() }</Box>
-                </Box>
+                <div style={{display: "flex", justifyContent: "center"}}>
+                    <Box display="flex" flexWrap="nowrap" p={1} m={1} padding = "3%">
+                        <Box paddingRight="4%">{ displayLeague() }</Box>
+                    </Box>
+                </div>
             )}
-            <Box display="block" style={{align: 'right'}} p={1} m={1} padding = "3%">
-                <Box paddingRight="4%"><PremierLeagueFixtures results={props.results}/></Box>
+            <div style={{display: "flex", justifyContent: "center"}}>
+                <Box><PremierLeagueFixtures results={props.results}/></Box>
                 <Box><PremierLeagueResults results={props.results}/></Box>
-            </Box>
+            </div>
         </div>
         </>
     );
