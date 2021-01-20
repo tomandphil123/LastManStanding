@@ -23,12 +23,6 @@ export default function Leagues(props) {
             return (
                 <LeagueTable table={props.myLeaguesInfo} openLeague={openLeague}/>
             )
-            // return (
-            //     props.myLeaguesInfo.map((item) => (
-            //     <div className = "leagueCard">
-            //         <LeagueCard leagueId = {item[0]['LeagueID']} leagueStatus={item[0]['Status']} openLeague={openLeague}/>
-            //     </div>
-            // )))
         }
     }
 
@@ -72,16 +66,15 @@ export default function Leagues(props) {
                 <div></div>
             )}
             { individualLeague ? (
-                <IndividualLeague closeLeague={closeLeague} user={leagueInfo}/>
+                <Box display="flex" flexWrap="nowrap" p={1} m={1} padding = "3%"><IndividualLeague closeLeague={closeLeague} user={leagueInfo} username={props.user['username']}/></Box>
             ) : (
-                <div/>
-            )}
-            <Box display="flex" flexWrap="nowrap" p={1} m={1} padding = "3%">
-                <Box paddingRight="4%">{ displayLeague() }</Box>
-                <Box display="block" style={{align: 'right'}} p={1} m={1} padding = "3%">
-                    <Box paddingRight="4%"><PremierLeagueFixtures results={props.results}/></Box>
-                    <Box><PremierLeagueResults results={props.results}/></Box>
+                <Box display="flex" flexWrap="nowrap" p={1} m={1} padding = "3%">
+                    <Box paddingRight="4%">{ displayLeague() }</Box>
                 </Box>
+            )}
+            <Box display="block" style={{align: 'right'}} p={1} m={1} padding = "3%">
+                <Box paddingRight="4%"><PremierLeagueFixtures results={props.results}/></Box>
+                <Box><PremierLeagueResults results={props.results}/></Box>
             </Box>
         </div>
         </>

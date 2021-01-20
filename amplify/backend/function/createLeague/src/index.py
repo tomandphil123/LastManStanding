@@ -36,7 +36,7 @@ def handler(event, context):
 	# Send confirmation email with invitation code for users to join the league
 	leaguePlayerID = leagueID +'/'+ result['sub']
 	boto3.client('ses', 'eu-west-1').send_email(
-		Source = 'mylastmanstanding123@gmail.com',
+		Source = lmsEmail,
 		Destination={
 			'ToAddresses': [
 				email
@@ -53,7 +53,7 @@ def handler(event, context):
 		}
 	})
 
-	# User gets added to league-player database
+	# User gets added to leaguePlayer database
 	tableName2 = "LeaguePlayerDB-dev"
 	table2 = dynamodb.Table(tableName2)
 
@@ -67,7 +67,7 @@ def handler(event, context):
 				'Username': username,
 				'Status': "In",
 				'createdTime': createdDate,
-				'UnpickedTeams': []
+				'UnpickedTeams': ["Manchester United FC","Manchester City FC","Leicester City FC","Liverpool FC","Tottenham Hotspur FC","Everton FC","Chelsea FC","Southampton FC","West Ham United FC","Arsenal FC","Aston Villa FC","Leeds United FC","Crystal Palace FC","Wolverhampton Wanderers FC","Newcastle United FC","Brighton & Hove Albion FC","Burnley FC","Fulham FC","West Bromwich Albion FC"]
 			})
 	
 	# League is added to User's list of leagues (PlayerDB)

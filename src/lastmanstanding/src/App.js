@@ -80,9 +80,6 @@ class App extends Component {
               <Route path="/MyLeagues">
                 <Leagues user={authProps.user} myLeaguesInfo = {this.state.myLeaguesInfo} results={this.state.premierLeagueInfo}/>
               </Route>
-              <Route path="/ContactUs">
-                <h1>Contact Us</h1>
-              </Route>
               <Route path="/ForgotPassword">
                 <ForgotPassword/>
               </Route>
