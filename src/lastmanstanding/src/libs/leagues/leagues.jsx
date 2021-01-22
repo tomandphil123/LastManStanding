@@ -14,7 +14,7 @@ export default function Leagues(props) {
 
     const [createLeague, setCreateLeague] = useState(false);
     const [joinLeague, setJoinLeague] = useState(false);
-    const [individualLeague, setIndividualLeague] = useState(false);
+	const [individualLeague, setIndividualLeague] = useState(false);
     const [leagueInfo, setLeagueInfo] = useState();
 
     const displayLeague = () => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
@@ -47,12 +47,35 @@ const BootstrapButton = withStyles({
   }));
   
 export default function PickTeam(props) {
-    console.log(props.teams)
     const classes = useStyles();
+
+    const [selectedTeam, setSelectedTeam] = useState()
+
+    const selectTeam = (team) => {
+      setSelectedTeam(team)
+      props.setPick(team)
+    }
+
+    const displayTeams = (teams) => {
+      return (
+      teams.map((item) => (
+        <BootstrapButton variant="contained" color="primary" disableRipple className={classes.margin} onClick={() => selectTeam(item)}>
+            {item}
+        </BootstrapButton>
+      )))
+    }
+
+    const submitTeam = () => {
+      console.log(selectedTeam)
+    }
+
     return (
-        props.teams.map((item) => (
-            <BootstrapButton variant="contained" color="primary" disableRipple className={classes.margin}>
-                {item}
-            </BootstrapButton>
-        ))
+      <div>
+        <div>
+      {displayTeams(props.teams)}
+        </div>
+        <div>
+      <Button onClick={() => submitTeam()}>Select Team</Button>
+	  	</div>
+      </div>
     )}

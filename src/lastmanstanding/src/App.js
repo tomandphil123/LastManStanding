@@ -3,7 +3,6 @@ import Navbar from './libs/navbar/navbar';
 import './App.css';
 import { Auth } from 'aws-amplify';
 import { Route, BrowserRouter,Switch } from 'react-router-dom';
-
 import LoggedInHomePage from './libs/homePage/loggedInHomePage';
 import SignIn from './libs/signIn/signIn';
 import SignUp from './libs/signUp/signUp';
@@ -18,6 +17,7 @@ class App extends Component {
     user: null,
     premierLeagueInfo: {},
     myLeaguesInfo: [],
+    gotUser: false
   }
 
   setAuthStatus = authenticated => {
@@ -30,23 +30,23 @@ class App extends Component {
 
   async componentDidMount() {
     try {
-      this.setAuthStatus(true);
       const user = await Auth.currentAuthenticatedUser();
       this.setUser(user);
+      this.setAuthStatus(true);
     } catch(error) {
-      if (error !== 'No current user') {
-        console.log(error);
-      }
+      this.setUser(null);
     }
     axios.get('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/premierLeagueInfo')
     .then(response => {
         this.setState({premierLeagueInfo: response})
     })
-    axios.post('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/myLeagues', {sub: this.state.user['attributes']['sub']})
-    .then(response => {
-        this.setState({myLeaguesInfo: response["data"]})
-    })  
-    this.setState({ isAuthenticating: false });
+    console.log(this.state.user)
+    if (this.state.user !== null){
+      axios.post('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/myLeagues', {sub: this.state.user['attributes']['sub']})
+      .then(response => {
+          this.setState({myLeaguesInfo: response["data"]})
+      }
+    )}
   }
   setIsLoggedIn = async => {
     this.setAuthStatus(true);
@@ -57,7 +57,8 @@ class App extends Component {
       isAuthenticated: this.state.isAuthenticated,
       user: this.state.user,
       setAuthStatus: this.setAuthStatus,
-      setUser: this.setUser
+      setUser: this.setUser,
+      gotUser: this.state.gotUser
     }
 
     return (

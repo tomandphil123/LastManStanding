@@ -6,7 +6,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import HomeIcon from '@material-ui/icons/Home';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -55,13 +54,11 @@ const useStyles = makeStyles((theme) => ({
   signInTab: {
     color:"#fff",
     fontWeight: "bold",
-    left: "80%",
     position: "sticky"
   },
   signUpTab: {
     color:"#fff",
     fontWeight: "bold",
-    left: "90%",
     position: "sticky",
   },
   signOutTab: {
@@ -89,19 +86,14 @@ const useStyles = makeStyles((theme) => ({
 function Navbar(props) {
   const classes = useStyles();
   const history = useHistory();
-  const [value, setValue] = React.useState('/');
-
-  function handleChange(event, Value) {
-    setValue(Value);
-  }
 
   const handleLogOut = async event => {
     event.preventDefault();
     try {
       Auth.signOut();
       props.auth.setAuthStatus(false);
-	  props.auth.setUser(null);
-	  history.push("/")
+      props.auth.setUser(null);
+      history.push("/")
     } catch(error) {
       console.log(error.message);
     }
@@ -112,21 +104,21 @@ function Navbar(props) {
     ? (
       <>
 				<AppBar className={classes.header}>
-					<Tabs value={value} onChange={handleChange}>
-						<Tab label={<div><img src={require("../../images/logo4.png")} className={classes.logo} alt="logo" textcolor="inherit"></img></div>} className={classes.tabs} value = "/" component={Link} to="/"/>
-						<Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Profile </div>} className={classes.tabs} value="/Profile" component={Link} to="/Profile" />
-						<Tab label={<div><ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Leagues </div>} className={classes.tabs} value="/MyLeagues" component={Link} to="/MyLeagues" />
-						<Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Out </div>} className={classes.signOutTab} value = "" onClick={event => handleLogOut(event)} />
+					<Tabs >
+						<Tab label={<div><img src={require("../../images/logo4.png")} className={classes.logo} alt="logo" textcolor="inherit"></img></div>} className={classes.tabs}  component={Link} to="/"/>
+						<Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Profile </div>} className={classes.tabs}  component={Link} to="/Profile" />
+						<Tab label={<div><ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Leagues </div>} className={classes.tabs} component={Link} to="/MyLeagues" />
+						<Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Out </div>} className={classes.signOutTab}  onClick={event => handleLogOut(event)} />
 					</Tabs>
 				</AppBar>
       </>
     ) : (
       <>
 				<AppBar position="fixed" className={classes.header}>
-					<Tabs value={value} onChange={handleChange}>
-          <Tab label={<div><img src={require("../../images/logo4.png")} className={classes.logo} alt="logo" textcolor="inherit"></img></div>} className={classes.tabs} value = "/" component={Link} to="/"/>
-						<Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab}  value="/SignIn" component={Link} to="/SignIn"/>
-						<Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>}  className={classes.signUpTab} value="/SignUp" component={Link} to="/SignUp" />
+					<Tabs >
+          <Tab label={<div><img src={require("../../images/logo4.png")} className={classes.logo} alt="logo" textcolor="inherit"></img></div>} className={classes.tabs}  component={Link} to="/"/>
+						<Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab}   component={Link} to="/SignIn"/>
+						<Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>}  className={classes.signUpTab} component={Link} to="/SignUp" />
 					</Tabs>
 				</AppBar>
       </>
