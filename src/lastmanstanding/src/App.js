@@ -40,7 +40,6 @@ class App extends Component {
     .then(response => {
         this.setState({premierLeagueInfo: response})
     })
-    console.log(this.state.user)
     if (this.state.user !== null){
       axios.post('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/myLeagues', {sub: this.state.user['attributes']['sub']})
       .then(response => {
@@ -76,7 +75,7 @@ class App extends Component {
                 <SignUp/>
               </Route>
               <Route path="/Profile">
-                <h1>Profile</h1>
+                <h1>My Profile</h1>
               </Route>
               <Route path="/MyLeagues">
                 <Leagues user={authProps.user} myLeaguesInfo = {this.state.myLeaguesInfo} results={this.state.premierLeagueInfo}/>

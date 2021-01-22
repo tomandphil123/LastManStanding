@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 const BootstrapButton = withStyles({
     root: {
@@ -47,13 +48,15 @@ const BootstrapButton = withStyles({
   }));
   
 export default function PickTeam(props) {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    const [selectedTeam, setSelectedTeam] = useState()
+	const [selectedTeam, setSelectedTeam] = useState();
+	const [submitToggle, setSubmitToggle] = useState(false);
 
     const selectTeam = (team) => {
       setSelectedTeam(team)
       props.setPick(team)
+      setSubmitToggle(true)
     }
 
     const displayTeams = (teams) => {
@@ -66,7 +69,10 @@ export default function PickTeam(props) {
     }
 
     const submitTeam = () => {
-      console.log(selectedTeam)
+      axios.post('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/teamSelection', {team: selectedTeam, sub: props.sub, leagueID: props.leagueID})
+      .then(response => { 
+        console.log(response)
+      })
     }
 
     return (
@@ -75,7 +81,11 @@ export default function PickTeam(props) {
       {displayTeams(props.teams)}
         </div>
         <div>
-      <Button onClick={() => submitTeam()}>Select Team</Button>
+		{submitToggle ? (
+			<Button onClick={() => submitTeam()}>Select Team</Button>
+		) : (
+			null
+		)}
 	  	</div>
       </div>
     )}

@@ -190,6 +190,21 @@
           ]
         }
       ]
+    },
+    "teamSelection": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "auth": {
@@ -276,6 +291,14 @@
         {
           "category": "function",
           "resourceName": "getLeagueInfo",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "teamSelection",
           "attributes": [
             "Name",
             "Arn"

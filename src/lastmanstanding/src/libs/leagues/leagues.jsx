@@ -65,7 +65,7 @@ export default function Leagues(props) {
                 <div></div>
             )}
             { individualLeague ? (
-                <Box display="flex" flexWrap="nowrap" p={1} m={1} padding = "3%"><IndividualLeague closeLeague={closeLeague} user={leagueInfo} username={props.user['username']} /></Box>
+                <Box display="flex" flexWrap="nowrap" p={1} m={1} padding = "3%"><IndividualLeague closeLeague={closeLeague} user={leagueInfo} username={props.user['username']} sub={props.user['attributes']['sub']} /></Box>
             ) : (
                 <div style={{display: "flex", justifyContent: "center"}}>
                     <Box display="flex" flexWrap="nowrap" p={1} m={1} padding = "3%">

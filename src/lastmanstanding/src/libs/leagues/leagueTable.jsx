@@ -18,8 +18,8 @@ export default function LeagueTable(props) {
               <TableHead>
                 <TableRow>
                     <TableCell height="auto" align="left">League ID</TableCell>
-                    <TableCell align="right">Status</TableCell>
-                    <TableCell align="right">Pick</TableCell>
+                    <TableCell align="center" >Status</TableCell>
+                    <TableCell align="center" >Pick</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody style={{minHeight: 'auto'}}>
@@ -29,9 +29,9 @@ export default function LeagueTable(props) {
                     {(item[0]['Status'] === 'In') ? (
                         <TableCell align="center" ><img src={require("../../images/leagueStatusIn.png")} alt="logo" width="20px"></img></TableCell>
                     ) : (
-                        <TableCell align="right"><HighlightOffIcon/></TableCell>
+                        <TableCell align="center"><HighlightOffIcon/></TableCell>
                     )}
-                    <TableCell align="center">N/A</TableCell>
+                    <TableCell align="center">{item[0]['CurrentPick']}</TableCell>
                   </TableRow>))}
               </TableBody>
             </Table>

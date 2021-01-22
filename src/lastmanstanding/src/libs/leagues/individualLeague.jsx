@@ -15,7 +15,7 @@ import Grid from '@material-ui/core/Grid';
 
 export default function IndividualLeague(props) {
 
-    const [pick, setPick] = useState('N/A');
+    const [pick, setPick] = useState();
 
     return (
         typeof props.user !== 'undefined' ? (
@@ -32,16 +32,29 @@ export default function IndividualLeague(props) {
                                 </TableRow>
                             </TableHead>
                             <TableBody style={{minHeight: 'auto'}}>
+                            {props.user['data'].map((item) => (
+                                props.username === item['Username'] ? (
                                 <TableRow>
-                                    <TableCell align='center' ><img src={require("../../images/leagueStatusIn.png")} alt="logo" width="20px"></img></TableCell>
-                                    <TableCell align='center'>{pick}</TableCell>
+                                    <TableCell align='center'><img src={require("../../images/leagueStatusIn.png")} alt="logo" width="20px"></img></TableCell>
+                                    {typeof pick !== 'undefined' ? (
+                                        <TableCell align='center'>{pick}</TableCell>
+                                    ) : (
+                                    item['CurrentPick'] !== '' ? (
+                                        <TableCell align='center'>{item['CurrentPick']}</TableCell>
+                                    ) : (
+                                        <TableCell align='center'>-</TableCell>
+                                        )
+                                    )}
                                 </TableRow>
+                                ) : (
+                                    null
+                                )))}
                             </TableBody>
                         </Table>
                     </TableContainer>
             {props.user['data'].map((item) => (
             props.username === item['Username'] ? (
-                <PickTeam teams = {item['UnpickedTeams']} setPick={setPick}/>
+                <PickTeam teams = {item['UnpickedTeams']} setPick={setPick} sub={props.sub} leagueID={props.user['data'][0]['LeagueID']}/>
             ) : (
                 null
             )
@@ -66,7 +79,7 @@ export default function IndividualLeague(props) {
                                     ) : (
                                         <TableCell align='center'><img src={require("../../images/leagueStatusIn.png")} alt="logo" width="20px"></img></TableCell>
                                     )}
-                                    <TableCell align='center'>N/A</TableCell>
+                                    <TableCell align='center'>{item['CurrentPick']}</TableCell>
                                 </TableRow>
                             ))}
                             </TableBody>

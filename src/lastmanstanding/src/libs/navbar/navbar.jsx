@@ -106,7 +106,7 @@ function Navbar(props) {
 				<AppBar className={classes.header}>
 					<Tabs >
 						<Tab label={<div><img src={require("../../images/logo4.png")} className={classes.logo} alt="logo" textcolor="inherit"></img></div>} className={classes.tabs}  component={Link} to="/"/>
-						<Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Profile </div>} className={classes.tabs}  component={Link} to="/Profile" />
+						<Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Profile </div>} className={classes.tabs}  component={Link} to="/Profile" />
 						<Tab label={<div><ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Leagues </div>} className={classes.tabs} component={Link} to="/MyLeagues" />
 						<Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Out </div>} className={classes.signOutTab}  onClick={event => handleLogOut(event)} />
 					</Tabs>

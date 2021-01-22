@@ -56,7 +56,7 @@ def handler(event, context):
   resp = data['Items']
   leagueIDs = resp[0]['leagueIDs']
   leagueIDs.append(leagueID)
-  resp2 = table3.update_item(
+  table3.update_item(
     Key={
             'Sub': sub
         },

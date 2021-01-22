@@ -10,22 +10,6 @@
     "env": {
       "Type": "String"
     },
-    "storagePlayerDBName": {
-      "Type": "String",
-      "Default": "storagePlayerDBName"
-    },
-    "storagePlayerDBArn": {
-      "Type": "String",
-      "Default": "storagePlayerDBArn"
-    },
-    "storageLeaguesDBName": {
-      "Type": "String",
-      "Default": "storageLeaguesDBName"
-    },
-    "storageLeaguesDBArn": {
-      "Type": "String",
-      "Default": "storageLeaguesDBArn"
-    },
     "storageLeaguePlayerDBName": {
       "Type": "String",
       "Default": "storageLeaguePlayerDBName"
@@ -57,12 +41,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "joinLeague",
+            "teamSelection",
             {
               "Fn::Join": [
                 "",
                 [
-                  "joinLeague",
+                  "teamSelection",
                   "-",
                   {
                     "Ref": "env"
@@ -79,18 +63,6 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
-            },
-            "STORAGE_PLAYERDB_NAME": {
-              "Ref": "storagePlayerDBName"
-            },
-            "STORAGE_PLAYERDB_ARN": {
-              "Ref": "storagePlayerDBArn"
-            },
-            "STORAGE_LEAGUESDB_NAME": {
-              "Ref": "storageLeaguesDBName"
-            },
-            "STORAGE_LEAGUESDB_ARN": {
-              "Ref": "storageLeaguesDBArn"
             },
             "STORAGE_LEAGUEPLAYERDB_NAME": {
               "Ref": "storageLeaguePlayerDBName"
@@ -111,7 +83,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-dev-171839-deployment",
-          "S3Key": "amplify-builds/joinLeague-6a753235646531444732-build.zip"
+          "S3Key": "amplify-builds/teamSelection-596447736c6d6a735541-build.zip"
         }
       }
     },
@@ -121,12 +93,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lastmanstandingLambdaRole14e06c3b",
+            "lastmanstandingLambdaRole8722a773",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lastmanstandingLambdaRole14e06c3b",
+                  "lastmanstandingLambdaRole8722a773",
                   "-",
                   {
                     "Ref": "env"
@@ -212,72 +184,6 @@
         "PolicyDocument": {
           "Version": "2012-10-17",
           "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*",
-                "dynamodb:Delete*"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storagePlayerDBArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storagePlayerDBArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*",
-                "dynamodb:Delete*"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storageLeaguesDBArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storageLeaguesDBArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            },
             {
               "Effect": "Allow",
               "Action": [
