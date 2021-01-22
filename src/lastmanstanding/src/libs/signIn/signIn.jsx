@@ -116,7 +116,7 @@ export default function SignIn(props){
               Sign In
             </Button>
               <div>
-                <Link onClick={event => getBack()} >
+                <Link to="/forgotPassword" onClick={event => getBack()} >
                   Forgot Password?
                 </Link>
               </div>
