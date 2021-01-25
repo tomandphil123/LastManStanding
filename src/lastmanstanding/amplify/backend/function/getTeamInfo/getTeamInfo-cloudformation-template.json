@@ -1,42 +1,22 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lambda resource stack creation using Amplify CLI",
+  "Description": "Lambda Function resource stack creation using Amplify CLI",
   "Parameters": {
-    "GROUP": {
+    "CloudWatchRule": {
       "Type": "String",
-      "Default": ""
-    },
-    "modules": {
-      "Type": "String",
-      "Default": "",
-      "Description": "Comma-delimmited list of modules to be executed by a lambda trigger. Sent to resource as an env variable."
-    },
-    "resourceName": {
-      "Type": "String",
-      "Default": ""
-    },
-    "trigger": {
-      "Type": "String",
-      "Default": "true"
-    },
-    "functionName": {
-      "Type": "String",
-      "Default": ""
-    },
-    "roleName": {
-      "Type": "String",
-      "Default": ""
-    },
-    "parentResource": {
-      "Type": "String",
-      "Default": ""
-    },
-    "parentStack": {
-      "Type": "String",
-      "Default": ""
+      "Default": "NONE",
+      "Description": " Schedule Expression"
     },
     "env": {
       "Type": "String"
+    },
+    "storagePLTeamsDBName": {
+      "Type": "String",
+      "Default": "storagePLTeamsDBName"
+    },
+    "storagePLTeamsDBArn": {
+      "Type": "String",
+      "Default": "storagePLTeamsDBArn"
     }
   },
   "Conditions": {
@@ -61,12 +41,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lastmanstandingd1e79f19PostConfirmation",
+            "getTeamInfo",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lastmanstandingd1e79f19PostConfirmation",
+                  "getTeamInfo",
                   "-",
                   {
                     "Ref": "env"
@@ -81,14 +61,14 @@
             "ENV": {
               "Ref": "env"
             },
-            "MODULES": {
-              "Ref": "modules"
-            },
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "GROUP": {
-              "Ref": "GROUP"
+            "STORAGE_PLTEAMSDB_NAME": {
+              "Ref": "storagePLTeamsDBName"
+            },
+            "STORAGE_PLTEAMSDB_ARN": {
+              "Ref": "storagePLTeamsDBArn"
             }
           }
         },
@@ -98,11 +78,12 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs10.x",
+        "Runtime": "python3.8",
+        "Layers": [],
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-dev-171839-deployment",
-          "S3Key": "amplify-builds/lastmanstandingd1e79f19PostConfirmation-4833426d6a5261464550-build.zip"
+          "S3Key": "amplify-builds/getTeamInfo-796d424a724639684d42-build.zip"
         }
       }
     },
@@ -112,12 +93,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lastmanstandingd1e79f19PostConfirmation",
+            "lastmanstandingLambdaRole8d077b84",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lastmanstandingd1e79f19PostConfirmation",
+                  "lastmanstandingLambdaRole8d077b84",
                   "-",
                   {
                     "Ref": "env"
@@ -187,6 +168,58 @@
           ]
         }
       }
+    },
+    "AmplifyResourcesPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*",
+                "dynamodb:Delete*"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storagePLTeamsDBArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storagePLTeamsDBArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
     }
   },
   "Outputs": {
@@ -203,14 +236,14 @@
         ]
       }
     },
-    "LambdaExecutionRole": {
-      "Value": {
-        "Ref": "LambdaExecutionRole"
-      }
-    },
     "Region": {
       "Value": {
         "Ref": "AWS::Region"
+      }
+    },
+    "LambdaExecutionRole": {
+      "Value": {
+        "Ref": "LambdaExecutionRole"
       }
     }
   }

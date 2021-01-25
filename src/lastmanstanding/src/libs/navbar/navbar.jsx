@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     background: "#37003c",
+    top: "50px"
   },
   tabs:{
     color:"#fff",

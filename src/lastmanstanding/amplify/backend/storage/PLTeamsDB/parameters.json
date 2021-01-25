@@ -1,0 +1,5 @@
+{
+    "tableName": "PLTeamsDB",
+    "partitionKeyName": "TeamName",
+    "partitionKeyType": "S"
+}
