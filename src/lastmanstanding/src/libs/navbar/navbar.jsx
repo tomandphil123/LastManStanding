@@ -6,10 +6,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import HomeIcon from '@material-ui/icons/Home';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ListAltIcon from '@material-ui/icons/ListAlt';
-import PhoneIcon from '@material-ui/icons/Phone';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { Auth } from 'aws-amplify';
@@ -45,47 +43,43 @@ TabPanel.propTypes = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
   },
   header: {
     background: "#37003c",
   },
   tabs:{
-    color:"white",
+    color:"#fff",
     fontWeight: "bold",
   },
   signInTab: {
-    color:"white",
+    color:"#fff",
     fontWeight: "bold",
-    left: "80%",
     position: "sticky"
   },
   signUpTab: {
-    color:"white",
+    color:"#fff",
     fontWeight: "bold",
-    left: "90%",
     position: "sticky",
   },
   signOutTab: {
-    color:"white",
+    color:"#fff",
     fontWeight: "bold",
     left: "90%",
     position: "sticky",
   },
   contactTab: {
-    color:"white",
+    color:"#ffff",
     fontWeight: "bold",
     left: "77%",
     position: "sticky",
   },
   logo:{
-    display: "flex",
-    order: 1
+    height: 30,
+    width: 70
   },
   nav:{
-    display: "flex",
-    order: 2,
     width: "100%",
+    height: "60px"
   },
 }));
 
@@ -98,8 +92,8 @@ function Navbar(props) {
     try {
       Auth.signOut();
       props.auth.setAuthStatus(false);
-	  props.auth.setUser(null);
-	  history.push("/")
+      props.auth.setUser(null);
+      history.push("/")
     } catch(error) {
       console.log(error.message);
     }
@@ -109,44 +103,24 @@ function Navbar(props) {
     props.auth.isAuthenticated
     ? (
       <>
-      <nav>
-        <div className={classes.root}>
-        <div className={classes.logo}>
-          <img src={require("../../images/logo3.png")} className={classes.Applogo} alt="logo" width="100px" textcolor="inherit" value="0"></img>
-        </div>
-			<div className={classes.nav}>
-				<AppBar position="sticky" className={classes.header}>
-					<Tabs>
-						<Tab label={<div><HomeIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Home </div>} className={classes.tabs} value = "/" component={Link} to="/"/>
-						<Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Profile </div>} className={classes.tabs} value="/Profile" component={Link} to="/Profile" />
-						<Tab label={<div><ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Leagues </div>} className={classes.tabs} value="/MyLeagues" component={Link} to="/MyLeagues" />
-						<Tab label={<div><PhoneIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Contact Us </div>} className={classes.contactTab}  value="/ContactUs" component={Link} to="/ContactUs" />
-						<Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Out </div>} className={classes.signOutTab} onClick={event => handleLogOut(event)} />
+				<AppBar className={classes.header}>
+					<Tabs >
+						<Tab label={<div><img src={require("../../images/logo4.png")} className={classes.logo} alt="logo" textcolor="inherit"></img></div>} className={classes.tabs}  component={Link} to="/"/>
+						<Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Profile </div>} className={classes.tabs}  component={Link} to="/Profile" />
+						<Tab label={<div><ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Leagues </div>} className={classes.tabs} component={Link} to="/MyLeagues" />
+						<Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Out </div>} className={classes.signOutTab}  onClick={event => handleLogOut(event)} />
 					</Tabs>
 				</AppBar>
-			</div>
-        </div>
-      </nav>
       </>
     ) : (
       <>
-      <nav>
-        <div className={classes.root}>
-			<div className={classes.logo}>
-				<img src={require("../../images/logo3.png")} className={classes.Applogo} width="1%" alt="logo" textcolor="inherit" value="0"></img>
-			</div>
-      <div className={classes.logoBackground}></div>
-			<div className={classes.nav}>
-				<AppBar position="sticky" className={classes.header}>
-					<Tabs>
-						<Tab label={<div><HomeIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Home </div>} className={classes.tabs}  value = "/" component={Link} to="/"/>
-						<Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab}  value="/SignIn" component={Link} to="/SignIn"/>
-						<Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>}  className={classes.signUpTab} value="/SignUp" component={Link} to="/SignUp" />
+				<AppBar position="fixed" className={classes.header}>
+					<Tabs >
+          <Tab label={<div><img src={require("../../images/logo4.png")} className={classes.logo} alt="logo" textcolor="inherit"></img></div>} className={classes.tabs}  component={Link} to="/"/>
+						<Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab}   component={Link} to="/SignIn"/>
+						<Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>}  className={classes.signUpTab} component={Link} to="/SignUp" />
 					</Tabs>
 				</AppBar>
-			</div>
-        </div>
-      </nav>
       </>
     )
   );

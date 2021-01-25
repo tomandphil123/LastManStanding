@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "storage": {
+      "LeaguePlayerDB": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

@@ -3,8 +3,6 @@ import Navbar from './libs/navbar/navbar';
 import './App.css';
 import { Auth } from 'aws-amplify';
 import { Route, BrowserRouter,Switch } from 'react-router-dom';
-import {Helmet} from 'react-helmet';
-
 import LoggedInHomePage from './libs/homePage/loggedInHomePage';
 import SignIn from './libs/signIn/signIn';
 import SignUp from './libs/signUp/signUp';
@@ -17,7 +15,9 @@ class App extends Component {
     isAuthenticated: false,
     isAuthenticating: true,
     user: null,
-    response: {}
+    premierLeagueInfo: {},
+    myLeaguesInfo: [],
+    gotUser: false
   }
 
   setAuthStatus = authenticated => {
@@ -30,21 +30,23 @@ class App extends Component {
 
   async componentDidMount() {
     try {
-      this.setAuthStatus(true);
       const user = await Auth.currentAuthenticatedUser();
       this.setUser(user);
+      this.setAuthStatus(true);
     } catch(error) {
-      if (error !== 'No current user') {
-        console.log(error);
-      }
+      this.setUser(null);
     }
     axios.get('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/premierLeagueInfo')
     .then(response => {
-        this.setState({response: response})
+        this.setState({premierLeagueInfo: response})
     })
-    this.setState({ isAuthenticating: false });
+    if (this.state.user !== null){
+      axios.post('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/myLeagues', {sub: this.state.user['attributes']['sub']})
+      .then(response => {
+          this.setState({myLeaguesInfo: response["data"]})
+      }
+    )}
   }
-  
   setIsLoggedIn = async => {
     this.setAuthStatus(true);
   }
@@ -54,19 +56,17 @@ class App extends Component {
       isAuthenticated: this.state.isAuthenticated,
       user: this.state.user,
       setAuthStatus: this.setAuthStatus,
-      setUser: this.setUser
+      setUser: this.setUser,
+      gotUser: this.state.gotUser
     }
 
     return (
       <BrowserRouter>
           <Navbar auth={authProps} />
           <div className="App">
-            <Helmet>
-                <style>{'body { background-Image: url("https://cdn.wallpapersafari.com/43/53/vsk4GN.jpg") }'}</style>
-            </Helmet>
             <Switch>
               <Route exact path="/">
-                <LoggedInHomePage results={this.state.response}/>
+                <LoggedInHomePage results={this.state.premierLeagueInfo}/>
               </Route>
               <Route path="/SignIn">
                 <SignIn isLoggedIn = {this.setIsLoggedIn} setUser = {this.setUser}/>
@@ -75,13 +75,10 @@ class App extends Component {
                 <SignUp/>
               </Route>
               <Route path="/Profile">
-                <h1>Profile</h1>
+                <h1>My Profile</h1>
               </Route>
               <Route path="/MyLeagues">
-                <Leagues user={authProps.user}/>
-              </Route>
-              <Route path="/ContactUs">
-                <h1>Contact Us</h1>
+                <Leagues user={authProps.user} myLeaguesInfo = {this.state.myLeaguesInfo} results={this.state.premierLeagueInfo}/>
               </Route>
               <Route path="/ForgotPassword">
                 <ForgotPassword/>

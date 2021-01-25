@@ -4,19 +4,30 @@ import boto3
 from datetime import datetime
 
 def handler(event, context):
-	print('received event:')
-	print(event)
+	# print('received event:')
+	# print(event)
 
 	connection = http.client.HTTPConnection('api.football-data.org')
 	headers = { 'X-Auth-Token': 'f2f6419113714a1b8e549654bf734336' }
 	connection.request('GET', '/v2/competitions/PL/standings', None, headers )
 	response = json.loads(connection.getresponse().read().decode())
+	# print(json.dumps(response))
 	connection.request('GET', '/v2/competitions/PL/matches', None, headers )
 	response2 = json.loads(connection.getresponse().read().decode())
-	print(json.dumps(response2))
+	# print(json.dumps(response2))
+
+	abbreviations = {
+		'West Bromwich Albion FC': 'West Brom FC',
+		'Wolverhampton Wanderers FC': 'Wolves FC',
+		'Brighton & Hove Albion FC': 'Brighton FC'
+	}
 
 	for team in response["standings"][0]["table"]:
-		TeamName = team["team"]["name"]
+		if team["team"]["name"] in abbreviations:
+			TeamName = abbreviations[team["team"]["name"]]
+		else:
+			TeamName = team["team"]["name"]
+		# print(TeamName)
 		position = team["position"]
 		crestUrl = team["team"]["crestUrl"]
 		gamesPlayed = team["playedGames"]
@@ -45,7 +56,7 @@ def handler(event, context):
 				'createdTime': str(datetime.today())
 			}
 		)
-
+	
 	for fixture in response2["matches"]:
 		dynamodb = boto3.resource('dynamodb')
 		tableName1 = "PlFixturesDB-dev"
@@ -58,6 +69,11 @@ def handler(event, context):
 		if fixture["matchday"] == fixture["season"]["currentMatchday"] - 1:
 			homeTeam = fixture["homeTeam"]["name"]
 			awayTeam = fixture["awayTeam"]["name"]
+			if homeTeam in abbreviations:
+				homeTeam = abbreviations[homeTeam]
+			if awayTeam in abbreviations:
+				awayTeam = abbreviations[awayTeam]
+
 			gameWeek = fixture["season"]["currentMatchday"]
 			homeTeamScore = fixture["score"]["fullTime"]["homeTeam"]
 			awayTeamScore = fixture["score"]["fullTime"]["awayTeam"]
@@ -84,9 +100,11 @@ def handler(event, context):
 		if fixture["matchday"] == fixture["season"]["currentMatchday"]:
 			homeTeam = fixture["homeTeam"]["name"]
 			awayTeam = fixture["awayTeam"]["name"]
+			if homeTeam in abbreviations:
+				homeTeam = abbreviations[homeTeam]
+			if awayTeam in abbreviations:
+				awayTeam = abbreviations[awayTeam]
 			gameWeek = fixture["season"]["currentMatchday"]
-			print(fixture["season"]["currentMatchday"], fixture["homeTeam"], fixture["awayTeam"])
-
 			table1.put_item(
 				Item={
 					'HomeTeam': homeTeam,

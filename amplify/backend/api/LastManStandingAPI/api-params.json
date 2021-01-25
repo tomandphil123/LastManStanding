@@ -21,6 +21,20 @@
             "privacy": {
                 "open": true
             }
+        },
+        {
+            "name": "/myLeagues",
+            "lambdaFunction": "myLeagues",
+            "privacy": {
+                "open": true
+            }
+        },
+        {
+            "name": "/getLeagueInfo",
+            "lambdaFunction": "getLeagueInfo",
+            "privacy": {
+                "open": true
+            }
         }
     ],
     "resourceName": "LastManStandingAPI",
@@ -34,6 +48,12 @@
         },
         {
             "lambdaFunction": "joinLeague"
+        },
+        {
+            "lambdaFunction": "myLeagues"
+        },
+        {
+            "lambdaFunction": "getLeagueInfo"
         }
     ],
     "privacy": {
@@ -66,7 +86,23 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "myLeagues",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getLeagueInfo",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "473896d8"
+    "uuid": "44db32f3"
 }
