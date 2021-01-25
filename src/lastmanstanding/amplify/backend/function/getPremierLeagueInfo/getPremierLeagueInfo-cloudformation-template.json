@@ -110,7 +110,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-dev-171839-deployment",
-          "S3Key": "amplify-builds/getPremierLeagueInfo-647a6f51476450784966-build.zip"
+          "S3Key": "amplify-builds/getPremierLeagueInfo-327151314e4e3836706d-build.zip"
         }
       }
     },
