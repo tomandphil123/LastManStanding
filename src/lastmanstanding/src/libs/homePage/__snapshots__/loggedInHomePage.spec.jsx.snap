@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loggedInHomePage Snapshot renders 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(Grid))
+    container={true}
+    direction="row"
+    spacing={2}
+  >
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      md={8}
+      xs={12}
+    >
+      <PremierLeagueStandings />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      md={4}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        style={
+          Object {
+            "marginBottom": "20px",
+          }
+        }
+        xs={12}
+      >
+        <PremierLeagueFixtures />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={12}
+      >
+        <PremierLeagueResults />
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+</Fragment>
+`;
