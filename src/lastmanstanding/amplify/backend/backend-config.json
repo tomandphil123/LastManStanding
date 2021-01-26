@@ -322,14 +322,6 @@
             "Name",
             "Arn"
           ]
-        },
-        {
-          "category": "function",
-          "resourceName": "getTeamInfo",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
         }
       ]
     }

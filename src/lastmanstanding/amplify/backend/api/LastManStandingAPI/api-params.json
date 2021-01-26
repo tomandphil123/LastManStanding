@@ -42,13 +42,6 @@
             "privacy": {
                 "open": true
             }
-        },
-        {
-            "name": "/getTeamInfo",
-            "lambdaFunction": "getTeamInfo",
-            "privacy": {
-                "open": true
-            }
         }
     ],
     "resourceName": "LastManStandingAPI",
@@ -71,9 +64,6 @@
         },
         {
             "lambdaFunction": "teamSelection"
-        },
-        {
-            "lambdaFunction": "getTeamInfo"
         }
     ],
     "privacy": {
@@ -130,15 +120,7 @@
                 "Name",
                 "Arn"
             ]
-        },
-        {
-            "category": "function",
-            "resourceName": "getTeamInfo",
-            "attributes": [
-                "Name",
-                "Arn"
-            ]
         }
     ],
-    "uuid": "3ab09865"
+    "uuid": "84e898ab"
 }

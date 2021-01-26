@@ -83,7 +83,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-dev-171839-deployment",
-          "S3Key": "amplify-builds/teamSelection-4979555a51456b524172-build.zip"
+          "S3Key": "amplify-builds/teamSelection-35786c45783370686f6b-build.zip"
         }
       }
     },
@@ -93,12 +93,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lastmanstandingLambdaRole8722a773",
+            "lastmanstandingLambdaRole98695377",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lastmanstandingLambdaRole8722a773",
+                  "lastmanstandingLambdaRole98695377",
                   "-",
                   {
                     "Ref": "env"
