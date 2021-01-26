@@ -36,6 +36,10 @@ td.MuiTableCell-root {
     padding: 2px;
 }
 
+td.MuiTableCell-body {
+    color: white;
+}
+
 .h1 {
     color: #fff;
     padding: 10px;
