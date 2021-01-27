@@ -37,6 +37,14 @@
     },
     "env": {
       "Type": "String"
+    },
+    "storagePlayerDBName": {
+      "Type": "String",
+      "Default": "storagePlayerDBName"
+    },
+    "storagePlayerDBArn": {
+      "Type": "String",
+      "Default": "storagePlayerDBArn"
     }
   },
   "Conditions": {
@@ -61,12 +69,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lastmanstandingd1e79f19PostConfirmation",
+            "lastmanstandingeafb25bdPostConfirmation",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lastmanstandingd1e79f19PostConfirmation",
+                  "lastmanstandingeafb25bdPostConfirmation",
                   "-",
                   {
                     "Ref": "env"
@@ -89,6 +97,12 @@
             },
             "GROUP": {
               "Ref": "GROUP"
+            },
+            "STORAGE_PLAYERDB_NAME": {
+              "Ref": "storagePlayerDBName"
+            },
+            "STORAGE_PLAYERDB_ARN": {
+              "Ref": "storagePlayerDBArn"
             }
           }
         },
@@ -101,8 +115,8 @@
         "Runtime": "nodejs10.x",
         "Timeout": "25",
         "Code": {
-          "S3Bucket": "amplify-lastmanstanding-dev-171839-deployment",
-          "S3Key": "amplify-builds/lastmanstandingd1e79f19PostConfirmation-4833426d6a5261464550-build.zip"
+          "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
+          "S3Key": "amplify-builds/lastmanstandingeafb25bdPostConfirmation-634c576f63455a495a42-build.zip"
         }
       }
     },
@@ -112,12 +126,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lastmanstandingd1e79f19PostConfirmation",
+            "lastmanstandingeafb25bdPostConfirmation",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lastmanstandingd1e79f19PostConfirmation",
+                  "lastmanstandingeafb25bdPostConfirmation",
                   "-",
                   {
                     "Ref": "env"
@@ -183,6 +197,58 @@
                   }
                 ]
               }
+            }
+          ]
+        }
+      }
+    },
+    "AmplifyResourcesPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*",
+                "dynamodb:Delete*"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storagePlayerDBArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storagePlayerDBArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
             }
           ]
         }

@@ -1,7 +1,7 @@
 var AWS = require("aws-sdk");
 
 var docClient = new AWS.DynamoDB.DocumentClient();
-var table = "PlayerDB-dev";
+var table = "PlayerDB-develop";
 
 exports.handler = (event, context, callback) => {
   console.log(event);

@@ -36,7 +36,7 @@ export default function Leagues(props) {
     }
 
     const openLeague = (leagueId) => {
-        axios.post('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/getLeagueInfo', {leagueId: leagueId})
+        axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/getLeagueInfo', {leagueId: leagueId})
           .then(response => { 
               setLeagueInfo(response)
           }) 

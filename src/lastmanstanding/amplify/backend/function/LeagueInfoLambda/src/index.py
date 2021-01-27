@@ -39,7 +39,7 @@ def handler(event, context):
 
 		dynamodb = boto3.resource('dynamodb')
 
-		tableName = "PlStandingsDB-dev"
+		tableName = "PlStandingsDB-develop"
 		table = dynamodb.Table(tableName)
 
 		table.put_item(
@@ -59,9 +59,9 @@ def handler(event, context):
 	
 	for fixture in response2["matches"]:
 		dynamodb = boto3.resource('dynamodb')
-		tableName1 = "PlFixturesDB-dev"
+		tableName1 = "PlFixturesDB-develop"
 		table1 = dynamodb.Table(tableName1)
-		tableName2 = "PlResultsDB-dev"
+		tableName2 = "PlResultsDB-develop"
 		table2 = dynamodb.Table(tableName2)
 		if fixture["matchday"] > fixture["season"]["currentMatchday"] + 2:
 			break

@@ -110,8 +110,8 @@
         "Layers": [],
         "Timeout": "40",
         "Code": {
-          "S3Bucket": "amplify-lastmanstanding-dev-171839-deployment",
-          "S3Key": "amplify-builds/LeagueInfoLambda-795474786a6364667055-build.zip"
+          "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
+          "S3Key": "amplify-builds/LeagueInfoLambda-56706c33654e53394d37-build.zip"
         }
       }
     },

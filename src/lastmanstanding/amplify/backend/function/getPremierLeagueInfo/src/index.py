@@ -4,17 +4,17 @@ import json
 def handler(event, context):
 	dynamodb = boto3.resource('dynamodb')
 
-	table1 = dynamodb.Table('PlStandingsDB-dev')
+	table1 = dynamodb.Table('PlStandingsDB-develop')
 	response1 = table1.scan()
 	res = response1['Items']
 	standingsData = sorted(res, key = lambda i: int(i["position"]))
 	print(standingsData)
 
-	table2 = dynamodb.Table('PlFixturesDB-dev')
+	table2 = dynamodb.Table('PlFixturesDB-develop')
 	response2 = table2.scan()
 	fixturesData = response2['Items']
 
-	table3 = dynamodb.Table('PlResultsDB-dev')
+	table3 = dynamodb.Table('PlResultsDB-develop')
 	response3 = table3.scan()
 	resultsData = response3['Items']
 

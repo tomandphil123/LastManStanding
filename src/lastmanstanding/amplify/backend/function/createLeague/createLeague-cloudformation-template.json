@@ -33,6 +33,14 @@
     "storageLeaguePlayerDBArn": {
       "Type": "String",
       "Default": "storageLeaguePlayerDBArn"
+    },
+    "apiLastManStandingAPIApiName": {
+      "Type": "String",
+      "Default": "apiLastManStandingAPIApiName"
+    },
+    "apiLastManStandingAPIApiId": {
+      "Type": "String",
+      "Default": "apiLastManStandingAPIApiId"
     }
   },
   "Conditions": {
@@ -97,6 +105,12 @@
             },
             "STORAGE_LEAGUEPLAYERDB_ARN": {
               "Ref": "storageLeaguePlayerDBArn"
+            },
+            "API_LASTMANSTANDINGAPI_APINAME": {
+              "Ref": "apiLastManStandingAPIApiName"
+            },
+            "API_LASTMANSTANDINGAPI_APIID": {
+              "Ref": "apiLastManStandingAPIApiId"
             }
           }
         },
@@ -110,8 +124,8 @@
         "Layers": [],
         "Timeout": "25",
         "Code": {
-          "S3Bucket": "amplify-lastmanstanding-dev-171839-deployment",
-          "S3Key": "amplify-builds/createLeague-5941386967414e706831-build.zip"
+          "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
+          "S3Key": "amplify-builds/createLeague-2b2b6d346a74714c6453-build.zip"
         }
       }
     },

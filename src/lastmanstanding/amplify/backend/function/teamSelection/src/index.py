@@ -14,7 +14,7 @@ def handler(event, context):
 
 	dynamodb = boto3.resource('dynamodb')
 
-	table = dynamodb.Table('LeaguePlayerDB-dev')
+	table = dynamodb.Table('LeaguePlayerDB-develop')
 	table.update_item(
 		Key={
 				'LeaguePlayerID': primaryKey

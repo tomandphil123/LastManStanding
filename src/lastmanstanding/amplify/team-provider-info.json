@@ -19,5 +19,33 @@
         "lastmanstandingd1e79f19PostConfirmation": {}
       }
     }
+  },
+  "develop": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lastmanstanding-develop-225620-authRole",
+      "UnauthRoleArn": "arn:aws:iam::706350010776:role/amplify-lastmanstanding-develop-225620-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::706350010776:role/amplify-lastmanstanding-develop-225620-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-lastmanstanding-develop-225620-deployment",
+      "UnauthRoleName": "amplify-lastmanstanding-develop-225620-unauthRole",
+      "StackName": "amplify-lastmanstanding-develop-225620",
+      "StackId": "arn:aws:cloudformation:eu-west-1:706350010776:stack/amplify-lastmanstanding-develop-225620/b681fd30-6029-11eb-864b-02e986d7db75",
+      "AmplifyAppId": "d26trbeeazj2h2"
+    },
+    "categories": {
+      "function": {
+        "LeagueInfoLambda": {},
+        "getPremierLeagueInfo": {},
+        "createLeague": {},
+        "joinLeague": {},
+        "myLeagues": {},
+        "getLeagueInfo": {},
+        "teamSelection": {},
+        "lastmanstandingeafb25bdPostConfirmation": {}
+      },
+      "auth": {
+        "lastmanstandingeafb25bd": {}
+      }
+    }
   }
 }

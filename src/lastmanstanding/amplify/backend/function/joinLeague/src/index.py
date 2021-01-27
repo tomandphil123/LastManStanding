@@ -14,7 +14,7 @@ def handler(event, context):
   client = boto3.client('dynamodb')
 
   data = client.query(
-    TableName = "LeaguesDB-dev",
+    TableName = "LeaguesDB-develop",
     IndexName = "invitationCode-LeagueID-index",
     ExpressionAttributeValues={
         ':v1': {
@@ -32,7 +32,7 @@ def handler(event, context):
   createdDate = str(datetime.today())
   dynamodb = boto3.resource('dynamodb')
 
-  tableName = "LeaguePlayerDB-dev"
+  tableName = "LeaguePlayerDB-develop"
   table = dynamodb.Table(tableName)
 
   table.put_item(
@@ -48,7 +48,7 @@ def handler(event, context):
 				'UnpickedTeams': ["Manchester United FC","Manchester City FC","Leicester City FC","Liverpool FC","Tottenham Hotspur FC","Everton FC","Chelsea FC","Southampton FC","West Ham United FC","Arsenal FC","Aston Villa FC","Leeds United FC","Crystal Palace FC","Wolverhampton Wanderers FC","Newcastle United FC","Brighton & Hove Albion FC","Burnley FC","Fulham FC","West Bromwich Albion FC"]
       })
 
-  table3 = dynamodb.Table('PlayerDB-dev')
+  table3 = dynamodb.Table('PlayerDB-develop')
   data = table3.query(
     KeyConditionExpression=Key('Sub').eq(sub)
   )

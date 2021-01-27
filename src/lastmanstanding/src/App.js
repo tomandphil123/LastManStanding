@@ -37,12 +37,12 @@ class App extends Component {
     } catch(error) {
       this.setUser(null);
     }
-    axios.get('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/premierLeagueInfo')
+    axios.get('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/premierLeagueInfo')
     .then(response => {
         this.setState({premierLeagueInfo: response})
     })
     if (this.state.user !== null){
-      axios.post('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/myLeagues', {sub: this.state.user['attributes']['sub']})
+      axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/myLeagues', {sub: this.state.user['attributes']['sub']})
       .then(response => {
           this.setState({myLeaguesInfo: response["data"]})
       }

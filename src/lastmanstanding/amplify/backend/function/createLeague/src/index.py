@@ -21,7 +21,7 @@ def handler(event, context):
 	dynamodb = boto3.resource('dynamodb')
 
 	# Creating League in the leagues Database
-	tableName = "LeaguesDB-dev"
+	tableName = "LeaguesDB-develop"
 	table = dynamodb.Table(tableName)
 
 	table.put_item(
@@ -35,26 +35,26 @@ def handler(event, context):
 
 	# Send confirmation email with invitation code for users to join the league
 	leaguePlayerID = leagueID +'/'+ result['sub']
-	boto3.client('ses', 'eu-west-1').send_email(
-		Source = lmsEmail,
-		Destination={
-			'ToAddresses': [
-				email
-			]
-		},
-		Message={
-			'Subject': {
-				'Data': "Successful League Creation: " + leagueName
-			},
-			'Body': {
-			'Text': {
-				'Data':  "\n" + "Congratulations on creating a new league."+ "\n\n"+"League ID: " + leagueID + "\n\n" + "Invitation code: " + invitationCode + "\n\n" + "Send the above code to people you would like in your Last Man Standing League."
-			}
-		}
-	})
+	# boto3.client('ses', 'eu-west-1').send_email(
+	# 	Source = lmsEmail,
+	# 	Destination={
+	# 		'ToAddresses': [
+	# 			email
+	# 		]
+	# 	},
+	# 	Message={
+	# 		'Subject': {
+	# 			'Data': "Successful League Creation: " + leagueName
+	# 		},
+	# 		'Body': {
+	# 		'Text': {
+	# 			'Data':  "\n" + "Congratulations on creating a new league."+ "\n\n"+"League ID: " + leagueID + "\n\n" + "Invitation code: " + invitationCode + "\n\n" + "Send the above code to people you would like in your Last Man Standing League."
+	# 		}
+	# 	}
+	# })
 
 	# User gets added to leaguePlayer database
-	tableName2 = "LeaguePlayerDB-dev"
+	tableName2 = "LeaguePlayerDB-develop"
 	table2 = dynamodb.Table(tableName2)
 
 	table2.put_item(
@@ -71,7 +71,7 @@ def handler(event, context):
 			})
 	
 	# League is added to User's list of leagues (PlayerDB)
-	table3 = dynamodb.Table('PlayerDB-dev')
+	table3 = dynamodb.Table('PlayerDB-develop')
 	data = table3.query(
 		KeyConditionExpression=Key('Sub').eq(sub)
 	)

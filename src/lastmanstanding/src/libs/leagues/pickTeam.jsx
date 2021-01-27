@@ -69,7 +69,7 @@ export default function PickTeam(props) {
     }
 
     const submitTeam = () => {
-      axios.post('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/teamSelection', {team: selectedTeam, sub: props.sub, leagueID: props.leagueID})
+      axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/teamSelection', {team: selectedTeam, sub: props.sub, leagueID: props.leagueID})
       .then(response => { 
         console.log(response)
       })

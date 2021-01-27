@@ -109,8 +109,8 @@
         "Runtime": "python3.8",
         "Timeout": "25",
         "Code": {
-          "S3Bucket": "amplify-lastmanstanding-dev-171839-deployment",
-          "S3Key": "amplify-builds/getPremierLeagueInfo-4846416477347845365a-build.zip"
+          "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
+          "S3Key": "amplify-builds/getPremierLeagueInfo-582f37437059626d5241-build.zip"
         }
       }
     },

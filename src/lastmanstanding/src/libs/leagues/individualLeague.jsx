@@ -17,6 +17,9 @@ export default function IndividualLeague(props) {
 
     const [pick, setPick] = useState();
 
+    console.log(props.user)
+    console.log(props.username)
+
     return (
         typeof props.user !== 'undefined' ? (
         <div style={{backgroundColor: '#fff'}}>

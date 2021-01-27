@@ -11,7 +11,7 @@ def handler(event, context):
 	dynamodb = boto3.resource('dynamodb')
 
 	# Query Player DB for active leagues
-	Ptable = dynamodb.Table('PlayerDB-dev')
+	Ptable = dynamodb.Table('PlayerDB-develop')
 	playerData = Ptable.query(
 	KeyConditionExpression=Key('Sub').eq(sub)
 	)
@@ -19,7 +19,7 @@ def handler(event, context):
 	LeagueIDs = resp[0]['leagueIDs']
 
 	# Get information from each League
-	LPtable = dynamodb.Table('LeaguePlayerDB-dev')
+	LPtable = dynamodb.Table('LeaguePlayerDB-develop')
 	resList = []
 	for m in LeagueIDs:
 		data = LPtable.query(

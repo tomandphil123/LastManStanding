@@ -1,10 +1,5 @@
 {
   "function": {
-    "lastmanstandingd1e79f19PostConfirmation": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
     "LeagueInfoLambda": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -206,14 +201,14 @@
         }
       ]
     },
-    "getTeamInfo": {
+    "lastmanstandingeafb25bdPostConfirmation": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
       "dependsOn": [
         {
           "category": "storage",
-          "resourceName": "PLTeamsDB",
+          "resourceName": "PlayerDB",
           "attributes": [
             "Name",
             "Arn"
@@ -223,13 +218,13 @@
     }
   },
   "auth": {
-    "lastmanstandingd1e79f19": {
+    "lastmanstandingeafb25bd": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "lastmanstandingd1e79f19PostConfirmation",
+          "resourceName": "lastmanstandingeafb25bdPostConfirmation",
           "triggerProvider": "Cognito",
           "attributes": [
             "Arn",
@@ -262,10 +257,6 @@
       "providerPlugin": "awscloudformation"
     },
     "PlResultsDB": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
-    },
-    "PLTeamsDB": {
       "service": "DynamoDB",
       "providerPlugin": "awscloudformation"
     }

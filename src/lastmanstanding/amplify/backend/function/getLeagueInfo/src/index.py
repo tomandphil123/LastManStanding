@@ -11,7 +11,7 @@ def handler(event, context):
 	dynamodb = boto3.resource('dynamodb')
 
 	# Query to get all players in a league
-	LPtable = dynamodb.Table('LeaguePlayerDB-dev')
+	LPtable = dynamodb.Table('LeaguePlayerDB-develop')
 	leagueData = LPtable.query(
 		IndexName = 'LeagueID-LeaguePlayerID-index',
 		KeyConditionExpression=Key('LeagueID').eq(leagueID)

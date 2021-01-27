@@ -1,6 +1,6 @@
 {
-    "resourceNameTruncated": "lastmad1e79f19",
-    "userPoolName": "lastmanstandingd1e79f19_userpool_d1e79f19",
+    "resourceNameTruncated": "lastmaeafb25bd",
+    "userPoolName": "lastmanstandingeafb25bd_userpool_eafb25bd",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -10,8 +10,8 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Your verification link",
-    "emailVerificationMessage": "'Please click the link below to verify your email address. {####}'",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
@@ -26,9 +26,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "lastmad1e79f19_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "lastmaeafb25bd_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "lastmanstandingd1e79f19",
+    "sharedId": "eafb25bd",
+    "resourceName": "lastmanstandingeafb25bd",
     "authSelections": "userPoolOnly",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -44,10 +45,11 @@
     },
     "useDefault": "manual",
     "userPoolGroupList": [],
+    "serviceName": "Cognito",
     "dependsOn": [
         {
             "category": "function",
-            "resourceName": "lastmanstandingd1e79f19PostConfirmation",
+            "resourceName": "lastmanstandingeafb25bdPostConfirmation",
             "triggerProvider": "Cognito",
             "attributes": [
                 "Arn",
@@ -57,7 +59,7 @@
     ],
     "userPoolGroups": false,
     "adminQueries": false,
-    "triggers": "{\"PostConfirmation\":[\"custom\"]}",
+    "triggers": "{\n  \"PostConfirmation\": [\n    \"custom\"\n  ]\n}",
     "hostedUI": false,
     "parentStack": {
         "Ref": "AWS::StackId"

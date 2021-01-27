@@ -36,7 +36,7 @@ export default function JoinLeagues(props) {
   const classes = useStyles();
   const handleSubmit = async event => {
       event.preventDefault()
-      axios.post('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/dev/joinLeague', {leagueCode: leagueCode, sub: props.user['attributes']['sub'], username: props.user['username']})
+      axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/joinLeague', {leagueCode: leagueCode, sub: props.user['attributes']['sub'], username: props.user['username']})
         .then(response => { 
 			console.log(response)
             alert("Successfully Joined League!")
