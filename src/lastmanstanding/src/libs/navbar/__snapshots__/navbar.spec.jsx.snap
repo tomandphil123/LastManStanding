@@ -1,0 +1,227 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar Snapshot renders 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
+
+exports[`Navbar Snapshot renders when signed in 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(AppBar))
+    className="makeStyles-header-2"
+  >
+    <WithStyles(ForwardRef(Tabs))>
+      <WithStyles(ForwardRef(Tab))
+        className="makeStyles-tabs-3"
+        component={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Link",
+            "propTypes": Object {
+              "innerRef": [Function],
+              "onClick": [Function],
+              "replace": [Function],
+              "target": [Function],
+              "to": [Function],
+            },
+            "render": [Function],
+          }
+        }
+        label={
+          <div>
+            <img
+              alt="logo"
+              className="makeStyles-logo-8"
+              src="logo4.png"
+              textcolor="inherit"
+            />
+          </div>
+        }
+        to="/"
+      />
+      <WithStyles(ForwardRef(Tab))
+        className="makeStyles-tabs-3"
+        component={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Link",
+            "propTypes": Object {
+              "innerRef": [Function],
+              "onClick": [Function],
+              "replace": [Function],
+              "target": [Function],
+              "to": [Function],
+            },
+            "render": [Function],
+          }
+        }
+        label={
+          <div>
+            <UNDEFINED
+              style={
+                Object {
+                  "paddingBottom": "4px",
+                  "verticalAlign": "middle",
+                }
+              }
+            />
+             My Profile 
+          </div>
+        }
+        to="/Profile"
+      />
+      <WithStyles(ForwardRef(Tab))
+        className="makeStyles-tabs-3"
+        component={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Link",
+            "propTypes": Object {
+              "innerRef": [Function],
+              "onClick": [Function],
+              "replace": [Function],
+              "target": [Function],
+              "to": [Function],
+            },
+            "render": [Function],
+          }
+        }
+        label={
+          <div>
+            <UNDEFINED
+              style={
+                Object {
+                  "paddingBottom": "4px",
+                  "verticalAlign": "middle",
+                }
+              }
+            />
+             My Leagues 
+          </div>
+        }
+        to="/MyLeagues"
+      />
+      <WithStyles(ForwardRef(Tab))
+        className="makeStyles-signOutTab-6"
+        label={
+          <div>
+            <UNDEFINED
+              style={
+                Object {
+                  "paddingBottom": "4px",
+                  "verticalAlign": "middle",
+                }
+              }
+            />
+             Sign Out 
+          </div>
+        }
+        onClick={[Function]}
+      />
+    </WithStyles(ForwardRef(Tabs))>
+  </WithStyles(ForwardRef(AppBar))>
+</Fragment>
+`;
+
+exports[`Navbar Snapshot renders when signed out 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(AppBar))
+    className="makeStyles-header-2"
+    position="fixed"
+  >
+    <WithStyles(ForwardRef(Tabs))>
+      <WithStyles(ForwardRef(Tab))
+        className="makeStyles-tabs-3"
+        component={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Link",
+            "propTypes": Object {
+              "innerRef": [Function],
+              "onClick": [Function],
+              "replace": [Function],
+              "target": [Function],
+              "to": [Function],
+            },
+            "render": [Function],
+          }
+        }
+        label={
+          <div>
+            <img
+              alt="logo"
+              className="makeStyles-logo-8"
+              src="logo4.png"
+              textcolor="inherit"
+            />
+          </div>
+        }
+        to="/"
+      />
+      <WithStyles(ForwardRef(Tab))
+        className="makeStyles-signInTab-4"
+        component={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Link",
+            "propTypes": Object {
+              "innerRef": [Function],
+              "onClick": [Function],
+              "replace": [Function],
+              "target": [Function],
+              "to": [Function],
+            },
+            "render": [Function],
+          }
+        }
+        label={
+          <div>
+            <UNDEFINED
+              style={
+                Object {
+                  "paddingBottom": "4px",
+                  "verticalAlign": "middle",
+                }
+              }
+            />
+             Sign In 
+          </div>
+        }
+        to="/SignIn"
+      />
+      <WithStyles(ForwardRef(Tab))
+        className="makeStyles-signUpTab-5"
+        component={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Link",
+            "propTypes": Object {
+              "innerRef": [Function],
+              "onClick": [Function],
+              "replace": [Function],
+              "target": [Function],
+              "to": [Function],
+            },
+            "render": [Function],
+          }
+        }
+        label={
+          <div>
+            <UNDEFINED
+              style={
+                Object {
+                  "paddingBottom": "4px",
+                  "verticalAlign": "middle",
+                }
+              }
+            />
+             Sign Up 
+          </div>
+        }
+        to="/SignUp"
+      />
+    </WithStyles(ForwardRef(Tabs))>
+  </WithStyles(ForwardRef(AppBar))>
+</Fragment>
+`;
