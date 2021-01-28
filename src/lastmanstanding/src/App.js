@@ -9,7 +9,7 @@ import SignUp from './libs/signUp/signUp';
 import ForgotPassword from './libs/forgotPassword/forgotPassword';
 import axios from 'axios';
 import Leagues from './libs/leagues/leagues';
-// import CrestBar from './libs/crestBar/crestBar';
+import CrestBar from './libs/crestBar/crestBar';
 
 class App extends Component {
   state = {
@@ -56,7 +56,7 @@ class App extends Component {
 
     return (
       <>
-      {/* <CrestBar/> */}
+      <CrestBar/>
       <BrowserRouter>
           <Navbar auth={authProps} />
           <div className="App">

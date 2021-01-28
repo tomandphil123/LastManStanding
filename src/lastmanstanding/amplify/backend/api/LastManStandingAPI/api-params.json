@@ -42,6 +42,13 @@
             "privacy": {
                 "open": true
             }
+        },
+        {
+            "name": "/teamInfo",
+            "lambdaFunction": "teamInfo",
+            "privacy": {
+                "open": true
+            }
         }
     ],
     "resourceName": "LastManStandingAPI",
@@ -64,13 +71,16 @@
         },
         {
             "lambdaFunction": "teamSelection"
+        },
+        {
+            "lambdaFunction": "teamInfo"
         }
     ],
     "privacy": {
         "auth": 0,
         "unauth": 0,
-        "authRoleName": "amplify-lastmanstanding-dev-171839-authRole",
-        "unAuthRoleName": "amplify-lastmanstanding-dev-171839-unauthRole"
+        "authRoleName": "amplify-lastmanstanding-develop-225620-authRole",
+        "unAuthRoleName": "amplify-lastmanstanding-develop-225620-unauthRole"
     },
     "dependsOn": [
         {
@@ -120,7 +130,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "teamInfo",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "84e898ab"
+    "uuid": "f929e6f3"
 }

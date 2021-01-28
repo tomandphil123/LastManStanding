@@ -5,12 +5,12 @@ export default function CrestBar() {
 
     const [crests, setCrests] = useState()
     useEffect(() => {
-        axios.get('https://8yo67af9d5.execute-api.eu-west-1.amazonaws.com/develop/getTeamInfo')
+        axios.get('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/teamInfo')
         .then(response => {
             setCrests(response['data'])
         })
     }, [])
-
+    console.log(crests)
     return(
         typeof crests !== 'undefined' ? (
         <div style={{display: "flex", justifyContent:"center"}}>
