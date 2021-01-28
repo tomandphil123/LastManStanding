@@ -12,12 +12,12 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 export default function LeagueTable(props) {
     return (
-        <TableContainer component={Paper} style={{ maxHeight: 820, padding: "2%"}} className='tableContainer'>
+        <TableContainer component={Paper} className='tableContainer'>
           <h1 className='h1'>My Leagues</h1>
             <Table aria-label="customized table">
               <TableHead>
                 <TableRow>
-                    <TableCell height="auto" align="left">League ID</TableCell>
+                    <TableCell height="auto" align="center">League ID</TableCell>
                     <TableCell align="center" >Status</TableCell>
                     <TableCell align="center" >Pick</TableCell>
                 </TableRow>
@@ -25,7 +25,7 @@ export default function LeagueTable(props) {
               <TableBody style={{minHeight: 'auto'}}>
                 {props.table.map((item) =>  (
                   <TableRow key={item[0]['LeagueID']}>
-                    <TableCell align='left'><Link className='tableLink' onClick={() => props.openLeague(item[0]['LeagueID'])}>{item[0]['LeagueID']}</Link></TableCell>
+                    <TableCell align='center'><Link className='tableLink' onClick={() => props.openLeague(item[0]['LeagueID'])}>{item[0]['LeagueID']}</Link></TableCell>
                     {(item[0]['Status'] === 'In') ? (
                         <TableCell align="center" ><img src={require("../../images/leagueStatusIn.png")} alt="logo" width="20px"></img></TableCell>
                     ) : (

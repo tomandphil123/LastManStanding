@@ -1,14 +1,5 @@
 .buttons {
-    position: relative;
     text-align: center;
     padding-top: 20px;
 }
 
-.leagues {
-    vertical-align: middle;
-}
-
-.leagueCard {
-    padding: 10px;
-    text-align: center;
-}
