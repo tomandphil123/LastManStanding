@@ -3,14 +3,11 @@
   background: -webkit-linear-gradient(left, #25c481, #25b7c4);
   background: linear-gradient(to right, #25c481, #25b7c4);
   font-family: 'Roboto', sans-serif;
-  /* max-width: 100%;
-  max-height:100%; */
 }
 
 .table {
-    max-width: 99.9%;
     table-layout: fixed;
-}
+} 
 
 .tableRowTitles {
     background-color: rgba(255,255,255,0.3);
@@ -36,9 +33,9 @@ td.MuiTableCell-root {
     padding: 2px;
 }
 
-td.MuiTableCell-body {
+/* td.MuiTableCell-body {
     color: white;
-}
+} */
 
 .h1 {
     color: #fff;

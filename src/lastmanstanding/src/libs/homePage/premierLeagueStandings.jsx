@@ -32,7 +32,7 @@ function getStandings(results) {
               <TableBody>
                 {results[0].map((item) => (
                   <TableRow key={item.TeamName}>
-                    <TableCell align="center"><img src={item.crestUrl} width='30' height='30' alt="teamlogo"/></TableCell>
+                    <TableCell align="center"><img src={item.crestUrl} height='30' alt="teamlogo"/></TableCell>
                     <TableCell align="center">{item.position}</TableCell>
                     <TableCell width="80">{item.TeamName}</TableCell>
                     <TableCell></TableCell>

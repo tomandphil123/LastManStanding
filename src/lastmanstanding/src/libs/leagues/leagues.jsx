@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import CreateLeagues from './createLeagues';
 import JoinLeagues from './joinLeagues';
 import Button from '@material-ui/core/Button';
@@ -8,19 +8,29 @@ import axios from 'axios';
 import LeagueTable from './leagueTable';
 import PremierLeagueFixtures from '../homePage/premierLeagueFixtures';
 import PremierLeagueResults from '../homePage/premierLeagueResults';
-import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 
 export default function Leagues(props) {
 
     const [createLeague, setCreateLeague] = useState(false);
     const [joinLeague, setJoinLeague] = useState(false);
 	const [individualLeague, setIndividualLeague] = useState(false);
-    const [leagueInfo, setLeagueInfo] = useState();
+	const [leagueInfo, setLeagueInfo] = useState();
+	const [myLeaguesInfo, setMyLeaguesInfo] = useState();
+
+    useEffect(() => {
+		if (props.user !== null) {
+			axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/myLeagues', {sub: props.user['attributes']['sub']})
+			.then(response => {
+				setMyLeaguesInfo(response["data"])
+		}
+
+	)}}, [props.user])
 
     const displayLeague = () => {
-        if (typeof props.myLeaguesInfo !== 'undefined'){
+        if (typeof myLeaguesInfo !== 'undefined'){
             return (
-                <LeagueTable table={props.myLeaguesInfo} openLeague={openLeague}/>
+                <LeagueTable table={myLeaguesInfo} openLeague={openLeague}/>
             )
         }
     }
@@ -49,35 +59,46 @@ export default function Leagues(props) {
 
     return (
         <>
-        <div className="myLeagues">
-            <div className="buttons">
-                <Button variant="contained" style={{backgroundColor: "#37003c", color: "#fff", margin: "10px", width: 250,}} onClick={() => leagueCreation()}><h4>Create League</h4></Button>
-                <Button variant="contained" style={{backgroundColor: "#37003c", color: "#fff", margin: "10px", width: 250,}} onClick={() => leagueJoin()}><h4>Join League</h4></Button>
-            </div>
-            { createLeague ? (
-                <CreateLeagues user={props.user} leagueCreation = {leagueCreation}/>
-            ) : (
-                <div></div>
-            )}
-            { joinLeague ? (
-                <JoinLeagues user={props.user} leagueJoin = {leagueJoin}/>
-            ) : (
-                <div></div>
-            )}
-            { individualLeague ? (
-                <Box display="flex" flexWrap="nowrap" p={1} m={1} padding = "3%"><IndividualLeague closeLeague={closeLeague} user={leagueInfo} username={props.user['username']} sub={props.user['attributes']['sub']} /></Box>
-            ) : (
-                <div style={{display: "flex", justifyContent: "center"}}>
-                    <Box display="flex" flexWrap="nowrap" p={1} m={1} padding = "3%">
-                        <Box paddingRight="4%">{ displayLeague() }</Box>
-                    </Box>
-                </div>
-            )}
-            <div style={{display: "flex", justifyContent: "center"}}>
-                <Box><PremierLeagueFixtures results={props.results}/></Box>
-                <Box><PremierLeagueResults results={props.results}/></Box>
-            </div>
-        </div>
+            <Grid container direction="row" spacing={2}>
+				<Grid item xs={12} md={8} align="center">
+                    <Grid item xs={12} md={8} className="buttons">
+                            <Button style={{backgroundColor: "#37003c", color: "#fff", marginTop: "40px", marginBottom:"10px", marginRight: "10px", width: 250,}} variant="contained" onClick={() => leagueCreation()}><h4>Create League</h4></Button>
+                            <Button style={{backgroundColor: "#37003c", color: "#fff", marginTop: "40px", marginBottom:"10px", width: 250,}} variant="contained" onClick={() => leagueJoin()}><h4>Join League</h4></Button>
+                        { createLeague ? (
+                            <CreateLeagues user={props.user} leagueCreation = {leagueCreation}/>
+                        ) : (
+                            null
+                        )}
+                        { joinLeague ? (
+                            <JoinLeagues user={props.user} leagueJoin = {leagueJoin}/>
+                        ) : (
+                            null
+                        )}
+                    </Grid>
+                    <Grid item xs={12} md={8}>
+						<div>
+							{displayLeague()}
+						</div>
+                    </Grid>
+                    { individualLeague ? (
+						<Grid item xs={12} md={8}>
+                        	<IndividualLeague closeLeague={closeLeague} user={leagueInfo} username={props.user['username']} sub={props.user['attributes']['sub']} />
+                        </Grid>
+                    ) : (
+                        null
+                    )}
+                </Grid>
+                <Grid item xs={12} md={4}>
+                    <div>
+                        <Grid item xs={12} style={{marginBottom:"20px"}}>
+                            <PremierLeagueFixtures results={props.results}/>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <PremierLeagueResults results={props.results}/>
+                        </Grid>
+                    </div>
+				</Grid>
+            </Grid>
         </>
     );
 }

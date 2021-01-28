@@ -80,6 +80,9 @@
   border-bottom: 0;
   font-weight: bold;
 }
+td.MuiTableCell-body{
+  color: #37003c;
+}
 
 .league-table-state-items{
   background-color: #fffdfc;
