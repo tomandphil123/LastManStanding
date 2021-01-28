@@ -215,6 +215,21 @@
           ]
         }
       ]
+    },
+    "teamInfo": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlTeamsDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "auth": {
@@ -257,6 +272,10 @@
       "providerPlugin": "awscloudformation"
     },
     "PlResultsDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    },
+    "PlTeamsDB": {
       "service": "DynamoDB",
       "providerPlugin": "awscloudformation"
     }
@@ -309,6 +328,14 @@
         {
           "category": "function",
           "resourceName": "teamSelection",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "teamInfo",
           "attributes": [
             "Name",
             "Arn"

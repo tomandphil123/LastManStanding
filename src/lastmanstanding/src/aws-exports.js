@@ -33,6 +33,10 @@ const awsmobile = {
         {
             "tableName": "PlResultsDB-develop",
             "region": "eu-west-1"
+        },
+        {
+            "tableName": "PlTeamsDB-develop",
+            "region": "eu-west-1"
         }
     ],
     "aws_cloud_logic_custom": [

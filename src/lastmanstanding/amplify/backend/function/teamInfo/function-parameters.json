@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "storage": {
+      "PlTeamsDB": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     background: "#37003c",
-    top: "50px"
+    top: "50px",
   },
   tabs:{
     color:"#fff",
@@ -66,12 +66,6 @@ const useStyles = makeStyles((theme) => ({
     color:"#fff",
     fontWeight: "bold",
     left: "90%",
-    position: "sticky",
-  },
-  contactTab: {
-    color:"#ffff",
-    fontWeight: "bold",
-    left: "77%",
     position: "sticky",
   },
   logo:{
@@ -94,7 +88,7 @@ function Navbar(props) {
       Auth.signOut();
       props.auth.setAuthStatus(false);
       props.auth.setUser(null);
-      history.push("/")
+      history.push("")
     } catch(error) {
       console.log(error.message);
     }
@@ -104,8 +98,8 @@ function Navbar(props) {
     props.auth.isAuthenticated
     ? (
       <>
-				<AppBar className={classes.header}>
-					<Tabs >
+				<AppBar position="static" className={classes.header}>
+					<Tabs>
 						<Tab label={<div><img src={require("../../images/logo4.png")} className={classes.logo} alt="logo" textcolor="inherit"></img></div>} className={classes.tabs}  component={Link} to="/"/>
 						<Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Profile </div>} className={classes.tabs}  component={Link} to="/Profile" />
 						<Tab label={<div><ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Leagues </div>} className={classes.tabs} component={Link} to="/MyLeagues" />
@@ -115,8 +109,8 @@ function Navbar(props) {
       </>
     ) : (
       <>
-				<AppBar position="fixed" className={classes.header}>
-					<Tabs >
+				<AppBar position="static" className={classes.header}>
+					<Tabs>
           <Tab label={<div><img src={require("../../images/logo4.png")} className={classes.logo} alt="logo" textcolor="inherit"></img></div>} className={classes.tabs}  component={Link} to="/"/>
 						<Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab}   component={Link} to="/SignIn"/>
 						<Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>}  className={classes.signUpTab} component={Link} to="/SignUp" />
