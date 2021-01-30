@@ -15,7 +15,7 @@ export default function CrestBar() {
         typeof crests !== 'undefined' ? (
         <div style={{display: "flex", justifyContent:"center"}}>
             {crests.map((item) => (
-                <div style={{padding: "5px"}}><a href={item['Website']}><img src={item['Crest']} height="40px"/></a></div>
+                <div style={{padding: "5px"}}><a href={item['Website']}><img src={item['Crest']} alt= "team crests" height="40px"/></a></div>
             ))}
         </div>
         ) : (

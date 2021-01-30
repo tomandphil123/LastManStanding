@@ -35,23 +35,23 @@ def handler(event, context):
 
 	# Send confirmation email with invitation code for users to join the league
 	leaguePlayerID = leagueID +'/'+ result['sub']
-	# boto3.client('ses', 'eu-west-1').send_email(
-	# 	Source = lmsEmail,
-	# 	Destination={
-	# 		'ToAddresses': [
-	# 			email
-	# 		]
-	# 	},
-	# 	Message={
-	# 		'Subject': {
-	# 			'Data': "Successful League Creation: " + leagueName
-	# 		},
-	# 		'Body': {
-	# 		'Text': {
-	# 			'Data':  "\n" + "Congratulations on creating a new league."+ "\n\n"+"League ID: " + leagueID + "\n\n" + "Invitation code: " + invitationCode + "\n\n" + "Send the above code to people you would like in your Last Man Standing League."
-	# 		}
-	# 	}
-	# })
+	boto3.client('ses', 'eu-west-1').send_email(
+		Source = lmsEmail,
+		Destination={
+			'ToAddresses': [
+				email
+			]
+		},
+		Message={
+			'Subject': {
+				'Data': "Successful League Creation: " + leagueName
+			},
+			'Body': {
+			'Text': {
+				'Data':  "\n" + "Congratulations on creating a new league."+ "\n\n"+"League ID: " + leagueID + "\n\n" + "Invitation code: " + invitationCode + "\n\n" + "Send the above code to people you would like in your Last Man Standing League."
+			}
+		}
+	})
 
 	# User gets added to leaguePlayer database
 	tableName2 = "LeaguePlayerDB-develop"
