@@ -1,15 +1,16 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Auth } from "aws-amplify";
-import { Link, useHistory } from "react-router-dom";
+import {Auth} from 'aws-amplify';
+import {Link, useHistory} from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,25 +25,27 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#37003c',
   },
   form: {
-    width: '100%', 
+    width: '100%',
     marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: '#37003c'
-  }
+    backgroundColor: '#37003c',
+  },
 }));
 
-export default function SignIn(props){
-
+const SignIn = ({
+  setUser,
+  isLoggedIn,
+}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const classes = useStyles();
   const history = useHistory();
 
-  const handleSubmit = async event => {
-    event.preventDefault()
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     try {
       const user = await Auth.signIn({
@@ -50,21 +53,20 @@ export default function SignIn(props){
         password,
       });
       setIsLoggedIn();
-      //props.auth.setAuthStatus(true);
-      props.setUser(user);
-      history.push("/")
+      setUser(user);
+      history.push('/');
     } catch (error) {
       alert(error.message);
     }
-  }
+  };
 
   const setIsLoggedIn = (event) => {
-    props.isLoggedIn()
-  }  
-  
+    isLoggedIn();
+  };
+
   const getBack = () => {
-    history.push("/ForgotPassword");
-  }
+    history.push('/ForgotPassword');
+  };
 
   return (
     <>
@@ -87,7 +89,7 @@ export default function SignIn(props){
               name="username"
               autoComplete="uname"
               autoFocus
-              onChange= {event => setUsername(event.target.value)}
+              onChange= {(event) => setUsername(event.target.value)}
             />
             <TextField
               variant="outlined"
@@ -99,7 +101,7 @@ export default function SignIn(props){
               type="password"
               id="password"
               autoComplete="current-password"
-              onChange= {event => setPassword(event.target.value)}
+              onChange= {(event) => setPassword(event.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -111,18 +113,25 @@ export default function SignIn(props){
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={event => handleSubmit(event)}
+              onClick={(event) => handleSubmit(event)}
             >
               Sign In
             </Button>
-              <div>
-                <Link to="/forgotPassword" onClick={event => getBack()} >
-                  Forgot Password?
-                </Link>
-              </div>
+            <div>
+              <Link to="/forgotPassword" onClick={(event) => getBack()} >
+                    Forgot Password?
+              </Link>
+            </div>
           </form>
         </div>
       </Container>
     </>
   );
-}
+};
+
+SignIn.propTypes = {
+  isLoggedIn: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
+};
+
+export default SignIn;
