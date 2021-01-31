@@ -1,11 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Navbar Snapshot renders 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
-`;
-
 exports[`Navbar Snapshot renders when signed in 1`] = `
 <Fragment>
   <WithStyles(ForwardRef(AppBar))
