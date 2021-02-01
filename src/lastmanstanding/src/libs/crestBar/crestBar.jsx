@@ -9,7 +9,6 @@ const CrestBar = () => {
           setCrests(response['data']);
         });
   }, []);
-  console.log(crests);
   return (
         typeof crests !== 'undefined' ? (
         <div style={{display: 'flex', justifyContent: 'center'}}>

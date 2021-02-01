@@ -10,14 +10,6 @@
     "env": {
       "Type": "String"
     },
-    "storagePlayerDBName": {
-      "Type": "String",
-      "Default": "storagePlayerDBName"
-    },
-    "storagePlayerDBArn": {
-      "Type": "String",
-      "Default": "storagePlayerDBArn"
-    },
     "storageLeaguesDBName": {
       "Type": "String",
       "Default": "storageLeaguesDBName"
@@ -25,14 +17,6 @@
     "storageLeaguesDBArn": {
       "Type": "String",
       "Default": "storageLeaguesDBArn"
-    },
-    "storageLeaguePlayerDBName": {
-      "Type": "String",
-      "Default": "storageLeaguePlayerDBName"
-    },
-    "storageLeaguePlayerDBArn": {
-      "Type": "String",
-      "Default": "storageLeaguePlayerDBArn"
     }
   },
   "Conditions": {
@@ -57,12 +41,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "myLeagues",
+            "lockLeagues",
             {
               "Fn::Join": [
                 "",
                 [
-                  "myLeagues",
+                  "lockLeagues",
                   "-",
                   {
                     "Ref": "env"
@@ -80,23 +64,11 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "STORAGE_PLAYERDB_NAME": {
-              "Ref": "storagePlayerDBName"
-            },
-            "STORAGE_PLAYERDB_ARN": {
-              "Ref": "storagePlayerDBArn"
-            },
             "STORAGE_LEAGUESDB_NAME": {
               "Ref": "storageLeaguesDBName"
             },
             "STORAGE_LEAGUESDB_ARN": {
               "Ref": "storageLeaguesDBArn"
-            },
-            "STORAGE_LEAGUEPLAYERDB_NAME": {
-              "Ref": "storageLeaguePlayerDBName"
-            },
-            "STORAGE_LEAGUEPLAYERDB_ARN": {
-              "Ref": "storageLeaguePlayerDBArn"
             }
           }
         },
@@ -111,7 +83,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
-          "S3Key": "amplify-builds/myLeagues-464346646c4363784a48-build.zip"
+          "S3Key": "amplify-builds/lockLeagues-6635374c3539574f5631-build.zip"
         }
       }
     },
@@ -121,12 +93,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lastmanstandingLambdaRole811ed1d0",
+            "lastmanstandingLambdaRole4d48bfeb",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lastmanstandingLambdaRole811ed1d0",
+                  "lastmanstandingLambdaRole4d48bfeb",
                   "-",
                   {
                     "Ref": "env"
@@ -230,39 +202,6 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagePlayerDBArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storagePlayerDBArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*",
-                "dynamodb:Delete*"
-              ],
-              "Resource": [
-                {
                   "Ref": "storageLeaguesDBArn"
                 },
                 {
@@ -277,40 +216,46 @@
                   ]
                 }
               ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*",
-                "dynamodb:Delete*"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storageLeaguePlayerDBArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storageLeaguePlayerDBArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
             }
+          ]
+        }
+      }
+    },
+    "CloudWatchEvent": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "Schedule rule for Lambda",
+        "ScheduleExpression": {
+          "Ref": "CloudWatchRule"
+        },
+        "State": "ENABLED",
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": [
+                "LambdaFunction",
+                "Arn"
+              ]
+            },
+            "Id": {
+              "Ref": "LambdaFunction"
+            }
+          }
+        ]
+      }
+    },
+    "PermissionForEventsToInvokeLambda": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "LambdaFunction"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "CloudWatchEvent",
+            "Arn"
           ]
         }
       }
@@ -338,6 +283,11 @@
     "LambdaExecutionRole": {
       "Value": {
         "Ref": "LambdaExecutionRole"
+      }
+    },
+    "CloudWatchEventRule": {
+      "Value": {
+        "Ref": "CloudWatchEvent"
       }
     }
   }

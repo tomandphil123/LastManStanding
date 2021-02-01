@@ -49,6 +49,13 @@
             "privacy": {
                 "open": true
             }
+        },
+        {
+            "name": "/lockLeagues",
+            "lambdaFunction": "lockLeagues",
+            "privacy": {
+                "open": true
+            }
         }
     ],
     "resourceName": "LastManStandingAPI",
@@ -74,6 +81,9 @@
         },
         {
             "lambdaFunction": "teamInfo"
+        },
+        {
+            "lambdaFunction": "lockLeagues"
         }
     ],
     "privacy": {
@@ -138,7 +148,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "lockLeagues",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "f929e6f3"
+    "uuid": "63f5cd7f"
 }
