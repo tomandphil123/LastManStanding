@@ -82,7 +82,7 @@ export default function SignUp(props) {
                 label="Username"
                 name="username"
                 autoComplete="uname"
-                onChange= {event => setUsername(event.target.value)}
+                onChange= {event => setUsername(event.target.value.toLowerCase())}
               />
             </Grid>
             <Grid item xs={12}>
@@ -94,7 +94,7 @@ export default function SignUp(props) {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                onChange= {event => setEmail(event.target.value)}
+                onChange= {event => setEmail(event.target.value.toLowerCase())}
               />
             </Grid>
             <Grid item xs={12}>
