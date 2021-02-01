@@ -84,8 +84,7 @@ const Navbar = ({
   const classes = useStyles();
   const history = useHistory();
 
-  const handleLogOut = async (event) => {
-    event.preventDefault();
+  const handleLogOut = async () => {
     try {
       Auth.signOut();
       auth.setAuthStatus(false);
@@ -127,4 +126,4 @@ Navbar.propTypes = {
   auth: PropTypes.object.isRequired,
 };
 
-export default withRouter(Navbar);
+export default Navbar;
