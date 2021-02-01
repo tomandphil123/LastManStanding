@@ -11,7 +11,7 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { Auth } from 'aws-amplify';
-import { useHistory, Link, withRouter} from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -82,8 +82,7 @@ function Navbar(props) {
   const classes = useStyles();
   const history = useHistory();
 
-  const handleLogOut = async event => {
-    event.preventDefault();
+  const handleLogOut = async () => {
     try {
       Auth.signOut();
       props.auth.setAuthStatus(false);
@@ -103,7 +102,7 @@ function Navbar(props) {
 						<Tab label={<div><img src={require("../../images/logo4.png")} className={classes.logo} alt="logo" textcolor="inherit"></img></div>} className={classes.tabs}  component={Link} to="/"/>
 						<Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Profile </div>} className={classes.tabs}  component={Link} to="/Profile" />
 						<Tab label={<div><ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Leagues </div>} className={classes.tabs} component={Link} to="/MyLeagues" />
-						<Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Out </div>} className={classes.signOutTab}  onClick={event => handleLogOut(event)} />
+						<Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Out </div>} className={classes.signOutTab}  onClick={() => handleLogOut()} />
 					</Tabs>
 				</AppBar>
       </>
@@ -121,4 +120,4 @@ function Navbar(props) {
   );
 }
 
-export default withRouter(Navbar);
+export default Navbar;
