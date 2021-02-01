@@ -30,7 +30,8 @@ def handler(event, context):
 				'LeagueName': leagueName,
 				'admin': admin,
 				'createdTime': createdDate,
-				'invitationCode': invitationCode
+				'invitationCode': invitationCode,
+				'LeagueStatus': 'Open'
 			})
 
 	# Send confirmation email with invitation code for users to join the league

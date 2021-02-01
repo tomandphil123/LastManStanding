@@ -12,7 +12,7 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import {Auth} from 'aws-amplify';
-import {useHistory, Link, withRouter} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 
 function TabPanel(props) {
   const {children, value, index, ...other} = props;

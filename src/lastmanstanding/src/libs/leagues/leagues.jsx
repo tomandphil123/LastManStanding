@@ -86,7 +86,7 @@ const Leagues = ({
           </Grid>
           { individualLeague ? (
             <Grid item xs={12} md={8}>
-              <IndividualLeague closeLeague={closeLeague} user={leagueInfo} username={user['username']} sub={user['attributes']['sub']} />
+              <IndividualLeague closeLeague={closeLeague} user={leagueInfo} username={user['username']} sub={user['attributes']['sub']}/>
             </Grid>
           ) : (
             null

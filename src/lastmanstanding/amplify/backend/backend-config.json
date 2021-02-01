@@ -230,6 +230,21 @@
           ]
         }
       ]
+    },
+    "lockLeagues": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "auth": {
@@ -336,6 +351,14 @@
         {
           "category": "function",
           "resourceName": "teamInfo",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "lockLeagues",
           "attributes": [
             "Name",
             "Arn"

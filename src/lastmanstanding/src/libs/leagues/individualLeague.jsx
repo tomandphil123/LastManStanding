@@ -12,6 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import PickTeam from './pickTeam';
 import './individualLeagues.css';
 import Grid from '@material-ui/core/Grid';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 
 const IndividualLeague = ({
@@ -25,7 +26,7 @@ const IndividualLeague = ({
   return (
         typeof user !== 'undefined' ? (
         <div style={{backgroundColor: '#fff'}}>
-          <h1 align = "center">{user['data'][0]['LeagueID']}
+          <h1 align = "center">{user['data'][0][0]['LeagueID']}
             <Button color="primary" onClick={() => closeLeague()}>
               <CloseIcon/>
             </Button>
@@ -41,7 +42,7 @@ const IndividualLeague = ({
                     </TableRow>
                   </TableHead>
                   <TableBody style={{minHeight: 'auto'}}>
-                    {user['data'].map((item) => (
+                    {user['data'][0].map((item) => (
                                 username === item['Username'] ? (
                                 <TableRow>
                                   <TableCell align='center'>
@@ -66,10 +67,10 @@ const IndividualLeague = ({
                   </TableBody>
                 </Table>
               </TableContainer>
-              {user['data'].map((item) => (
-                username === item['Username'] ? (
+              {user['data'][0].map((item) => (
+                username === item['Username'] && user['data'][1][0]['LeagueStatus'] === 'Open' ? (
                   // eslint-disable-next-line max-len
-                  <PickTeam teams = {item['UnpickedTeams']} setPick={setPick} sub={sub} leagueID={user['data'][0]['LeagueID']}/>
+                  <PickTeam teams = {item['UnpickedTeams']} setPick={setPick} sub={sub} leagueID={user['data'][0][0]['LeagueID']}/>
             ) : (
                 null
             )
@@ -88,7 +89,7 @@ const IndividualLeague = ({
                     </TableRow>
                   </TableHead>
                   <TableBody style={{minHeight: 'auto'}}>
-                    {user['data'].map((item) => (
+                    {user['data'][0].map((item) => (
                       <TableRow key={item['Username']}>
                         <TableCell align='center'>{item['Username']}</TableCell>
                         {(item['Status'] === 'In') ? (
@@ -99,7 +100,7 @@ const IndividualLeague = ({
                           ) : (
                           <TableCell align='center'>
                             {/* eslint-disable-next-line max-len */}
-                            <img src={require('../../images/leagueStatusIn.png')} alt="logo" width="20px"/>
+                            <HighlightOffIcon/>
                           </TableCell>
                           )}
                         <TableCell align='center'>

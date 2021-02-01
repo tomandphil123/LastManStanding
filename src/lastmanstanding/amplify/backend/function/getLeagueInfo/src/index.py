@@ -7,16 +7,23 @@ def handler(event, context):
 	print(event)
 	result = json.loads(event['body'])
 	leagueID = result['leagueId']
+	ret_lst = []
 
 	dynamodb = boto3.resource('dynamodb')
 
 	# Query to get all players in a league
 	LPtable = dynamodb.Table('LeaguePlayerDB-develop')
-	leagueData = LPtable.query(
+	leaguePlayerData = LPtable.query(
 		IndexName = 'LeagueID-LeaguePlayerID-index',
 		KeyConditionExpression=Key('LeagueID').eq(leagueID)
 	)
+	ret_lst.append(leaguePlayerData['Items'])
 
+	Ltable = dynamodb.Table('LeaguesDB-develop')
+	leagueData = Ltable.query(
+		KeyConditionExpression=Key('LeagueID').eq(leagueID)
+	)
+	ret_lst.append(leagueData['Items'])
 
 	return {
 		'statusCode': 200,
@@ -25,5 +32,5 @@ def handler(event, context):
 		'Access-Control-Allow-Origin': '*',
 		'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
 		},
-		'body': json.dumps(leagueData['Items'])
+		'body': json.dumps(ret_lst)
 	}
