@@ -1,14 +1,14 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Auth } from "aws-amplify";
-import { useHistory, Link } from "react-router-dom";
+import {Auth} from 'aws-amplify';
+import {useHistory, Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -22,45 +22,44 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#37003c',
   },
   form: {
-    width: '100%', 
+    width: '100%',
     marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: '#37003c'
+    backgroundColor: '#37003c',
   },
 }));
 
-export default function SignUp(props) {
-
+const SignUp = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+
   const classes = useStyles();
   const history = useHistory();
 
-  const handleSubmit = async event => {
-    event.preventDefault()
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     try {
       await Auth.signUp({
         username,
         password,
         attributes: {
-          email: email
-        }
+          email: email,
+        },
       }).then((response) => {
-          history.push("/SignIn");
+        history.push('/SignIn');
       });
     } catch (e) {
-      alert(e.message);      
+      alert(e.message);
     }
-  }
+  };
 
   const getBack = () => {
-    history.push("/SignIn");
-  }
+    history.push('/SignIn');
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -107,7 +106,7 @@ export default function SignUp(props) {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                onChange= {event => setPassword(event.target.value)}
+                onChange= {(event) => setPassword(event.target.value)}
               />
             </Grid>
           </Grid>
@@ -117,13 +116,13 @@ export default function SignUp(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={event => handleSubmit(event)}
+            onClick={(event) => handleSubmit(event)}
           >
             Sign Up
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link onClick={event => getBack()} >
+              <Link onClick={(event) => getBack()} >
                 Already have an account? Sign in
               </Link>
             </Grid>
@@ -132,4 +131,6 @@ export default function SignUp(props) {
       </div>
     </Container>
   );
-}
+};
+
+export default SignUp;

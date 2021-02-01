@@ -12,7 +12,9 @@ exports[`loggedInHomePage Snapshot renders 1`] = `
       md={8}
       xs={12}
     >
-      <PremierLeagueStandings />
+      <PremierLeagueStandings
+        results={Object {}}
+      />
     </WithStyles(ForwardRef(Grid))>
     <WithStyles(ForwardRef(Grid))
       item={true}
@@ -28,13 +30,17 @@ exports[`loggedInHomePage Snapshot renders 1`] = `
         }
         xs={12}
       >
-        <PremierLeagueFixtures />
+        <PremierLeagueFixtures
+          results={Object {}}
+        />
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
         item={true}
         xs={12}
       >
-        <PremierLeagueResults />
+        <PremierLeagueResults
+          results={Object {}}
+        />
       </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Grid))>
   </WithStyles(ForwardRef(Grid))>
