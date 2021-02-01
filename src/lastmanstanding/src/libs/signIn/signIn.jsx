@@ -87,7 +87,7 @@ export default function SignIn(props){
               name="username"
               autoComplete="uname"
               autoFocus
-              onChange= {event => setUsername(event.target.value)}
+              onChange= {event => setUsername(event.target.value.toLowerCase())}
             />
             <TextField
               variant="outlined"
