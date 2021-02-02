@@ -33,6 +33,14 @@
     "storageLeaguePlayerDBArn": {
       "Type": "String",
       "Default": "storageLeaguePlayerDBArn"
+    },
+    "storagePlResultsDBName": {
+      "Type": "String",
+      "Default": "storagePlResultsDBName"
+    },
+    "storagePlResultsDBArn": {
+      "Type": "String",
+      "Default": "storagePlResultsDBArn"
     }
   },
   "Conditions": {
@@ -57,12 +65,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "getLeagueInfo",
+            "unlockLeagues",
             {
               "Fn::Join": [
                 "",
                 [
-                  "getLeagueInfo",
+                  "unlockLeagues",
                   "-",
                   {
                     "Ref": "env"
@@ -97,6 +105,12 @@
             },
             "STORAGE_LEAGUEPLAYERDB_ARN": {
               "Ref": "storageLeaguePlayerDBArn"
+            },
+            "STORAGE_PLRESULTSDB_NAME": {
+              "Ref": "storagePlResultsDBName"
+            },
+            "STORAGE_PLRESULTSDB_ARN": {
+              "Ref": "storagePlResultsDBArn"
             }
           }
         },
@@ -111,7 +125,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
-          "S3Key": "amplify-builds/getLeagueInfo-344e446e4c52666f4145-build.zip"
+          "S3Key": "amplify-builds/unlockLeagues-4f746b4e5a7268774f79-build.zip"
         }
       }
     },
@@ -121,12 +135,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lastmanstandingLambdaRole89c269d7",
+            "lastmanstandingLambdaRoleaeb788bc",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lastmanstandingLambdaRole89c269d7",
+                  "lastmanstandingLambdaRoleaeb788bc",
                   "-",
                   {
                     "Ref": "env"
@@ -310,7 +324,79 @@
                   ]
                 }
               ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*",
+                "dynamodb:Delete*"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storagePlResultsDBArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storagePlResultsDBArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
             }
+          ]
+        }
+      }
+    },
+    "CloudWatchEvent": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "Schedule rule for Lambda",
+        "ScheduleExpression": {
+          "Ref": "CloudWatchRule"
+        },
+        "State": "ENABLED",
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": [
+                "LambdaFunction",
+                "Arn"
+              ]
+            },
+            "Id": {
+              "Ref": "LambdaFunction"
+            }
+          }
+        ]
+      }
+    },
+    "PermissionForEventsToInvokeLambda": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "LambdaFunction"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "CloudWatchEvent",
+            "Arn"
           ]
         }
       }
@@ -338,6 +424,11 @@
     "LambdaExecutionRole": {
       "Value": {
         "Ref": "LambdaExecutionRole"
+      }
+    },
+    "CloudWatchEventRule": {
+      "Value": {
+        "Ref": "CloudWatchEvent"
       }
     }
   }
