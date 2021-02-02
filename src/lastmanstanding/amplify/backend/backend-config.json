@@ -15,7 +15,7 @@
         },
         {
           "category": "storage",
-          "resourceName": "PlFixturesDB",
+          "resourceName": "PLResultsDB",
           "attributes": [
             "Name",
             "Arn"
@@ -23,7 +23,7 @@
         },
         {
           "category": "storage",
-          "resourceName": "PlResultsDB",
+          "resourceName": "PLFixturesDB",
           "attributes": [
             "Name",
             "Arn"
@@ -46,7 +46,7 @@
         },
         {
           "category": "storage",
-          "resourceName": "PlFixturesDB",
+          "resourceName": "PLResultsDB",
           "attributes": [
             "Name",
             "Arn"
@@ -54,7 +54,7 @@
         },
         {
           "category": "storage",
-          "resourceName": "PlResultsDB",
+          "resourceName": "PLFixturesDB",
           "attributes": [
             "Name",
             "Arn"
@@ -277,7 +277,7 @@
         },
         {
           "category": "storage",
-          "resourceName": "PlResultsDB",
+          "resourceName": "PLResultsDB",
           "attributes": [
             "Name",
             "Arn"
@@ -321,15 +321,15 @@
       "service": "DynamoDB",
       "providerPlugin": "awscloudformation"
     },
-    "PlFixturesDB": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
-    },
-    "PlResultsDB": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
-    },
     "PlTeamsDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    },
+    "PLResultsDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    },
+    "PLFixturesDB": {
       "service": "DynamoDB",
       "providerPlugin": "awscloudformation"
     }

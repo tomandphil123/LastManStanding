@@ -20,7 +20,7 @@
         "update",
         "delete"
       ],
-      "PlResultsDB": [
+      "PLResultsDB": [
         "create",
         "read",
         "update",

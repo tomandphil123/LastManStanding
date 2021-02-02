@@ -18,21 +18,21 @@
       "Type": "String",
       "Default": "storagePlStandingsDBArn"
     },
-    "storagePlFixturesDBName": {
+    "storagePLResultsDBName": {
       "Type": "String",
-      "Default": "storagePlFixturesDBName"
+      "Default": "storagePLResultsDBName"
     },
-    "storagePlFixturesDBArn": {
+    "storagePLResultsDBArn": {
       "Type": "String",
-      "Default": "storagePlFixturesDBArn"
+      "Default": "storagePLResultsDBArn"
     },
-    "storagePlResultsDBName": {
+    "storagePLFixturesDBName": {
       "Type": "String",
-      "Default": "storagePlResultsDBName"
+      "Default": "storagePLFixturesDBName"
     },
-    "storagePlResultsDBArn": {
+    "storagePLFixturesDBArn": {
       "Type": "String",
-      "Default": "storagePlResultsDBArn"
+      "Default": "storagePLFixturesDBArn"
     }
   },
   "Conditions": {
@@ -86,17 +86,17 @@
             "STORAGE_PLSTANDINGSDB_ARN": {
               "Ref": "storagePlStandingsDBArn"
             },
-            "STORAGE_PLFIXTURESDB_NAME": {
-              "Ref": "storagePlFixturesDBName"
-            },
-            "STORAGE_PLFIXTURESDB_ARN": {
-              "Ref": "storagePlFixturesDBArn"
-            },
             "STORAGE_PLRESULTSDB_NAME": {
-              "Ref": "storagePlResultsDBName"
+              "Ref": "storagePLResultsDBName"
             },
             "STORAGE_PLRESULTSDB_ARN": {
-              "Ref": "storagePlResultsDBArn"
+              "Ref": "storagePLResultsDBArn"
+            },
+            "STORAGE_PLFIXTURESDB_NAME": {
+              "Ref": "storagePLFixturesDBName"
+            },
+            "STORAGE_PLFIXTURESDB_ARN": {
+              "Ref": "storagePLFixturesDBArn"
             }
           }
         },
@@ -111,7 +111,7 @@
         "Timeout": "40",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
-          "S3Key": "amplify-builds/LeagueInfoLambda-56706c33654e53394d37-build.zip"
+          "S3Key": "amplify-builds/LeagueInfoLambda-44387155455644396179-build.zip"
         }
       }
     },
@@ -197,6 +197,45 @@
         }
       }
     },
+    "CloudWatchEvent": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "Schedule rule for Lambda",
+        "ScheduleExpression": {
+          "Ref": "CloudWatchRule"
+        },
+        "State": "ENABLED",
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": [
+                "LambdaFunction",
+                "Arn"
+              ]
+            },
+            "Id": {
+              "Ref": "LambdaFunction"
+            }
+          }
+        ]
+      }
+    },
+    "PermissionForEventsToInvokeLambda": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "LambdaFunction"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "CloudWatchEvent",
+            "Arn"
+          ]
+        }
+      }
+    },
     "AmplifyResourcesPolicy": {
       "DependsOn": [
         "LambdaExecutionRole"
@@ -263,14 +302,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagePlFixturesDBArn"
+                  "Ref": "storagePLResultsDBArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagePlFixturesDBArn"
+                        "Ref": "storagePLResultsDBArn"
                       },
                       "index/*"
                     ]
@@ -296,14 +335,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagePlResultsDBArn"
+                  "Ref": "storagePLFixturesDBArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagePlResultsDBArn"
+                        "Ref": "storagePLFixturesDBArn"
                       },
                       "index/*"
                     ]
@@ -311,45 +350,6 @@
                 }
               ]
             }
-          ]
-        }
-      }
-    },
-    "CloudWatchEvent": {
-      "Type": "AWS::Events::Rule",
-      "Properties": {
-        "Description": "Schedule rule for Lambda",
-        "ScheduleExpression": {
-          "Ref": "CloudWatchRule"
-        },
-        "State": "ENABLED",
-        "Targets": [
-          {
-            "Arn": {
-              "Fn::GetAtt": [
-                "LambdaFunction",
-                "Arn"
-              ]
-            },
-            "Id": {
-              "Ref": "LambdaFunction"
-            }
-          }
-        ]
-      }
-    },
-    "PermissionForEventsToInvokeLambda": {
-      "Type": "AWS::Lambda::Permission",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "LambdaFunction"
-        },
-        "Action": "lambda:InvokeFunction",
-        "Principal": "events.amazonaws.com",
-        "SourceArn": {
-          "Fn::GetAtt": [
-            "CloudWatchEvent",
-            "Arn"
           ]
         }
       }

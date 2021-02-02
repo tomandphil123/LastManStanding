@@ -27,15 +27,15 @@ const awsmobile = {
             "region": "eu-west-1"
         },
         {
-            "tableName": "PlFixturesDB-develop",
-            "region": "eu-west-1"
-        },
-        {
-            "tableName": "PlResultsDB-develop",
-            "region": "eu-west-1"
-        },
-        {
             "tableName": "PlTeamsDB-develop",
+            "region": "eu-west-1"
+        },
+        {
+            "tableName": "PLResultsDB-develop",
+            "region": "eu-west-1"
+        },
+        {
+            "tableName": "PLFixturesDB-develop",
             "region": "eu-west-1"
         }
     ],

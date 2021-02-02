@@ -11,10 +11,8 @@ def handler(event, context):
 	headers = { 'X-Auth-Token': 'f2f6419113714a1b8e549654bf734336' }
 	connection.request('GET', '/v2/competitions/PL/standings', None, headers )
 	response = json.loads(connection.getresponse().read().decode())
-	# print(json.dumps(response))
 	connection.request('GET', '/v2/competitions/PL/matches', None, headers )
 	response2 = json.loads(connection.getresponse().read().decode())
-	# print(json.dumps(response2))
 
 	abbreviations = {
 		'West Bromwich Albion FC': 'West Brom FC',
@@ -59,10 +57,11 @@ def handler(event, context):
 	
 	for fixture in response2["matches"]:
 		dynamodb = boto3.resource('dynamodb')
-		tableName1 = "PlFixturesDB-develop"
+		tableName1 = "PLFixturesDB-develop"
 		table1 = dynamodb.Table(tableName1)
-		tableName2 = "PlResultsDB-develop"
+		tableName2 = "PLResultsDB-develop"
 		table2 = dynamodb.Table(tableName2)
+		
 		if fixture["matchday"] > fixture["season"]["currentMatchday"] + 2:
 			break
 
@@ -82,11 +81,14 @@ def handler(event, context):
 				awayTeamScore = "-"
 			if fixture["score"]["winner"] == "HOME_TEAM":
 				winner = fixture["homeTeam"]["name"]
-			else:
+			elif fixture["score"]["winner"] == "AWAY_TEAM":
 				winner = fixture["awayTeam"]["name"]
+			else:
+				winner = "Draw"
 
 			table2.put_item(
 				Item={
+					'MatchID': homeTeam + "-" + awayTeam,
 					'HomeTeam': homeTeam,
 					'AwayTeam': awayTeam,
 					'GameWeek': str(gameWeek),
@@ -107,6 +109,7 @@ def handler(event, context):
 			gameWeek = fixture["season"]["currentMatchday"]
 			table1.put_item(
 				Item={
+					'FixtureID': homeTeam + "-" + awayTeam,
 					'HomeTeam': homeTeam,
 					'AwayTeam': awayTeam,
 					'GameWeek': str(gameWeek),

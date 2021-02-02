@@ -1,5 +1,5 @@
 {
-    "tableName": "PlResultsDB",
-    "partitionKeyName": "HomeTeam",
+    "tableName": "PLResultsDB",
+    "partitionKeyName": "MatchID",
     "partitionKeyType": "S"
 }
