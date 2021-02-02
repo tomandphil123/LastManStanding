@@ -1,9 +1,29 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 .tableContainer {
-  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
   background: linear-gradient(to right, #25c481, #25b7c4);
   font-family: 'Roboto', sans-serif;
   margin-top: 10px
+}
+
+div.MuiGrid-spacing-xs-4{
+    padding: 0px
+}
+
+.tableContainer2 {
+    background: linear-gradient(to right, #490050, #490050);
+    font-family: 'Roboto', sans-serif;
+    margin-top: 10px
+  }
+
+div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-md-12{
+    padding: 5px
+}
+
+.box{
+    padding: 40px;
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 0 0 10px #490050;
 }
 
 .table {
@@ -12,6 +32,18 @@
 
 .tableRowTitles {
     background-color: rgba(255,255,255,0.3);
+}
+
+th.MuiTableCell-head{
+    color: white;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 1.5rem;
+}
+
+div.MuiTableContainer-root{
+    width: 99.9%;
+    overflow-x: auto;
 }
 
 .tableBody {
@@ -34,15 +66,19 @@ td.MuiTableCell-root {
     padding: 2px;
 }
 
-/* td.MuiTableCell-body {
+a.MuiTypography-colorPrimary {
     color: white;
-} */
+}
+
 
 .h1 {
     color: #fff;
     padding: 10px;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bolder;
     text-align:center;
-
 }
+
+.pointer{
+    cursor: pointer;
+  }
