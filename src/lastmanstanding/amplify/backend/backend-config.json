@@ -243,6 +243,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     },
