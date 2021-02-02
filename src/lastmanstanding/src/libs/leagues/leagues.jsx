@@ -66,8 +66,8 @@ const Leagues = ({
       <Grid container direction="row" spacing={2}>
         <Grid item xs={12} md={8} align="center">
           <Grid item xs={12} md={8} className="buttons">
-            <Button style={{backgroundColor: '#37003c', color: '#fff', marginTop: '10px', marginBottom: '25px', marginRight: '10px', width: 250}} variant="contained" onClick={() => leagueCreation()}><h4>Create League</h4></Button>
-            <Button style={{backgroundColor: '#37003c', color: '#fff', marginTop: '10px', marginBottom: '25px', width: 250}} variant="contained" onClick={() => leagueJoin()}><h4>Join League</h4></Button>
+            <Button style={{backgroundColor: '#490050', color: '#fff', marginTop: '10px', marginBottom: '5px', marginRight: '10px', width: 250}} variant="contained" onClick={() => leagueCreation()}><h4>Create League</h4></Button>
+            <Button style={{backgroundColor: '#490050', color: '#fff', marginTop: '10px', marginBottom: '5px', width: 250}} variant="contained" onClick={() => leagueJoin()}><h4>Join League</h4></Button>
             { createLeague ? (
                             <CreateLeagues user={user} leagueCreation = {leagueCreation}/>
                         ) : (

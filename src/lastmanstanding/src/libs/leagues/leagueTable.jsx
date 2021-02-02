@@ -20,7 +20,7 @@ const LeagueTable = ({
       <Table aria-label="customized table">
         <TableHead>
           <TableRow>
-            <TableCell height="auto" align="center">League ID</TableCell>
+            <TableCell height="auto" align="left">League</TableCell>
             <TableCell align="center" >Status</TableCell>
             <TableCell align="center" >Pick</TableCell>
           </TableRow>
@@ -28,17 +28,15 @@ const LeagueTable = ({
         <TableBody style={{minHeight: 'auto'}}>
           {table.map((item) => (
             <TableRow key={item[0]['LeagueID']}>
-              <TableCell align='center'>
-                {/* eslint-disable-next-line max-len */}
-                <Link className='tableLink' onClick={() => openLeague(item[0]['LeagueID'])}>{item[0]['LeagueID']}</Link>
+              <TableCell align='left'>
+                <Link className="pointer" onClick={() => openLeague(item[0]['LeagueID'])} style={{paddingLeft: '10px'}}>{item[0]['LeagueID'].split('#')[0]}</Link>
               </TableCell>
               {(item[0]['playerStatus'] === 'In') ? (
-                <TableCell align="center" >
-                  {/* eslint-disable-next-line max-len */}
+                <TableCell align="center">
                   <img src={require('../../images/leagueStatusIn.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/>
                 </TableCell>
                   ) : (
-                  <TableCell align="center"><img src={require('../../images/leagueStatusOut.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/></TableCell>
+                  <TableCell align="left"><img src={require('../../images/leagueStatusOut.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/></TableCell>
                 )}
               <TableCell align="center">{item[0]['CurrentPick']}</TableCell>
             </TableRow>))}

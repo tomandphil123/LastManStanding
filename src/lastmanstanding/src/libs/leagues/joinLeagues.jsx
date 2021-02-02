@@ -52,7 +52,7 @@ const JoinLeagues = ({
     <>
       <Container component="main" maxWidth="xs" style={{backgroundColor: '#fff'}}>
         <div className={classes.paper}>
-          <Button color="primary" onClick={() => leagueJoin()}><CloseIcon/></Button>
+          {/* <Button color="primary" onClick={() => leagueJoin()}><CloseIcon/></Button> */}
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>

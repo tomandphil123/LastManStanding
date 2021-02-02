@@ -13,7 +13,7 @@ function getFixtures(results) {
   if (typeof results !== 'undefined') {
     return (
       <>
-        <TableContainer component={Paper} className='tableContainer'>
+        <TableContainer component={Paper} className='tableContainer2'>
           <h1 className='h1'>Fixtures</h1>
           <Table aria-label="customized table" className="table">
             <TableHead>

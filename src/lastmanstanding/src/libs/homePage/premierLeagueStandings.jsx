@@ -20,8 +20,7 @@ const getStandings = (results) => {
               <TableRow className="tableRowTitles">
                 <TableCell></TableCell>
                 <TableCell align="center">Pos</TableCell>
-                <TableCell>Club</TableCell>
-                <TableCell></TableCell>
+                <TableCell width="120px" align="left">Club</TableCell>
                 <TableCell align="center" >MP</TableCell>
                 <TableCell align="center" >W</TableCell>
                 <TableCell align="center" >D</TableCell>
@@ -37,8 +36,7 @@ const getStandings = (results) => {
                     <img src={item.crestUrl} height='30' alt="teamlogo"/>
                   </TableCell>
                   <TableCell align="center">{item.position}</TableCell>
-                  <TableCell width="80">{item.TeamName}</TableCell>
-                  <TableCell></TableCell>
+                  <TableCell >{item.TeamName}</TableCell>
                   <TableCell align="center">{item.gamesPlayed}</TableCell>
                   <TableCell align="center">{item.won}</TableCell>
                   <TableCell align="center">{item.draw}</TableCell>

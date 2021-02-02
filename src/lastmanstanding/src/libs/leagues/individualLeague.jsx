@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import CloseIcon from '@material-ui/icons/Close';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -10,10 +10,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import PickTeam from './pickTeam';
+import Alert from '@material-ui/lab/Alert';
 import './individualLeagues.css';
 import Grid from '@material-ui/core/Grid';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-
+import '../homePage/tables.css';
 
 const IndividualLeague = ({
   user,
@@ -22,23 +22,58 @@ const IndividualLeague = ({
   sub,
 }) => {
   const [pick, setPick] = useState();
-
-  return (
+  console.log(user)
+  return ( 
         typeof user !== 'undefined' ? (
-        <div style={{backgroundColor: '#fff'}}>
-          <h1 align = "center">{user['data'][0][0]['LeagueID']}
-            <Button color="primary" onClick={() => closeLeague()}>
-              <CloseIcon/>
-            </Button>
-          </h1>
-          <Grid container direction="column" spacing={4}>
+        <div style={{backgroundColor: '#fff', paddingTop:'20px'}} className='box'>
+          <Grid container direction='column' spacing={4}>
             <Grid item xs={12} md={12}>
-              <TableContainer component={Paper} style={{maxHeight: 820}}>
-                <Table aria-label="customized table">
+              <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer2'>
+                <h1 style={{ color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign:'center'}}> {user['data'][1][0]['LeagueName']}
+                  {/* <Button color='primary' onClick={() => closeLeague()}>
+                    <HighlightOffIcon/>
+                  </Button> */}
+                </h1>
+                <Table aria-label='customized table'>
                   <TableHead>
                     <TableRow>
-                      <TableCell height="auto" align="center">Status</TableCell>
-                      <TableCell align="center">Pick</TableCell>
+                      <TableCell align='center' >Admin</TableCell>
+                      <TableCell align='center' >League Status</TableCell>
+                      <TableCell align='center' >Remaining Players</TableCell>
+                      <TableCell align='center' >Players Eliminated</TableCell>
+                      <TableCell align='center' >Invitation Code</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody style={{minHeight: 'auto'}}>
+                    <TableRow>
+                      <TableCell align='center' style={{paddingLeft: '10px'}}>tomcallaghan</TableCell>
+                      {user['data'][1][0]['LeagueStatus'] === 'Closed' ? (
+                        <TableCell align='center'>Locked</TableCell>
+                      ) : (
+                        <TableCell align='center'>Unlocked</TableCell>
+                      )}
+                      
+                      <TableCell align='center'>3</TableCell>
+                      <TableCell align='center'>0</TableCell>
+                      <TableCell align='center'>{user['data'][1][0]['invitationCode']}</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Grid>
+            <Grid item xs={12} md={12}>
+            {user['data'][1][0]['LeagueStatus'] === 'Closed' ? (
+                    <Alert severity='warning'>Matches in progress - Picks are disabled!</Alert>
+                ) : (
+                  null
+                )}
+              <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer2'>
+              <h1 style={{ color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign:'center'}}>Your Stats</h1>
+                <Table aria-label='customized table'>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell align='center'>Status</TableCell>
+                      <TableCell align='center'>Pick</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody style={{minHeight: 'auto'}}>
@@ -47,12 +82,11 @@ const IndividualLeague = ({
                       <TableRow>
                         { item['playerStatus'] === 'In' ? (
                           <TableCell align='center' >
-                            {/* eslint-disable-next-line max-len */}
-                            <img src={require('../../images/leagueStatusIn.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/>
+                            <img src={require('../../images/leagueStatusIn.png')} alt='logo' width='20px' style={{paddingTop:'3px'}}/>
                           </TableCell>
                         ) : (
-                          <TableCell align="center">
-                            <img src={require('../../images/leagueStatusOut.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/>
+                          <TableCell align='center'>
+                            <img src={require('../../images/leagueStatusOut.png')} alt='logo' width='20px' style={{paddingTop:'3px'}}/>
                             </TableCell>
                         )}
                         {typeof pick !== 'undefined' ? (
@@ -82,43 +116,38 @@ const IndividualLeague = ({
                     null
                 )}
                 {username === item['Username'] && item['playerStatus'] === 'Out' ? (
-                  <h1>Youve been knocked out of this league</h1>
+                    <Alert severity='error'>You have been knocked out - try again next round!</Alert>
                 ) : (
                   null
                 )}
                 </div>
               ))}
-              {console.log(user['data'][1][0]['LeagueStatus'])}
-              {user['data'][1][0]['LeagueStatus'] === 'Closed' ? (
-                <h1>leagues are locked</h1>
-              ) : (
-                null
-              )}
             </Grid>
             <Grid item xs={12} md={12}>
-              <TableContainer component={Paper} style={{maxHeight: 820}}>
-                <Table aria-label="customized table">
+              <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer2'>
+                <h1 style={{ color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign:'center'}}>League Table</h1>
+                <Table aria-label='customized table'>
                   <TableHead>
                     <TableRow>
-                      <TableCell height="auto" align="center">
+                      <TableCell height='auto' align='left'>
                         Players
                       </TableCell>
-                      <TableCell align="center">Status</TableCell>
-                      <TableCell align="center">Pick</TableCell>
+                      <TableCell align='center'>Status</TableCell>
+                      <TableCell align='center'>Pick</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody style={{minHeight: 'auto'}}>
                     {user['data'][0].map((item) => (
                       <TableRow key={item['Username']}>
-                        <TableCell align='center'>{item['Username']}</TableCell>
+                        <TableCell align='left' style={{paddingLeft: '10px'}}>{item['Username']}</TableCell>
                         {(item['playerStatus'] === 'In') ? (
                           <TableCell align='center' >
                             {/* eslint-disable-next-line max-len */}
-                            <img src={require('../../images/leagueStatusIn.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/>
+                            <img src={require('../../images/leagueStatusIn.png')} alt='logo' width='20px' style={{paddingTop:'3px'}}/>
                           </TableCell>
                           ) : (
                           <TableCell align='center'>
-                            <img src={require('../../images/leagueStatusOut.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/>
+                            <img src={require('../../images/leagueStatusOut.png')} alt='logo' width='20px' style={{paddingTop:'3px'}}/>
                           </TableCell>
                           )}
                         <TableCell align='center'>
