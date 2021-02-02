@@ -18,21 +18,21 @@
       "Type": "String",
       "Default": "storagePlStandingsDBArn"
     },
-    "storagePlFixturesDBName": {
+    "storagePLResultsDBName": {
       "Type": "String",
-      "Default": "storagePlFixturesDBName"
+      "Default": "storagePLResultsDBName"
     },
-    "storagePlFixturesDBArn": {
+    "storagePLResultsDBArn": {
       "Type": "String",
-      "Default": "storagePlFixturesDBArn"
+      "Default": "storagePLResultsDBArn"
     },
-    "storagePlResultsDBName": {
+    "storagePLFixturesDBName": {
       "Type": "String",
-      "Default": "storagePlResultsDBName"
+      "Default": "storagePLFixturesDBName"
     },
-    "storagePlResultsDBArn": {
+    "storagePLFixturesDBArn": {
       "Type": "String",
-      "Default": "storagePlResultsDBArn"
+      "Default": "storagePLFixturesDBArn"
     }
   },
   "Conditions": {
@@ -86,17 +86,17 @@
             "STORAGE_PLSTANDINGSDB_ARN": {
               "Ref": "storagePlStandingsDBArn"
             },
-            "STORAGE_PLFIXTURESDB_NAME": {
-              "Ref": "storagePlFixturesDBName"
-            },
-            "STORAGE_PLFIXTURESDB_ARN": {
-              "Ref": "storagePlFixturesDBArn"
-            },
             "STORAGE_PLRESULTSDB_NAME": {
-              "Ref": "storagePlResultsDBName"
+              "Ref": "storagePLResultsDBName"
             },
             "STORAGE_PLRESULTSDB_ARN": {
-              "Ref": "storagePlResultsDBArn"
+              "Ref": "storagePLResultsDBArn"
+            },
+            "STORAGE_PLFIXTURESDB_NAME": {
+              "Ref": "storagePLFixturesDBName"
+            },
+            "STORAGE_PLFIXTURESDB_ARN": {
+              "Ref": "storagePLFixturesDBArn"
             }
           }
         },
@@ -110,7 +110,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
-          "S3Key": "amplify-builds/getPremierLeagueInfo-582f37437059626d5241-build.zip"
+          "S3Key": "amplify-builds/getPremierLeagueInfo-3863704679576a675079-build.zip"
         }
       }
     },
@@ -262,14 +262,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagePlStandingsDBArn"
+                  "Ref": "storagePLResultsDBArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagePlStandingsDBArn"
+                        "Ref": "storagePLResultsDBArn"
                       },
                       "index/*"
                     ]
@@ -295,113 +295,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagePlFixturesDBArn"
+                  "Ref": "storagePLFixturesDBArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagePlFixturesDBArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*",
-                "dynamodb:Delete*"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storagePlStandingsDBArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storagePlStandingsDBArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*",
-                "dynamodb:Delete*"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storagePlFixturesDBArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storagePlFixturesDBArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*",
-                "dynamodb:Delete*"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storagePlResultsDBArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storagePlResultsDBArn"
+                        "Ref": "storagePLFixturesDBArn"
                       },
                       "index/*"
                     ]

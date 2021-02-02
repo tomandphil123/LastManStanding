@@ -1,24 +1,24 @@
 {
-    "permissions": {
-        "storage": {
-            "PlStandingsDB": [
-                "create",
-                "read",
-                "update",
-                "delete"
-            ],
-            "PlFixturesDB": [
-                "create",
-                "read",
-                "update",
-                "delete"
-            ],
-            "PlResultsDB": [
-                "create",
-                "read",
-                "update",
-                "delete"
-            ]
-        }
+  "permissions": {
+    "storage": {
+      "PlStandingsDB": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "PLResultsDB": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "PLFixturesDB": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
     }
+  }
 }

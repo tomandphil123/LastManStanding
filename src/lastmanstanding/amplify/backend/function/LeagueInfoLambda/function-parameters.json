@@ -7,13 +7,13 @@
         "update",
         "delete"
       ],
-      "PlFixturesDB": [
+      "PLResultsDB": [
         "create",
         "read",
         "update",
         "delete"
       ],
-      "PlResultsDB": [
+      "PLFixturesDB": [
         "create",
         "read",
         "update",

@@ -43,38 +43,57 @@ const IndividualLeague = ({
                   </TableHead>
                   <TableBody style={{minHeight: 'auto'}}>
                     {user['data'][0].map((item) => (
-                                username === item['Username'] ? (
-                                <TableRow>
-                                  <TableCell align='center'>
-                                    {/* eslint-disable-next-line max-len */}
-                                    <img src={require('../../images/leagueStatusIn.png')} alt="logo" width="20px"/>
-                                  </TableCell>
-                                  {typeof pick !== 'undefined' ? (
-                                    <TableCell align='center'>{pick}</TableCell>
-                                    ) : (
-                                    item['CurrentPick'] !== '' ? (
-                                      <TableCell align='center'>
-                                        {item['CurrentPick']}
-                                      </TableCell>
-                                    ) : (
-                                      <TableCell align='center'>-</TableCell>
-                                    )
-                                    )}
-                                </TableRow>
-                                ) : (
-                                    null
-                                )))}
+                      username === item['Username'] ? (
+                      <TableRow>
+                        { item['playerStatus'] === 'In' ? (
+                          <TableCell align='center' >
+                            {/* eslint-disable-next-line max-len */}
+                            <img src={require('../../images/leagueStatusIn.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/>
+                          </TableCell>
+                        ) : (
+                          <TableCell align="center">
+                            <img src={require('../../images/leagueStatusOut.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/>
+                            </TableCell>
+                        )}
+                        {typeof pick !== 'undefined' ? (
+                          <TableCell align='center'>{pick}</TableCell>
+                          ) : (
+                          item['CurrentPick'] !== '' ? (
+                            <TableCell align='center'>
+                              {item['CurrentPick']}
+                            </TableCell>
+                          ) : (
+                            <TableCell align='center'>-</TableCell>
+                          )
+                          )}
+                      </TableRow>
+                      ) : (
+                          null
+                      )))}
                   </TableBody>
                 </Table>
               </TableContainer>
               {user['data'][0].map((item) => (
-                username === item['Username'] && user['data'][1][0]['LeagueStatus'] === 'Open' ? (
+                <div>
+                {username === item['Username'] && user['data'][1][0]['LeagueStatus'] === 'Open' && item['playerStatus'] === 'In' ? (
                   // eslint-disable-next-line max-len
                   <PickTeam teams = {item['UnpickedTeams']} setPick={setPick} sub={sub} leagueID={user['data'][0][0]['LeagueID']}/>
-            ) : (
-                null
-            )
+                ) : (
+                    null
+                )}
+                {username === item['Username'] && item['playerStatus'] === 'Out' ? (
+                  <h1>Youve been knocked out of this league</h1>
+                ) : (
+                  null
+                )}
+                </div>
               ))}
+              {console.log(user['data'][1][0]['LeagueStatus'])}
+              {user['data'][1][0]['LeagueStatus'] === 'Closed' ? (
+                <h1>leagues are locked</h1>
+              ) : (
+                null
+              )}
             </Grid>
             <Grid item xs={12} md={12}>
               <TableContainer component={Paper} style={{maxHeight: 820}}>
@@ -92,15 +111,14 @@ const IndividualLeague = ({
                     {user['data'][0].map((item) => (
                       <TableRow key={item['Username']}>
                         <TableCell align='center'>{item['Username']}</TableCell>
-                        {(item['Status'] === 'In') ? (
+                        {(item['playerStatus'] === 'In') ? (
                           <TableCell align='center' >
                             {/* eslint-disable-next-line max-len */}
-                            <img src={require('../../images/leagueStatusIn.png')} alt="logo" width="20px"/>
+                            <img src={require('../../images/leagueStatusIn.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/>
                           </TableCell>
                           ) : (
                           <TableCell align='center'>
-                            {/* eslint-disable-next-line max-len */}
-                            <HighlightOffIcon/>
+                            <img src={require('../../images/leagueStatusOut.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/>
                           </TableCell>
                           )}
                         <TableCell align='center'>

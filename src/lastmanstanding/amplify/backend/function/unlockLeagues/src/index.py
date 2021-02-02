@@ -22,6 +22,44 @@ def handler(event, context):
             },
             ReturnValues="UPDATED_NEW"
       )
+    
+    resultsTable = dynamodb.Table('PLResultsDB-develop')
+    resultsResponse = resultsTable.scan(AttributesToGet=['Winner'])
+    results = resultsResponse['Items']
+    print(results)
+    winners = []
+
+    for winner in results:
+      winners.append(winner['Winner'])
+
+    leaguePlayerTable = dynamodb.Table('LeaguePlayerDB-develop')
+    leaguePlayerResponse = leaguePlayerTable.scan()
+    leaguePlayerResults = leaguePlayerResponse['Items']
+
+    for player in leaguePlayerResults:
+      if player['CurrentPick'] not in winners:
+        leaguePlayerTable.update_item(
+          Key={
+            'LeaguePlayerID': player['LeaguePlayerID']
+          },
+            UpdateExpression='set playerStatus=:s',
+            ExpressionAttributeValues={
+            ':s': 'Out'
+          },
+          ReturnValues='UPDATED_NEW'
+        )
+      else:
+        leaguePlayerTable.update_item(
+          Key={
+            'LeaguePlayerID': player['LeaguePlayerID']
+          },
+            UpdateExpression='set CurrentPick=:s',
+            ExpressionAttributeValues={
+            ':s': '-'
+          },
+          ReturnValues='UPDATED_NEW'
+        )
+        
 
     return {
       'statusCode': 200,

@@ -1,5 +1,5 @@
 {
-    "tableName": "PlFixturesDB",
-    "partitionKeyName": "HomeTeam",
+    "tableName": "PLFixturesDB",
+    "partitionKeyName": "FixtureID",
     "partitionKeyType": "S"
 }

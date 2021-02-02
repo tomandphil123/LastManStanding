@@ -34,13 +34,13 @@
       "Type": "String",
       "Default": "storageLeaguePlayerDBArn"
     },
-    "storagePlResultsDBName": {
+    "storagePLResultsDBName": {
       "Type": "String",
-      "Default": "storagePlResultsDBName"
+      "Default": "storagePLResultsDBName"
     },
-    "storagePlResultsDBArn": {
+    "storagePLResultsDBArn": {
       "Type": "String",
-      "Default": "storagePlResultsDBArn"
+      "Default": "storagePLResultsDBArn"
     }
   },
   "Conditions": {
@@ -107,10 +107,10 @@
               "Ref": "storageLeaguePlayerDBArn"
             },
             "STORAGE_PLRESULTSDB_NAME": {
-              "Ref": "storagePlResultsDBName"
+              "Ref": "storagePLResultsDBName"
             },
             "STORAGE_PLRESULTSDB_ARN": {
-              "Ref": "storagePlResultsDBArn"
+              "Ref": "storagePLResultsDBArn"
             }
           }
         },
@@ -125,7 +125,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
-          "S3Key": "amplify-builds/unlockLeagues-4f746b4e5a7268774f79-build.zip"
+          "S3Key": "amplify-builds/unlockLeagues-786e784b723039346670-build.zip"
         }
       }
     },
@@ -343,14 +343,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagePlResultsDBArn"
+                  "Ref": "storagePLResultsDBArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagePlResultsDBArn"
+                        "Ref": "storagePLResultsDBArn"
                       },
                       "index/*"
                     ]

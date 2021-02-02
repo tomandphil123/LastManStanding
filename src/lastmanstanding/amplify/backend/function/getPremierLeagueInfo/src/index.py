@@ -10,11 +10,11 @@ def handler(event, context):
 	standingsData = sorted(res, key = lambda i: int(i["position"]))
 	print(standingsData)
 
-	table2 = dynamodb.Table('PlFixturesDB-develop')
+	table2 = dynamodb.Table('PLFixturesDB-develop')
 	response2 = table2.scan()
 	fixturesData = response2['Items']
 
-	table3 = dynamodb.Table('PlResultsDB-develop')
+	table3 = dynamodb.Table('PLResultsDB-develop')
 	response3 = table3.scan()
 	resultsData = response3['Items']
 

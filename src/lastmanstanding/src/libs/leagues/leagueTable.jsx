@@ -9,7 +9,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import '../homePage/tables.css';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 const LeagueTable = ({
   table,
@@ -33,13 +32,13 @@ const LeagueTable = ({
                 {/* eslint-disable-next-line max-len */}
                 <Link className='tableLink' onClick={() => openLeague(item[0]['LeagueID'])}>{item[0]['LeagueID']}</Link>
               </TableCell>
-              {(item[0]['Status'] === 'In') ? (
+              {(item[0]['playerStatus'] === 'In') ? (
                 <TableCell align="center" >
                   {/* eslint-disable-next-line max-len */}
-                  <img src={require('../../images/leagueStatusIn.png')} alt="logo" width="20px"></img>
+                  <img src={require('../../images/leagueStatusIn.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/>
                 </TableCell>
                   ) : (
-                  <TableCell align="center"><HighlightOffIcon/></TableCell>
+                  <TableCell align="center"><img src={require('../../images/leagueStatusOut.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/></TableCell>
                 )}
               <TableCell align="center">{item[0]['CurrentPick']}</TableCell>
             </TableRow>))}

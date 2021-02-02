@@ -22,7 +22,32 @@ def handler(event, context):
             },
             ReturnValues="UPDATED_NEW"
       )
+    
+    leaguePlayerTable = dynamodb.Table('LeaguePlayerDB-develop')
+    leaguePlayerResponse = leaguePlayerTable.scan()
+    leaguePlayerResults = leaguePlayerResponse['Items']
 
+    for player in leaguePlayerResults:
+      currentPick = player['CurrentPick']
+      pickedTeams = player['PickedTeams']
+      unPickedTeams = player['UnpickedTeams']
+
+      if currentPick in unPickedTeams:
+        unPickedTeams.remove(currentPick)
+        pickedTeams.append(currentPick)
+
+      leaguePlayerTable.update_item(
+        Key={
+            'LeaguePlayerID': player['LeaguePlayerID']
+          },
+            UpdateExpression="set PickedTeams=:val1, UnpickedTeams=:val2",
+            ExpressionAttributeValues={
+            ':val1': pickedTeams,
+            ':val2': unPickedTeams
+          },
+          ReturnValues="UPDATED_NEW"
+        )
+      
     return {
       'statusCode': 200,
       'headers': {
