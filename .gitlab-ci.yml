@@ -19,5 +19,6 @@ test:
       - cd ./src/lastmanstanding
       - echo "Testing App"
       - npm install
+      - rm -rf node_modules/eslint
       - CI=true npm test
       - echo "Test successfully!"
