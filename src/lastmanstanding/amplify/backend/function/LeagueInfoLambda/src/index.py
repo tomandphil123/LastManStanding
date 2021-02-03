@@ -6,7 +6,6 @@ from datetime import datetime
 def handler(event, context):
 	# print('received event:')
 	# print(event)
-
 	connection = http.client.HTTPConnection('api.football-data.org')
 	headers = { 'X-Auth-Token': 'f2f6419113714a1b8e549654bf734336' }
 	connection.request('GET', '/v2/competitions/PL/standings', None, headers )
@@ -18,6 +17,29 @@ def handler(event, context):
 		'West Bromwich Albion FC': 'West Brom FC',
 		'Wolverhampton Wanderers FC': 'Wolves FC',
 		'Brighton & Hove Albion FC': 'Brighton FC'
+	}
+  
+	crests = {
+		'Manchester United FC':'https://crests.football-data.org/66.svg',
+		'Manchester City FC':'https://crests.football-data.org/65.svg',
+		'Leicester City FC':'https://crests.football-data.org/338.svg',
+		'Liverpool FC':'https://crests.football-data.org/64.svg',
+		'Tottenham Hotspur FC':'https://crests.football-data.org/73.svg',
+		'Everton FC':'https://crests.football-data.org/62.svg',
+		'Chelsea FC':'https://crests.football-data.org/61.svg',
+		'Southampton FC':'https://crests.football-data.org/340.svg',
+		'West Ham United FC':'https://crests.football-data.org/563.svg',
+		'Sheffield United FC':'https://crests.football-data.org/356.svg',
+		'Arsenal FC':'https://crests.football-data.org/57.svg',
+        'Aston Villa FC':'https://crests.football-data.org/58.svg',
+        'Leeds United FC':'https://crests.football-data.org/341.svg',
+        'Crystal Palace FC':'https://crests.football-data.org/354.svg',
+        'Wolverhampton Wanderers FC':'https://crests.football-data.org/76.svg',
+        'Newcastle United FC':'https://crests.football-data.org/67.svg',
+        'Brighton & Hove Albion FC':'https://crests.football-data.org/397.svg',
+        'Burnley FC':'https://crests.football-data.org/328.svg',
+        'Fulham FC':'https://crests.football-data.org/63.svg',
+        'West Bromwich Albion FC': 'https://crests.football-data.org/74.svg',
 	}
 
 	for team in response["standings"][0]["table"]:
@@ -67,7 +89,9 @@ def handler(event, context):
 
 		if fixture["matchday"] == fixture["season"]["currentMatchday"] - 1:
 			homeTeam = fixture["homeTeam"]["name"]
+			homeTeamCrest1 = crests[homeTeam]
 			awayTeam = fixture["awayTeam"]["name"]
+			awayTeamCrest1 = crests[awayTeam]
 			if homeTeam in abbreviations:
 				homeTeam = abbreviations[homeTeam]
 			if awayTeam in abbreviations:
@@ -90,7 +114,9 @@ def handler(event, context):
 				Item={
 					'MatchID': homeTeam + "-" + awayTeam,
 					'HomeTeam': homeTeam,
+					'HomeTeamCrest': homeTeamCrest1,
 					'AwayTeam': awayTeam,
+					'AwayTeamCrest': awayTeamCrest1,
 					'GameWeek': str(gameWeek),
 					'Winner': winner,
 					'HomeScore': str(homeTeamScore),
@@ -101,7 +127,9 @@ def handler(event, context):
 		
 		if fixture["matchday"] == fixture["season"]["currentMatchday"]:
 			homeTeam = fixture["homeTeam"]["name"]
+			homeTeamCrest2 = crests[homeTeam]
 			awayTeam = fixture["awayTeam"]["name"]
+			awayTeamCrest2 = crests[awayTeam]
 			if homeTeam in abbreviations:
 				homeTeam = abbreviations[homeTeam]
 			if awayTeam in abbreviations:
@@ -111,7 +139,9 @@ def handler(event, context):
 				Item={
 					'FixtureID': homeTeam + "-" + awayTeam,
 					'HomeTeam': homeTeam,
+					'HomeTeamCrest': homeTeamCrest2,
 					'AwayTeam': awayTeam,
+					'AwayTeamCrest': awayTeamCrest2,
 					'GameWeek': str(gameWeek),
 					'createdTime': str(datetime.today())
 				}

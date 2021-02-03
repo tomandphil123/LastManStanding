@@ -45,7 +45,7 @@ def handler(event, context):
 				'CurrentPick': " ",
 				'PickedTeams': [],
 				'Admin': admin,
-        'fullName': fullName,
+                'fullName': fullName,
 				'Username': username,
 				'playerStatus': "In",
 				'createdTime': createdDate,

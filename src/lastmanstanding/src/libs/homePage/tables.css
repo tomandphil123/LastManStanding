@@ -26,12 +26,12 @@ th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignLeft{
     font-size: 14px;
 }
 
-.box{
+/* .box{
     padding: 40px;
     border-radius: 10px;
     margin-top: 30px;
     box-shadow: 0 0 0 10px #490050;
-}
+} */
 
 .table {
     table-layout: fixed;
@@ -131,3 +131,11 @@ div.makeStyles-paper-21{
 .pointer{
     cursor: pointer;
   }
+
+th.MuiTableCell-root.MuiTableCell-head.tableCellCrest.MuiTableCell-alignCenter {
+    width: 30px
+}
+
+th.MuiTableCell-root.MuiTableCell-head.tableCellScore.MuiTableCell-alignCenter {
+    width: 40px
+}

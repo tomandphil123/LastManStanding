@@ -108,10 +108,10 @@
         },
         "Runtime": "python3.8",
         "Layers": [],
-        "Timeout": "40",
+        "Timeout": "60",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
-          "S3Key": "amplify-builds/LeagueInfoLambda-355a686f5a3344704a34-build.zip"
+          "S3Key": "amplify-builds/LeagueInfoLambda-455576694f75436c3730-build.zip"
         }
       }
     },
