@@ -45,9 +45,14 @@ const useStyles = makeStyles((theme) => ({
   root: {
   },
   header: {
-    background: '#37003c',
+    background: '#490050',
     top: '50px',
   },
+  
+  // MuiTabTextColorInherit: {
+  //   opacity: '0'
+  // },
+
   tabs: {
     color: '#fff',
     fontWeight: 'bold',

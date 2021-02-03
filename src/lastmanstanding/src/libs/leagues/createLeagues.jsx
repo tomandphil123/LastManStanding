@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
-import CloseIcon from '@material-ui/icons/Close';
+// import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: '#37003c',
+    backgroundColor: '#490050',
   },
   form: {
     width: '100%',
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: '#37003c',
+    backgroundColor: '#490050',
   },
 }));
 
@@ -49,6 +49,7 @@ const CreateLeagues = ({
   return (
     <>
       {/* eslint-disable-next-line max-len */}
+      
       <Container component="main" maxWidth="xs" style={{backgroundColor: '#fff'}}>
         <div className={classes.paper}>
           {/* <Button color="primary" onClick={() => leagueCreation()}>
