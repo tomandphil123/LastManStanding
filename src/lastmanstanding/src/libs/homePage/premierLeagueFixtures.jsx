@@ -13,7 +13,7 @@ function getFixtures(results) {
   if (typeof results !== 'undefined') {
     return (
       <>
-        <TableContainer component={Paper} className='tableContainer2'>
+        <TableContainer component={Paper} className='tableContainer'>
           <h1 className='h1'>Fixtures</h1>
           <Table aria-label="customized table" className="table">
             <TableHead>
@@ -27,7 +27,7 @@ function getFixtures(results) {
                 </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody className='tableBody'>
+            <TableBody className='tableBody' style={{minHeight: 'auto', backgroundColor: "white", color: "black"}}>
               {results[1].map((item) => (
                 <TableRow key={item.HomeTeam}>
                   <TableCell align="center" className='tableCell'>

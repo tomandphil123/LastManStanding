@@ -11,7 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import PickTeam from './pickTeam';
 import Alert from '@material-ui/lab/Alert';
-import './individualLeagues.css';
+//import './individualLeagues.css';
 import Grid from '@material-ui/core/Grid';
 import '../homePage/tables.css';
 
@@ -28,7 +28,7 @@ const IndividualLeague = ({
         <div style={{backgroundColor: '#fff', paddingTop:'20px'}} className='box'>
           <Grid container direction='column' spacing={4}>
             <Grid item xs={12} md={12}>
-              <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer2'>
+              <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer'>
                 <h1 style={{ color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign:'center'}}> {user['data'][1][0]['LeagueName']}
                   {/* <Button color='primary' onClick={() => closeLeague()}>
                     <HighlightOffIcon/>
@@ -36,7 +36,7 @@ const IndividualLeague = ({
                 </h1>
                 <Table aria-label='customized table'>
                   <TableHead>
-                    <TableRow>
+                    <TableRow className="tableRowTitles">
                       <TableCell align='center' >Admin</TableCell>
                       <TableCell align='center' >League Status</TableCell>
                       <TableCell align='center' >Remaining Players</TableCell>
@@ -44,7 +44,7 @@ const IndividualLeague = ({
                       <TableCell align='center' >Invitation Code</TableCell>
                     </TableRow>
                   </TableHead>
-                  <TableBody style={{minHeight: 'auto'}}>
+                  <TableBody style={{minHeight: 'auto', backgroundColor: "white", color: "black"}}>
                     <TableRow>
                       <TableCell align='center' style={{paddingLeft: '10px'}}>tomcallaghan</TableCell>
                       {user['data'][1][0]['LeagueStatus'] === 'Closed' ? (
@@ -67,16 +67,16 @@ const IndividualLeague = ({
                 ) : (
                   null
                 )}
-              <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer2'>
+              <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer'>
               <h1 style={{ color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign:'center'}}>Your Stats</h1>
                 <Table aria-label='customized table'>
                   <TableHead>
-                    <TableRow>
+                    <TableRow className="tableRowTitles">
                       <TableCell align='center'>Status</TableCell>
                       <TableCell align='center'>Pick</TableCell>
                     </TableRow>
                   </TableHead>
-                  <TableBody style={{minHeight: 'auto'}}>
+                  <TableBody style={{minHeight: 'auto', backgroundColor: "white", color: "black"}}>
                     {user['data'][0].map((item) => (
                       username === item['Username'] ? (
                       <TableRow>
@@ -124,11 +124,11 @@ const IndividualLeague = ({
               ))}
             </Grid>
             <Grid item xs={12} md={12}>
-              <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer2'>
+              <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer'>
                 <h1 style={{ color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign:'center'}}>League Table</h1>
                 <Table aria-label='customized table'>
                   <TableHead>
-                    <TableRow>
+                    <TableRow className="tableRowTitles">
                       <TableCell height='auto' align='left'>
                         Players
                       </TableCell>
@@ -136,7 +136,7 @@ const IndividualLeague = ({
                       <TableCell align='center'>Pick</TableCell>
                     </TableRow>
                   </TableHead>
-                  <TableBody style={{minHeight: 'auto'}}>
+                  <TableBody style={{minHeight: 'auto', backgroundColor: "white", color: "black"}}>
                     {user['data'][0].map((item) => (
                       <TableRow key={item['Username']}>
                         <TableCell align='left' style={{paddingLeft: '10px'}}>{item['Username']}</TableCell>

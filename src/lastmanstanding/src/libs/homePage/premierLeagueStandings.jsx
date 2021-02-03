@@ -29,7 +29,7 @@ const getStandings = (results) => {
                 <TableCell align="center" >P</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody style={{minHeight: 'auto', backgroundColor: "white", color: "black"}}>
               {results[0].map((item) => (
                 <TableRow key={item.TeamName}>
                   <TableCell align="center">

@@ -13,7 +13,7 @@ function getResults(results) {
   if (typeof results !== 'undefined') {
     return (
       <div>
-        <TableContainer component={Paper} className='tableContainer2'>
+        <TableContainer component={Paper} className='tableContainer'>
           <h1 className='h1'>Results</h1>
           <Table aria-label='customized table' className="table">
             <TableHead>
@@ -29,7 +29,7 @@ function getResults(results) {
                 </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody className='tableBody'>
+            <TableBody className='tableBody' style={{minHeight: 'auto', backgroundColor: "white", color: "black"}}>
               {results[2].map((item) => (
                 <TableRow key={item.HomeTeam}>
                   <TableCell align='center' className='tableCell'>
