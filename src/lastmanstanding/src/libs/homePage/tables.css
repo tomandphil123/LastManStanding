@@ -84,6 +84,15 @@ button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.makeStyles-signOut
     opacity: 1;
 }
 
+div.makeStyles-paper-15{
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+div.makeStyles-paper-23{
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
 div.makeStyles-paper-13{
     margin-top: 24px;
     margin-bottom: 24px;
