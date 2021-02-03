@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
@@ -21,19 +22,27 @@ function getFixtures(results) {
                 <TableCell align="center" height="auto" className='tableCell'>
                   <h1>Home Team</h1>
                 </TableCell>
-                <TableCell align="center" className='tableCell'>VS</TableCell>
+                <TableCell align="center" className='tableCellCrest'/>
+                <TableCell align="center" className='tableCellCrest'>VS</TableCell>
+                <TableCell align="center" className='tableCellCrest'/>
                 <TableCell align="center" className='tableCell'>
                   <h1>Away Team</h1>
                 </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody className='tableBody' style={{minHeight: 'auto', backgroundColor: "white", color: "black"}}>
+            <TableBody className='tableBody' style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
               {results[1].map((item) => (
                 <TableRow key={item.HomeTeam}>
                   <TableCell align="center" className='tableCell'>
                     {item.HomeTeam}
                   </TableCell>
+                  <TableCell align="center" className='tableCellCrest'>
+                    <img src={item['HomeTeamCrest']} alt= "team crests" height="25px"/>
+                  </TableCell>
                   <TableCell align="center" className='tableCell'>VS</TableCell>
+                  <TableCell align="center" className='tableCellCrest'>
+                    <img src={item['AwayTeamCrest']} alt= "team crests" height="25px"/>
+                  </TableCell>
                   <TableCell align="center" className='tableCell'>
                     {item.AwayTeam}
                   </TableCell>

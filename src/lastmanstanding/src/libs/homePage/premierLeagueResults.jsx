@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
@@ -21,22 +22,30 @@ function getResults(results) {
                 <TableCell align='center' height='auto' className='tableCell'>
                     Home Team
                 </TableCell>
-                <TableCell align='center' className='tableCell'>
+                <TableCell align="center" className='tableCellCrest'/>
+                <TableCell align='center' className='tableCellScore'>
                     Score
                 </TableCell>
+                <TableCell align="center" className='tableCellCrest'/>
                 <TableCell align='center' className='tableCell'>
                     Away Team
                 </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody className='tableBody' style={{minHeight: 'auto', backgroundColor: "white", color: "black"}}>
+            <TableBody className='tableBody' style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
               {results[2].map((item) => (
                 <TableRow key={item.HomeTeam}>
                   <TableCell align='center' className='tableCell'>
                     {item.HomeTeam}
                   </TableCell>
+                  <TableCell align="center" className='tableCellCrest'>
+                    <img src={item['HomeTeamCrest']} alt= "team crests" height="25px"/>
+                  </TableCell>
                   <TableCell align="center" className='tableCell'>
                     {item.HomeScore} : {item.AwayScore}
+                  </TableCell>
+                  <TableCell align="center" className='tableCellCrest'>
+                    <img src={item['AwayTeamCrest']} alt= "team crests" height="25px"/>
                   </TableCell>
                   <TableCell align="center" className='tableCell'>
                     {item.AwayTeam}

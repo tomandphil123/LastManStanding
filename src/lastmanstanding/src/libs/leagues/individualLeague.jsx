@@ -22,8 +22,7 @@ const IndividualLeague = ({
   const [pick, setPick] = useState();
   return (
         typeof user !== 'undefined' ? (
-        <div style={{backgroundColor: '#fff', paddingTop: '20px'}}
-          className='box'>
+        <div style={{backgroundColor: '#fff', paddingTop: '20px'}}>
           <Grid container direction='column' spacing={4}>
             <Grid item xs={12} md={12}>
               <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer'>
@@ -79,11 +78,11 @@ const IndividualLeague = ({
                       <TableRow>
                         { item['playerStatus'] === 'In' ? (
                           <TableCell align='center' >
-                            <img src={require('../../images/leagueStatusIn.png')} alt='logo' width='20px' style={{paddingTop:'3px'}}/>
+                            <img src={require('../../images/leagueStatusIn.png')} alt='logo' width='20px' style={{paddingTop: '3px'}}/>
                           </TableCell>
                         ) : (
                           <TableCell align='center'>
-                            <img src={require('../../images/leagueStatusOut.png')} alt='logo' width='20px' style={{paddingTop:'3px'}}/>
+                            <img src={require('../../images/leagueStatusOut.png')} alt='logo' width='20px' style={{paddingTop: '3px'}}/>
                           </TableCell>
                         )}
                         {typeof pick !== 'undefined' ? (
@@ -122,7 +121,7 @@ const IndividualLeague = ({
             </Grid>
             <Grid item xs={12} md={12}>
               <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer'>
-                <h1 style={{ color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign: 'center'}}>League Table</h1>
+                <h1 style={{color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign: 'center'}}>League Table</h1>
                 <Table aria-label='customized table'>
                   <TableHead>
                     <TableRow className="tableRowTitles">
