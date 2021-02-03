@@ -26,13 +26,6 @@ th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignLeft{
     font-size: 14px;
 }
 
-/* .box{
-    padding: 40px;
-    border-radius: 10px;
-    margin-top: 30px;
-    box-shadow: 0 0 0 10px #490050;
-} */
-
 .table {
     table-layout: fixed;
 } 
@@ -53,15 +46,11 @@ div.MuiTableContainer-root{
     overflow-x: auto;
 }
 
-div.jss21{
+div.jss{
     margin-top: 24px;
     margin-bottom: 24px;
 }
 
-div.jss25{
-    margin-top: 24px;
-    margin-bottom: 24px;
-}
 a.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.jss3{
     opacity: 1;
 }
@@ -101,20 +90,7 @@ button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.makeStyles-signOut
     opacity: 1;
 }
 
-div.makeStyles-paper-15{
-    margin-top: 24px;
-    margin-bottom: 24px;
-}
-div.makeStyles-paper-23{
-    margin-top: 24px;
-    margin-bottom: 24px;
-}
-
-div.makeStyles-paper-13{
-    margin-top: 24px;
-    margin-bottom: 24px;
-}
-div.makeStyles-paper-21{
+div.makeStyles-paper{
     margin-top: 24px;
     margin-bottom: 24px;
 }
