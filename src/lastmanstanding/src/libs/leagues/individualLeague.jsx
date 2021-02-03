@@ -11,7 +11,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import PickTeam from './pickTeam';
 import Alert from '@material-ui/lab/Alert';
-//import './individualLeagues.css';
 import Grid from '@material-ui/core/Grid';
 import '../homePage/tables.css';
 

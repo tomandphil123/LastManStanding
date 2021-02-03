@@ -14,6 +14,18 @@ div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-md-12{
     padding: 5px
 }
 
+th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignCenter{
+    padding:0px;
+    font-size: 14px;
+}
+
+th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignLeft{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left:20px;
+    font-size: 14px;
+}
+
 .box{
     padding: 40px;
     border-radius: 10px;
@@ -65,10 +77,25 @@ a.MuiTypography-colorPrimary {
     color: black;
 }
 
+a.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.makeStyles-tabs-3{
+    opacity: 1;
+}
+button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.makeStyles-signOutTab-6{
+    opacity: 1;
+}
+
+div.makeStyles-paper-13{
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+div.makeStyles-paper-21{
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
 
 .h1 {
     color: #fff;
-    padding: 15px;
+    padding: 10px;
     padding-left: 20px;
     font-size: 25px;
     font-weight: bolder;
