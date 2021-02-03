@@ -9,6 +9,9 @@ def handler(event, context):
   result = json.loads(event['body'])
   leagueCode = result["leagueCode"]
   sub = result["sub"]
+  fname = result['firstName']
+  lname = result['lastName']
+  fullName = fname + ' ' + lname
   username = result["username"]
 
   client = boto3.client('dynamodb')
@@ -42,6 +45,7 @@ def handler(event, context):
 				'CurrentPick': " ",
 				'PickedTeams': [],
 				'Admin': admin,
+        'fullName': fullName,
 				'Username': username,
 				'playerStatus': "In",
 				'createdTime': createdDate,

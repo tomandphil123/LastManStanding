@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
@@ -19,17 +20,22 @@ const LeagueTable = ({
       <h1 className='h1'>My Leagues</h1>
       <Table aria-label="customized table">
         <TableHead>
-          <TableRow style={{backgroundColor: "rgba(255,255,255,0.3)", color: "black"}}>
+          <TableRow style={{backgroundColor: 'rgba(255,255,255,0.3)', color: 'black'}}>
             <TableCell height="auto" align="left">League</TableCell>
             <TableCell align="center" >Status</TableCell>
             <TableCell align="center" >Pick</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody style={{minHeight: 'auto', backgroundColor: "white", color: "black"}}>
+        <TableBody style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
           {table.map((item) => (
             <TableRow key={item[0]['LeagueID']}>
               <TableCell align='left'>
-                <Link className="pointer" onClick={() => openLeague(item[0]['LeagueID'])} style={{paddingLeft: '15px'}}>{item[0]['LeagueID'].split('#')[0]}</Link>
+                <Link className="pointer" onClick={() => openLeague(item[0]['LeagueID'])}>
+                  <div verticalAlign='center'>
+                    <div style={{fontWeight: 'bolder'}}>{item[0]['LeagueID'].split('#')[0]}</div>
+                    <div style={{fontSize: '12px'}}>#{item[0]['LeagueID'].split('#')[1]}</div>
+                  </div>
+                </Link>
               </TableCell>
               {(item[0]['playerStatus'] === 'In') ? (
                 <TableCell align="center">
