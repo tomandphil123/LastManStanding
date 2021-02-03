@@ -1,7 +1,6 @@
+/* eslint-disable max-len */
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -21,14 +20,14 @@ const IndividualLeague = ({
   sub,
 }) => {
   const [pick, setPick] = useState();
-  console.log(user)
-  return ( 
+  return (
         typeof user !== 'undefined' ? (
-        <div style={{backgroundColor: '#fff', paddingTop:'20px'}} className='box'>
+        <div style={{backgroundColor: '#fff', paddingTop: '20px'}}
+          className='box'>
           <Grid container direction='column' spacing={4}>
             <Grid item xs={12} md={12}>
               <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer'>
-                <h1 style={{ color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign:'center'}}> {user['data'][1][0]['LeagueName']}
+                <h1 style={{color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign: 'center'}}> {user['data'][1][0]['LeagueName']}
                   {/* <Button color='primary' onClick={() => closeLeague()}>
                     <HighlightOffIcon/>
                   </Button> */}
@@ -43,15 +42,14 @@ const IndividualLeague = ({
                       <TableCell align='center' >Invitation Code</TableCell>
                     </TableRow>
                   </TableHead>
-                  <TableBody style={{minHeight: 'auto', backgroundColor: "white", color: "black"}}>
+                  <TableBody style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
                     <TableRow>
-                      <TableCell align='center' style={{paddingLeft: '10px'}}>tomcallaghan</TableCell>
+                      <TableCell align='center' style={{paddingLeft: '10px'}}>{user['data'][1][0]['fullName']}</TableCell>
                       {user['data'][1][0]['LeagueStatus'] === 'Closed' ? (
                         <TableCell align='center'>Locked</TableCell>
                       ) : (
                         <TableCell align='center'>Unlocked</TableCell>
                       )}
-                      
                       <TableCell align='center'>3</TableCell>
                       <TableCell align='center'>0</TableCell>
                       <TableCell align='center'>{user['data'][1][0]['invitationCode']}</TableCell>
@@ -61,13 +59,13 @@ const IndividualLeague = ({
               </TableContainer>
             </Grid>
             <Grid item xs={12} md={12}>
-            {user['data'][1][0]['LeagueStatus'] === 'Closed' ? (
+              {user['data'][1][0]['LeagueStatus'] === 'Closed' ? (
                     <Alert severity='warning'>Matches in progress - Picks are disabled!</Alert>
                 ) : (
                   null
                 )}
               <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer'>
-              <h1 style={{ color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign:'center'}}>Your Stats</h1>
+                <h1 style={{color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign: 'center'}}>Your Stats</h1>
                 <Table aria-label='customized table'>
                   <TableHead>
                     <TableRow className="tableRowTitles">
@@ -75,7 +73,7 @@ const IndividualLeague = ({
                       <TableCell align='center'>Pick</TableCell>
                     </TableRow>
                   </TableHead>
-                  <TableBody style={{minHeight: 'auto', backgroundColor: "white", color: "black"}}>
+                  <TableBody style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
                     {user['data'][0].map((item) => (
                       username === item['Username'] ? (
                       <TableRow>
@@ -86,7 +84,7 @@ const IndividualLeague = ({
                         ) : (
                           <TableCell align='center'>
                             <img src={require('../../images/leagueStatusOut.png')} alt='logo' width='20px' style={{paddingTop:'3px'}}/>
-                            </TableCell>
+                          </TableCell>
                         )}
                         {typeof pick !== 'undefined' ? (
                           <TableCell align='center'>{pick}</TableCell>
@@ -107,14 +105,14 @@ const IndividualLeague = ({
                 </Table>
               </TableContainer>
               {user['data'][0].map((item) => (
-                <div>
-                {username === item['Username'] && user['data'][1][0]['LeagueStatus'] === 'Open' && item['playerStatus'] === 'In' ? (
+                <div key={item['Username']}>
+                  {username === item['Username'] && user['data'][1][0]['LeagueStatus'] === 'Open' && item['playerStatus'] === 'In' ? (
                   // eslint-disable-next-line max-len
                   <PickTeam teams = {item['UnpickedTeams']} setPick={setPick} sub={sub} leagueID={user['data'][0][0]['LeagueID']}/>
                 ) : (
                     null
                 )}
-                {username === item['Username'] && item['playerStatus'] === 'Out' ? (
+                  {username === item['Username'] && item['playerStatus'] === 'Out' ? (
                     <Alert severity='error'>You have been knocked out - try again next round!</Alert>
                 ) : (
                   null
@@ -124,7 +122,7 @@ const IndividualLeague = ({
             </Grid>
             <Grid item xs={12} md={12}>
               <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer'>
-                <h1 style={{ color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign:'center'}}>League Table</h1>
+                <h1 style={{ color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign: 'center'}}>League Table</h1>
                 <Table aria-label='customized table'>
                   <TableHead>
                     <TableRow className="tableRowTitles">
@@ -135,18 +133,23 @@ const IndividualLeague = ({
                       <TableCell align='center'>Pick</TableCell>
                     </TableRow>
                   </TableHead>
-                  <TableBody style={{minHeight: 'auto', backgroundColor: "white", color: "black"}}>
+                  <TableBody style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
                     {user['data'][0].map((item) => (
                       <TableRow key={item['Username']}>
-                        <TableCell align='left' style={{paddingLeft: '10px'}}>{item['Username']}</TableCell>
+                        <TableCell align='left' style={{paddingLeft: '10px'}}>
+                          <div verticalAlign='center'>
+                            <div style={{fontWeight: 'bolder'}}>{item['fullName']}</div>
+                            <div style={{fontSize: '12px'}}>{item['Username']}</div>
+                          </div>
+                        </TableCell>
                         {(item['playerStatus'] === 'In') ? (
                           <TableCell align='center' >
                             {/* eslint-disable-next-line max-len */}
-                            <img src={require('../../images/leagueStatusIn.png')} alt='logo' width='20px' style={{paddingTop:'3px'}}/>
+                            <img src={require('../../images/leagueStatusIn.png')} alt='logo' width='20px' style={{paddingTop: '3px'}}/>
                           </TableCell>
                           ) : (
                           <TableCell align='center'>
-                            <img src={require('../../images/leagueStatusOut.png')} alt='logo' width='20px' style={{paddingTop:'3px'}}/>
+                            <img src={require('../../images/leagueStatusOut.png')} alt='logo' width='20px' style={{paddingTop: '3px'}}/>
                           </TableCell>
                           )}
                         <TableCell align='center'>

@@ -53,6 +53,23 @@ div.MuiTableContainer-root{
     overflow-x: auto;
 }
 
+div.jss21{
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+div.jss25{
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+a.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.jss3{
+    opacity: 1;
+}
+
+button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.jss6{
+    opacity: 1;
+}
+
 .tableBody {
     height:300px;
     overflow-x:auto;

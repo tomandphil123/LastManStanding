@@ -13,6 +13,9 @@ def handler(event, context):
 	admin = result['sub']
 	sub = result['sub']
 	email = result['email']
+	fname = result['firstName']
+	lname = result['lastName']
+	fullName = fname + ' ' + lname
 	createdDate = str(datetime.today())
 	invitationCode = str(randint(100000, 999999))
 	username = result['username']
@@ -29,6 +32,7 @@ def handler(event, context):
 				'LeagueID': leagueID,
 				'LeagueName': leagueName,
 				'admin': admin,
+				'fullName': fullName,
 				'createdTime': createdDate,
 				'invitationCode': invitationCode,
 				'LeagueStatus': 'Open'
@@ -65,6 +69,7 @@ def handler(event, context):
 				'CurrentPick': " ",
 				'PickedTeams': [],
 				'Admin': "Yes",
+				'fullName': fullName,
 				'Username': username,
 				'playerStatus': "In",
 				'createdTime': createdDate,

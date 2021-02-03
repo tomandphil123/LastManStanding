@@ -8,8 +8,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
-import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,11 +37,13 @@ const JoinLeagues = ({
   user,
 }) => {
   const [leagueCode, setleagueCode] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [surname, setSurname] = useState('');
 
   const classes = useStyles();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/joinLeague', {leagueCode: leagueCode, sub: user['attributes']['sub'], username: user['username']})
+    axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/joinLeague', {leagueCode: leagueCode, sub: user['attributes']['sub'], username: user['username'], firstName: firstName, lastName: surname})
         .then((response) => {
           console.log(response);
           alert('Successfully Joined League!');
@@ -60,18 +62,47 @@ const JoinLeagues = ({
               Join League
           </Typography>
           <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="leagueName"
-              label="League Code"
-              name="leagueName"
-              autoComplete="uname"
-              autoFocus
-              onChange= {(event) => setleagueCode(event.target.value)}
-            />
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="fname"
+                  name="firstName"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                  onChange= {(event) => setFirstName(event.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="lname"
+                  onChange= {(event) => setSurname(event.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="leagueName"
+                  label="League Code"
+                  name="leagueName"
+                  autoComplete="uname"
+                  autoFocus
+                  onChange= {(event) => setleagueCode(event.target.value)}
+                />
+              </Grid>
+            </Grid>
             <Button
               type="submit"
               fullWidth
