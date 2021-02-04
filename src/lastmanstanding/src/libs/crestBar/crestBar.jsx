@@ -11,7 +11,7 @@ const CrestBar = () => {
         });
   }, []);
   return (
-        typeof crests !== 'undefined' ? (
+        typeof crests !== 'undefined' && window.screen.width > 900 ? (
         <div style={{display: 'flex', justifyContent: 'center'}}>
           {crests.map((item) => (
             <div style={{padding: '5px'}}
