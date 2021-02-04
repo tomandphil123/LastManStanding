@@ -19,7 +19,7 @@ function TabPanel(props) {
 
   return (
     <div
-      role="tabpanel"
+      role='tabpanel'
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
@@ -48,10 +48,10 @@ const useStyles = makeStyles((theme) => ({
     background: '#490050',
     top: '50px',
   },
-  
-  // MuiTabTextColorInherit: {
-  //   opacity: '0'
-  // },
+
+  headerMobile: {
+    background: '#490050',
+  },
 
   tabs: {
     color: '#fff',
@@ -104,22 +104,33 @@ const Navbar = ({
     auth.isAuthenticated ?
     (
       <>
-        <AppBar position="static" className={classes.header}>
+        { window.screen.width > 900 ? (
+        <AppBar position='static' className={classes.header}>
           <Tabs>
-            <Tab label={<div><img src={require('../../images/logo4.png')} className={classes.logo} alt="logo" textcolor="inherit"></img></div>} className={classes.tabs} component={Link} to="/"/>
-            <Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Profile </div>} className={classes.tabs} component={Link} to="/Profile" />
-            <Tab label={<div><ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Leagues </div>} className={classes.tabs} component={Link} to="/MyLeagues" />
+            <Tab label={<div><img src={require('../../images/logo4.png')} className={classes.logo} alt='logo' textcolor='inherit'></img></div>} className={classes.tabs} component={Link} to='/'/>
+            <Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Profile </div>} className={classes.tabs} component={Link} to='/Profile' />
+            <Tab label={<div><ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Leagues </div>} className={classes.tabs} component={Link} to='/MyLeagues' />
             <Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Out </div>} className={classes.signOutTab} onClick={(event) => handleLogOut(event)} />
           </Tabs>
         </AppBar>
+          ) : (
+        <AppBar position='fixed' className={classes.headerMobile}>
+          <Tabs style={{backgroundColor: '#490050'}} centered>
+            <Tab label={<img src={require('../../images/logo4.png')} className={classes.logo} alt='logo' textcolor='inherit'></img>} className={classes.tabs} component={Link} to='/'/>
+            <Tab label={<AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/>} component={Link} to='/Profile' />
+            <Tab label={<ListAltIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/>} component={Link} to='/MyLeagues' />
+            <Tab label={<ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/>} onClick={(event) => handleLogOut(event)} />
+          </Tabs>
+        </AppBar>
+        )}
       </>
     ) : (
       <>
-        <AppBar position="static" className={classes.header}>
+        <AppBar position='static' className={classes.header}>
           <Tabs>
-            <Tab label={<div><img src={require('../../images/logo4.png')} className={classes.logo} alt="logo" textcolor="inherit"></img></div>} className={classes.tabs} component={Link} to="/"/>
-            <Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab} component={Link} to="/SignIn"/>
-            <Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>} className={classes.signUpTab} component={Link} to="/SignUp" />
+            <Tab label={<div><img src={require('../../images/logo4.png')} className={classes.logo} alt='logo' textcolor='inherit'></img></div>} className={classes.tabs} component={Link} to='/'/>
+            <Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab} component={Link} to='/SignIn'/>
+            <Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>} className={classes.signUpTab} component={Link} to='/SignUp' />
           </Tabs>
         </AppBar>
       </>
