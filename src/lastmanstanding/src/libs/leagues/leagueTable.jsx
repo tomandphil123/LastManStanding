@@ -31,10 +31,10 @@ const LeagueTable = ({
             <TableRow key={item[0]['LeagueID']}>
               <TableCell align='left'>
                 <Link className="pointer" onClick={() => openLeague(item[0]['LeagueID'])}>
-                  <div verticalAlign='center'>
+                  <>
                     <div style={{fontWeight: 'bolder'}}>{item[0]['LeagueID'].split('#')[0]}</div>
                     <div style={{fontSize: '12px'}}>#{item[0]['LeagueID'].split('#')[1]}</div>
-                  </div>
+                  </>
                 </Link>
               </TableCell>
               {(item[0]['playerStatus'] === 'In') ? (
@@ -42,7 +42,7 @@ const LeagueTable = ({
                   <img src={require('../../images/leagueStatusIn.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/>
                 </TableCell>
                   ) : (
-                  <TableCell align="left"><img src={require('../../images/leagueStatusOut.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/></TableCell>
+                  <TableCell align="center"><img src={require('../../images/leagueStatusOut.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/></TableCell>
                 )}
               <TableCell align="center">{item[0]['CurrentPick']}</TableCell>
             </TableRow>))}
@@ -53,7 +53,7 @@ const LeagueTable = ({
 };
 
 LeagueTable.propTypes = {
-  table: PropTypes.object,
+  table: PropTypes.array,
   openLeague: PropTypes.func.isRequired,
 };
 
