@@ -3,12 +3,19 @@
 exports[`Navbar Snapshot renders when signed in 1`] = `
 <Fragment>
   <WithStyles(ForwardRef(AppBar))
-    className="makeStyles-header-2"
-    position="static"
+    className="makeStyles-headerMobile-3"
+    position="fixed"
   >
-    <WithStyles(ForwardRef(Tabs))>
+    <WithStyles(ForwardRef(Tabs))
+      centered={true}
+      style={
+        Object {
+          "backgroundColor": "#490050",
+        }
+      }
+    >
       <WithStyles(ForwardRef(Tab))
-        className="makeStyles-tabs-3"
+        className="makeStyles-tabs-4"
         component={
           Object {
             "$$typeof": Symbol(react.forward_ref),
@@ -24,19 +31,16 @@ exports[`Navbar Snapshot renders when signed in 1`] = `
           }
         }
         label={
-          <div>
-            <img
-              alt="logo"
-              className="makeStyles-logo-7"
-              src="logo4.png"
-              textcolor="inherit"
-            />
-          </div>
+          <img
+            alt="logo"
+            className="makeStyles-logo-8"
+            src="logo4.png"
+            textcolor="inherit"
+          />
         }
         to="/"
       />
       <WithStyles(ForwardRef(Tab))
-        className="makeStyles-tabs-3"
         component={
           Object {
             "$$typeof": Symbol(react.forward_ref),
@@ -52,22 +56,18 @@ exports[`Navbar Snapshot renders when signed in 1`] = `
           }
         }
         label={
-          <div>
-            <UNDEFINED
-              style={
-                Object {
-                  "paddingBottom": "4px",
-                  "verticalAlign": "middle",
-                }
+          <UNDEFINED
+            style={
+              Object {
+                "paddingBottom": "4px",
+                "verticalAlign": "middle",
               }
-            />
-             My Profile 
-          </div>
+            }
+          />
         }
         to="/Profile"
       />
       <WithStyles(ForwardRef(Tab))
-        className="makeStyles-tabs-3"
         component={
           Object {
             "$$typeof": Symbol(react.forward_ref),
@@ -83,34 +83,27 @@ exports[`Navbar Snapshot renders when signed in 1`] = `
           }
         }
         label={
-          <div>
-            <UNDEFINED
-              style={
-                Object {
-                  "paddingBottom": "4px",
-                  "verticalAlign": "middle",
-                }
+          <UNDEFINED
+            style={
+              Object {
+                "paddingBottom": "4px",
+                "verticalAlign": "middle",
               }
-            />
-             My Leagues 
-          </div>
+            }
+          />
         }
         to="/MyLeagues"
       />
       <WithStyles(ForwardRef(Tab))
-        className="makeStyles-signOutTab-6"
         label={
-          <div>
-            <UNDEFINED
-              style={
-                Object {
-                  "paddingBottom": "4px",
-                  "verticalAlign": "middle",
-                }
+          <UNDEFINED
+            style={
+              Object {
+                "paddingBottom": "4px",
+                "verticalAlign": "middle",
               }
-            />
-             Sign Out 
-          </div>
+            }
+          />
         }
         onClick={[Function]}
       />
@@ -127,7 +120,7 @@ exports[`Navbar Snapshot renders when signed out 1`] = `
   >
     <WithStyles(ForwardRef(Tabs))>
       <WithStyles(ForwardRef(Tab))
-        className="makeStyles-tabs-3"
+        className="makeStyles-tabs-4"
         component={
           Object {
             "$$typeof": Symbol(react.forward_ref),
@@ -146,7 +139,7 @@ exports[`Navbar Snapshot renders when signed out 1`] = `
           <div>
             <img
               alt="logo"
-              className="makeStyles-logo-7"
+              className="makeStyles-logo-8"
               src="logo4.png"
               textcolor="inherit"
             />
@@ -155,7 +148,7 @@ exports[`Navbar Snapshot renders when signed out 1`] = `
         to="/"
       />
       <WithStyles(ForwardRef(Tab))
-        className="makeStyles-signInTab-4"
+        className="makeStyles-signInTab-5"
         component={
           Object {
             "$$typeof": Symbol(react.forward_ref),
@@ -186,7 +179,7 @@ exports[`Navbar Snapshot renders when signed out 1`] = `
         to="/SignIn"
       />
       <WithStyles(ForwardRef(Tab))
-        className="makeStyles-signUpTab-5"
+        className="makeStyles-signUpTab-6"
         component={
           Object {
             "$$typeof": Symbol(react.forward_ref),
