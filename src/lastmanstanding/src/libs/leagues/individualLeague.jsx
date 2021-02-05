@@ -19,7 +19,9 @@ const IndividualLeague = ({
   username,
   sub,
 }) => {
+
   const [pick, setPick] = useState();
+
   return (
         typeof user !== 'undefined' ? (
         <div style={{backgroundColor: '#fff', paddingTop: '20px'}}>
@@ -27,9 +29,6 @@ const IndividualLeague = ({
             <Grid item xs={12} md={12}>
               <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer'>
                 <h1 style={{color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign: 'center'}}> {user['data'][1][0]['LeagueName']}
-                  {/* <Button color='primary' onClick={() => closeLeague()}>
-                    <HighlightOffIcon/>
-                  </Button> */}
                 </h1>
                 <Table aria-label='customized table'>
                   <TableHead>
@@ -136,10 +135,10 @@ const IndividualLeague = ({
                     {user['data'][0].map((item) => (
                       <TableRow key={item['Username']}>
                         <TableCell align='left' style={{paddingLeft: '10px'}}>
-                          <div verticalAlign='center'>
+                          <>
                             <div style={{fontWeight: 'bolder'}}>{item['fullName']}</div>
                             <div style={{fontSize: '12px'}}>{item['Username']}</div>
-                          </div>
+                          </>
                         </TableCell>
                         {(item['playerStatus'] === 'In') ? (
                           <TableCell align='center' >
@@ -169,7 +168,7 @@ const IndividualLeague = ({
 };
 
 IndividualLeague.propTypes = {
-  user: PropTypes.string.isRequired,
+  user: PropTypes.object,
   closeLeague: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   sub: PropTypes.string.isRequired,

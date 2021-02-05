@@ -115,8 +115,8 @@ exports[`Navbar Snapshot renders when signed in 1`] = `
 exports[`Navbar Snapshot renders when signed out 1`] = `
 <Fragment>
   <WithStyles(ForwardRef(AppBar))
-    className="makeStyles-header-2"
-    position="static"
+    className="makeStyles-headerMobile-3"
+    position="fixed"
   >
     <WithStyles(ForwardRef(Tabs))>
       <WithStyles(ForwardRef(Tab))

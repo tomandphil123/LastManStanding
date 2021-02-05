@@ -11,9 +11,7 @@ import LeagueTable from './leagueTable';
 import PremierLeagueFixtures from '../homePage/premierLeagueFixtures';
 import PremierLeagueResults from '../homePage/premierLeagueResults';
 import Grid from '@material-ui/core/Grid';
-// import AddCircleIcon from '@material-ui/icons/AddCircle';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-// import InsertLinkIcon from '@material-ui/icons/InsertLink';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 
 const Leagues = ({
@@ -70,8 +68,17 @@ const Leagues = ({
       <Grid container direction="row" spacing={2}>
         <Grid item xs={12} md={8} align="center">
           <Grid item xs={12} md={8} className="buttons">
-            <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', marginRight: '10px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueCreation()}><AddCircleOutlineIcon /><h4 style={{paddingLeft:'5px'}}>Create League</h4></Button>
-            <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueJoin()}><PeopleAltIcon/><h4 style={{paddingLeft:'5px'}}>Join League</h4></Button>
+            { window.screen.width > 1100 ? (
+              <>
+              <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', marginRight: '10px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueCreation()}><AddCircleOutlineIcon /><h4 style={{paddingLeft:'5px'}}>Create League</h4></Button>
+              <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueJoin()}><PeopleAltIcon/><h4 style={{paddingLeft:'5px'}}>Join League</h4></Button>
+              </>
+            ):(
+              <>
+              <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueCreation()}><AddCircleOutlineIcon /><h4 style={{paddingLeft:'5px'}}>Create League</h4></Button>
+              <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueJoin()}><PeopleAltIcon/><h4 style={{paddingLeft:'5px'}}>Join League</h4></Button>
+              </>
+            )}
             { createLeague ? (
                             <CreateLeagues user={user} leagueCreation = {leagueCreation} setCreateLeague = {setCreateLeague}/>
                         ) : (
