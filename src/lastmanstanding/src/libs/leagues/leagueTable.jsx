@@ -9,7 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
-import '../homePage/tables.css';
+import '../tables/tables.css';
 
 const LeagueTable = ({
   table,

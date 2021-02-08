@@ -11,7 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import PickTeam from './pickTeam';
 import Alert from '@material-ui/lab/Alert';
 import Grid from '@material-ui/core/Grid';
-import '../homePage/tables.css';
+import '../tables/tables.css';
 
 const IndividualLeague = ({
   user,
@@ -19,7 +19,6 @@ const IndividualLeague = ({
   username,
   sub,
 }) => {
-
   const [pick, setPick] = useState();
 
   return (
