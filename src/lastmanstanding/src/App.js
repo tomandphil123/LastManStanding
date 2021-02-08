@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Navbar from './libs/navbar/navbar';
 import './App.css';
-import { Auth } from 'aws-amplify';
-import { Route, BrowserRouter,Switch } from 'react-router-dom';
-import LoggedInHomePage from './libs/homePage/loggedInHomePage';
+import {Auth} from 'aws-amplify';
+import {Route, BrowserRouter,Switch} from 'react-router-dom';
+import HomePage from './libs/homePage/homePage';
 import SignIn from './libs/signIn/signIn';
 import SignUp from './libs/signUp/signUp';
 import ForgotPassword from './libs/forgotPassword/forgotPassword';
@@ -62,7 +62,7 @@ class App extends Component {
           <div className="App">
             <Switch>
               <Route exact path="/">
-                <LoggedInHomePage results={this.state.premierLeagueInfo}/>
+                <HomePage results={this.state.premierLeagueInfo}/>
               </Route>
               <Route path="/SignIn">
                 <SignIn isLoggedIn = {this.setIsLoggedIn} setUser = {this.setUser}/>

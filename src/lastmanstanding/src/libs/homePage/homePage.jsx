@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PremierLeagueStandings from './premierLeagueStandings';
-import PremierLeagueFixtures from './premierLeagueFixtures';
-import PremierLeagueResults from './premierLeagueResults';
+import PremierLeagueStandings from '../tables/premierLeagueStandings';
+import PremierLeagueFixtures from '../tables/premierLeagueFixtures';
+import PremierLeagueResults from '../tables/premierLeagueResults';
 import Grid from '@material-ui/core/Grid';
 
 
-const LoggedInHomePage = ({
+const HomePage = ({
   results,
 }) => {
   return (
@@ -28,12 +28,12 @@ const LoggedInHomePage = ({
   );
 };
 
-LoggedInHomePage.propTypes = {
+HomePage.propTypes = {
   results: PropTypes.object,
 };
 
-LoggedInHomePage.defaultProps = {
+HomePage.defaultProps = {
   results: {},
 };
 
-export default LoggedInHomePage;
+export default HomePage;
