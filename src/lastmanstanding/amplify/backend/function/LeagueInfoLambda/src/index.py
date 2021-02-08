@@ -2,6 +2,7 @@ import http.client
 import json
 import boto3
 from datetime import datetime
+from boto3.dynamodb.conditions import Key
 
 def handler(event, context):
 	# print('received event:')
@@ -77,13 +78,22 @@ def handler(event, context):
 			}
 		)
 	
+	dynamodb = boto3.resource('dynamodb')
+	tableName1 = "PLFixturesDB-develop"
+	FixturesTable = dynamodb.Table(tableName1)
+	tableName2 = "PLResultsDB-develop"
+	ResultsTable = dynamodb.Table(tableName2)
+	scan2 = FixturesTable.scan()
+	with FixturesTable.batch_writer() as batch:
+		for each in scan2['Items']:
+			batch.delete_item(Key={'FixtureID':each['FixtureID']})
+			
+	scan1 = ResultsTable.scan()
+	with ResultsTable.batch_writer() as batch:
+		for each in scan1['Items']:
+			batch.delete_item(Key={'MatchID':each['MatchID']})
+			
 	for fixture in response2["matches"]:
-		dynamodb = boto3.resource('dynamodb')
-		tableName1 = "PLFixturesDB-develop"
-		table1 = dynamodb.Table(tableName1)
-		tableName2 = "PLResultsDB-develop"
-		table2 = dynamodb.Table(tableName2)
-		
 		if fixture["matchday"] > fixture["season"]["currentMatchday"] + 2:
 			break
 
@@ -110,7 +120,7 @@ def handler(event, context):
 			else:
 				winner = "Draw"
 
-			table2.put_item(
+			ResultsTable.put_item(
 				Item={
 					'MatchID': homeTeam + "-" + awayTeam,
 					'HomeTeam': homeTeam,
@@ -135,7 +145,9 @@ def handler(event, context):
 			if awayTeam in abbreviations:
 				awayTeam = abbreviations[awayTeam]
 			gameWeek = fixture["season"]["currentMatchday"]
-			table1.put_item(
+
+
+			FixturesTable.put_item(
 				Item={
 					'FixtureID': homeTeam + "-" + awayTeam,
 					'HomeTeam': homeTeam,

@@ -42,9 +42,10 @@ def handler(event, context):
           Key={
             'LeaguePlayerID': player['LeaguePlayerID']
           },
-            UpdateExpression='set playerStatus=:s',
+            UpdateExpression='set playerStatus=:val1, CurrentPick=:val2',
             ExpressionAttributeValues={
-            ':s': 'Out'
+            ':val1': 'Out',
+            ':val2': 'Eliminated'
           },
           ReturnValues='UPDATED_NEW'
         )

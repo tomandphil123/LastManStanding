@@ -1,5 +1,6 @@
 import boto3
 import json
+import random
 
 def handler(event, context):
     print('received event:')
@@ -36,14 +37,20 @@ def handler(event, context):
         unPickedTeams.remove(currentPick)
         pickedTeams.append(currentPick)
 
+      else:
+        currentPick = random.choice(unPickedTeams)
+        unPickedTeams.remove(currentPick)
+        pickedTeams.append(currentPick)
+
       leaguePlayerTable.update_item(
         Key={
             'LeaguePlayerID': player['LeaguePlayerID']
           },
-            UpdateExpression="set PickedTeams=:val1, UnpickedTeams=:val2",
+            UpdateExpression="set PickedTeams=:val1, UnpickedTeams=:val2, CurrentPick=:val3",
             ExpressionAttributeValues={
             ':val1': pickedTeams,
-            ':val2': unPickedTeams
+            ':val2': unPickedTeams,
+            ':val3': currentPick
           },
           ReturnValues="UPDATED_NEW"
         )

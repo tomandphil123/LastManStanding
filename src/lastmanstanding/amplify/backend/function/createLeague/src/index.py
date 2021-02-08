@@ -66,7 +66,7 @@ def handler(event, context):
 			Item={
 				'LeaguePlayerID': leaguePlayerID,
 				'LeagueID': leagueID,
-				'CurrentPick': " ",
+				'CurrentPick': "-",
 				'PickedTeams': [],
 				'Admin': "Yes",
 				'fullName': fullName,
