@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import Alert from '@material-ui/lab/Alert';
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 const JoinLeagues = ({
   leagueJoin,
   user,
+  setJoinLeague,
 }) => {
   const [leagueCode, setleagueCode] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -45,9 +47,9 @@ const JoinLeagues = ({
     event.preventDefault();
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/joinLeague', {leagueCode: leagueCode, sub: user['attributes']['sub'], username: user['username'], firstName: firstName, lastName: surname})
         .then((response) => {
-          console.log(response);
-          alert('Successfully Joined League!');
+          alert(response['data']);
         });
+    setJoinLeague(false);
   };
 
   return (
@@ -98,7 +100,6 @@ const JoinLeagues = ({
                   label="League Code"
                   name="leagueName"
                   autoComplete="uname"
-                  autoFocus
                   onChange= {(event) => setleagueCode(event.target.value)}
                 />
               </Grid>
@@ -123,6 +124,7 @@ const JoinLeagues = ({
 JoinLeagues.propTypes = {
   leagueJoin: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
+  setJoinLeague: PropTypes.func.isRequired,
 };
 
 export default JoinLeagues;

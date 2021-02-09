@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CreateLeagues = ({
   user,
-  leagueCreation,
+  setCreateLeague,
 }) => {
   const [leagueName, setleagueName] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -46,6 +46,7 @@ const CreateLeagues = ({
         .then((response) => {
           alert('Successfully Created League!');
         });
+    setCreateLeague(false);
   };
 
   return (
@@ -122,7 +123,7 @@ const CreateLeagues = ({
 
 CreateLeagues.propTypes = {
   user: PropTypes.string.isRequired,
-  leagueCreation: PropTypes.func.isRequired,
+  setCreateLeague: PropTypes.func.isRequired,
 };
 
 export default CreateLeagues;
