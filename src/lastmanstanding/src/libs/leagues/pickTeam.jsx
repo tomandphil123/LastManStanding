@@ -54,6 +54,7 @@ const PickTeam = ({
   sub,
   leagueID,
   teams,
+  setPermPick,
 }) => {
   const classes = useStyles();
 
@@ -78,7 +79,7 @@ const PickTeam = ({
   const submitTeam = () => {
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/teamSelection', {team: selectedTeam, sub: sub, leagueID: leagueID})
         .then((response) => {
-          console.log(response);
+          setPermPick({});
         });
   };
 
@@ -103,6 +104,7 @@ PickTeam.propTypes = {
   sub: PropTypes.string.isRequired,
   leagueID: PropTypes.string.isRequired,
   teams: PropTypes.string.isRequired,
+  setPermPick: PropTypes.string.isRequired,
 };
 
 export default PickTeam;

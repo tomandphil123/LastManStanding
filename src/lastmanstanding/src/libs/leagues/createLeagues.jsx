@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 const CreateLeagues = ({
   user,
   setCreateLeague,
+  setRender,
 }) => {
   const [leagueName, setleagueName] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -45,8 +46,9 @@ const CreateLeagues = ({
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/createLeague', {leagueName: leagueName, sub: user['attributes']['sub'], email: user['attributes']['email'], username: user['username'], firstName: firstName, lastName: surname})
         .then((response) => {
           alert('Successfully Created League!');
+          setRender({});
+          setCreateLeague(false);
         });
-    setCreateLeague(false);
   };
 
   return (
@@ -124,6 +126,7 @@ const CreateLeagues = ({
 CreateLeagues.propTypes = {
   user: PropTypes.string.isRequired,
   setCreateLeague: PropTypes.func.isRequired,
+  setRender: PropTypes.func.isRequired,
 };
 
 export default CreateLeagues;

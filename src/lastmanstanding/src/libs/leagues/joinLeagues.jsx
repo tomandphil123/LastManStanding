@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Alert from '@material-ui/lab/Alert';
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -34,9 +33,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const JoinLeagues = ({
-  leagueJoin,
   user,
   setJoinLeague,
+  setRender,
 }) => {
   const [leagueCode, setleagueCode] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -48,8 +47,9 @@ const JoinLeagues = ({
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/joinLeague', {leagueCode: leagueCode, sub: user['attributes']['sub'], username: user['username'], firstName: firstName, lastName: surname})
         .then((response) => {
           alert(response['data']);
+          setRender({});
+          setJoinLeague(false);
         });
-    setJoinLeague(false);
   };
 
   return (
@@ -122,9 +122,9 @@ const JoinLeagues = ({
 };
 
 JoinLeagues.propTypes = {
-  leagueJoin: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   setJoinLeague: PropTypes.func.isRequired,
+  setRender: PropTypes.func.isRequired,
 };
 
 export default JoinLeagues;

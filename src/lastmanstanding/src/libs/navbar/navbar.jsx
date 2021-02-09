@@ -101,8 +101,7 @@ const Navbar = ({
   };
 
   function handleResize() {
-    console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
-    setScreenWidth(window.screen.width)
+    setScreenWidth(window.screen.width);
   }
 
   const [screenWidth, setScreenWidth] = useState(null);
@@ -137,23 +136,23 @@ const Navbar = ({
       </>
     ) : (
       <>
-      { screenWidth > 800 ? (
-        <AppBar position='static' className={classes.header}>
-          <Tabs>
-            <Tab label={<div><img src={require('../../images/logo4.png')} className={classes.logo} alt='logo' textcolor='inherit'></img></div>} className={classes.tabs} component={Link} to='/'/>
-            <Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab} component={Link} to='/SignIn'/>
-            <Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>} className={classes.signUpTab} component={Link} to='/SignUp' />
-          </Tabs>
-        </AppBar>
-      ):(
-        <AppBar position='fixed' className={classes.headerMobile}>
-          <Tabs>
-            <Tab label={<div><img src={require('../../images/logo4.png')} className={classes.logo} alt='logo' textcolor='inherit'></img></div>} className={classes.tabs} component={Link} to='/'/>
-            <Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab} component={Link} to='/SignIn'/>
-            <Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>} className={classes.signUpTab} component={Link} to='/SignUp' />
-          </Tabs>
-        </AppBar>
-      )}
+        { screenWidth > 800 ? (
+          <AppBar position='static' className={classes.header}>
+            <Tabs>
+              <Tab label={<div><img src={require('../../images/logo4.png')} className={classes.logo} alt='logo' textcolor='inherit'></img></div>} className={classes.tabs} component={Link} to='/'/>
+              <Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab} component={Link} to='/SignIn'/>
+              <Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>} className={classes.signUpTab} component={Link} to='/SignUp' />
+            </Tabs>
+          </AppBar>
+        ):(
+          <AppBar position='fixed' className={classes.headerMobile}>
+            <Tabs>
+              <Tab label={<div><img src={require('../../images/logo4.png')} className={classes.logo} alt='logo' textcolor='inherit'></img></div>} className={classes.tabs} component={Link} to='/'/>
+              <Tab label={<div><ExitToAppIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign In </div>} className={classes.signInTab} component={Link} to='/SignIn'/>
+              <Tab label={<div><PersonAddIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> Sign Up </div>} className={classes.signUpTab} component={Link} to='/SignUp' />
+            </Tabs>
+          </AppBar>
+        )}
       </>
     )
   );

@@ -13,7 +13,9 @@ import '../tables/tables.css';
 
 const LeagueTable = ({
   table,
-  openLeague,
+  setLeagueId,
+  setIndividualLeague,
+  individualLeague,
 }) => {
   return (
     <TableContainer component={Paper} className='tableContainer'>
@@ -30,7 +32,7 @@ const LeagueTable = ({
           {table.map((item) => (
             <TableRow key={item[0]['LeagueID']}>
               <TableCell align='left'>
-                <Link className="pointer" onClick={() => openLeague(item[0]['LeagueID'])}>
+                <Link className="pointer" onClick={() => setLeagueId(item[0]['LeagueID'])}>
                   <>
                     <div style={{fontWeight: 'bolder'}}>{item[0]['LeagueID'].split('#')[0]}</div>
                     <div style={{fontSize: '12px'}}>#{item[0]['LeagueID'].split('#')[1]}</div>
@@ -39,10 +41,10 @@ const LeagueTable = ({
               </TableCell>
               {(item[0]['playerStatus'] === 'In') ? (
                 <TableCell align="center">
-                  <img src={require('../../images/leagueStatusIn.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/>
+                  <img src={require('../../images/leagueStatusIn.png')} alt="logo" width="20px" style={{paddingTop: '3px'}}/>
                 </TableCell>
                   ) : (
-                  <TableCell align="center"><img src={require('../../images/leagueStatusOut.png')} alt="logo" width="20px" style={{paddingTop:'3px'}}/></TableCell>
+                  <TableCell align="center"><img src={require('../../images/leagueStatusOut.png')} alt="logo" width="20px" style={{paddingTop: '3px'}}/></TableCell>
                 )}
               <TableCell align="center">{item[0]['CurrentPick']}</TableCell>
             </TableRow>))}
@@ -54,7 +56,9 @@ const LeagueTable = ({
 
 LeagueTable.propTypes = {
   table: PropTypes.array,
-  openLeague: PropTypes.func.isRequired,
+  setLeagueId: PropTypes.func.isRequired,
+  setIndividualLeague: PropTypes.func,
+  individualLeague: PropTypes.string.isRequired,
 };
 
 LeagueTable.defaultProps = {
