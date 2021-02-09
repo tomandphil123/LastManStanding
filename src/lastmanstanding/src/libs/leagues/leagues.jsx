@@ -21,8 +21,9 @@ const Leagues = ({
   const [createLeague, setCreateLeague] = useState(false);
   const [joinLeague, setJoinLeague] = useState(false);
   const [individualLeague, setIndividualLeague] = useState(false);
-  const [leagueInfo, setLeagueInfo] = useState();
+  const [leagueId, setLeagueId] = useState();
   const [myLeaguesInfo, setMyLeaguesInfo] = useState();
+  const [render, setRender] = useState();
 
   useEffect(() => {
     if (user !== null) {
@@ -31,12 +32,15 @@ const Leagues = ({
             setMyLeaguesInfo(response['data']);
           });
     }
-  }, [user]);
+  }, [user, render]);
 
   const displayLeague = () => {
     if (typeof myLeaguesInfo !== 'undefined') {
       return (
-        <LeagueTable table={myLeaguesInfo} openLeague={openLeague}/>
+        <LeagueTable
+          table={myLeaguesInfo}
+          setLeagueId={setLeagueId}
+        />
       );
     }
   };
@@ -51,14 +55,6 @@ const Leagues = ({
     setCreateLeague(false);
   };
 
-  const openLeague = (leagueId) => {
-    axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/getLeagueInfo', {leagueId: leagueId})
-        .then((response) => {
-          setLeagueInfo(response);
-        });
-    setIndividualLeague(!individualLeague);
-  };
-
   const closeLeague = () => {
     setIndividualLeague(!individualLeague);
   };
@@ -70,34 +66,49 @@ const Leagues = ({
           <Grid item xs={12} md={8} className="buttons">
             { window.screen.width > 1100 ? (
               <>
-                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', marginRight: '10px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueCreation()}><AddCircleOutlineIcon /><h4 style={{paddingLeft:'5px'}}>Create League</h4></Button>
-                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueJoin()}><PeopleAltIcon/><h4 style={{paddingLeft:'5px'}}>Join League</h4></Button>
+                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', marginRight: '10px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueCreation()}><AddCircleOutlineIcon /><h4 style={{paddingLeft: '5px'}}>Create League</h4></Button>
+                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueJoin()}><PeopleAltIcon/><h4 style={{paddingLeft: '5px'}}>Join League</h4></Button>
               </>
             ):(
               <>
-                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueCreation()}><AddCircleOutlineIcon /><h4 style={{paddingLeft:'5px'}}>Create League</h4></Button>
-                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueJoin()}><PeopleAltIcon/><h4 style={{paddingLeft:'5px'}}>Join League</h4></Button>
+                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueCreation()}><AddCircleOutlineIcon /><h4 style={{paddingLeft: '5px'}}>Create League</h4></Button>
+                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueJoin()}><PeopleAltIcon/><h4 style={{paddingLeft: '5px'}}>Join League</h4></Button>
               </>
             )}
             { createLeague ? (
-                            <CreateLeagues user={user} leagueCreation = {leagueCreation} setCreateLeague = {setCreateLeague}/>
-                        ) : (
-                            null
-                        )}
+                <CreateLeagues
+                  user={user}
+                  leagueCreation={leagueCreation}
+                  setCreateLeague={setCreateLeague}
+                  setRender={setRender}/>
+            ) : (
+                null
+            )}
             { joinLeague ? (
-                            <JoinLeagues user={user} leagueJoin = {leagueJoin} setJoinLeague = {setJoinLeague}/>
-                        ) : (
-                            null
-                        )}
+                <JoinLeagues
+                  user={user}
+                  leagueJoin={leagueJoin}
+                  setJoinLeague={setJoinLeague}
+                  setRender={setRender}/>
+            ) : (
+                null
+            )}
           </Grid>
           <Grid item xs={12} md={8}>
             <div>
               {displayLeague()}
             </div>
           </Grid>
-          { individualLeague ? (
+          { leagueId !== undefined ? (
             <Grid item xs={12} md={8}>
-              <IndividualLeague closeLeague={closeLeague} user={leagueInfo} username={user['username']} sub={user['attributes']['sub']}/>
+              <IndividualLeague
+                closeLeague={closeLeague}
+                username={user['username']}
+                sub={user['attributes']['sub']}
+                leagueId={leagueId}
+                setIndividualLeague={setIndividualLeague}
+                individualLeague={individualLeague}
+              />
             </Grid>
           ) : (
             null

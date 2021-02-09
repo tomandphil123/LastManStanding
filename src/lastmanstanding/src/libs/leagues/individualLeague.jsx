@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,23 +11,38 @@ import Paper from '@material-ui/core/Paper';
 import PickTeam from './pickTeam';
 import Alert from '@material-ui/lab/Alert';
 import Grid from '@material-ui/core/Grid';
+import axios from 'axios';
 import '../tables/tables.css';
 
 const IndividualLeague = ({
-  user,
-  closeLeague,
   username,
   sub,
+  leagueId,
+  setIndividualLeague,
+  individualLeague,
 }) => {
   const [pick, setPick] = useState();
+  const [permPick, setPermPick] = useState();
+  const [leagueInfo, setLeagueInfo] = useState();
+
+  useEffect(() => {
+    console.log(leagueId);
+    if (typeof leagueId !== undefined) {
+      axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/getLeagueInfo', {leagueId: leagueId})
+          .then((response) => {
+            setLeagueInfo(response);
+            setIndividualLeague(!individualLeague);
+          });
+    }
+  }, [leagueId, permPick]);
 
   return (
-        typeof user !== 'undefined' ? (
+        typeof leagueInfo !== 'undefined' ? (
         <div style={{backgroundColor: '#fff', paddingTop: '20px'}}>
           <Grid container direction='column' spacing={4}>
             <Grid item xs={12} md={12}>
               <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer'>
-                <h1 style={{color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign: 'center'}}> {user['data'][1][0]['LeagueName']}
+                <h1 style={{color: '#fff', padding: '10px', fontSize: '20px', fontWeight: 'bolder', textAlign: 'center'}}> {leagueInfo['data'][1][0]['LeagueName']}
                 </h1>
                 <Table aria-label='customized table'>
                   <TableHead>
@@ -41,22 +56,22 @@ const IndividualLeague = ({
                   </TableHead>
                   <TableBody style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
                     <TableRow>
-                      <TableCell align='center' style={{paddingLeft: '10px'}}>{user['data'][1][0]['fullName']}</TableCell>
-                      {user['data'][1][0]['LeagueStatus'] === 'Closed' ? (
+                      <TableCell align='center' style={{paddingLeft: '10px'}}>{leagueInfo['data'][1][0]['fullName']}</TableCell>
+                      {leagueInfo['data'][1][0]['LeagueStatus'] === 'Closed' ? (
                         <TableCell align='center'>Locked</TableCell>
                       ) : (
                         <TableCell align='center'>Unlocked</TableCell>
                       )}
                       <TableCell align='center'>3</TableCell>
                       <TableCell align='center'>0</TableCell>
-                      <TableCell align='center'>{user['data'][1][0]['invitationCode']}</TableCell>
+                      <TableCell align='center'>{leagueInfo['data'][1][0]['invitationCode']}</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
               </TableContainer>
             </Grid>
             <Grid item xs={12} md={12}>
-              {user['data'][1][0]['LeagueStatus'] === 'Closed' ? (
+              {leagueInfo['data'][1][0]['LeagueStatus'] === 'Closed' ? (
                     <Alert severity='warning'>Matches in progress - Picks are disabled!</Alert>
                 ) : (
                   null
@@ -71,7 +86,7 @@ const IndividualLeague = ({
                     </TableRow>
                   </TableHead>
                   <TableBody style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
-                    {user['data'][0].map((item) => (
+                    {leagueInfo['data'][0].map((item) => (
                       username === item['Username'] ? (
                       <TableRow>
                         { item['playerStatus'] === 'In' ? (
@@ -86,13 +101,9 @@ const IndividualLeague = ({
                         {typeof pick !== 'undefined' ? (
                           <TableCell align='center'>{pick}</TableCell>
                           ) : (
-                          item['CurrentPick'] !== '' ? (
                             <TableCell align='center'>
                               {item['CurrentPick']}
                             </TableCell>
-                          ) : (
-                            <TableCell align='center'>-</TableCell>
-                          )
                           )}
                       </TableRow>
                       ) : (
@@ -101,11 +112,11 @@ const IndividualLeague = ({
                   </TableBody>
                 </Table>
               </TableContainer>
-              {user['data'][0].map((item) => (
+              {leagueInfo['data'][0].map((item) => (
                 <div key={item['Username']}>
-                  {username === item['Username'] && user['data'][1][0]['LeagueStatus'] === 'Open' && item['playerStatus'] === 'In' ? (
+                  {username === item['Username'] && leagueInfo['data'][1][0]['LeagueStatus'] === 'Open' && item['playerStatus'] === 'In' ? (
                   // eslint-disable-next-line max-len
-                  <PickTeam teams = {item['UnpickedTeams']} setPick={setPick} sub={sub} leagueID={user['data'][0][0]['LeagueID']}/>
+                  <PickTeam teams = {item['UnpickedTeams']} setPick={setPick} sub={sub} leagueID={leagueInfo['data'][0][0]['LeagueID']} setPermPick={setPermPick}/>
                 ) : (
                     null
                 )}
@@ -131,7 +142,7 @@ const IndividualLeague = ({
                     </TableRow>
                   </TableHead>
                   <TableBody style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
-                    {user['data'][0].map((item) => (
+                    {leagueInfo['data'][0].map((item) => (
                       <TableRow key={item['Username']}>
                         <TableCell align='left' style={{paddingLeft: '10px'}}>
                           <>
@@ -167,10 +178,13 @@ const IndividualLeague = ({
 };
 
 IndividualLeague.propTypes = {
-  user: PropTypes.object,
+  leagueInfo: PropTypes.object,
   closeLeague: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   sub: PropTypes.string.isRequired,
+  leagueId: PropTypes.string.isRequired,
+  setIndividualLeague: PropTypes.func.isRequired,
+  individualLeague: PropTypes.bool.isRequired,
 };
 
 export default IndividualLeague;
