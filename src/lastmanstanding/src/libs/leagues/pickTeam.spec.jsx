@@ -1,9 +1,8 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {mount, shallow} from 'enzyme';
 import PickTeam from './pickTeam';
 
 const mockSetSelectedTeam = jest.fn();
-const mockSubmitTeam = jest.fn();
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
@@ -64,6 +63,17 @@ describe('pickTeam', () => {
           '[data-automation="Manchester United FC"]',
       ).simulate('click');
       expect(mockSetSelectedTeam).toHaveBeenCalledWith('Manchester United FC');
+    });
+    it('sets submitToggle to true', () => {
+      const setSubmitToggle = jest.fn();
+      const component = mount(<PickTeam {...props}/>);
+      const handleClick = jest.spyOn(React, 'useState');
+      handleClick.mockImplementation((submitToggle) =>
+        [submitToggle, setSubmitToggle]);
+      component.find(
+          '[data-automation="Manchester United FC"]',
+      ).at(0).simulate('click');
+      expect(setSubmitToggle).toBeTruthy();
     });
   });
 });
