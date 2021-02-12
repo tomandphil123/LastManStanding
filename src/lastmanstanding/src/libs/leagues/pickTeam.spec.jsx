@@ -44,15 +44,6 @@ describe('pickTeam', () => {
       );
       expect(component).toMatchSnapshot();
     });
-    it('renders select when team is selected', () => {
-      const component = shallow(
-          <PickTeam {...props}/>,
-      );
-      component.find(
-          '[data-automation="Manchester United FC"]',
-      ).simulate('click');
-      expect(component).toMatchSnapshot();
-    });
   });
   describe('submit Team', () => {
     it('selects correct team', () => {

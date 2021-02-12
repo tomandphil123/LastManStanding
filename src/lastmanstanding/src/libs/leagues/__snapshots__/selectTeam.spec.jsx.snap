@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pickTeam Snapshot renders teams 1`] = `
+<WithStyles(ForwardRef(Button))
+  data-automation="pickTeam_submitButton"
+  onClick={[Function]}
+>
+  Select Team
+</WithStyles(ForwardRef(Button))>
+`;
