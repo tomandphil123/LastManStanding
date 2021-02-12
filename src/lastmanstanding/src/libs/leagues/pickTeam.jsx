@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
 import React, {useState} from 'react';
+import SelectTeam from './selectTeam';
 import PropTypes from 'prop-types';
 import {withStyles, makeStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import axios from 'axios';
 
 const BootstrapButton = withStyles({
   root: {
@@ -84,12 +84,6 @@ const PickTeam = ({
       )));
   };
 
-  const submitTeam = () => {
-    axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/teamSelection', {team: selectedTeam, sub: sub, leagueID: leagueID})
-        .then((response) => {
-          setPermPick({});
-        });
-  };
 
   return (
     <div>
@@ -97,16 +91,13 @@ const PickTeam = ({
         {displayTeams(teams)}
       </div>
       <div>
-        {submitToggle ? (
-      <Button
-        onClick={() => submitTeam()}
-        data-automation='pickTeam_submitButton'
-      >
-        Select Team
-      </Button>
-      ) : (
-        null
-      )}
+        <SelectTeam
+          submitToggle={submitToggle}
+          selectedTeam={selectedTeam}
+          sub={sub}
+          leagueID={leagueID}
+          setPermPick={setPermPick}
+        />
       </div>
     </div>
   );

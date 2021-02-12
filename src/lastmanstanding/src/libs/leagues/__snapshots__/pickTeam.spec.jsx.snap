@@ -1,178 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pickTeam Snapshot renders select when team is selected 1`] = `
-<div>
-  <div>
-    <WithStyles(WithStyles(ForwardRef(Button)))
-      className="makeStyles-margin-1"
-      color="primary"
-      data-automation="Manchester United FC"
-      disableRipple={true}
-      key="Manchester United FC"
-      onClick={[Function]}
-      variant="contained"
-    >
-      Manchester United FC
-    </WithStyles(WithStyles(ForwardRef(Button)))>
-    <WithStyles(WithStyles(ForwardRef(Button)))
-      className="makeStyles-margin-1"
-      color="primary"
-      data-automation="Manchester City FC"
-      disableRipple={true}
-      key="Manchester City FC"
-      onClick={[Function]}
-      variant="contained"
-    >
-      Manchester City FC
-    </WithStyles(WithStyles(ForwardRef(Button)))>
-    <WithStyles(WithStyles(ForwardRef(Button)))
-      className="makeStyles-margin-1"
-      color="primary"
-      data-automation="Liverpool FC"
-      disableRipple={true}
-      key="Liverpool FC"
-      onClick={[Function]}
-      variant="contained"
-    >
-      Liverpool FC
-    </WithStyles(WithStyles(ForwardRef(Button)))>
-    <WithStyles(WithStyles(ForwardRef(Button)))
-      className="makeStyles-margin-1"
-      color="primary"
-      data-automation="Everton FC"
-      disableRipple={true}
-      key="Everton FC"
-      onClick={[Function]}
-      variant="contained"
-    >
-      Everton FC
-    </WithStyles(WithStyles(ForwardRef(Button)))>
-    <WithStyles(WithStyles(ForwardRef(Button)))
-      className="makeStyles-margin-1"
-      color="primary"
-      data-automation="Chelsea FC"
-      disableRipple={true}
-      key="Chelsea FC"
-      onClick={[Function]}
-      variant="contained"
-    >
-      Chelsea FC
-    </WithStyles(WithStyles(ForwardRef(Button)))>
-    <WithStyles(WithStyles(ForwardRef(Button)))
-      className="makeStyles-margin-1"
-      color="primary"
-      data-automation="Southampton FC"
-      disableRipple={true}
-      key="Southampton FC"
-      onClick={[Function]}
-      variant="contained"
-    >
-      Southampton FC
-    </WithStyles(WithStyles(ForwardRef(Button)))>
-    <WithStyles(WithStyles(ForwardRef(Button)))
-      className="makeStyles-margin-1"
-      color="primary"
-      data-automation="West Ham United FC"
-      disableRipple={true}
-      key="West Ham United FC"
-      onClick={[Function]}
-      variant="contained"
-    >
-      West Ham United FC
-    </WithStyles(WithStyles(ForwardRef(Button)))>
-    <WithStyles(WithStyles(ForwardRef(Button)))
-      className="makeStyles-margin-1"
-      color="primary"
-      data-automation="Arsenal FC"
-      disableRipple={true}
-      key="Arsenal FC"
-      onClick={[Function]}
-      variant="contained"
-    >
-      Arsenal FC
-    </WithStyles(WithStyles(ForwardRef(Button)))>
-    <WithStyles(WithStyles(ForwardRef(Button)))
-      className="makeStyles-margin-1"
-      color="primary"
-      data-automation="Aston Villa FC"
-      disableRipple={true}
-      key="Aston Villa FC"
-      onClick={[Function]}
-      variant="contained"
-    >
-      Aston Villa FC
-    </WithStyles(WithStyles(ForwardRef(Button)))>
-    <WithStyles(WithStyles(ForwardRef(Button)))
-      className="makeStyles-margin-1"
-      color="primary"
-      data-automation="Crystal Palace FC"
-      disableRipple={true}
-      key="Crystal Palace FC"
-      onClick={[Function]}
-      variant="contained"
-    >
-      Crystal Palace FC
-    </WithStyles(WithStyles(ForwardRef(Button)))>
-    <WithStyles(WithStyles(ForwardRef(Button)))
-      className="makeStyles-margin-1"
-      color="primary"
-      data-automation="Newcastle United FC"
-      disableRipple={true}
-      key="Newcastle United FC"
-      onClick={[Function]}
-      variant="contained"
-    >
-      Newcastle United FC
-    </WithStyles(WithStyles(ForwardRef(Button)))>
-    <WithStyles(WithStyles(ForwardRef(Button)))
-      className="makeStyles-margin-1"
-      color="primary"
-      data-automation="Brighton & Hove Albion FC"
-      disableRipple={true}
-      key="Brighton & Hove Albion FC"
-      onClick={[Function]}
-      variant="contained"
-    >
-      Brighton & Hove Albion FC
-    </WithStyles(WithStyles(ForwardRef(Button)))>
-    <WithStyles(WithStyles(ForwardRef(Button)))
-      className="makeStyles-margin-1"
-      color="primary"
-      data-automation="Burnley FC"
-      disableRipple={true}
-      key="Burnley FC"
-      onClick={[Function]}
-      variant="contained"
-    >
-      Burnley FC
-    </WithStyles(WithStyles(ForwardRef(Button)))>
-    <WithStyles(WithStyles(ForwardRef(Button)))
-      className="makeStyles-margin-1"
-      color="primary"
-      data-automation="Fulham FC"
-      disableRipple={true}
-      key="Fulham FC"
-      onClick={[Function]}
-      variant="contained"
-    >
-      Fulham FC
-    </WithStyles(WithStyles(ForwardRef(Button)))>
-    <WithStyles(WithStyles(ForwardRef(Button)))
-      className="makeStyles-margin-1"
-      color="primary"
-      data-automation="West Bromwich Albion FC"
-      disableRipple={true}
-      key="West Bromwich Albion FC"
-      onClick={[Function]}
-      variant="contained"
-    >
-      West Bromwich Albion FC
-    </WithStyles(WithStyles(ForwardRef(Button)))>
-  </div>
-  <div />
-</div>
-`;
-
 exports[`pickTeam Snapshot renders teams 1`] = `
 <div>
   <div>
@@ -342,6 +169,14 @@ exports[`pickTeam Snapshot renders teams 1`] = `
       West Bromwich Albion FC
     </WithStyles(WithStyles(ForwardRef(Button)))>
   </div>
-  <div />
+  <div>
+    <SelectTeam
+      leagueID="mockLeagueId"
+      selectedTeam=""
+      setPermPick={[MockFunction]}
+      sub="mockSub"
+      submitToggle={false}
+    />
+  </div>
 </div>
 `;
