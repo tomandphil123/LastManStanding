@@ -70,7 +70,15 @@ const PickTeam = ({
   const displayTeams = (teams) => {
     return (
       teams.map((item) => (
-        <BootstrapButton key={item} variant="contained" color="primary" disableRipple className={classes.margin} onClick={() => selectTeam(item)}>
+        <BootstrapButton
+          key={item}
+          variant="contained"
+          color="primary"
+          disableRipple
+          className={classes.margin}
+          onClick={() => selectTeam(item)}
+          data-automation={item}
+        >
           {item}
         </BootstrapButton>
       )));
@@ -90,7 +98,12 @@ const PickTeam = ({
       </div>
       <div>
         {submitToggle ? (
-      <Button onClick={() => submitTeam()}>Select Team</Button>
+      <Button
+        onClick={() => submitTeam()}
+        data-automation='pickTeam_submitButton'
+      >
+        Select Team
+      </Button>
       ) : (
         null
       )}
@@ -103,8 +116,8 @@ PickTeam.propTypes = {
   setPick: PropTypes.func.isRequired,
   sub: PropTypes.string.isRequired,
   leagueID: PropTypes.string.isRequired,
-  teams: PropTypes.string.isRequired,
-  setPermPick: PropTypes.string.isRequired,
+  teams: PropTypes.array.isRequired,
+  setPermPick: PropTypes.func.isRequired,
 };
 
 export default PickTeam;
