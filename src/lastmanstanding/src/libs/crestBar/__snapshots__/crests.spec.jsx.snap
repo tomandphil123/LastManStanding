@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`crestBar Snapshot renders 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "justifyContent": "center",
+    }
+  }
+>
+  <div
+    className="img-wrapper"
+    key="Arsenal FC"
+    style={
+      Object {
+        "padding": "5px",
+      }
+    }
+  >
+    <a
+      href="https://www.arsenal.com/"
+    >
+      <img
+        alt="team crests"
+        className="hover-zoom"
+        height="40px"
+        src="https://crests.football-data.org/57.svg"
+      />
+    </a>
+  </div>
+  <div
+    className="img-wrapper"
+    key="Aston Villa FC"
+    style={
+      Object {
+        "padding": "5px",
+      }
+    }
+  >
+    <a
+      href="https://www.avfc.co.uk/"
+    >
+      <img
+        alt="team crests"
+        className="hover-zoom"
+        height="40px"
+        src="https://crests.football-data.org/58.svg"
+      />
+    </a>
+  </div>
+</div>
+`;

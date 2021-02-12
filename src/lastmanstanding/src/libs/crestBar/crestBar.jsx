@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import Crests from './crests';
 import './crestBar.css';
 
 const CrestBar = () => {
@@ -19,24 +20,7 @@ const CrestBar = () => {
   }, window.addEventListener('resize', handleResize));
 
   return (
-        typeof crests !== 'undefined' && screenWidth > 800 ? (
-        <div style={{display: 'flex', justifyContent: 'center'}}>
-          {crests.map((item) => (
-            <div style={{padding: '5px'}}
-              key={item['TeamName']}
-              className="img-wrapper">
-              <a href={item['Website']}>
-                <img src={item['Crest']}
-                  alt= "team crests"
-                  height="40px"
-                  className="hover-zoom"/>
-              </a>
-            </div>
-          ))}
-        </div>
-        ) : (
-            null
-        )
+    <Crests screenWidth={screenWidth} crests={crests} />
   );
 };
 
