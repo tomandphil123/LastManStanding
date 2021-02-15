@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import PremierLeagueFixtures from './premierLeagueFixtures';
 
-describe('loggedInHomePage', () => {
+describe('premierLeagueFixtures', () => {
   const props = {
     results: {
       data: [
