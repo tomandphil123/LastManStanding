@@ -2,6 +2,7 @@
 
 exports[`loggedInHomePage Snapshot renders 1`] = `
 <Fragment>
+  <WhatIsLmsCard />
   <WithStyles(ForwardRef(Grid))
     container={true}
     direction="row"
