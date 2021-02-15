@@ -12,12 +12,13 @@ const CrestBar = () => {
   }
 
   useEffect(() => {
+    setScreenWidth(window.screen.width);
     axios.get('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/teamInfo')
         .then((response) => {
           setCrests(response['data']);
         });
-    setScreenWidth(window.screen.width);
-  }, window.addEventListener('resize', handleResize));
+    window.addEventListener('resize', handleResize)
+  }, screenWidth);
 
   return (
     <Crests screenWidth={screenWidth} crests={crests} />

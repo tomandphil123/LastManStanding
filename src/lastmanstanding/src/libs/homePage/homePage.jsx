@@ -4,6 +4,7 @@ import PremierLeagueStandings from '../tables/premierLeagueStandings';
 import PremierLeagueFixtures from '../tables/premierLeagueFixtures';
 import PremierLeagueResults from '../tables/premierLeagueResults';
 import Grid from '@material-ui/core/Grid';
+import WhatIsLmsCard from '../whatIsLms/whatIsLmsCard';
 
 
 const HomePage = ({
@@ -11,6 +12,7 @@ const HomePage = ({
 }) => {
   return (
     <>
+    <WhatIsLmsCard/>
       <Grid container direction="row" spacing={2}>
         <Grid item xs={12} md={8}>
           <PremierLeagueStandings results={results}/>
