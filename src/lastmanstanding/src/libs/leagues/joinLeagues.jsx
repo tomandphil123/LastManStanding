@@ -76,6 +76,7 @@ const JoinLeagues = ({
                   label="First Name"
                   autoFocus
                   onChange= {(event) => setFirstName(event.target.value)}
+                  inputProps={{'data-testid': 'firstName'}}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -88,6 +89,7 @@ const JoinLeagues = ({
                   name="lastName"
                   autoComplete="lname"
                   onChange= {(event) => setSurname(event.target.value)}
+                  inputProps={{'data-testid': 'lastName'}}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -101,6 +103,7 @@ const JoinLeagues = ({
                   name="leagueName"
                   autoComplete="uname"
                   onChange= {(event) => setleagueCode(event.target.value)}
+                  inputProps={{'data-testid': 'leagueCode'}}
                 />
               </Grid>
             </Grid>
@@ -111,6 +114,7 @@ const JoinLeagues = ({
               color="primary"
               className={classes.submit}
               onClick={(event) => handleSubmit(event)}
+              data-testid='joinLeague'
             >
                 Join League
             </Button>
