@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`loggedInHomePage Snapshot renders 1`] = `
+exports[`premierLeagueFixtures Snapshot renders 1`] = `
 <div>
   <WithStyles(ForwardRef(TableContainer))
     className="tableContainer"
