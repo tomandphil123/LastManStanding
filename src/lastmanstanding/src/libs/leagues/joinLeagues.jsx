@@ -114,6 +114,7 @@ const JoinLeagues = ({
               color="primary"
               className={classes.submit}
               onClick={(event) => handleSubmit(event)}
+              data-testid='joinLeague'
             >
                 Join League
             </Button>

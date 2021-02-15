@@ -1,8 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import JoinLeagues from './joinLeagues';
-import TextField from '@material-ui/core/TextField';
-import { fireEvent, getByTestId, render } from '@testing-library/react';
+import {fireEvent, render} from '@testing-library/react';
 
 describe('joinLeagues', () => {
   beforeAll(() => {
@@ -10,7 +9,13 @@ describe('joinLeagues', () => {
   });
 
   const props = {
-    user: {},
+    user: {
+      attributes: {
+        sub: 'ecbc56df-d81a-410d-b399-4421b55ced32',
+        email_verified: true,
+        email: 'philip.donnelly28@mail.dcu.ie',
+      },
+    },
     setJoinLeague: jest.fn(),
     setRender: jest.fn(),
   };
@@ -40,6 +45,14 @@ describe('joinLeagues', () => {
       const element = getByTestId('leagueCode');
       fireEvent.change(element, {target: {value: 'mockLeagueCode'}});
       expect(element).toHaveValue('mockLeagueCode');
+    });
+  });
+  describe('submit Button', () => {
+    it('calls handleSubmit', () => {
+      const {getByTestId} = render(<JoinLeagues {...props}/>);
+      const button = getByTestId('joinLeague');
+      fireEvent.click(button);
+      // expect(element).toHaveValue('mockFirstName');
     });
   });
 });

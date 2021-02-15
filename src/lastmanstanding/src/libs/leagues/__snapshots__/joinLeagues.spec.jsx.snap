@@ -101,6 +101,7 @@ exports[`joinLeagues Snapshot renders teams 1`] = `
         <WithStyles(ForwardRef(Button))
           className="makeStyles-submit-4"
           color="primary"
+          data-testid="joinLeague"
           fullWidth={true}
           onClick={[Function]}
           type="submit"
