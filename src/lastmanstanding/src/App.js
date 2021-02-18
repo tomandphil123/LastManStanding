@@ -40,7 +40,12 @@ class App extends Component {
     }
     axios.get('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/premierLeagueInfo')
     .then(response => {
-        this.setState({premierLeagueInfo: response, isLoading: false})
+        this.setState({premierLeagueInfo: response})
+        setTimeout(() => {
+          this.setState({
+            isLoading: false,
+          });
+        }, 1500)
     })
   }
   setIsLoggedIn = async => {
