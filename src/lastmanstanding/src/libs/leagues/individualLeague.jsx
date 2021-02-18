@@ -11,8 +11,10 @@ import Paper from '@material-ui/core/Paper';
 import PickTeam from './pickTeam';
 import Alert from '@material-ui/lab/Alert';
 import Grid from '@material-ui/core/Grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios';
 import '../tables/tables.css';
+import './individualLeague.css';
 
 const IndividualLeague = ({
   username,
@@ -172,7 +174,9 @@ const IndividualLeague = ({
           </Grid>
         </div>
     ) : (
-        null
+        <div className="leagueLoading">
+          <CircularProgress style={{color: '#490050'}}/>
+        </div>
         )
   );
 };
