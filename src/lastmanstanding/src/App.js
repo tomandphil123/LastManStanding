@@ -10,6 +10,7 @@ import ForgotPassword from './libs/forgotPassword/forgotPassword';
 import axios from 'axios';
 import Leagues from './libs/leagues/leagues';
 import CrestBar from './libs/crestBar/crestBar';
+import SplashScreen from './libs/splashScreen/splashScreen';
 
 class App extends Component {
   state = {
@@ -17,7 +18,8 @@ class App extends Component {
     isAuthenticating: true,
     user: null,
     premierLeagueInfo: {},
-    gotUser: false
+    gotUser: false,
+    isLoading: true,
   }
 
   setAuthStatus = authenticated => {
@@ -38,7 +40,7 @@ class App extends Component {
     }
     axios.get('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/premierLeagueInfo')
     .then(response => {
-        this.setState({premierLeagueInfo: response})
+        this.setState({premierLeagueInfo: response, isLoading: false})
     })
   }
   setIsLoggedIn = async => {
@@ -54,6 +56,7 @@ class App extends Component {
       gotUser: this.state.gotUser
     }
 
+  if (this.state.isLoading === false) 
     return (
       <>
       <CrestBar/>
@@ -83,6 +86,9 @@ class App extends Component {
           </div>
       </BrowserRouter>
       </>
+    );
+    return (
+        <SplashScreen/>
     );
   }
 }

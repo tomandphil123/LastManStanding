@@ -13,6 +13,8 @@ import PremierLeagueResults from '../tables/premierLeagueResults';
 import Grid from '@material-ui/core/Grid';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const Leagues = ({
   user,
@@ -41,6 +43,12 @@ const Leagues = ({
           table={myLeaguesInfo}
           setLeagueId={setLeagueId}
         />
+      );
+    } else {
+      return (
+        <div className="leaguesLoading">
+          <CircularProgress style={{color: '#490050'}}/>
+        </div>
       );
     }
   };
