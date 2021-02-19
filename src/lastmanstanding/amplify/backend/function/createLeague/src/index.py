@@ -35,7 +35,10 @@ def handler(event, context):
 				'fullName': fullName,
 				'createdTime': createdDate,
 				'invitationCode': invitationCode,
-				'LeagueStatus': 'Open'
+				'LeagueStatus': 'Open',
+				'RemainingPlayers': 1,
+				'EliminatedPlayers': 0,
+				'Joinable': 'Yes'
 			})
 
 	# Send confirmation email with invitation code for users to join the league

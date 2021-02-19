@@ -83,6 +83,18 @@ def handler(event, context):
           },
           ReturnValues='UPDATED_NEW'
     )
+    
+    leaguesDB = dynamodb.Table('LeaguesDB-develop')
+    leaguesDB.update_item(
+      Key={
+              'LeagueID': leagueID
+          },
+          UpdateExpression='set RemainingPlayers = RemainingPlayers + :val',
+          ExpressionAttributeValues={
+              ':val': 1
+          },
+          ReturnValues='UPDATED_NEW'
+    )
 
     response = "Successfully Joined League"
   
