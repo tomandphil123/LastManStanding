@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lambda resource stack creation using Amplify CLI",
+  "Description": "Lambda Function resource stack creation using Amplify CLI",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -10,29 +10,29 @@
     "env": {
       "Type": "String"
     },
-    "storagePlStandingsDBName": {
+    "storagePlayerDBName": {
       "Type": "String",
-      "Default": "storagePlStandingsDBName"
+      "Default": "storagePlayerDBName"
     },
-    "storagePlStandingsDBArn": {
+    "storagePlayerDBArn": {
       "Type": "String",
-      "Default": "storagePlStandingsDBArn"
+      "Default": "storagePlayerDBArn"
     },
-    "storagePLResultsDBName": {
+    "storageLeaguesDBName": {
       "Type": "String",
-      "Default": "storagePLResultsDBName"
+      "Default": "storageLeaguesDBName"
     },
-    "storagePLResultsDBArn": {
+    "storageLeaguesDBArn": {
       "Type": "String",
-      "Default": "storagePLResultsDBArn"
+      "Default": "storageLeaguesDBArn"
     },
-    "storagePLFixturesDBName": {
+    "storageLeaguePlayerDBName": {
       "Type": "String",
-      "Default": "storagePLFixturesDBName"
+      "Default": "storageLeaguePlayerDBName"
     },
-    "storagePLFixturesDBArn": {
+    "storageLeaguePlayerDBArn": {
       "Type": "String",
-      "Default": "storagePLFixturesDBArn"
+      "Default": "storageLeaguePlayerDBArn"
     }
   },
   "Conditions": {
@@ -57,12 +57,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "getPremierLeagueInfo",
+            "adminActions",
             {
               "Fn::Join": [
                 "",
                 [
-                  "getPremierLeagueInfo",
+                  "adminActions",
                   "-",
                   {
                     "Ref": "env"
@@ -80,23 +80,23 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "STORAGE_PLSTANDINGSDB_NAME": {
-              "Ref": "storagePlStandingsDBName"
+            "STORAGE_PLAYERDB_NAME": {
+              "Ref": "storagePlayerDBName"
             },
-            "STORAGE_PLSTANDINGSDB_ARN": {
-              "Ref": "storagePlStandingsDBArn"
+            "STORAGE_PLAYERDB_ARN": {
+              "Ref": "storagePlayerDBArn"
             },
-            "STORAGE_PLRESULTSDB_NAME": {
-              "Ref": "storagePLResultsDBName"
+            "STORAGE_LEAGUESDB_NAME": {
+              "Ref": "storageLeaguesDBName"
             },
-            "STORAGE_PLRESULTSDB_ARN": {
-              "Ref": "storagePLResultsDBArn"
+            "STORAGE_LEAGUESDB_ARN": {
+              "Ref": "storageLeaguesDBArn"
             },
-            "STORAGE_PLFIXTURESDB_NAME": {
-              "Ref": "storagePLFixturesDBName"
+            "STORAGE_LEAGUEPLAYERDB_NAME": {
+              "Ref": "storageLeaguePlayerDBName"
             },
-            "STORAGE_PLFIXTURESDB_ARN": {
-              "Ref": "storagePLFixturesDBArn"
+            "STORAGE_LEAGUEPLAYERDB_ARN": {
+              "Ref": "storageLeaguePlayerDBArn"
             }
           }
         },
@@ -107,10 +107,11 @@
           ]
         },
         "Runtime": "python3.8",
+        "Layers": [],
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
-          "S3Key": "amplify-builds/getPremierLeagueInfo-2f464243567433536471-build.zip"
+          "S3Key": "amplify-builds/adminActions-34504a4a76516a4d6d2f-build.zip"
         }
       }
     },
@@ -120,12 +121,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lastmanstandingLambdaRole312b23e0",
+            "lastmanstandingLambdaRole03bc1e97",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lastmanstandingLambdaRole312b23e0",
+                  "lastmanstandingLambdaRole03bc1e97",
                   "-",
                   {
                     "Ref": "env"
@@ -229,14 +230,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagePlStandingsDBArn"
+                  "Ref": "storagePlayerDBArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagePlStandingsDBArn"
+                        "Ref": "storagePlayerDBArn"
                       },
                       "index/*"
                     ]
@@ -262,14 +263,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagePLResultsDBArn"
+                  "Ref": "storageLeaguesDBArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagePLResultsDBArn"
+                        "Ref": "storageLeaguesDBArn"
                       },
                       "index/*"
                     ]
@@ -295,14 +296,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagePLFixturesDBArn"
+                  "Ref": "storageLeaguePlayerDBArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagePLFixturesDBArn"
+                        "Ref": "storageLeaguePlayerDBArn"
                       },
                       "index/*"
                     ]

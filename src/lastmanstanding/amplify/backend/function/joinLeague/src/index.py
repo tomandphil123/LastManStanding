@@ -85,13 +85,19 @@ def handler(event, context):
     )
     
     leaguesDB = dynamodb.Table('LeaguesDB-develop')
+    leagueData = leaguesDB.query(
+        KeyConditionExpression=Key('LeagueID').eq(leagueID)
+      )
+    resp = leagueData['Items']
+    remainingPlayers = int(resp[0]['RemainingPlayers']) + 1
+
     leaguesDB.update_item(
       Key={
               'LeagueID': leagueID
           },
-          UpdateExpression='set RemainingPlayers = RemainingPlayers + :val',
+          UpdateExpression='set RemainingPlayers = :val',
           ExpressionAttributeValues={
-              ':val': 1
+              ':val': str(remainingPlayers)
           },
           ReturnValues='UPDATED_NEW'
     )

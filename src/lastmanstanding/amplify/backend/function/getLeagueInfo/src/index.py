@@ -19,11 +19,14 @@ def handler(event, context):
 	)
 	ret_lst.append(leaguePlayerData['Items'])
 
+	
 	Ltable = dynamodb.Table('LeaguesDB-develop')
 	leagueData = Ltable.query(
 		KeyConditionExpression=Key('LeagueID').eq(leagueID)
 	)
 	ret_lst.append(leagueData['Items'])
+
+	print(ret_lst)
 
 	return {
 		'statusCode': 200,

@@ -63,6 +63,13 @@
             "privacy": {
                 "open": true
             }
+        },
+        {
+            "name": "/adminActions",
+            "lambdaFunction": "adminActions",
+            "privacy": {
+                "open": true
+            }
         }
     ],
     "resourceName": "LastManStandingAPI",
@@ -94,6 +101,9 @@
         },
         {
             "lambdaFunction": "unlockLeagues"
+        },
+        {
+            "lambdaFunction": "adminActions"
         }
     ],
     "privacy": {
@@ -174,7 +184,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "adminActions",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "338a9624"
+    "uuid": "c6efe545"
 }

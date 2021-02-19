@@ -36,8 +36,8 @@ def handler(event, context):
 				'createdTime': createdDate,
 				'invitationCode': invitationCode,
 				'LeagueStatus': 'Open',
-				'RemainingPlayers': 1,
-				'EliminatedPlayers': 0,
+				'RemainingPlayers': '1',
+				'EliminatedPlayers': '0',
 				'Joinable': 'Yes'
 			})
 

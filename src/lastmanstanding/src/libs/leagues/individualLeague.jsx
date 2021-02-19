@@ -29,7 +29,6 @@ const IndividualLeague = ({
   const [leagueInfo, setLeagueInfo] = useState();
 
   useEffect(() => {
-    console.log(leagueId);
     if (typeof leagueId !== undefined) {
       axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/getLeagueInfo', {leagueId: leagueId})
           .then((response) => {
@@ -43,7 +42,7 @@ const IndividualLeague = ({
         typeof leagueInfo !== 'undefined' ? (
         <div style={{backgroundColor: '#fff', paddingTop: '20px'}}>
           {leagueInfo['data'][1][0]['admin'] === sub ? (
-            <AdminSystem leagueStatus={leagueInfo['data'][1][0]['LeagueStatus'] === 'Closed' ? (true) : (false)}/>
+            <AdminSystem leagueStatus={leagueInfo['data'][1][0]['Joinable'] === 'No' ? (true) : (false)} leagueID = {leagueId}/>
           ) : (null)}
           <Grid container direction='column' spacing={4}>
             <Grid item xs={12} md={12}>
@@ -54,22 +53,22 @@ const IndividualLeague = ({
                   <TableHead>
                     <TableRow className="tableRowTitles">
                       <TableCell align='center' >Admin</TableCell>
-                      <TableCell align='center' >League Status</TableCell>
-                      <TableCell align='center' >Remaining Players</TableCell>
-                      <TableCell align='center' >Players Eliminated</TableCell>
+                      <TableCell align='center' >Pick Status</TableCell>
+                      <TableCell align='center' >Remaining</TableCell>
+                      <TableCell align='center' >Eliminated</TableCell>
                       <TableCell align='center' >Invitation Code</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
                     <TableRow>
                       <TableCell align='center' style={{paddingLeft: '10px'}}>{leagueInfo['data'][1][0]['fullName']}</TableCell>
-                      {leagueInfo['data'][1][0]['LeagueStatus'] === 'Closed' ? (
+                      {leagueInfo['data'][1][0]['LeagueStatus'] === 'Closed'? (
                         <TableCell align='center'>Locked</TableCell>
                       ) : (
                         <TableCell align='center'>Unlocked</TableCell>
                       )}
-                      <TableCell align='center'>3</TableCell>
-                      <TableCell align='center'>0</TableCell>
+                      <TableCell align='center'>{leagueInfo['data'][1][0]['RemainingPlayers']}</TableCell>
+                      <TableCell align='center'>{leagueInfo['data'][1][0]['EliminatedPlayers']}</TableCell>
                       <TableCell align='center'>{leagueInfo['data'][1][0]['invitationCode']}</TableCell>
                     </TableRow>
                   </TableBody>
