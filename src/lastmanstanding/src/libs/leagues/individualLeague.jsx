@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import React, {useState, useEffect} from 'react';
+import AdminSystem from '../adminSystem/adminSystem';
 import PropTypes from 'prop-types';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -41,6 +42,9 @@ const IndividualLeague = ({
   return (
         typeof leagueInfo !== 'undefined' ? (
         <div style={{backgroundColor: '#fff', paddingTop: '20px'}}>
+          {leagueInfo['data'][1][0]['admin'] === sub ? (
+            <AdminSystem leagueStatus={leagueInfo['data'][1][0]['LeagueStatus'] === 'Closed' ? (true) : (false)}/>
+          ) : (null)}
           <Grid container direction='column' spacing={4}>
             <Grid item xs={12} md={12}>
               <TableContainer component={Paper} style={{maxHeight: 820}} className='tableContainer'>
