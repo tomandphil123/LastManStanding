@@ -2,7 +2,10 @@ import React, {useState} from 'react';
 import LockIcon from '@material-ui/icons/Lock';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
 import axios from 'axios';
+import './adminSystem.css';
 
 const AdminSystem = ({
   leagueStatus,
@@ -15,6 +18,7 @@ const AdminSystem = ({
     .then((response) => {
       console.log(response);
       setLockLeague(!lockLeague);
+      alert(response['data']);
     });
   };
 
@@ -22,21 +26,26 @@ const AdminSystem = ({
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/adminActions', {flag: 'deleteLeague', leagueID: leagueID})
           .then((response) => {
             console.log(response);
+            alert(response['data']);
           });
   };
 
   return (
     <div>
-        <button onClick={() => toggleLeague()}>
+      <Tooltip title={lockLeague ? ('Unlock League') : ('Lock League')} placement="top">
+        <Button onClick={() => toggleLeague()}>
         { lockLeague ? (
-          <LockIcon/>
+          <LockIcon style={{color: 'red'}}/>
         ) : (
-          <LockOpenIcon/>
+          <LockOpenIcon style={{color: 'green'}}/>
         )}
-        </button>
-        <button onClick={() => deleteLeague()}>
-          <DeleteIcon/>
-        </button>
+        </Button>
+      </Tooltip>
+      <Tooltip title="Delete League" placement="top">
+        <Button onClick={() => deleteLeague()} style={{backgroundColor: 'red'}}>
+          <DeleteIcon style={{color: '#ffffff'}}/>
+        </Button>
+      </Tooltip>
     </div>
   );
 };

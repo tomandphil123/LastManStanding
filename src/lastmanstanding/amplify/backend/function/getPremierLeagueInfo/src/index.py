@@ -7,7 +7,7 @@ def handler(event, context):
 	table1 = dynamodb.Table('PlStandingsDB-develop')
 	response1 = table1.scan()
 	res = response1['Items']
-	standingsData = sorted(res, key = lambda i: int(i["position"]))
+	standingsData = sorted(res, key = lambda i: int(i['position']))
 	print(standingsData)
 
 	table2 = dynamodb.Table('PLFixturesDB-develop')

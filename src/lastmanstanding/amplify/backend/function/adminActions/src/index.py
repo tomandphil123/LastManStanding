@@ -3,6 +3,55 @@ import boto3
 from boto3.dynamodb.conditions import Key
 
 def deleteLeague(result):
+  leagueID = result['leagueID']
+
+  dynamodb = boto3.resource('dynamodb')
+  # delete league from leaguesDB
+  leaguesDB = dynamodb.Table('LeaguesDB-develop')
+  leaguesDB.delete_item(
+    Key={
+        'LeagueID': leagueID
+    }
+  )
+
+  # delete players from leaguePlayerDB from that league
+  subs = []
+  leaguePlayerDB = dynamodb.Table('LeaguePlayerDB-develop')
+  leaguePlayerData = leaguePlayerDB.query(
+		IndexName = 'LeagueID-LeaguePlayerID-index',
+		KeyConditionExpression=Key('LeagueID').eq(leagueID)
+	)
+  for player in leaguePlayerData['Items']:
+    subs.append(player['LeaguePlayerID'].split('/')[1])
+    leaguePlayerDB.delete_item(
+      Key={
+          'LeaguePlayerID': player['LeaguePlayerID']
+      }
+    )
+
+  # delete leagueID from list of LeaguesIDs in playerDB
+  playerDB = dynamodb.Table('PlayerDB-develop')
+  for sub in subs:
+    data = playerDB.query(
+      KeyConditionExpression=Key('Sub').eq(sub)
+    )
+
+    resp = data['Items']
+    leagueIDs = resp[0]['leagueIDs']
+    leagueIDs.remove(leagueID)
+
+
+    playerDB.update_item(
+      Key={
+              'Sub': sub
+          },
+          UpdateExpression="set leagueIDs=:l",
+          ExpressionAttributeValues={
+              ':l': leagueIDs
+          },
+          ReturnValues="UPDATED_NEW"
+    )
+
   return 'Successfully Deleted League'
 
 def toggleLeague(result):

@@ -56,9 +56,6 @@ const CreateLeagues = ({
       {/* eslint-disable-next-line max-len */}
       <Container component="main" maxWidth="xs" style={{backgroundColor: '#fff'}}>
         <div className={classes.paper}>
-          {/* <Button color="primary" onClick={() => leagueCreation()}>
-            <CloseIcon/>
-          </Button> */}
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>

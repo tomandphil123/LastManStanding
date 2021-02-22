@@ -8,7 +8,7 @@ def handler(event, context):
 	result = json.loads(event['body'])
 
 	# Take in info from front end post request
-	leagueID = result['leagueName'] +"#"+ str(randint(100000, 999999))
+	leagueID = result['leagueName'] +'#'+ str(randint(100000, 999999))
 	leagueName = result['leagueName']
 	admin = result['sub']
 	sub = result['sub']
@@ -24,7 +24,7 @@ def handler(event, context):
 	dynamodb = boto3.resource('dynamodb')
 
 	# Creating League in the leagues Database
-	tableName = "LeaguesDB-develop"
+	tableName = 'LeaguesDB-develop'
 	table = dynamodb.Table(tableName)
 
 	table.put_item(
@@ -52,31 +52,31 @@ def handler(event, context):
 		},
 		Message={
 			'Subject': {
-				'Data': "Successful League Creation: " + leagueName
+				'Data': 'Successful League Creation: ' + leagueName
 			},
 			'Body': {
 			'Text': {
-				'Data':  "\n" + "Congratulations on creating a new league."+ "\n\n"+"League ID: " + leagueID + "\n\n" + "Invitation code: " + invitationCode + "\n\n" + "Send the above code to people you would like in your Last Man Standing League."
+				'Data':  '\n' + 'Congratulations on creating a new league.'+ '\n\n'+'League ID: ' + leagueID + '\n\n' + 'Invitation code: ' + invitationCode + '\n\n' + 'Send the above code to people you would like in your Last Man Standing League.'
 			}
 		}
 	})
 
 	# User gets added to leaguePlayer database
-	tableName2 = "LeaguePlayerDB-develop"
+	tableName2 = 'LeaguePlayerDB-develop'
 	table2 = dynamodb.Table(tableName2)
 
 	table2.put_item(
 			Item={
 				'LeaguePlayerID': leaguePlayerID,
 				'LeagueID': leagueID,
-				'CurrentPick': "-",
+				'CurrentPick': '-',
 				'PickedTeams': [],
-				'Admin': "Yes",
+				'Admin': 'Yes',
 				'fullName': fullName,
 				'Username': username,
-				'playerStatus': "In",
+				'playerStatus': 'In',
 				'createdTime': createdDate,
-				'UnpickedTeams': ["Manchester United FC","Manchester City FC","Leicester City FC","Liverpool FC","Tottenham Hotspur FC","Everton FC","Chelsea FC","Southampton FC","West Ham United FC","Sheffield United FC","Arsenal FC","Aston Villa FC","Leeds United FC","Crystal Palace FC","Wolverhampton Wanderers FC","Newcastle United FC","Brighton & Hove Albion FC","Burnley FC","Fulham FC","West Bromwich Albion FC"]
+				'UnpickedTeams': ['Manchester United FC','Manchester City FC','Leicester City FC','Liverpool FC','Tottenham Hotspur FC','Everton FC','Chelsea FC','Southampton FC','West Ham United FC','Sheffield United FC','Arsenal FC','Aston Villa FC','Leeds United FC','Crystal Palace FC','Wolverhampton Wanderers FC','Newcastle United FC','Brighton & Hove Albion FC','Burnley FC','Fulham FC','West Bromwich Albion FC']
 			})
 	
 	# League is added to User's list of leagues (PlayerDB)
@@ -92,11 +92,11 @@ def handler(event, context):
 		Key={
             'Sub': sub
         },
-        UpdateExpression="set leagueIDs=:l",
+        UpdateExpression='set leagueIDs=:l',
         ExpressionAttributeValues={
             ':l': leagueIDs
         },
-        ReturnValues="UPDATED_NEW"
+        ReturnValues='UPDATED_NEW'
 	)
 
 	return {
