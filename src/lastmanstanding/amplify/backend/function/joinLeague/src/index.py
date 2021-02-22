@@ -4,17 +4,11 @@ from datetime import datetime
 from boto3.dynamodb.conditions import Key
 
 def queryTable(leagueCode):
-  client = boto3.client('dynamodb')
-
-  data = client.query(
-    TableName = 'LeaguesDB-develop',
+  dynamodb = boto3.resource('dynamodb')
+  leaguesDB = dynamodb.Table('LeaguesDB-develop')
+  data = leaguesDB.query(
     IndexName = 'invitationCode-LeagueID-index',
-    ExpressionAttributeValues={
-        ':v1': {
-            'S': leagueCode
-        },
-    },
-    KeyConditionExpression='invitationCode= :v1'
+    KeyConditionExpression=Key('invitationCode').eq(leagueCode)
   )
 
   return data['Items']
@@ -25,7 +19,9 @@ def checkUser(leagueID, sub, playerDB):
   )
 
   resp = data['Items']
+  print(resp)
   leagueIDs = resp[0]['leagueIDs']
+  print(leagueIDs)
   if leagueID not in leagueIDs:
     return leagueIDs
   
@@ -41,17 +37,17 @@ def handler(event, context):
   fullName = fname + ' ' + lname
   username = result['username']
   admin = 'No'
-
-
+  
   resp = queryTable(leagueCode)
-  leagueID = resp[0]['LeagueID']['S']
-
-  response = "Already In League"
+  leagueID = resp[0]['LeagueID']
+  print(resp[0]['LeagueID'])
+  print(resp[0]['Joinable'])
+  response = ''
   playerDB = dynamodb.Table('PlayerDB-develop')
 
   leagueIDs = checkUser(leagueID, sub, playerDB)
 
-  if len(leagueIDs) != 0:
+  if leagueIDs != '' and resp[0]['Joinable'] == 'Yes':
     leaguePlayerID = leagueID +'/'+ sub
     createdDate = str(datetime.today())
 
@@ -83,8 +79,33 @@ def handler(event, context):
           },
           ReturnValues='UPDATED_NEW'
     )
+    
+    leaguesDB = dynamodb.Table('LeaguesDB-develop')
+    leagueData = leaguesDB.query(
+        KeyConditionExpression=Key('LeagueID').eq(leagueID)
+      )
+    resp = leagueData['Items']
+    remainingPlayers = int(resp[0]['RemainingPlayers']) + 1
 
-    response = "Successfully Joined League"
+    leaguesDB.update_item(
+      Key={
+              'LeagueID': leagueID
+          },
+          UpdateExpression='set RemainingPlayers = :val',
+          ExpressionAttributeValues={
+              ':val': str(remainingPlayers)
+          },
+          ReturnValues='UPDATED_NEW'
+    )
+
+    response = 'Successfully Joined League'
+    
+  elif resp[0]['Joinable'] == 'No':
+    response = 'League is Currently not Joinable'
+
+  else:
+    response = 'Already In League'
+
   
   return {
     'statusCode': 200,
