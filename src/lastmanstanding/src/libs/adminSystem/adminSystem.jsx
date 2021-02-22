@@ -18,7 +18,6 @@ const AdminSystem = ({
     .then((response) => {
       console.log(response);
       setLockLeague(!lockLeague);
-      alert(response['data']);
     });
   };
 
