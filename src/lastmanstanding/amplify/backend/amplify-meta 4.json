@@ -1,0 +1,784 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lastmanstanding-develop-225620-authRole",
+      "UnauthRoleArn": "arn:aws:iam::706350010776:role/amplify-lastmanstanding-develop-225620-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::706350010776:role/amplify-lastmanstanding-develop-225620-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-lastmanstanding-develop-225620-deployment",
+      "UnauthRoleName": "amplify-lastmanstanding-develop-225620-unauthRole",
+      "StackName": "amplify-lastmanstanding-develop-225620",
+      "StackId": "arn:aws:cloudformation:eu-west-1:706350010776:stack/amplify-lastmanstanding-develop-225620/b681fd30-6029-11eb-864b-02e986d7db75",
+      "AmplifyAppId": "d26trbeeazj2h2"
+    }
+  },
+  "function": {
+    "LeagueInfoLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlStandingsDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "PLResultsDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "PLFixturesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2021-02-22T13:23:51.884Z",
+      "lastPackageTimeStamp": "2021-02-22T13:23:59.611Z",
+      "distZipFilename": "LeagueInfoLambda-506b506a645978756471-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/function/LeagueInfoLambda-cloudformation-template.json",
+        "logicalId": "functionLeagueInfoLambda"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.062Z",
+      "output": {
+        "Region": "eu-west-1",
+        "CloudWatchEventRule": "amplify-lastmanstanding-develop-22-CloudWatchEvent-18BS1DUGIXDT6",
+        "Arn": "arn:aws:lambda:eu-west-1:706350010776:function:LeagueInfoLambda-develop",
+        "Name": "LeagueInfoLambda-develop",
+        "LambdaExecutionRole": "lastmanstandingLambdaRolec6081809-develop"
+      },
+      "lastPushDirHash": "puKZhJJzPxrL8HjetRDVf6dlMsc="
+    },
+    "getPremierLeagueInfo": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlStandingsDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "PLResultsDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "PLFixturesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2021-02-22T13:23:52.365Z",
+      "lastPackageTimeStamp": "2021-02-22T13:24:00.072Z",
+      "distZipFilename": "getPremierLeagueInfo-3862744b7949566d3765-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/function/getPremierLeagueInfo-cloudformation-template.json",
+        "logicalId": "functiongetPremierLeagueInfo"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.067Z",
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:706350010776:function:getPremierLeagueInfo-develop",
+        "Name": "getPremierLeagueInfo-develop",
+        "LambdaExecutionRole": "lastmanstandingLambdaRole312b23e0-develop"
+      },
+      "lastPushDirHash": "TNigABBrvYnLxMW1WMMOrzpbHjQ="
+    },
+    "createLeague": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2021-02-22T13:23:52.371Z",
+      "lastPackageTimeStamp": "2021-02-22T13:24:00.338Z",
+      "distZipFilename": "createLeague-31644f6a717066424348-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/function/createLeague-cloudformation-template.json",
+        "logicalId": "functioncreateLeague"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.071Z",
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:706350010776:function:createLeague-develop",
+        "Name": "createLeague-develop",
+        "LambdaExecutionRole": "lastmanstandingLambdaRole01047dbe-develop"
+      },
+      "lastPushDirHash": "VJai5Si/QZ+Ny9EzJE/P/iaNCIY="
+    },
+    "joinLeague": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2021-02-22T13:23:52.151Z",
+      "lastPackageTimeStamp": "2021-02-22T13:23:59.961Z",
+      "distZipFilename": "joinLeague-50746948486f37327571-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/function/joinLeague-cloudformation-template.json",
+        "logicalId": "functionjoinLeague"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.075Z",
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:706350010776:function:joinLeague-develop",
+        "Name": "joinLeague-develop",
+        "LambdaExecutionRole": "lastmanstandingLambdaRole14e06c3b-develop"
+      },
+      "lastPushDirHash": "xsl2y4n+gaKVo2epMwBeCqHpMxs="
+    },
+    "myLeagues": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2021-02-22T13:23:52.205Z",
+      "lastPackageTimeStamp": "2021-02-22T13:24:00.355Z",
+      "distZipFilename": "myLeagues-5751363172616b6d2b6e-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/function/myLeagues-cloudformation-template.json",
+        "logicalId": "functionmyLeagues"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.078Z",
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:706350010776:function:myLeagues-develop",
+        "Name": "myLeagues-develop",
+        "LambdaExecutionRole": "lastmanstandingLambdaRole811ed1d0-develop"
+      },
+      "lastPushDirHash": "yQTUvmDnNyf1lRXDIdrLv4TGba0="
+    },
+    "getLeagueInfo": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2021-02-22T13:23:52.680Z",
+      "lastPackageTimeStamp": "2021-02-22T13:24:00.416Z",
+      "distZipFilename": "getLeagueInfo-456d385a2f766e7a4f66-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/function/getLeagueInfo-cloudformation-template.json",
+        "logicalId": "functiongetLeagueInfo"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.080Z",
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:706350010776:function:getLeagueInfo-develop",
+        "Name": "getLeagueInfo-develop",
+        "LambdaExecutionRole": "lastmanstandingLambdaRole89c269d7-develop"
+      },
+      "lastPushDirHash": "9KLyp4bRfI/EegKAXq3YDl60TxE="
+    },
+    "teamSelection": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2021-02-22T13:23:52.518Z",
+      "lastPackageTimeStamp": "2021-02-22T13:24:00.210Z",
+      "distZipFilename": "teamSelection-2f5979454b6d4d524d4f-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/function/teamSelection-cloudformation-template.json",
+        "logicalId": "functionteamSelection"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.084Z",
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:706350010776:function:teamSelection-develop",
+        "Name": "teamSelection-develop",
+        "LambdaExecutionRole": "lastmanstandingLambdaRole98695377-develop"
+      },
+      "lastPushDirHash": "JpdNGhmRbVkkdo5gqAevSS2SWNU="
+    },
+    "lastmanstandingeafb25bdPostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2021-02-22T13:23:44.977Z",
+      "lastPackageTimeStamp": "2021-02-22T13:23:46.239Z",
+      "distZipFilename": "lastmanstandingeafb25bdPostConfirmation-634c576f63455a495a42-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/function/lastmanstandingeafb25bdPostConfirmation-cloudformation-template.json",
+        "logicalId": "functionlastmanstandingeafb25bdPostConfirmation"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.086Z",
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:706350010776:function:lastmanstandingeafb25bdPostConfirmation-develop",
+        "Name": "lastmanstandingeafb25bdPostConfirmation-develop",
+        "LambdaExecutionRole": "lastmanstandingeafb25bdPostConfirmation-develop"
+      },
+      "lastPushDirHash": "aVnH2PuY5F68bG3wxGjGgrrkl1M=",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "teamInfo": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlTeamsDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2021-02-22T13:23:52.528Z",
+      "lastPackageTimeStamp": "2021-02-22T13:24:00.247Z",
+      "distZipFilename": "teamInfo-68426f5862675a614279-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/function/teamInfo-cloudformation-template.json",
+        "logicalId": "functionteamInfo"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.088Z",
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:706350010776:function:teamInfo-develop",
+        "Name": "teamInfo-develop",
+        "LambdaExecutionRole": "lastmanstandingLambdaRoleac5db125-develop"
+      },
+      "lastPushDirHash": "/DUHLBu3LOu+f1y904M2Hk6QtJ0="
+    },
+    "lockLeagues": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "lastPushTimeStamp": "2021-02-22T13:36:24.091Z",
+      "lastBuildTimeStamp": "2021-02-22T13:23:52.785Z",
+      "lastPackageTimeStamp": "2021-02-22T13:24:00.349Z",
+      "distZipFilename": "lockLeagues-78394b356b6f792b4b63-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/function/lockLeagues-cloudformation-template.json",
+        "logicalId": "functionlockLeagues"
+      },
+      "output": {
+        "Region": "eu-west-1",
+        "CloudWatchEventRule": "amplify-lastmanstanding-develop-22-CloudWatchEvent-1L6VC884PL4QQ",
+        "Arn": "arn:aws:lambda:eu-west-1:706350010776:function:lockLeagues-develop",
+        "Name": "lockLeagues-develop",
+        "LambdaExecutionRole": "lastmanstandingLambdaRole4d48bfeb-develop"
+      },
+      "lastPushDirHash": "H6iJ0V3ZC5LnprU7yEXbFWvOegk="
+    },
+    "unlockLeagues": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2021-02-22T13:23:52.229Z",
+      "lastPackageTimeStamp": "2021-02-22T13:24:00.141Z",
+      "distZipFilename": "unlockLeagues-5633795a7a486e334a41-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/function/unlockLeagues-cloudformation-template.json",
+        "logicalId": "functionunlockLeagues"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.093Z",
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:706350010776:function:unlockLeagues-develop",
+        "Name": "unlockLeagues-develop",
+        "LambdaExecutionRole": "lastmanstandingLambdaRoleaeb788bc-develop",
+        "CloudWatchEventRule": "amplify-lastmanstanding-develop-22-CloudWatchEvent-1WMQNBHK2Y28A"
+      },
+      "lastPushDirHash": "w3zawqpvwW35yOCOheCj1rn97mY=",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "PLResultsDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "adminActions": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2021-02-22T13:35:18.943Z",
+      "lastPackageTimeStamp": "2021-02-22T13:35:20.512Z",
+      "distZipFilename": "adminActions-314b7247763536766450-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/function/adminActions-cloudformation-template.json",
+        "logicalId": "functionadminActions"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.125Z",
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:706350010776:function:adminActions-develop",
+        "Name": "adminActions-develop",
+        "LambdaExecutionRole": "lastmanstandingLambdaRole03bc1e97-develop"
+      },
+      "lastPushDirHash": "EakNBlgOm6fxelIGe4cxEHzV+Sk="
+    }
+  },
+  "auth": {
+    "lastmanstandingeafb25bd": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "lastmanstandingeafb25bdPostConfirmation",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ],
+      "customAuth": false,
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/auth/lastmanstandingeafb25bd-cloudformation-template.yml",
+        "logicalId": "authlastmanstandingeafb25bd"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.098Z",
+      "output": {
+        "AppClientSecret": "l0j0u9d0945csarci6718jq0vhvtl9e6m9ftgn6i77thssqkpeu",
+        "UserPoolId": "eu-west-1_XMbwIILIw",
+        "AppClientIDWeb": "n457mmqsdvi5la2nir9vnb5ps",
+        "AppClientID": "30es1rq4ue0unjm6jba6quc75c",
+        "IdentityPoolId": "eu-west-1:bec18154-6a92-485c-bf04-a93ae1f7f578",
+        "IdentityPoolName": "lastmanstandingeafb25bd_identitypool_eafb25bd__develop",
+        "UserPoolName": "lastmanstandingeafb25bd_userpool_eafb25bd"
+      },
+      "lastPushDirHash": "wIEUsIo/GgD+ZoHcXTqQ232+Fgc="
+    }
+  },
+  "storage": {
+    "PlayerDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/storage/PlayerDB-cloudformation-template.json",
+        "logicalId": "storagePlayerDB"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.100Z",
+      "output": {
+        "PartitionKeyName": "Sub",
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:dynamodb:eu-west-1:706350010776:table/PlayerDB-develop",
+        "StreamArn": "arn:aws:dynamodb:eu-west-1:706350010776:table/PlayerDB-develop/stream/2021-01-26T23:51:22.002",
+        "PartitionKeyType": "S",
+        "Name": "PlayerDB-develop"
+      },
+      "lastPushDirHash": "HQHob9i96p4q6RuZ/5lctGoiVBY="
+    },
+    "LeaguesDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/storage/LeaguesDB-cloudformation-template.json",
+        "logicalId": "storageLeaguesDB"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.103Z",
+      "output": {
+        "PartitionKeyName": "LeagueID",
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:dynamodb:eu-west-1:706350010776:table/LeaguesDB-develop",
+        "StreamArn": "arn:aws:dynamodb:eu-west-1:706350010776:table/LeaguesDB-develop/stream/2021-01-26T23:51:22.824",
+        "PartitionKeyType": "S",
+        "Name": "LeaguesDB-develop"
+      },
+      "lastPushDirHash": "dtlHS+vu1631JFglPFOlqT0wmHQ="
+    },
+    "LeaguePlayerDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/storage/LeaguePlayerDB-cloudformation-template.json",
+        "logicalId": "storageLeaguePlayerDB"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.106Z",
+      "output": {
+        "PartitionKeyName": "LeaguePlayerID",
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:dynamodb:eu-west-1:706350010776:table/LeaguePlayerDB-develop",
+        "StreamArn": "arn:aws:dynamodb:eu-west-1:706350010776:table/LeaguePlayerDB-develop/stream/2021-01-26T23:51:22.362",
+        "PartitionKeyType": "S",
+        "Name": "LeaguePlayerDB-develop"
+      },
+      "lastPushDirHash": "hI03fPW5zP2Vsd9bfbJl9ol+kIo="
+    },
+    "PlStandingsDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/storage/PlStandingsDB-cloudformation-template.json",
+        "logicalId": "storagePlStandingsDB"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.108Z",
+      "output": {
+        "PartitionKeyName": "TeamName",
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:dynamodb:eu-west-1:706350010776:table/PlStandingsDB-develop",
+        "StreamArn": "arn:aws:dynamodb:eu-west-1:706350010776:table/PlStandingsDB-develop/stream/2021-01-26T23:51:21.758",
+        "PartitionKeyType": "S",
+        "Name": "PlStandingsDB-develop"
+      },
+      "lastPushDirHash": "nu2CxaRP40+dTKa4ukat3FWcIEQ="
+    },
+    "PlTeamsDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/storage/PlTeamsDB-cloudformation-template.json",
+        "logicalId": "storagePlTeamsDB"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.110Z",
+      "output": {
+        "PartitionKeyName": "TeamName",
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:dynamodb:eu-west-1:706350010776:table/PlTeamsDB-develop",
+        "StreamArn": "arn:aws:dynamodb:eu-west-1:706350010776:table/PlTeamsDB-develop/stream/2021-01-28T17:04:15.680",
+        "PartitionKeyType": "S",
+        "Name": "PlTeamsDB-develop"
+      },
+      "lastPushDirHash": "2NWwz2uZOj6H0G0paZo7nhVsiPA="
+    },
+    "PLResultsDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/storage/PlResultsDB-cloudformation-template.json",
+        "logicalId": "storagePLResultsDB"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.113Z",
+      "output": {
+        "PartitionKeyName": "MatchID",
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:dynamodb:eu-west-1:706350010776:table/PLResultsDB-develop",
+        "StreamArn": "arn:aws:dynamodb:eu-west-1:706350010776:table/PLResultsDB-develop/stream/2021-02-02T13:05:44.906",
+        "PartitionKeyType": "S",
+        "Name": "PLResultsDB-develop"
+      },
+      "lastPushDirHash": "Z3sjRwrQuq1qwL/Zi6llPlFrKy0="
+    },
+    "PLFixturesDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/storage/PlFixturesDB-cloudformation-template.json",
+        "logicalId": "storagePLFixturesDB"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.116Z",
+      "output": {
+        "PartitionKeyName": "FixtureID",
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:dynamodb:eu-west-1:706350010776:table/PLFixturesDB-develop",
+        "StreamArn": "arn:aws:dynamodb:eu-west-1:706350010776:table/PLFixturesDB-develop/stream/2021-02-02T13:05:44.373",
+        "PartitionKeyType": "S",
+        "Name": "PLFixturesDB-develop"
+      },
+      "lastPushDirHash": "l8Jph350xHjg7lgYJFzPOcAvZKg="
+    }
+  },
+  "api": {
+    "LastManStandingAPI": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "getPremierLeagueInfo",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "createLeague",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "joinLeague",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "myLeagues",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "getLeagueInfo",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "teamSelection",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "teamInfo",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "lockLeagues",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "unlockLeagues",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "adminActions",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-lastmanstanding-develop-225620-deployment/amplify-cfn-templates/api/LastManStandingAPI-cloudformation-template.json",
+        "logicalId": "apiLastManStandingAPI"
+      },
+      "lastPushTimeStamp": "2021-02-22T13:36:24.118Z",
+      "output": {
+        "ApiName": "LastManStandingAPI",
+        "RootUrl": "https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop",
+        "ApiId": "ida5es25ne"
+      },
+      "lastPushDirHash": "gsjUFyUYODAs8GP8ZPFcGLy/Fcw="
+    }
+  }
+}
