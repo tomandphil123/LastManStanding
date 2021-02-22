@@ -156,10 +156,9 @@ const IndividualLeague = ({
                             <div style={{fontSize: '12px'}}>{item['Username']}</div>
                           </>
                         </TableCell>
-                        {console.log(item)}
                         <TableCell align='center'>
                           {leagueInfo['data'][1][0]['admin'] === sub ? (
-                            <AdminSystem playerRemoval={true} user={item['Username']} />
+                            <AdminSystem playerRemoval={true} leaguePlayerID={item['LeaguePlayerID']} />
                           ) : (null)}
                         </TableCell>
                         {(item['playerStatus'] === 'In') ? (

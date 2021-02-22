@@ -12,7 +12,7 @@ const AdminSystem = ({
   leagueStatus,
   leagueID,
   playerRemoval,
-  user,
+  leaguePlayerID,
 }) => {
   const [lockLeague, setLockLeague] = useState(leagueStatus);
 
@@ -33,7 +33,11 @@ const AdminSystem = ({
   };
 
   const deleteUser = () => {
-    console.log(user);
+    axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/adminActions', {flag: 'removePlayer', leaguePlayerID: leaguePlayerID})
+      .then((response) => {
+        console.log(response);
+        alert(response['data']);
+      });
   };
 
   return (
