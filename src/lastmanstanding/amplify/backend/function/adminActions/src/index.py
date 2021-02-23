@@ -52,6 +52,7 @@ def deleteLeague(result):
           ReturnValues="UPDATED_NEW"
     )
 
+
   return 'Successfully Deleted League'
 
 def toggleLeague(result):
@@ -81,19 +82,70 @@ def toggleLeague(result):
   
   return 'Sucessfully Set League to Not Joinable'
 
+def removePlayer(result):
+  leaguePlayerID = result['leaguePlayerID']
+  leagueID = leaguePlayerID.split('/')[0]
+  sub = leaguePlayerID.split('/')[1]
+
+  dynamodb = boto3.resource('dynamodb')
+  leaguePlayerDB = dynamodb.Table('LeaguePlayerDB-develop')
+  leaguePlayerDB.delete_item(
+    Key={
+        'LeaguePlayerID': leaguePlayerID
+    }
+  )
+
+  playerDB = dynamodb.Table('PlayerDB-develop')
+  data = playerDB.query(
+    KeyConditionExpression=Key('Sub').eq(sub)
+  )
+
+  resp = data['Items']
+  leagueIDs = resp[0]['leagueIDs']
+  leagueIDs.remove(leagueID)
+
+  playerDB.update_item(
+    Key={
+            'Sub': sub
+        },
+        UpdateExpression="set leagueIDs=:l",
+        ExpressionAttributeValues={
+            ':l': leagueIDs
+        },
+        ReturnValues="UPDATED_NEW"
+  )
+
+  leaguesDB = dynamodb.Table('LeaguesDB-develop')
+  leagueData = leaguesDB.query(
+      KeyConditionExpression=Key('LeagueID').eq(leagueID)
+    )
+  resp = leagueData['Items']
+  remainingPlayers = int(resp[0]['RemainingPlayers']) - 1
+
+  leaguesDB.update_item(
+    Key={
+            'LeagueID': leagueID
+        },
+        UpdateExpression='set RemainingPlayers = :val',
+        ExpressionAttributeValues={
+            ':val': str(remainingPlayers)
+        },
+        ReturnValues='UPDATED_NEW'
+  )
+
+  return 'Successfully removed player'
+
+
 def handler(event, context):
   result = json.loads(event['body'])
   flag = result['flag']
-  
 
   if flag == 'deleteLeague':
     resp = deleteLeague(result)
   elif flag == 'toggleLeague':
     resp = toggleLeague(result)
-  else:
-    pass
-
-
+  elif flag == 'removePlayer':
+    resp = removePlayer(result)
 
   return {
   'statusCode': 200,

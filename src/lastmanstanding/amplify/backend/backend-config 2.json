@@ -1,0 +1,464 @@
+{
+  "function": {
+    "LeagueInfoLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlStandingsDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "PLResultsDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "PLFixturesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "getPremierLeagueInfo": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlStandingsDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "PLResultsDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "PLFixturesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "createLeague": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "joinLeague": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "myLeagues": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "getLeagueInfo": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "teamSelection": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "lastmanstandingeafb25bdPostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "teamInfo": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlTeamsDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "lockLeagues": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "unlockLeagues": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "PLResultsDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "adminActions": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "PlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "LeaguePlayerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    }
+  },
+  "auth": {
+    "lastmanstandingeafb25bd": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "lastmanstandingeafb25bdPostConfirmation",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ],
+      "customAuth": false
+    }
+  },
+  "storage": {
+    "PlayerDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    },
+    "LeaguesDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    },
+    "LeaguePlayerDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    },
+    "PlStandingsDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    },
+    "PlTeamsDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    },
+    "PLResultsDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    },
+    "PLFixturesDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    }
+  },
+  "api": {
+    "LastManStandingAPI": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "getPremierLeagueInfo",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "createLeague",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "joinLeague",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "myLeagues",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "getLeagueInfo",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "teamSelection",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "teamInfo",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "lockLeagues",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "unlockLeagues",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "adminActions",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    }
+  }
+}

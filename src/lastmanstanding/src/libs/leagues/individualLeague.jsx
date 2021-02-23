@@ -142,6 +142,7 @@ const IndividualLeague = ({
                       <TableCell height='auto' align='left'>
                         Players
                       </TableCell>
+                      <TableCell height='auto' align='left'/>
                       <TableCell align='center'>Status</TableCell>
                       <TableCell align='center'>Pick</TableCell>
                     </TableRow>
@@ -154,6 +155,11 @@ const IndividualLeague = ({
                             <div style={{fontWeight: 'bolder'}}>{item['fullName']}</div>
                             <div style={{fontSize: '12px'}}>{item['Username']}</div>
                           </>
+                        </TableCell>
+                        <TableCell align='center'>
+                          {leagueInfo['data'][1][0]['admin'] === sub ? (
+                            <AdminSystem playerRemoval={true} leaguePlayerID={item['LeaguePlayerID']} />
+                          ) : (null)}
                         </TableCell>
                         {(item['playerStatus'] === 'In') ? (
                           <TableCell align='center' >
