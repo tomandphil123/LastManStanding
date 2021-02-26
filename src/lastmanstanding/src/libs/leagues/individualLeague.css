@@ -1,3 +1,12 @@
 .leagueLoading {
     padding: 50px;
 }
+
+.button.MuiButtonBase-root.MuiButton-root.MuiButton-text {
+    min-width: 36px;
+}
+
+svg.MuiSvgIcon-root.copyToClipBoard {
+    width: 18px;
+    color: #000481;
+}

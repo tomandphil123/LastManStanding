@@ -45,11 +45,11 @@ def deleteLeague(result):
       Key={
               'Sub': sub
           },
-          UpdateExpression="set leagueIDs=:l",
+          UpdateExpression='set leagueIDs=:l',
           ExpressionAttributeValues={
               ':l': leagueIDs
           },
-          ReturnValues="UPDATED_NEW"
+          ReturnValues='UPDATED_NEW'
     )
 
 
@@ -108,11 +108,11 @@ def removePlayer(result):
     Key={
             'Sub': sub
         },
-        UpdateExpression="set leagueIDs=:l",
+        UpdateExpression='set leagueIDs=:l',
         ExpressionAttributeValues={
             ':l': leagueIDs
         },
-        ReturnValues="UPDATED_NEW"
+        ReturnValues='UPDATED_NEW'
   )
 
   leaguesDB = dynamodb.Table('LeaguesDB-develop')
@@ -135,6 +135,52 @@ def removePlayer(result):
 
   return 'Successfully removed player'
 
+def resetLeague(result):
+  leagueID = result['leagueID']
+
+  dynamodb = boto3.resource('dynamodb')
+  # reset each player in league
+  leaguePlayerDB = dynamodb.Table('LeaguePlayerDB-develop')
+  counter = 0
+  leaguePlayerData = leaguePlayerDB.query(
+		IndexName = 'LeagueID-LeaguePlayerID-index',
+		KeyConditionExpression=Key('LeagueID').eq(leagueID)
+	)
+  
+  for player in leaguePlayerData['Items']:
+    counter +=1
+    leaguePlayerDB.update_item(
+      Key={
+              'LeaguePlayerID': player['LeaguePlayerID']
+          },
+          UpdateExpression='set playerStatus=:val1, CurrentPick=:val2, PickedTeams=:val3, UnpickedTeams=:val4',
+          ExpressionAttributeValues={
+              ':val1': 'In',
+              ':val2': '-',
+              ':val3': [],
+              ':val4': ['Manchester United FC','Manchester City FC','Leicester City FC','Liverpool FC','Tottenham Hotspur FC','Everton FC','Chelsea FC','Southampton FC','West Ham United FC','Sheffield United FC','Arsenal FC','Aston Villa FC','Leeds United FC','Crystal Palace FC','Wolverhampton Wanderers FC','Newcastle United FC','Brighton & Hove Albion FC','Burnley FC','Fulham FC','West Bromwich Albion FC'],
+          },
+          ReturnValues='UPDATED_NEW'
+    )
+  
+  # reset league
+  leaguesDB = dynamodb.Table('LeaguesDB-develop')
+
+  leaguesDB.update_item(
+      Key={
+              'LeagueID': leagueID
+          },
+          UpdateExpression='set EliminatedPlayers=:val1, RemainingPlayers=:val2, Joinable=:val3, LeagueStatus=:val4',
+          ExpressionAttributeValues={
+              ':val1': '0',
+              ':val2': str(counter),
+              ':val3': 'Yes',
+              ':val4': 'Open',
+          },
+          ReturnValues='UPDATED_NEW'
+    )
+
+  return 'Successfully Reset League'
 
 def handler(event, context):
   result = json.loads(event['body'])
@@ -146,6 +192,8 @@ def handler(event, context):
     resp = toggleLeague(result)
   elif flag == 'removePlayer':
     resp = removePlayer(result)
+  elif flag == 'resetLeague':
+    resp = resetLeague(result)
 
   return {
   'statusCode': 200,

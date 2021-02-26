@@ -5,6 +5,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
+import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import axios from 'axios';
 import './adminSystem.css';
 
@@ -13,6 +14,7 @@ const AdminSystem = ({
   leagueID,
   playerRemoval,
   leaguePlayerID,
+  setRender,
 }) => {
   const [lockLeague, setLockLeague] = useState(leagueStatus);
 
@@ -21,6 +23,7 @@ const AdminSystem = ({
         .then((response) => {
           console.log(response);
           setLockLeague(!lockLeague);
+          setRender({});
         });
   };
 
@@ -29,6 +32,7 @@ const AdminSystem = ({
         .then((response) => {
           console.log(response);
           alert(response['data']);
+          setRender({});
         });
   };
 
@@ -37,6 +41,16 @@ const AdminSystem = ({
         .then((response) => {
           console.log(response);
           alert(response['data']);
+          setRender({});
+        });
+  };
+
+  const resetLeague = () => {
+    axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/adminActions', {flag: 'resetLeague', leagueID: leagueID})
+        .then((response) => {
+          console.log(response);
+          alert(response['data']);
+          setRender({});
         });
   };
 
@@ -62,10 +76,16 @@ const AdminSystem = ({
             )}
           </Button>
         </Tooltip>
+        <Tooltip title="Reset League" placement="top">
+          <Button
+            onClick={() => resetLeague()}
+          >
+            <RotateLeftIcon style={{color: '#ffffff'}}/>
+          </Button>
+        </Tooltip>
         <Tooltip title="Delete League" placement="top">
           <Button
             onClick={() => deleteLeague()}
-            // style={{backgroundColor: 'red'}}
           >
             <DeleteIcon style={{color: '#ffffff'}}/>
           </Button>
