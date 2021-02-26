@@ -34,10 +34,10 @@ const AdminSystem = ({
 
   const deleteUser = () => {
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/adminActions', {flag: 'removePlayer', leaguePlayerID: leaguePlayerID})
-      .then((response) => {
-        console.log(response);
-        alert(response['data']);
-      });
+        .then((response) => {
+          console.log(response);
+          alert(response['data']);
+        });
   };
 
   return (
@@ -56,16 +56,16 @@ const AdminSystem = ({
         >
           <Button onClick={() => toggleLeague()}>
             { lockLeague ? (
-              <LockIcon style={{color: 'red'}}/>
+              <LockIcon style={{color: 'white'}}/>
             ) : (
-              <LockOpenIcon style={{color: 'green'}}/>
+              <LockOpenIcon style={{color: 'white'}}/>
             )}
           </Button>
         </Tooltip>
         <Tooltip title="Delete League" placement="top">
           <Button
             onClick={() => deleteLeague()}
-            style={{backgroundColor: 'red'}}
+            // style={{backgroundColor: 'red'}}
           >
             <DeleteIcon style={{color: '#ffffff'}}/>
           </Button>
