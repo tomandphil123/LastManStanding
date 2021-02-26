@@ -31,8 +31,10 @@ const LeagueTable = ({
         <TableBody style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
           {table.map((item) => (
             <TableRow key={item[0]['LeagueID']}>
-              <TableCell align='left'>
-                <Link className="pointer" onClick={() => setLeagueId(item[0]['LeagueID'])}>
+              <TableCell align='left' style={{paddingLeft: '12px'}}>
+                <Link className="pointer" onClick={() => {
+                  setLeagueId(item[0]['LeagueID']); setIndividualLeague(true);
+                }}>
                   <>
                     <div style={{fontWeight: 'bolder'}}>{item[0]['LeagueID'].split('#')[0]}</div>
                     <div style={{fontSize: '12px'}}>#{item[0]['LeagueID'].split('#')[1]}</div>

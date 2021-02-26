@@ -42,6 +42,7 @@ const Leagues = ({
         <LeagueTable
           table={myLeaguesInfo}
           setLeagueId={setLeagueId}
+          setIndividualLeague={setIndividualLeague}
         />
       );
     } else {
@@ -61,10 +62,6 @@ const Leagues = ({
   const leagueJoin = () => {
     setJoinLeague(!joinLeague);
     setCreateLeague(false);
-  };
-
-  const closeLeague = () => {
-    setIndividualLeague(!individualLeague);
   };
 
   return (
@@ -110,7 +107,6 @@ const Leagues = ({
           { leagueId !== undefined ? (
             <Grid item xs={12} md={8}>
               <IndividualLeague
-                closeLeague={closeLeague}
                 username={user['username']}
                 sub={user['attributes']['sub']}
                 leagueId={leagueId}
@@ -123,14 +119,12 @@ const Leagues = ({
           )}
         </Grid>
         <Grid item xs={12} md={4}>
-          <div>
-            <Grid item xs={12} style={{marginBottom: '20px'}}>
-              <PremierLeagueFixtures results={results}/>
-            </Grid>
-            <Grid item xs={12}>
-              <PremierLeagueResults results={results}/>
-            </Grid>
-          </div>
+          <Grid item xs={12} style={{marginBottom: '20px'}}>
+            <PremierLeagueFixtures results={results}/>
+          </Grid>
+          <Grid item xs={12}>
+            <PremierLeagueResults results={results}/>
+          </Grid>
         </Grid>
       </Grid>
     </>
