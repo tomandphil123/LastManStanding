@@ -17,6 +17,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CloseIcon from '@material-ui/icons/Close';
 import Button from '@material-ui/core/Button';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 import axios from 'axios';
 import '../tables/tables.css';
 import './individualLeague.css';
@@ -31,6 +32,7 @@ const IndividualLeague = ({
   const [pick, setPick] = useState();
   const [permPick, setPermPick] = useState();
   const [leagueInfo, setLeagueInfo] = useState();
+  const [render, setRender] = useState();
 
   useEffect(() => {
     if (typeof leagueId !== undefined) {
@@ -40,7 +42,7 @@ const IndividualLeague = ({
             // setIndividualLeague(!individualLeague);
           });
     }
-  }, [leagueId, permPick]);
+  }, [leagueId, permPick, render]);
 
   return (
     individualLeague ? (
@@ -81,7 +83,7 @@ const IndividualLeague = ({
                       </div>
                       <div style={{right: '90%', paddingTop: '3px', marginLeft: 'auto'}}>
                         {leagueInfo['data'][1][0]['admin'] === sub ? (
-                        <AdminSystem leagueStatus={leagueInfo['data'][1][0]['Joinable'] === 'No' ? (true) : (false)} leagueID = {leagueId}/>
+                        <AdminSystem leagueStatus={leagueInfo['data'][1][0]['Joinable'] === 'No' ? (true) : (false)} leagueID = {leagueId} setRender={setRender}/>
                         ) : (null)}
                       </div>
                     </div>
@@ -105,7 +107,13 @@ const IndividualLeague = ({
                           )}
                           <TableCell align='center'>{leagueInfo['data'][1][0]['RemainingPlayers']}</TableCell>
                           <TableCell align='center'>{leagueInfo['data'][1][0]['EliminatedPlayers']}</TableCell>
-                          <TableCell align='center'>{leagueInfo['data'][1][0]['invitationCode']}</TableCell>
+                          <TableCell align='center'>{leagueInfo['data'][1][0]['invitationCode']}
+                            <Button onClick={() => {
+                              navigator.clipboard.writeText(leagueInfo['data'][1][0]['invitationCode']);
+                            }} style={{padding: 0, minWidth: '36px'}}>
+                              <FileCopyIcon className='copyToClipBoard'/>
+                            </Button>
+                          </TableCell>
                         </TableRow>
                       </TableBody>
                     </Table>
@@ -126,10 +134,16 @@ const IndividualLeague = ({
                         {leagueInfo['data'][0].map((item) => (
                           <TableRow key={item['Username']}>
                             {leagueInfo['data'][1][0]['admin'] === sub ? (
-                              <TableCell align='center'>
-                                <AdminSystem playerRemoval={true} leaguePlayerID={item['LeaguePlayerID']} />
-                              </TableCell>
-                            ) : (null)}
+                              item['Admin'] !== 'Yes'? (
+                                <TableCell align='center'>
+                                  <AdminSystem playerRemoval={true} leaguePlayerID={item['LeaguePlayerID']} setRender={setRender}/>
+                                </TableCell>
+                              ): (
+                                <TableCell style={{height: '50px'}} align='center'/>
+                              )
+                            ) : (
+                              null
+                            )}
                             <TableCell align='left' style={{paddingLeft: '10px'}}>
                               <>
                                 <div style={{fontWeight: 'bolder'}}>{item['fullName']}</div>
