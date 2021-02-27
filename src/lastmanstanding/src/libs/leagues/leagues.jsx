@@ -36,24 +36,6 @@ const Leagues = ({
     }
   }, [user, render]);
 
-  const displayLeague = () => {
-    if (typeof myLeaguesInfo !== 'undefined') {
-      return (
-        <LeagueTable
-          table={myLeaguesInfo}
-          setLeagueId={setLeagueId}
-          setIndividualLeague={setIndividualLeague}
-        />
-      );
-    } else {
-      return (
-        <div className="leaguesLoading">
-          <CircularProgress style={{color: '#490050'}}/>
-        </div>
-      );
-    }
-  };
-
   const leagueCreation = () => {
     setCreateLeague(!createLeague);
     setJoinLeague(false);
@@ -101,7 +83,17 @@ const Leagues = ({
           </Grid>
           <Grid item xs={12} md={8}>
             <div>
-              {displayLeague()}
+              {typeof myLeaguesInfo !== 'undefined' ? (
+                <LeagueTable
+                  table={myLeaguesInfo}
+                  setLeagueId={setLeagueId}
+                  setIndividualLeague={setIndividualLeague}
+                />
+              ) : (
+                <div className="leaguesLoading">
+                  <CircularProgress style={{color: '#490050'}}/>
+                </div>
+              )}
             </div>
           </Grid>
           { leagueId !== undefined ? (
