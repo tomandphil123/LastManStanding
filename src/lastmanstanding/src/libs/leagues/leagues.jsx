@@ -53,13 +53,13 @@ const Leagues = ({
           <Grid item xs={12} md={8} className="buttons">
             { window.screen.width > 1100 ? (
               <>
-                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', marginRight: '10px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueCreation()}><AddCircleOutlineIcon /><h4 style={{paddingLeft: '5px'}}>Create League</h4></Button>
-                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueJoin()}><PeopleAltIcon/><h4 style={{paddingLeft: '5px'}}>Join League</h4></Button>
+                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', marginRight: '10px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueCreation()} data-automation="CreateLeague"><AddCircleOutlineIcon /><h4 style={{paddingLeft: '5px'}}>Create League</h4></Button>
+                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueJoin()} data-automation="JoinLeague"><PeopleAltIcon/><h4 style={{paddingLeft: '5px'}}>Join League</h4></Button>
               </>
             ):(
               <>
-                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueCreation()}><AddCircleOutlineIcon /><h4 style={{paddingLeft: '5px'}}>Create League</h4></Button>
-                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueJoin()}><PeopleAltIcon/><h4 style={{paddingLeft: '5px'}}>Join League</h4></Button>
+                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueCreation()} data-automation="CreateLeague"><AddCircleOutlineIcon /><h4 style={{paddingLeft: '5px'}}>Create League</h4></Button>
+                <Button style={{backgroundColor: 'white', color: '#490050', marginTop: '10px', marginBottom: '5px', width: 250, border: '4px solid #490050'}} variant="contained" onClick={() => leagueJoin()} data-automation="JoinLeague"><PeopleAltIcon/><h4 style={{paddingLeft: '5px'}}>Join League</h4></Button>
               </>
             )}
             { createLeague ? (
@@ -76,7 +76,8 @@ const Leagues = ({
                   user={user}
                   leagueJoin={leagueJoin}
                   setJoinLeague={setJoinLeague}
-                  setRender={setRender}/>
+                  setRender={setRender}
+                />
             ) : (
                 null
             )}
