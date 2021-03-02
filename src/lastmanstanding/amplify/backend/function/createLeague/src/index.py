@@ -38,7 +38,8 @@ def handler(event, context):
 				'LeagueStatus': 'Open',
 				'RemainingPlayers': '1',
 				'EliminatedPlayers': '0',
-				'Joinable': 'Yes'
+				'Joinable': 'Yes',
+				'Winner': '-'
 			})
 
 	# Send confirmation email with invitation code for users to join the league

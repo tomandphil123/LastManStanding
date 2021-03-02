@@ -58,6 +58,11 @@ const IndividualLeague = ({
             <div style={{backgroundColor: '#fff'}}>
               <Grid container direction='column' spacing={4}>
                 <Grid item xs={12} md={12}>
+                {leagueInfo['data'][1][0]['Winner'] !== '-' ? (
+                        <Alert severity='success'>🏆 Winner Winner Chicken Dinner {leagueInfo['data'][1][0]['Winner']} 🏆</Alert>
+                    ) : (
+                      null
+                    )}
                   {leagueInfo['data'][1][0]['LeagueStatus'] === 'Closed' ? (
                         <Alert severity='warning'>Matches in progress - Picks are disabled!</Alert>
                     ) : (
@@ -66,7 +71,7 @@ const IndividualLeague = ({
                   {leagueInfo['data'][0].map((item) => (
                     <div key={item['Username']}>
                       {username === item['Username'] && item['playerStatus'] === 'Out' ? (
-                        <Alert severity='error'>You have been knocked out - try again next round!</Alert>
+                        <Alert severity='error'>💩 You have been knocked out - try again next round! 💩</Alert>
                     ) : (
                       null
                     )}
