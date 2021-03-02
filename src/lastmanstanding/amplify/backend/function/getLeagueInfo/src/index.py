@@ -17,7 +17,10 @@ def handler(event, context):
 		IndexName = 'LeagueID-LeaguePlayerID-index',
 		KeyConditionExpression=Key('LeagueID').eq(leagueID)
 	)
-	ret_lst.append(leaguePlayerData['Items'])
+	print(leaguePlayerData['Items'][0])
+	lst = leaguePlayerData['Items']
+	lst.sort(key=lambda s: s['playerStatus'])
+	ret_lst.append(lst)
 
 	
 	Ltable = dynamodb.Table('LeaguesDB-develop')

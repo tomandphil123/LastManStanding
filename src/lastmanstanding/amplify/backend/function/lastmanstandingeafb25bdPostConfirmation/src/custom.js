@@ -15,8 +15,8 @@ exports.handler = (event, context, callback) => {
       'Username': username,
       'email': email,
       'leagueIDs': [],
-      'wins': 0,
-      'losses': 0,
+      'wins': '0',
+      'losses': '0',
     },
   };
   const dynamoPromise = docClient.put(params).promise();

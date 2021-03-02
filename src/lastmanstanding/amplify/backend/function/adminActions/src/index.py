@@ -170,12 +170,13 @@ def resetLeague(result):
       Key={
               'LeagueID': leagueID
           },
-          UpdateExpression='set EliminatedPlayers=:val1, RemainingPlayers=:val2, Joinable=:val3, LeagueStatus=:val4',
+          UpdateExpression='set EliminatedPlayers=:val1, RemainingPlayers=:val2, Joinable=:val3, LeagueStatus=:val4, Winner=:val5',
           ExpressionAttributeValues={
               ':val1': '0',
               ':val2': str(counter),
               ':val3': 'Yes',
               ':val4': 'Open',
+              ':val5': '-'
           },
           ReturnValues='UPDATED_NEW'
     )
