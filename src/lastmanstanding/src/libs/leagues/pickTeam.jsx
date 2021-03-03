@@ -80,7 +80,6 @@ const PickTeam = ({
             <BootstrapButton
               key={item}
               variant="contained"
-              color='#490050'
               disableRipple
               className={classes.margin}
               onClick={() => selectTeam(item)}
