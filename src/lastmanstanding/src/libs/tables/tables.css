@@ -51,12 +51,16 @@ div.jss{
     margin-bottom: 24px;
 }
 
-a.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.jss3{
+a.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit{
     opacity: 1;
 }
 
-button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.jss6{
-    opacity: 1;
+div.makeStyles-paper-14{
+    margin-top: 15px;
+}
+
+div.makeStyles-paper-22{
+    margin-top: 15px;
 }
 
 .tableBody {
