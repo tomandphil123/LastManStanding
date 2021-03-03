@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
+import PickTeam from './pickTeam';
 
 
 const SelectTeam = ({
@@ -10,11 +11,13 @@ const SelectTeam = ({
   sub,
   leagueID,
   setPermPick,
+  setPickButton
 }) => {
   const submitTeam = () => {
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/teamSelection', {team: selectedTeam, sub: sub, leagueID: leagueID})
         .then(() => {
           setPermPick({});
+          setPickButton(!PickTeam);
         });
   };
 
