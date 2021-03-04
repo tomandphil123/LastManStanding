@@ -4,6 +4,7 @@ import SelectTeam from './selectTeam';
 import PropTypes from 'prop-types';
 import {withStyles, makeStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 const BootstrapButton = withStyles({
   root: {
@@ -13,32 +14,36 @@ const BootstrapButton = withStyles({
     'padding': '6px 12px',
     'border': '1px solid',
     'lineHeight': 1.5,
-    'backgroundColor': '#37003c',
-    'borderColor': '#ffff',
+    'backgroundColor': '#ffff',
+    'color': '#490050',
+    'borderColor': '#490050',
     'fontFamily': [
       '-apple-system',
       'BlinkMacSystemFont',
-      '"Segoe UI"',
+      'Segoe UI',
       'Roboto',
-      '"Helvetica Neue"',
+      'Helvetica Neue',
       'Arial',
       'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol',
     ].join(','),
     '&:hover': {
-      backgroundColor: '#37003c',
-      borderColor: '#37003c',
-      boxShadow: '#37003c',
+      backgroundColor: '#490050',
+      color: '#ffff',
+      borderColor: '#490050',
+      boxShadow: '#490050',
     },
     '&:active': {
-      boxShadow: '0069d9',
-      backgroundColor: '0069d9',
-      borderColor: '0069d9',
+      color: '#ffff',
+      backgroundColor: '#490050',
+      borderColor: '#490050',
     },
     '&:focus': {
-      boxShadow: '0 0 0 0.3rem rgba(1,255,190,.5)',
+      color: '#ffff',
+      borderColor: '#490050',
+      backgroundColor: '#490050',
     },
   },
 })(Button);
@@ -51,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PickTeam = ({
   setPick,
+  setPickButton,
   sub,
   leagueID,
   teams,
@@ -69,19 +75,21 @@ const PickTeam = ({
 
   const displayTeams = (teams) => {
     return (
-      teams.map((item) => (
-        <BootstrapButton
-          key={item}
-          variant="contained"
-          color="primary"
-          disableRipple
-          className={classes.margin}
-          onClick={() => selectTeam(item)}
-          data-automation={item}
-        >
-          {item}
-        </BootstrapButton>
-      )));
+      <Grid container direction='column' spacing={1}>
+        {teams.map((item) => (
+            <BootstrapButton
+              key={item}
+              variant="contained"
+              disableRipple
+              className={classes.margin}
+              onClick={() => selectTeam(item)}
+              data-automation={item}
+            >
+              {item}
+            </BootstrapButton>
+        ))}
+      </Grid>
+    );
   };
 
 
@@ -96,6 +104,7 @@ const PickTeam = ({
           selectedTeam={selectedTeam}
           sub={sub}
           leagueID={leagueID}
+          setPickButton={setPickButton}
           setPermPick={setPermPick}
         />
       </div>

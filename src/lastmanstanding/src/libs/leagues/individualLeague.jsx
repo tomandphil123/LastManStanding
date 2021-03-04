@@ -33,6 +33,7 @@ const IndividualLeague = ({
   const [permPick, setPermPick] = useState();
   const [leagueInfo, setLeagueInfo] = useState();
   const [render, setRender] = useState();
+  const [pickButton, setPickButton] = useState(false)
 
   useEffect(() => {
     if (typeof leagueId !== undefined) {
@@ -175,13 +176,21 @@ const IndividualLeague = ({
                   </TableContainer>
                 </Grid>
                 <Grid item xs={12} md={12}>
+                {console.log(pickButton)}
                   {leagueInfo['data'][0].map((item) => (
                     <div key={item['Username']}>
                       {username === item['Username'] && leagueInfo['data'][1][0]['LeagueStatus'] === 'Open' && item['playerStatus'] === 'In' ? (
-                      // eslint-disable-next-line max-len
-                      <PickTeam teams = {item['UnpickedTeams']} setPick={setPick} sub={sub} leagueID={leagueInfo['data'][0][0]['LeagueID']} setPermPick={setPermPick}/>
+                      
+                      pickButton === false ? (
+                        <Button onClick={() => setPickButton(!pickButton)}>Pick Team</Button>
+                      ) : (
+                        <>
+                          <Button onClick={() => setPickButton(!pickButton)}>Close</Button>
+                          <PickTeam teams = {item['UnpickedTeams']}  setPickButton = {setPickButton} setPick={setPick} sub={sub} leagueID={leagueInfo['data'][0][0]['LeagueID']} setPermPick={setPermPick}/>
+                        </>
+                      )
                     ) : (
-                        null
+                      null
                     )}
                     </div>
                   ))}
