@@ -26,6 +26,7 @@ const SelectTeam = ({
       <Button
         onClick={() => submitTeam()}
         data-automation='pickTeam_submitButton'
+        style={{backgroundColor: '#490050', color: '#fff', padding:'10px', fontWeight: 'bold', borderRadius: '12px', marginTop: '10px'}}
       >
         Select Team
       </Button>

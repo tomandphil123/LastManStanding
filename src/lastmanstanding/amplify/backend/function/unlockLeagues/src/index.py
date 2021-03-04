@@ -61,6 +61,12 @@ def handler(event, context):
   dynamodb = boto3.resource('dynamodb')
   leagueDics = {}
 
+  abbreviations = {
+		'West Bromwich Albion FC': 'West Brom FC',
+		'Wolverhampton Wanderers FC': 'Wolves FC',
+		'Brighton & Hove Albion FC': 'Brighton FC'
+	}
+  
   teamsTable = dynamodb.Table('LeaguesDB-develop')
   response = teamsTable.scan()
   leagues = response['Items']
@@ -77,7 +83,12 @@ def handler(event, context):
   winners = []
 
   for winner in results:
-    winners.append(winner['Winner'])
+    team = winner['Winner']
+    if team not in abbreviations:
+      winners.append(team)
+    else:
+      TeamName = abbreviations[team]
+      winners.append(TeamName)
 
 
   # Get all players

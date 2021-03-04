@@ -4,6 +4,16 @@ exports[`pickTeam Snapshot renders teams 1`] = `
 <WithStyles(ForwardRef(Button))
   data-automation="pickTeam_submitButton"
   onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#490050",
+      "borderRadius": "12px",
+      "color": "#fff",
+      "fontWeight": "bold",
+      "marginTop": "10px",
+      "padding": "10px",
+    }
+  }
 >
   Select Team
 </WithStyles(ForwardRef(Button))>

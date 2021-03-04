@@ -87,12 +87,14 @@ a.MuiTypography-colorPrimary {
     color: black;
 }
 
-a.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.makeStyles-tabs-3{
+a.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit{
     opacity: 1;
 }
-button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.makeStyles-signOutTab-6{
+
+button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit{
     opacity: 1;
 }
+
 
 div.makeStyles-paper{
     margin-top: 24px;
