@@ -2,11 +2,22 @@
     padding: 50px;
 }
 
-.button.MuiButtonBase-root.MuiButton-root.MuiButton-text {
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.updateButton{
     min-width: 36px;
 }
 
 svg.MuiSvgIcon-root.copyToClipBoard {
     width: 18px;
-    color: #4e4e4e;
+    color: #490050
+}
+
+div.MuiPaper-root.MuiCard-root.pickTeamCard.MuiPaper-elevation1.MuiPaper-rounded {
+    box-shadow: 6px 8px 8px 8px rgb(162, 162, 163);
+    background-color: #ffff;
+    width: 50%;
+}
+@media only screen and (max-width: 1000px) {
+    div.MuiPaper-root.MuiCard-root.pickTeamCard.MuiPaper-elevation1.MuiPaper-rounded {
+        width: 100%;
+    }
 }

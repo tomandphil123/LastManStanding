@@ -15,11 +15,45 @@ describe('pickTeam', () => {
   });
 
   const props = {
+    fixtures: {
+      data: [
+        [],
+        [
+          {
+            'AwayTeam': 'Leeds United FC',
+            'AwayTeamCrest': 'https://crests.football-data.org/341.svg',
+            'createdTime': '2021-02-11 12:40:01.254269',
+            'FixtureID': 'Arsenal FC-Leeds United FC',
+            'GameWeek': '24',
+            'HomeTeam': 'Arsenal FC',
+            'HomeTeamCrest': 'https://crests.football-data.org/57.svg',
+          },
+          {
+            'AwayTeam': 'Aston Villa FC',
+            'AwayTeamCrest': 'https://crests.football-data.org/58.svg',
+            'createdTime': '2021-02-11 12:40:01.134268',
+            'FixtureID': 'Brighton FC-Aston Villa FC',
+            'GameWeek': '24',
+            'HomeTeam': 'Brighton FC',
+            'HomeTeamCrest': 'https://crests.football-data.org/397.svg',
+          },
+          {
+            'AwayTeam': 'Newcastle United FC',
+            'AwayTeamCrest': 'https://crests.football-data.org/67.svg',
+            'createdTime': '2021-02-11 12:40:01.374223',
+            'FixtureID': 'Chelsea FC-Newcastle United FC',
+            'GameWeek': '24',
+            'HomeTeam': 'Chelsea FC',
+            'HomeTeamCrest': 'https://crests.football-data.org/61.svg',
+          },
+        ],
+        [],
+      ]},
     setPick: jest.fn(),
     sub: 'mockSub',
     leagueID: 'mockLeagueId',
     teams: [
-      'Manchester United FC',
+      'Arsenal FC',
       'Manchester City FC',
       'Liverpool FC',
       'Everton FC',
@@ -51,9 +85,9 @@ describe('pickTeam', () => {
           <PickTeam {...props}/>,
       );
       component.find(
-          '[data-automation="Manchester United FC"]',
+          '[data-automation="Arsenal FC"]',
       ).simulate('click');
-      expect(mockSetSelectedTeam).toHaveBeenCalledWith('Manchester United FC');
+      expect(mockSetSelectedTeam).toHaveBeenCalledWith('Arsenal FC');
     });
     it('sets submitToggle to true', () => {
       const setSubmitToggle = jest.fn();
@@ -62,7 +96,7 @@ describe('pickTeam', () => {
       handleClick.mockImplementation((submitToggle) =>
         [submitToggle, setSubmitToggle]);
       component.find(
-          '[data-automation="Manchester United FC"]',
+          '[data-automation="Arsenal FC"]',
       ).at(0).simulate('click');
       expect(setSubmitToggle).toBeTruthy();
     });

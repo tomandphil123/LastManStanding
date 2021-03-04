@@ -105,6 +105,7 @@ const Leagues = ({
                 leagueId={leagueId}
                 setIndividualLeague={setIndividualLeague}
                 individualLeague={individualLeague}
+                fixtures = {results}
               />
             </Grid>
           ) : (

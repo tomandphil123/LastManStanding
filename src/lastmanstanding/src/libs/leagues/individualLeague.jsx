@@ -18,9 +18,19 @@ import CardContent from '@material-ui/core/CardContent';
 import CloseIcon from '@material-ui/icons/Close';
 import Button from '@material-ui/core/Button';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
+import {makeStyles} from '@material-ui/core/styles';
 import axios from 'axios';
+import Backdrop from '@material-ui/core/Backdrop';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import '../tables/tables.css';
 import './individualLeague.css';
+
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  }
+}));
 
 const IndividualLeague = ({
   username,
@@ -28,7 +38,9 @@ const IndividualLeague = ({
   leagueId,
   individualLeague,
   setIndividualLeague,
+  fixtures,
 }) => {
+  const classes = useStyles();
   const [pick, setPick] = useState();
   const [permPick, setPermPick] = useState();
   const [leagueInfo, setLeagueInfo] = useState();
@@ -40,7 +52,6 @@ const IndividualLeague = ({
       axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/getLeagueInfo', {leagueId: leagueId})
           .then((response) => {
             setLeagueInfo(response);
-            // setIndividualLeague(!individualLeague);
           });
     }
   }, [leagueId, permPick, render]);
@@ -126,19 +137,60 @@ const IndividualLeague = ({
                     <Table>
                       <TableHead>
                         <TableRow className="tableRowTitles">
-                          {leagueInfo['data'][1][0]['admin'] === sub ? (
-                            <TableCell height='auto' align='left' style={{width: '25px'}}/>
-                          ): (null)}
+                        <TableCell align='center'>Status</TableCell>
                           <TableCell height='auto' align='left'>
                             Players
                           </TableCell>
-                          <TableCell align='center'>Status</TableCell>
                           <TableCell align='center'>Pick</TableCell>
+                          {leagueInfo['data'][1][0]['admin'] === sub ? (
+                            <TableCell height='auto' align='left' style={{width: '25px'}}/>
+                          ): (null)}
                         </TableRow>
                       </TableHead>
                       <TableBody style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
                         {leagueInfo['data'][0].map((item) => (
                           <TableRow key={item['Username']}>
+                            {(item['playerStatus'] === 'In') ? (
+                                <TableCell align='center' >
+                                  {/* eslint-disable-next-line max-len */}
+                                  <img src={require('../../images/leagueStatusIn.png')} alt='logo' width='20px' style={{paddingTop: '3px'}}/>
+                                </TableCell>
+                                ) : (
+                                <TableCell align='center'>
+                                  <img src={require('../../images/leagueStatusOut.png')} alt='logo' width='20px' style={{paddingTop: '3px'}}/>
+                                </TableCell>
+                                )}
+                            <TableCell align='left' style={{paddingLeft: '10px'}}>
+                              <>
+                                <div style={{fontWeight: 'bolder'}}>{item['fullName']}</div>
+                                <div style={{fontSize: '12px'}}>{item['Username']}</div>
+                              </>
+                            </TableCell>
+                            <TableCell align='center'>
+                              {username === item['Username'] && leagueInfo['data'][1][0]['LeagueStatus'] === 'Open' && item['playerStatus'] === 'In' ? (
+                              item['CurrentPick'] === 'Eliminated' ? (
+                                item['CurrentPick']
+                              ) : (
+                                item['CurrentPick'] === '-' ? (
+                                  <Button
+                                    style={{backgroundColor: '#490050', color: '#fff', padding:'8px', fontWeight: 'bold', borderRadius: '9px'}}
+                                    onClick={() => setPickButton(!pickButton)}
+                                  >
+                                      Pick Team
+                                  </Button>
+                                ) : (
+                                  <>
+                                  {item['CurrentPick']}
+                                  <Button
+                                    onClick={() => setPickButton(!pickButton)}
+                                    className = 'updateButton'
+                                  >
+                                    <AddCircleOutlineIcon/>
+                                  </Button>
+                                  </>
+                                )
+                              )) : (item['CurrentPick'])}
+                            </TableCell>
                             {leagueInfo['data'][1][0]['admin'] === sub ? (
                               item['Admin'] !== 'Yes'? (
                                 <TableCell align='center'>
@@ -150,25 +202,6 @@ const IndividualLeague = ({
                             ) : (
                               null
                             )}
-                            <TableCell align='left' style={{paddingLeft: '10px'}}>
-                              <>
-                                <div style={{fontWeight: 'bolder'}}>{item['fullName']}</div>
-                                <div style={{fontSize: '12px'}}>{item['Username']}</div>
-                              </>
-                            </TableCell>
-                            {(item['playerStatus'] === 'In') ? (
-                              <TableCell align='center' >
-                                {/* eslint-disable-next-line max-len */}
-                                <img src={require('../../images/leagueStatusIn.png')} alt='logo' width='20px' style={{paddingTop: '3px'}}/>
-                              </TableCell>
-                              ) : (
-                              <TableCell align='center'>
-                                <img src={require('../../images/leagueStatusOut.png')} alt='logo' width='20px' style={{paddingTop: '3px'}}/>
-                              </TableCell>
-                              )}
-                            <TableCell align='center'>
-                              {item['CurrentPick']}
-                            </TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -176,20 +209,32 @@ const IndividualLeague = ({
                   </TableContainer>
                 </Grid>
                 <Grid item xs={12} md={12}>
-                {console.log(pickButton)}
                   {leagueInfo['data'][0].map((item) => (
                     <div key={item['Username']}>
-                      {username === item['Username'] && leagueInfo['data'][1][0]['LeagueStatus'] === 'Open' && item['playerStatus'] === 'In' ? (
-                      
-                      pickButton === false ? (
-                        <Button onClick={() => setPickButton(!pickButton)}>Pick Team</Button>
-                      ) : (
+                      {pickButton === true && username === item['Username']? (
                         <>
-                          <Button onClick={() => setPickButton(!pickButton)}>Close</Button>
-                          <PickTeam teams = {item['UnpickedTeams']}  setPickButton = {setPickButton} setPick={setPick} sub={sub} leagueID={leagueInfo['data'][0][0]['LeagueID']} setPermPick={setPermPick}/>
+                        <Backdrop className={classes.backdrop} open={pickButton}>
+                          <Card className='pickTeamCard'>
+                            <CardContent>
+                            <div align='right'>
+                              <Button onClick={() => setPickButton(!pickButton)}>
+                                <CloseIcon/>
+                              </Button>
+                            </div>
+                              <PickTeam
+                                teams={item['UnpickedTeams']}
+                                setPickButton={setPickButton}
+                                setPick={setPick}
+                                sub={sub}
+                                leagueID={leagueInfo['data'][0][0]['LeagueID']}
+                                setPermPick={setPermPick}
+                                fixtures={fixtures}
+                                />
+                            </CardContent>
+                          </Card>
+                        </Backdrop>
                         </>
-                      )
-                    ) : (
+                      ) : (
                       null
                     )}
                     </div>
