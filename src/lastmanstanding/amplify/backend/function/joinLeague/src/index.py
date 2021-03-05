@@ -65,7 +65,7 @@ def handler(event, context):
           'Username': username,
           'playerStatus': 'In',
           'createdTime': createdDate,
-          'UnpickedTeams': [['Manchester United FC','Manchester City FC','Leicester City FC','Liverpool FC','Tottenham Hotspur FC','Everton FC','Chelsea FC','Southampton FC','West Ham United FC','Sheffield United FC','Arsenal FC','Aston Villa FC','Leeds United FC','Crystal Palace FC','Wolves FC','Newcastle United FC','Brighton FC','Burnley FC','Fulham FC','West Brom FC']
+          'UnpickedTeams': ['Manchester United FC','Manchester City FC','Leicester City FC','Liverpool FC','Tottenham Hotspur FC','Everton FC','Chelsea FC','Southampton FC','West Ham United FC','Sheffield United FC','Arsenal FC','Aston Villa FC','Leeds United FC','Crystal Palace FC','Wolves FC','Newcastle United FC','Brighton FC','Burnley FC','Fulham FC','West Brom FC']
       })
 
     leagueIDs.append(leagueID)
