@@ -25,6 +25,14 @@
     "storageLeaguePlayerDBArn": {
       "Type": "String",
       "Default": "storageLeaguePlayerDBArn"
+    },
+    "storagePlStandingsDBName": {
+      "Type": "String",
+      "Default": "storagePlStandingsDBName"
+    },
+    "storagePlStandingsDBArn": {
+      "Type": "String",
+      "Default": "storagePlStandingsDBArn"
     }
   },
   "Conditions": {
@@ -83,6 +91,12 @@
             },
             "STORAGE_LEAGUEPLAYERDB_ARN": {
               "Ref": "storageLeaguePlayerDBArn"
+            },
+            "STORAGE_PLSTANDINGSDB_NAME": {
+              "Ref": "storagePlStandingsDBName"
+            },
+            "STORAGE_PLSTANDINGSDB_ARN": {
+              "Ref": "storagePlStandingsDBArn"
             }
           }
         },
@@ -97,7 +111,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
-          "S3Key": "amplify-builds/lockLeagues-504157586a316e692f71-build.zip"
+          "S3Key": "amplify-builds/lockLeagues-394b616f54493162534b-build.zip"
         }
       }
     },
@@ -257,6 +271,39 @@
                     [
                       {
                         "Ref": "storageLeaguePlayerDBArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*",
+                "dynamodb:Delete*"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storagePlStandingsDBArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storagePlStandingsDBArn"
                       },
                       "index/*"
                     ]

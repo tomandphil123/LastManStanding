@@ -111,7 +111,9 @@ const IndividualLeague = ({
                           <TableCell align='center' >Pick Status</TableCell>
                           <TableCell align='center' >Remaining</TableCell>
                           <TableCell align='center' >Eliminated</TableCell>
-                          <TableCell align='center' >Invitation Code</TableCell>
+                          {leagueInfo['data'][1][0]['admin'] === sub ? (
+                            <TableCell align='center' >Invitation Code</TableCell>
+                          ) : (null)}
                         </TableRow>
                       </TableHead>
                       <TableBody style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
@@ -124,13 +126,15 @@ const IndividualLeague = ({
                           )}
                           <TableCell align='center'>{leagueInfo['data'][1][0]['RemainingPlayers']}</TableCell>
                           <TableCell align='center'>{leagueInfo['data'][1][0]['EliminatedPlayers']}</TableCell>
-                          <TableCell align='center'>{leagueInfo['data'][1][0]['invitationCode']}
-                            <Button onClick={() => {
-                              navigator.clipboard.writeText(leagueInfo['data'][1][0]['invitationCode']);
-                            }} style={{padding: 0, minWidth: '36px'}}>
-                              <FileCopyIcon className='copyToClipBoard'/>
-                            </Button>
-                          </TableCell>
+                          {leagueInfo['data'][1][0]['admin'] === sub ? (
+                            <TableCell align='center'>{leagueInfo['data'][1][0]['invitationCode']}
+                              <Button onClick={() => {
+                                navigator.clipboard.writeText(leagueInfo['data'][1][0]['invitationCode']);
+                              }} style={{padding: 0, minWidth: '36px'}}>
+                                <FileCopyIcon className='copyToClipBoard'/>
+                              </Button>
+                            </TableCell>
+                          ) : (null)}
                         </TableRow>
                       </TableBody>
                     </Table>

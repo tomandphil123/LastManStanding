@@ -50,6 +50,7 @@ const SignUp = () => {
           email: email,
         },
       }).then((response) => {
+        alert('Please verify email before attempting sign in.')
         history.push('/SignIn');
       });
     } catch (e) {

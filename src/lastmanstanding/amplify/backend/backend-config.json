@@ -251,6 +251,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "PlStandingsDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     },
