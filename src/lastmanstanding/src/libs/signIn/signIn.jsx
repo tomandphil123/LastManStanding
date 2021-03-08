@@ -56,7 +56,12 @@ const SignIn = ({
       setUser(user);
       history.push('/');
     } catch (error) {
-      alert(error.message);
+      console.log(error.message)
+      if (error.message == 'User is not confirmed.'){
+        alert('Email address is not verified. Please verify your email.')
+      } else{
+        alert(error.message);
+      }
     }
   };
 

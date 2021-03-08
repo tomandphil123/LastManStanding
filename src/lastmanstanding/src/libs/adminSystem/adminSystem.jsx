@@ -56,10 +56,7 @@ const AdminSystem = ({
 
   return (
     playerRemoval ? (
-      <IconButton
-        aria-label="delete"
-        onClick={() => deleteUser()}
-      >
+      <IconButton onClick={() => { if (window.confirm('Are you sure you want to remove this user from the league?')) deleteUser() } }>
         <DeleteIcon style={{color: 'red'}}/>
       </IconButton>
     ) : (
@@ -68,27 +65,25 @@ const AdminSystem = ({
           title={lockLeague ? ('Unlock League') : ('Lock League')}
           placement="top"
         >
-          <Button onClick={() => toggleLeague()}>
             { lockLeague ? (
-              <LockIcon style={{color: 'white'}}/>
+              <Button onClick={() => { if (window.confirm('Are you sure you want to unlock the league?')) toggleLeague() } }>
+                <LockIcon style={{color: 'white'}}/>
+              </Button>
             ) : (
-              <LockOpenIcon style={{color: 'white'}}/>
+              <Button onClick={() => { if (window.confirm('Are you sure you want to lock the league?')) toggleLeague() } }>
+                <LockOpenIcon style={{color: 'white'}}/>
+              </Button>
             )}
-          </Button>
         </Tooltip>
         <Tooltip title="Reset League" placement="top">
-          <Button
-            onClick={() => resetLeague()}
-          >
+        <Button onClick={() => { if (window.confirm('Are you sure you want to reset the league?')) resetLeague() } }>
             <RotateLeftIcon style={{color: '#ffffff'}}/>
-          </Button>
+        </Button>
         </Tooltip>
         <Tooltip title="Delete League" placement="top">
-          <Button
-            onClick={() => deleteLeague()}
-          >
+        <Button onClick={() => { if (window.confirm('Are you sure you want to delete the league?')) deleteLeague() } }>
             <DeleteIcon style={{color: '#ffffff'}}/>
-          </Button>
+        </Button>
         </Tooltip>
       </div>
     )

@@ -28,6 +28,12 @@ def handler(event, context):
     leaguePlayerResponse = leaguePlayerTable.scan()
     leaguePlayerResults = leaguePlayerResponse['Items']
 
+    standingsTable = dynamodb.Table('PlStandingsDB-develop')
+    standingsResponse = standingsTable.scan()
+    standings = standingsResponse['Items']
+    standingsData = sorted(standings, key = lambda i: int(i['position']))
+
+    print(standings)
     for player in leaguePlayerResults:
       currentPick = player['CurrentPick']
       pickedTeams = player['PickedTeams']
@@ -38,9 +44,14 @@ def handler(event, context):
         pickedTeams.append(currentPick)
 
       else:
-        currentPick = random.choice(unPickedTeams)
-        unPickedTeams.remove(currentPick)
-        pickedTeams.append(currentPick)
+        for team in standingsData:
+          if team['TeamName'] in unPickedTeams:
+            currentPick = team['TeamName']
+            unPickedTeams.remove(currentPick)
+            pickedTeams.append(currentPick)
+            break
+        
+        
 
       leaguePlayerTable.update_item(
         Key={

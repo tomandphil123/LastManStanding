@@ -11,6 +11,7 @@ import axios from 'axios';
 import Leagues from './libs/leagues/leagues';
 import CrestBar from './libs/crestBar/crestBar';
 import SplashScreen from './libs/splashScreen/splashScreen';
+import Alert from '@material-ui/lab/Alert';
 
 class App extends Component {
   state = {
@@ -79,7 +80,7 @@ class App extends Component {
                 <SignUp/>
               </Route>
               <Route path="/Profile">
-                <h1>My Profile</h1>
+              <Alert severity='warning'>Profile Page Coming Soon <span role="img" aria-label="eyes">👀</span></Alert>
               </Route>
               <Route path="/MyLeagues">
                 <Leagues user={authProps.user} results={this.state.premierLeagueInfo}/>
