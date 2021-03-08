@@ -349,10 +349,8 @@ exports[`premierLeagueFixtures Snapshot renders 1`] = `
           />
           <WithStyles(ForwardRef(TableCell))
             align="center"
-            className="tableCellCrest"
-          >
-            VS
-          </WithStyles(ForwardRef(TableCell))>
+            className="tableCellTime"
+          />
           <WithStyles(ForwardRef(TableCell))
             align="center"
             className="tableCellCrest"
