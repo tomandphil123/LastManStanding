@@ -1,5 +1,19 @@
 {
   "permissions": {
+    "function": {
+      "lockLeagues": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "unlockLeagues": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
     "storage": {
       "PlStandingsDB": [
         "create",
@@ -14,6 +28,12 @@
         "delete"
       ],
       "PLFixturesDB": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "SchedulerDB": [
         "create",
         "read",
         "update",
