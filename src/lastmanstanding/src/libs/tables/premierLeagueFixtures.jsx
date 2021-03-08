@@ -23,7 +23,7 @@ function getFixtures(results) {
                   <h1>Home Team</h1>
                 </TableCell>
                 <TableCell align="center" className='tableCellCrest'/>
-                <TableCell align="center" className='tableCellCrest'>VS</TableCell>
+                <TableCell align="center" className='tableCellTime'/>
                 <TableCell align="center" className='tableCellCrest'/>
                 <TableCell align="center" className='tableCell'>
                   <h1>Away Team</h1>
@@ -39,7 +39,7 @@ function getFixtures(results) {
                   <TableCell align="center" className='tableCellCrest'>
                     <img src={item['HomeTeamCrest']} alt= "team crests" height="25px"/>
                   </TableCell>
-                  <TableCell align="center" className='tableCell'>VS</TableCell>
+                  <TableCell align="center" className='tableCellTime'>{item.startTime}</TableCell>
                   <TableCell align="center" className='tableCellCrest'>
                     <img src={item['AwayTeamCrest']} alt= "team crests" height="25px"/>
                   </TableCell>

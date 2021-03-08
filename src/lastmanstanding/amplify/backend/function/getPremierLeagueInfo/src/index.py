@@ -13,12 +13,13 @@ def handler(event, context):
 	table2 = dynamodb.Table('PLFixturesDB-develop')
 	response2 = table2.scan()
 	fixturesData = response2['Items']
+	fixtures = sorted(fixturesData, key = lambda i: i['startTime'])
 
 	table3 = dynamodb.Table('PLResultsDB-develop')
 	response3 = table3.scan()
 	resultsData = response3['Items']
 
-	lst = [standingsData, fixturesData, resultsData]
+	lst = [standingsData, fixtures, resultsData]
 
 	return {
 	'statusCode': 200,
