@@ -135,7 +135,11 @@ def handler(event, context):
 				}
 			)
 		
-		if fixture["matchday"] == fixture["season"]["currentMatchday"]:
+		if fixture["matchday"] == 26:
+			startTime = fixture["utcDate"].split("T")[1].split(":")
+			startTime2 = startTime[0]+":"+startTime[1]
+			startDate = fixture["utcDate"].split("T")[0]
+			# print(startTime2)
 			homeTeam = fixture["homeTeam"]["name"]
 			homeTeamCrest2 = crests[homeTeam]
 			awayTeam = fixture["awayTeam"]["name"]
@@ -155,7 +159,9 @@ def handler(event, context):
 					'AwayTeam': awayTeam,
 					'AwayTeamCrest': awayTeamCrest2,
 					'GameWeek': str(gameWeek),
-					'createdTime': str(datetime.today())
+					'createdTime': str(datetime.today()),
+					'startTime': str(startTime2),
+					'startDate': str(startDate)
 				}
 			)
 
