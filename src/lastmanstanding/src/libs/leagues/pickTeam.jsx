@@ -46,6 +46,10 @@ const useStyles = makeStyles((theme) => ({
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
   },
+  margin:{
+    height:'26px',
+    fontSize: '13px'
+  }
 }));
 
 const PickTeam = ({
@@ -101,14 +105,14 @@ const PickTeam = ({
                       data-automation={item.HomeTeam}
                     >
                       {window.screen.width <= 650 ? (
-                        <img src={item['HomeTeamCrest']} alt= 'team crests' height='25px'/>
+                        <img src={item['HomeTeamCrest']} alt= 'team crests' height='22px'/>
                       ) : (
                         item.HomeTeam
                     )}
                     </BootstrapButton>
                   ) : (
                     window.screen.width <= 650 ? (
-                      <img src={item['HomeTeamCrest']} alt= 'team crests' height='25px'/>
+                      <img src={item['HomeTeamCrest']} alt= 'team crests' height='22px'/>
                     ) : (
                       item.HomeTeam
                   ))}
@@ -117,7 +121,7 @@ const PickTeam = ({
                     {window.screen.width <= 650 ? (
                         null
                       ) : (
-                        <img src={item['HomeTeamCrest']} alt= 'team crests' height='25px'/>
+                        <img src={item['HomeTeamCrest']} alt= 'team crests' height='22px'/>
                     )}
                   </TableCell>
                   <TableCell align='center' className='tableCell'>VS</TableCell>
@@ -125,7 +129,7 @@ const PickTeam = ({
                     {window.screen.width <= 650 ? (
                         null
                       ) : (
-                        <img src={item['AwayTeamCrest']} alt= 'team crests' height='25px'/>
+                        <img src={item['AwayTeamCrest']} alt= 'team crests' height='22px'/>
                     )}
                   </TableCell>
                   <TableCell align='center' className='tableCell'>
@@ -139,14 +143,14 @@ const PickTeam = ({
                       data-automation={item.AwayTeam}
                     >
                       {window.screen.width <= 650 ? (
-                        <img src={item['AwayTeamCrest']} alt= 'team crests' height='25px'/>
+                        <img src={item['AwayTeamCrest']} alt= 'team crests' height='22px'/>
                       ) : (
                         item.AwayTeam
                     )}
                     </BootstrapButton>
                   ) : (
                     window.screen.width <= 650 ? (
-                      <img src={item['AwayTeamCrest']} alt= 'team crests' height='25px'/>
+                      <img src={item['AwayTeamCrest']} alt= 'team crests' height='22px'/>
                     ) : (
                       item.AwayTeam
                   ))}
