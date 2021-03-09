@@ -37,6 +37,10 @@ const awsmobile = {
         {
             "tableName": "PLFixturesDB-develop",
             "region": "eu-west-1"
+        },
+        {
+            "tableName": "SchedulerDB-develop",
+            "region": "eu-west-1"
         }
     ],
     "aws_cloud_logic_custom": [

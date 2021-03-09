@@ -6,6 +6,20 @@
       "service": "Lambda",
       "dependsOn": [
         {
+          "category": "function",
+          "resourceName": "lockLeagues",
+          "attributes": [
+            "Name"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "unlockLeagues",
+          "attributes": [
+            "Name"
+          ]
+        },
+        {
           "category": "storage",
           "resourceName": "PlStandingsDB",
           "attributes": [
@@ -24,6 +38,14 @@
         {
           "category": "storage",
           "resourceName": "PLFixturesDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "SchedulerDB",
           "attributes": [
             "Name",
             "Arn"
@@ -377,6 +399,10 @@
       "providerPlugin": "awscloudformation"
     },
     "PLFixturesDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    },
+    "SchedulerDB": {
       "service": "DynamoDB",
       "providerPlugin": "awscloudformation"
     }

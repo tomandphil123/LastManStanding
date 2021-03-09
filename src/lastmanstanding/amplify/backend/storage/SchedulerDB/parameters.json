@@ -1,0 +1,5 @@
+{
+    "tableName": "SchedulerDB",
+    "partitionKeyName": "GamePeriod",
+    "partitionKeyType": "S"
+}

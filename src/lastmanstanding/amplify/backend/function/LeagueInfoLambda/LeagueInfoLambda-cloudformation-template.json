@@ -33,6 +33,22 @@
     "storagePLFixturesDBArn": {
       "Type": "String",
       "Default": "storagePLFixturesDBArn"
+    },
+    "storageSchedulerDBName": {
+      "Type": "String",
+      "Default": "storageSchedulerDBName"
+    },
+    "storageSchedulerDBArn": {
+      "Type": "String",
+      "Default": "storageSchedulerDBArn"
+    },
+    "functionlockLeaguesName": {
+      "Type": "String",
+      "Default": "functionlockLeaguesName"
+    },
+    "functionunlockLeaguesName": {
+      "Type": "String",
+      "Default": "functionunlockLeaguesName"
     }
   },
   "Conditions": {
@@ -97,6 +113,18 @@
             },
             "STORAGE_PLFIXTURESDB_ARN": {
               "Ref": "storagePLFixturesDBArn"
+            },
+            "STORAGE_SCHEDULERDB_NAME": {
+              "Ref": "storageSchedulerDBName"
+            },
+            "STORAGE_SCHEDULERDB_ARN": {
+              "Ref": "storageSchedulerDBArn"
+            },
+            "FUNCTION_LOCKLEAGUES_NAME": {
+              "Ref": "functionlockLeaguesName"
+            },
+            "FUNCTION_UNLOCKLEAGUES_NAME": {
+              "Ref": "functionunlockLeaguesName"
             }
           }
         },
@@ -111,7 +139,7 @@
         "Timeout": "60",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
-          "S3Key": "amplify-builds/LeagueInfoLambda-6b6b6c7036586d66462b-build.zip"
+          "S3Key": "amplify-builds/LeagueInfoLambda-59316e51644439774175-build.zip"
         }
       }
     },
@@ -215,6 +243,76 @@
             {
               "Effect": "Allow",
               "Action": [
+                "lambda:Create*",
+                "lambda:Put*",
+                "lambda:Add*",
+                "lambda:Get*",
+                "lambda:List*",
+                "lambda:Invoke*",
+                "lambda:Update*",
+                "lambda:Delete*",
+                "lambda:Remove*"
+              ],
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:lambda:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":function:",
+                      {
+                        "Ref": "functionlockLeaguesName"
+                      }
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "lambda:Create*",
+                "lambda:Put*",
+                "lambda:Add*",
+                "lambda:Get*",
+                "lambda:List*",
+                "lambda:Invoke*",
+                "lambda:Update*",
+                "lambda:Delete*",
+                "lambda:Remove*"
+              ],
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:lambda:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":function:",
+                      {
+                        "Ref": "functionunlockLeaguesName"
+                      }
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
                 "dynamodb:Put*",
                 "dynamodb:Create*",
                 "dynamodb:BatchWriteItem",
@@ -304,6 +402,39 @@
                     [
                       {
                         "Ref": "storagePLFixturesDBArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*",
+                "dynamodb:Delete*"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageSchedulerDBArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageSchedulerDBArn"
                       },
                       "index/*"
                     ]
