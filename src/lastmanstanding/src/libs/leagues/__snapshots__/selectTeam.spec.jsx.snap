@@ -7,9 +7,9 @@ exports[`pickTeam Snapshot renders teams 1`] = `
   style={
     Object {
       "backgroundColor": "#490050",
-      "borderRadius": "12px",
       "color": "#fff",
       "fontWeight": "bold",
+      "height": "30px",
       "marginTop": "10px",
       "padding": "10px",
     }

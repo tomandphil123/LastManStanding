@@ -17,7 +17,7 @@ const CrestBar = () => {
         .then((response) => {
           setCrests(response['data']);
         });
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', handleResize);
   }, screenWidth);
 
   return (

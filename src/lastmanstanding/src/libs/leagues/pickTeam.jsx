@@ -11,6 +11,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
+import './pickTeam.css';
 
 const BootstrapButton = withStyles({
   root: {
@@ -41,12 +42,13 @@ const BootstrapButton = withStyles({
 })(Button);
 
 const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
+  },
+  margin:{
+    height:'26px',
+    fontSize: '13px'
   }
 }));
 
@@ -73,27 +75,27 @@ const PickTeam = ({
   const displayTeams = (teams) => {
     return (
       <>
-      <TableContainer component={Paper} className='tableContainer'>
-        <h1 className='h1'>Pick Team</h1>
-        <Table aria-label='customized table' className='table'>
-          <TableHead>
-            <TableRow className='tableRowTitles'>
-              <TableCell align='center' height='auto' className='tableCell'>
-                <h1>Home Team</h1>
-              </TableCell>
-              <TableCell align='center' className='tableCellCrest'/>
-              <TableCell align='center' className='tableCellCrest'>VS</TableCell>
-              <TableCell align='center' className='tableCellCrest'/>
-              <TableCell align='center' className='tableCell'>
-                <h1>Away Team</h1>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody className='tableBody' style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
-            {fixtures['data'][1].map((item) => (
-              <TableRow key={item.HomeTeam}>
+        <TableContainer component={Paper} className='tableContainer'>
+          <h1 className='h1'>Pick Team</h1>
+          <Table aria-label='customized table' className='table'>
+            <TableHead>
+              <TableRow className='tableRowTitles'>
+                <TableCell align='center' height='auto' className='tableCell'>
+                  <h1>Home Team</h1>
+                </TableCell>
+                <TableCell align='center' className='tableCellCrest'/>
+                <TableCell align='center' className='tableCellCrest'>VS</TableCell>
+                <TableCell align='center' className='tableCellCrest'/>
                 <TableCell align='center' className='tableCell'>
-                  {teams.includes(item.HomeTeam) ? (
+                  <h1>Away Team</h1>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody className='tableBody' style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
+              {fixtures['data'][1].map((item) => (
+                <TableRow key={item.HomeTeam}>
+                  <TableCell align='center' className='tableCell'>
+                    {teams.includes(item.HomeTeam) ? (
                     <BootstrapButton
                       key={item}
                       variant='contained'
@@ -102,19 +104,36 @@ const PickTeam = ({
                       onClick={() => selectTeam(item.HomeTeam)}
                       data-automation={item.HomeTeam}
                     >
-                      {item.HomeTeam}
+                      {window.screen.width <= 650 ? (
+                        <img src={item['HomeTeamCrest']} alt= 'team crests' height='22px'/>
+                      ) : (
+                        item.HomeTeam
+                    )}
                     </BootstrapButton>
-                  ) : (item.HomeTeam)}
-                </TableCell>
-                <TableCell align='center' className='tableCellCrest'>
-                  <img src={item['HomeTeamCrest']} alt= 'team crests' height='25px'/>
-                </TableCell>
-                <TableCell align='center' className='tableCell'>VS</TableCell>
-                <TableCell align='center' className='tableCellCrest'>
-                  <img src={item['AwayTeamCrest']} alt= 'team crests' height='25px'/>
-                </TableCell>
-                <TableCell align='center' className='tableCell'>
-                {teams.includes(item.AwayTeam) ? (
+                  ) : (
+                    window.screen.width <= 650 ? (
+                      <img src={item['HomeTeamCrest']} alt= 'team crests' height='22px'/>
+                    ) : (
+                      item.HomeTeam
+                  ))}
+                  </TableCell>
+                  <TableCell align='center' className='tableCellCrest'>
+                    {window.screen.width <= 650 ? (
+                        null
+                      ) : (
+                        <img src={item['HomeTeamCrest']} alt= 'team crests' height='22px'/>
+                    )}
+                  </TableCell>
+                  <TableCell align='center' className='tableCell'>VS</TableCell>
+                  <TableCell align='center' className='tableCellCrest'>
+                    {window.screen.width <= 650 ? (
+                        null
+                      ) : (
+                        <img src={item['AwayTeamCrest']} alt= 'team crests' height='22px'/>
+                    )}
+                  </TableCell>
+                  <TableCell align='center' className='tableCell'>
+                    {teams.includes(item.AwayTeam) ? (
                     <BootstrapButton
                       key={item}
                       variant='contained'
@@ -123,15 +142,24 @@ const PickTeam = ({
                       onClick={() => selectTeam(item.AwayTeam)}
                       data-automation={item.AwayTeam}
                     >
-                      {item.AwayTeam}
+                      {window.screen.width <= 650 ? (
+                        <img src={item['AwayTeamCrest']} alt= 'team crests' height='22px'/>
+                      ) : (
+                        item.AwayTeam
+                    )}
                     </BootstrapButton>
-                  ) : (item.AwayTeam)}
-                </TableCell>
-              </TableRow>))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </>
+                  ) : (
+                    window.screen.width <= 650 ? (
+                      <img src={item['AwayTeamCrest']} alt= 'team crests' height='22px'/>
+                    ) : (
+                      item.AwayTeam
+                  ))}
+                  </TableCell>
+                </TableRow>))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </>
     );
   };
 
