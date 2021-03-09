@@ -386,26 +386,23 @@ exports[`pickTeam Snapshot renders teams 1`] = `
               className="tableCell"
             >
               <WithStyles(WithStyles(ForwardRef(Button)))
-                className="makeStyles-margin-1"
                 data-automation="Arsenal FC"
                 disableRipple={true}
                 key="[object Object]"
                 onClick={[Function]}
                 variant="contained"
               >
-                Arsenal FC
+                <img
+                  alt="team crests"
+                  height="25px"
+                  src="https://crests.football-data.org/57.svg"
+                />
               </WithStyles(WithStyles(ForwardRef(Button)))>
             </WithStyles(ForwardRef(TableCell))>
             <WithStyles(ForwardRef(TableCell))
               align="center"
               className="tableCellCrest"
-            >
-              <img
-                alt="team crests"
-                height="25px"
-                src="https://crests.football-data.org/57.svg"
-              />
-            </WithStyles(ForwardRef(TableCell))>
+            />
             <WithStyles(ForwardRef(TableCell))
               align="center"
               className="tableCell"
@@ -415,18 +412,16 @@ exports[`pickTeam Snapshot renders teams 1`] = `
             <WithStyles(ForwardRef(TableCell))
               align="center"
               className="tableCellCrest"
+            />
+            <WithStyles(ForwardRef(TableCell))
+              align="center"
+              className="tableCell"
             >
               <img
                 alt="team crests"
                 height="25px"
                 src="https://crests.football-data.org/341.svg"
               />
-            </WithStyles(ForwardRef(TableCell))>
-            <WithStyles(ForwardRef(TableCell))
-              align="center"
-              className="tableCell"
-            >
-              Leeds United FC
             </WithStyles(ForwardRef(TableCell))>
           </WithStyles(ForwardRef(TableRow))>
           <WithStyles(ForwardRef(TableRow))
@@ -436,18 +431,16 @@ exports[`pickTeam Snapshot renders teams 1`] = `
               align="center"
               className="tableCell"
             >
-              Brighton FC
-            </WithStyles(ForwardRef(TableCell))>
-            <WithStyles(ForwardRef(TableCell))
-              align="center"
-              className="tableCellCrest"
-            >
               <img
                 alt="team crests"
                 height="25px"
                 src="https://crests.football-data.org/397.svg"
               />
             </WithStyles(ForwardRef(TableCell))>
+            <WithStyles(ForwardRef(TableCell))
+              align="center"
+              className="tableCellCrest"
+            />
             <WithStyles(ForwardRef(TableCell))
               align="center"
               className="tableCell"
@@ -457,26 +450,23 @@ exports[`pickTeam Snapshot renders teams 1`] = `
             <WithStyles(ForwardRef(TableCell))
               align="center"
               className="tableCellCrest"
-            >
-              <img
-                alt="team crests"
-                height="25px"
-                src="https://crests.football-data.org/58.svg"
-              />
-            </WithStyles(ForwardRef(TableCell))>
+            />
             <WithStyles(ForwardRef(TableCell))
               align="center"
               className="tableCell"
             >
               <WithStyles(WithStyles(ForwardRef(Button)))
-                className="makeStyles-margin-1"
                 data-automation="Aston Villa FC"
                 disableRipple={true}
                 key="[object Object]"
                 onClick={[Function]}
                 variant="contained"
               >
-                Aston Villa FC
+                <img
+                  alt="team crests"
+                  height="25px"
+                  src="https://crests.football-data.org/58.svg"
+                />
               </WithStyles(WithStyles(ForwardRef(Button)))>
             </WithStyles(ForwardRef(TableCell))>
           </WithStyles(ForwardRef(TableRow))>
@@ -488,26 +478,23 @@ exports[`pickTeam Snapshot renders teams 1`] = `
               className="tableCell"
             >
               <WithStyles(WithStyles(ForwardRef(Button)))
-                className="makeStyles-margin-1"
                 data-automation="Chelsea FC"
                 disableRipple={true}
                 key="[object Object]"
                 onClick={[Function]}
                 variant="contained"
               >
-                Chelsea FC
+                <img
+                  alt="team crests"
+                  height="25px"
+                  src="https://crests.football-data.org/61.svg"
+                />
               </WithStyles(WithStyles(ForwardRef(Button)))>
             </WithStyles(ForwardRef(TableCell))>
             <WithStyles(ForwardRef(TableCell))
               align="center"
               className="tableCellCrest"
-            >
-              <img
-                alt="team crests"
-                height="25px"
-                src="https://crests.football-data.org/61.svg"
-              />
-            </WithStyles(ForwardRef(TableCell))>
+            />
             <WithStyles(ForwardRef(TableCell))
               align="center"
               className="tableCell"
@@ -517,26 +504,23 @@ exports[`pickTeam Snapshot renders teams 1`] = `
             <WithStyles(ForwardRef(TableCell))
               align="center"
               className="tableCellCrest"
-            >
-              <img
-                alt="team crests"
-                height="25px"
-                src="https://crests.football-data.org/67.svg"
-              />
-            </WithStyles(ForwardRef(TableCell))>
+            />
             <WithStyles(ForwardRef(TableCell))
               align="center"
               className="tableCell"
             >
               <WithStyles(WithStyles(ForwardRef(Button)))
-                className="makeStyles-margin-1"
                 data-automation="Newcastle United FC"
                 disableRipple={true}
                 key="[object Object]"
                 onClick={[Function]}
                 variant="contained"
               >
-                Newcastle United FC
+                <img
+                  alt="team crests"
+                  height="25px"
+                  src="https://crests.football-data.org/67.svg"
+                />
               </WithStyles(WithStyles(ForwardRef(Button)))>
             </WithStyles(ForwardRef(TableCell))>
           </WithStyles(ForwardRef(TableRow))>

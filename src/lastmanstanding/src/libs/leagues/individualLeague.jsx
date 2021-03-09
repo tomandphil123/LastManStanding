@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
-  }
+    overflow: 'scroll',
+  },
 }));
 
 const IndividualLeague = ({
@@ -70,7 +71,7 @@ const IndividualLeague = ({
             <div style={{backgroundColor: '#fff'}}>
               <Grid container direction='column' spacing={4}>
                 <Grid item xs={12} md={12}>
-                {leagueInfo['data'][1][0]['Winner'] !== '-' ? (
+                  {leagueInfo['data'][1][0]['Winner'] !== '-' ? (
                         <Alert severity='success'>🏆 Winner Winner Chicken Dinner {leagueInfo['data'][1][0]['Winner']} 🏆</Alert>
                     ) : (
                       null
@@ -141,7 +142,7 @@ const IndividualLeague = ({
                     <Table>
                       <TableHead>
                         <TableRow className="tableRowTitles">
-                        <TableCell align='center'>Status</TableCell>
+                          <TableCell align='center'>Status</TableCell>
                           <TableCell height='auto' align='left'>
                             Players
                           </TableCell>
@@ -177,20 +178,20 @@ const IndividualLeague = ({
                               ) : (
                                 item['CurrentPick'] === '-' ? (
                                   <Button
-                                    style={{backgroundColor: '#490050', color: '#fff', padding:'8px', fontWeight: 'bold', borderRadius: '9px'}}
+                                    style={{backgroundColor: '#490050', height: '30px', color: '#fff', padding: '10px', fontWeight: 'bold'}}
                                     onClick={() => setPickButton(!pickButton)}
                                   >
                                       Pick Team
                                   </Button>
                                 ) : (
                                   <>
-                                  {item['CurrentPick']}
-                                  <Button
-                                    onClick={() => setPickButton(!pickButton)}
-                                    className = 'updateButton'
-                                  >
-                                    <AddCircleOutlineIcon/>
-                                  </Button>
+                                    {item['CurrentPick']}
+                                    <Button
+                                      onClick={() => setPickButton(!pickButton)}
+                                      className = 'updateButton'
+                                    >
+                                      <AddCircleOutlineIcon/>
+                                    </Button>
                                   </>
                                 )
                               )) : (item['CurrentPick'])}
@@ -217,26 +218,26 @@ const IndividualLeague = ({
                     <div key={item['Username']}>
                       {pickButton === true && username === item['Username']? (
                         <>
-                        <Backdrop className={classes.backdrop} open={pickButton}>
-                          <Card className='pickTeamCard'>
-                            <CardContent>
-                            <div align='right'>
-                              <Button onClick={() => setPickButton(!pickButton)}>
-                                <CloseIcon/>
-                              </Button>
-                            </div>
-                              <PickTeam
-                                teams={item['UnpickedTeams']}
-                                setPickButton={setPickButton}
-                                setPick={setPick}
-                                sub={sub}
-                                leagueID={leagueInfo['data'][0][0]['LeagueID']}
-                                setPermPick={setPermPick}
-                                fixtures={fixtures}
+                          <Backdrop className={classes.backdrop} open={pickButton}>
+                            <Card className='pickTeamCard'>
+                              <CardContent>
+                                <div align='right'>
+                                  <Button onClick={() => setPickButton(!pickButton)}>
+                                    <CloseIcon/>
+                                  </Button>
+                                </div>
+                                <PickTeam
+                                  teams={item['UnpickedTeams']}
+                                  setPickButton={setPickButton}
+                                  setPick={setPick}
+                                  sub={sub}
+                                  leagueID={leagueInfo['data'][0][0]['LeagueID']}
+                                  setPermPick={setPermPick}
+                                  fixtures={fixtures}
                                 />
-                            </CardContent>
-                          </Card>
-                        </Backdrop>
+                              </CardContent>
+                            </Card>
+                          </Backdrop>
                         </>
                       ) : (
                       null
