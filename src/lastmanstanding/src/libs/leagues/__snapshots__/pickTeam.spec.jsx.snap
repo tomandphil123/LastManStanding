@@ -386,6 +386,7 @@ exports[`pickTeam Snapshot renders teams 1`] = `
               className="tableCell"
             >
               <WithStyles(WithStyles(ForwardRef(Button)))
+                className="makeStyles-margin-2"
                 data-automation="Arsenal FC"
                 disableRipple={true}
                 key="[object Object]"
@@ -394,7 +395,7 @@ exports[`pickTeam Snapshot renders teams 1`] = `
               >
                 <img
                   alt="team crests"
-                  height="25px"
+                  height="22px"
                   src="https://crests.football-data.org/57.svg"
                 />
               </WithStyles(WithStyles(ForwardRef(Button)))>
@@ -419,7 +420,7 @@ exports[`pickTeam Snapshot renders teams 1`] = `
             >
               <img
                 alt="team crests"
-                height="25px"
+                height="22px"
                 src="https://crests.football-data.org/341.svg"
               />
             </WithStyles(ForwardRef(TableCell))>
@@ -433,7 +434,7 @@ exports[`pickTeam Snapshot renders teams 1`] = `
             >
               <img
                 alt="team crests"
-                height="25px"
+                height="22px"
                 src="https://crests.football-data.org/397.svg"
               />
             </WithStyles(ForwardRef(TableCell))>
@@ -456,6 +457,7 @@ exports[`pickTeam Snapshot renders teams 1`] = `
               className="tableCell"
             >
               <WithStyles(WithStyles(ForwardRef(Button)))
+                className="makeStyles-margin-2"
                 data-automation="Aston Villa FC"
                 disableRipple={true}
                 key="[object Object]"
@@ -464,7 +466,7 @@ exports[`pickTeam Snapshot renders teams 1`] = `
               >
                 <img
                   alt="team crests"
-                  height="25px"
+                  height="22px"
                   src="https://crests.football-data.org/58.svg"
                 />
               </WithStyles(WithStyles(ForwardRef(Button)))>
@@ -478,6 +480,7 @@ exports[`pickTeam Snapshot renders teams 1`] = `
               className="tableCell"
             >
               <WithStyles(WithStyles(ForwardRef(Button)))
+                className="makeStyles-margin-2"
                 data-automation="Chelsea FC"
                 disableRipple={true}
                 key="[object Object]"
@@ -486,7 +489,7 @@ exports[`pickTeam Snapshot renders teams 1`] = `
               >
                 <img
                   alt="team crests"
-                  height="25px"
+                  height="22px"
                   src="https://crests.football-data.org/61.svg"
                 />
               </WithStyles(WithStyles(ForwardRef(Button)))>
@@ -510,6 +513,7 @@ exports[`pickTeam Snapshot renders teams 1`] = `
               className="tableCell"
             >
               <WithStyles(WithStyles(ForwardRef(Button)))
+                className="makeStyles-margin-2"
                 data-automation="Newcastle United FC"
                 disableRipple={true}
                 key="[object Object]"
@@ -518,7 +522,7 @@ exports[`pickTeam Snapshot renders teams 1`] = `
               >
                 <img
                   alt="team crests"
-                  height="25px"
+                  height="22px"
                   src="https://crests.football-data.org/67.svg"
                 />
               </WithStyles(WithStyles(ForwardRef(Button)))>
