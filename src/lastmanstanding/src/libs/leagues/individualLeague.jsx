@@ -110,8 +110,16 @@ const IndividualLeague = ({
                         <TableRow className="tableRowTitles">
                           <TableCell align='center' >Admin</TableCell>
                           <TableCell align='center' >Pick Status</TableCell>
-                          <TableCell align='center' >Remaining</TableCell>
-                          <TableCell align='center' >Eliminated</TableCell>
+                          <TableCell align='center' >
+                            {window.screen.width >= 550 ? (
+                              <div>Remaining</div>
+                            ) :(null)}
+                          </TableCell>
+                          <TableCell align='center'>
+                            {window.screen.width >= 550 ? (
+                              <div>Eliminated</div>
+                            ) :(null)}
+                          </TableCell>
                           {leagueInfo['data'][1][0]['admin'] === sub ? (
                             <TableCell align='center' >Invitation Code</TableCell>
                           ) : (null)}
@@ -125,8 +133,16 @@ const IndividualLeague = ({
                           ) : (
                             <TableCell align='center'>Unlocked</TableCell>
                           )}
-                          <TableCell align='center'>{leagueInfo['data'][1][0]['RemainingPlayers']}</TableCell>
-                          <TableCell align='center'>{leagueInfo['data'][1][0]['EliminatedPlayers']}</TableCell>
+                          <TableCell align='center'>
+                            {window.screen.width >= 550 ? (
+                                leagueInfo['data'][1][0]['RemainingPlayers']
+                            ):( null)}
+                          </TableCell>
+                          <TableCell align='center'>
+                            {window.screen.width >= 550 ? (
+                                leagueInfo['data'][1][0]['EliminatedPlayers']
+                            ):( null)}
+                          </TableCell>
                           {leagueInfo['data'][1][0]['admin'] === sub ? (
                             <TableCell align='center'>{leagueInfo['data'][1][0]['invitationCode']}
                               <Button onClick={() => {

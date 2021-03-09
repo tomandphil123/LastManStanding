@@ -1,3 +1,8 @@
-.cardImage{
-    height: auto
+.MuiPaper-root.MuiCard-root.ruleCard.MuiPaper-elevation1.MuiPaper-rounded {
+    height: 335px;
+}
+@media only screen and (max-width: 670px) {
+    .MuiPaper-root.MuiCard-root.ruleCard.MuiPaper-elevation1.MuiPaper-rounded {
+        height: auto;
+    }
 }
