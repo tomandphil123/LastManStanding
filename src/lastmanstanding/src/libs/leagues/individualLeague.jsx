@@ -71,7 +71,7 @@ const IndividualLeague = ({
             <div style={{backgroundColor: '#fff'}}>
               <Grid container direction='column' spacing={4}>
                 <Grid item xs={12} md={12}>
-                <Alert severity='warning'>Deadline for Picks - 12th March 18:00!</Alert>
+                {/* <Alert severity='warning'>Deadline for Picks - 12th March 18:00!</Alert> */}
                   {leagueInfo['data'][1][0]['Winner'] !== '-' ? (
                         <Alert severity='success'>🏆 Winner Winner Chicken Dinner {leagueInfo['data'][1][0]['Winner']} 🏆</Alert>
                     ) : (
