@@ -13,7 +13,7 @@ def handler(event, context):
 	response = json.loads(connection.getresponse().read().decode())
 	connection.request('GET', '/v2/competitions/PL/matches', None, headers )
 	response2 = json.loads(connection.getresponse().read().decode())
-
+	print(response2)
 	abbreviations = {
 		'West Bromwich Albion FC': 'West Brom FC',
 		'Wolverhampton Wanderers FC': 'Wolves FC',
@@ -46,22 +46,32 @@ def handler(event, context):
 	dynamodb = boto3.resource('dynamodb')
 	schedulerDB = 'SchedulerDB-develop'
 	schedulerTable = dynamodb.Table(schedulerDB)
-	schedulerScan = schedulerTable.scan(AttributesToGet=['GameWeek'])
+	schedulerScan = schedulerTable.scan()
 	scheduler = schedulerScan['Items']
-	gamePeriod = scheduler[0]['GameWeek']
+	currentGameWeek = scheduler[0]['CurrentGameWeek']
+	previousGameWeek = scheduler[0]['PreviousGameWeek']
+	nextGameWeek = scheduler[0]['NextGameWeek']
+	lastMatch = scheduler[0]['LastGame']
+	print(currentGameWeek)
+	print(lastMatch)
+	
 	currWeek = response2['matches'][0]['season']['currentMatchday']
+	updated = False
+	
+	for fixture in response2['matches']:
+		if str(fixture['matchday']) == str(currentGameWeek) and str(fixture['homeTeam']['name']) == str(lastMatch) and str(fixture['score']['fullTime']['homeTeam']) != 'None':
+			updated = True
+			break
 
-
-	if str(currWeek) != str(gamePeriod):
+	if updated == True:
 		for fixture in response2['matches']:
-			if fixture['matchday'] == fixture['season']['currentMatchday']:
-				print(fixture['homeTeam']['name'], fixture['awayTeam']['name'])
+			if str(fixture['matchday']) == str(nextGameWeek):
 				firstGame = fixture['utcDate'].split('T')[1].split(':')
-				firstGameTime = firstGame[0] + ':' + firstGame[1]
+				firstGameTime = str(int(firstGame[0]) + 1) + ':' + firstGame[1]
+				deadline = str(int(firstGame[0]) - 1) + ':' + firstGame[1]
+				print(deadline)
 				firstGameDate = fixture['utcDate'].split('T')[0]
 				break
-
-
 
 		for team in response['standings'][0]['table']:
 			if team['team']['name'] in abbreviations:
@@ -77,7 +87,6 @@ def handler(event, context):
 			points = team['points']
 			goalDifference = team['goalDifference']
 
-			
 
 			tableName = 'PlStandingsDB-develop'
 			table = dynamodb.Table(tableName)
@@ -102,6 +111,7 @@ def handler(event, context):
 		FixturesTable = dynamodb.Table(tableName1)
 		tableName2 = 'PLResultsDB-develop'
 		ResultsTable = dynamodb.Table(tableName2)
+		
 		scan2 = FixturesTable.scan()
 		with FixturesTable.batch_writer() as batch:
 			for each in scan2['Items']:
@@ -113,11 +123,9 @@ def handler(event, context):
 				batch.delete_item(Key={'MatchID':each['MatchID']})
 
 		for fixture in response2['matches']:
-			if fixture['matchday'] > fixture['season']['currentMatchday'] + 2:
-				break
-			# hard coded, change
-			if str(fixture['matchday']) == str(gamePeriod):
+			if str(fixture['matchday']) == str(currentGameWeek):
 				homeTeam = fixture['homeTeam']['name']
+				
 				homeTeamCrest1 = crests[homeTeam]
 				awayTeam = fixture['awayTeam']['name']
 				awayTeamCrest1 = crests[awayTeam]
@@ -126,7 +134,6 @@ def handler(event, context):
 				if awayTeam in abbreviations:
 					awayTeam = abbreviations[awayTeam]
 
-				gameWeek = fixture['season']['currentMatchday']
 				homeTeamScore = fixture['score']['fullTime']['homeTeam']
 				awayTeamScore = fixture['score']['fullTime']['awayTeam']
 				if homeTeamScore == None and awayTeamScore == None:
@@ -146,20 +153,21 @@ def handler(event, context):
 						'HomeTeamCrest': homeTeamCrest1,
 						'AwayTeam': awayTeam,
 						'AwayTeamCrest': awayTeamCrest1,
-						'GameWeek': str(gameWeek),
+						'GameWeek': str(currentGameWeek),
 						'Winner': winner,
 						'HomeScore': str(homeTeamScore),
 						'AwayScore': str(awayTeamScore),
 						'createdTime': str(datetime.today())
 					}
 				)
-			# hard coded, change
-			if fixture['matchday'] == fixture['season']['currentMatchday']:
+				
+			if str(fixture['matchday']) == str(nextGameWeek):
 				startTime = fixture['utcDate'].split('T')[1].split(':')
-				startTime2 = startTime[0]+':'+startTime[1]
+				startTime2 = str(int(startTime[0]) + 1) +':'+startTime[1]
 				startDate = fixture['utcDate'].split('T')[0]
-				# print(startTime2)
+
 				homeTeam = fixture['homeTeam']['name']
+				lastMatch = homeTeam
 				homeTeamCrest2 = crests[homeTeam]
 				awayTeam = fixture['awayTeam']['name']
 				awayTeamCrest2 = crests[awayTeam]
@@ -177,36 +185,43 @@ def handler(event, context):
 						'HomeTeamCrest': homeTeamCrest2,
 						'AwayTeam': awayTeam,
 						'AwayTeamCrest': awayTeamCrest2,
-						'GameWeek': str(gameWeek),
+						'GameWeek': str(nextGameWeek),
 						'createdTime': str(datetime.today()),
 						'startTime': str(startTime2),
 						'startDate': str(startDate)
 					}
 				)
 		
-		lambda_client = boto3.client('lambda')
-		lambda_client.invoke(
-			FunctionName = 'arn:aws:lambda:eu-west-1:706350010776:function:unlockLeagues-develop',
-		)
+		# lambda_client = boto3.client('lambda')
+		# lambda_client.invoke(
+		# 	FunctionName = 'arn:aws:lambda:eu-west-1:706350010776:function:unlockLeagues-develop',
+		# )
 		
 		schedulerTable.update_item(
 			Key={
 			'GamePeriod': 'Testing'
 			},
-			UpdateExpression='set GameWeek=:val1, Deadline=:val2',
+			UpdateExpression='set CurrentGameWeek=:val1, FirstGameTime=:val2, NextGameWeek=:val3, PreviousGameWeek=:val4, LastGame=:val5, Deadline=:val6',
 			ExpressionAttributeValues={
-				':val1': str(currWeek),
-				':val2': str(firstGameTime + " " + firstGameDate)
+				':val1': str(nextGameWeek),
+				':val2': str(firstGameTime),
+				':val3': str(int(nextGameWeek)+1),
+				':val4': str(currentGameWeek),
+				':val5': str(lastMatch),
+				':val6': str(deadline + " " + firstGameDate)
 			},
 			ReturnValues='UPDATED_NEW'
 		)
 
 		minutes = firstGameTime.split(':')[1]
 		hours = firstGameTime.split(':')[0]
+		hours = str(int(hours) - 2)
+		print(hours)
 		dayOfMonth = firstGameDate.split('-')[2]
 		month = firstGameDate.split('-')[1]
 		year = firstGameDate.split('-')[0]
 		myCron = "cron({} {} {} {} ? {})".format(minutes,hours,dayOfMonth,month,year)
+		print(myCron)
 
 		client = boto3.client('events')
 		rule = client.put_rule(
@@ -238,3 +253,4 @@ def handler(event, context):
 	return {
 	'message': 'Hello from your new Amplify Python lambda!'
 	}
+
