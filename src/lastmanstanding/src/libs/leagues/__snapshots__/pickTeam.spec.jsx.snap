@@ -337,6 +337,12 @@ exports[`pickTeam Snapshot renders teams 1`] = `
           >
             <WithStyles(ForwardRef(TableCell))
               align="center"
+              className="tableCellProb"
+            >
+              %
+            </WithStyles(ForwardRef(TableCell))>
+            <WithStyles(ForwardRef(TableCell))
+              align="center"
               className="tableCell"
               height="auto"
             >
@@ -366,6 +372,12 @@ exports[`pickTeam Snapshot renders teams 1`] = `
                 Away Team
               </h1>
             </WithStyles(ForwardRef(TableCell))>
+            <WithStyles(ForwardRef(TableCell))
+              align="center"
+              className="tableCellProb"
+            >
+              %
+            </WithStyles(ForwardRef(TableCell))>
           </WithStyles(ForwardRef(TableRow))>
         </WithStyles(ForwardRef(TableHead))>
         <WithStyles(ForwardRef(TableBody))
@@ -381,6 +393,12 @@ exports[`pickTeam Snapshot renders teams 1`] = `
           <WithStyles(ForwardRef(TableRow))
             key="Arsenal FC"
           >
+            <WithStyles(ForwardRef(TableCell))
+              align="center"
+              className="tableCellProb"
+            >
+              %
+            </WithStyles(ForwardRef(TableCell))>
             <WithStyles(ForwardRef(TableCell))
               align="center"
               className="tableCell"
@@ -424,10 +442,22 @@ exports[`pickTeam Snapshot renders teams 1`] = `
                 src="https://crests.football-data.org/341.svg"
               />
             </WithStyles(ForwardRef(TableCell))>
+            <WithStyles(ForwardRef(TableCell))
+              align="center"
+              className="tableCellProb"
+            >
+              %
+            </WithStyles(ForwardRef(TableCell))>
           </WithStyles(ForwardRef(TableRow))>
           <WithStyles(ForwardRef(TableRow))
             key="Brighton FC"
           >
+            <WithStyles(ForwardRef(TableCell))
+              align="center"
+              className="tableCellProb"
+            >
+              %
+            </WithStyles(ForwardRef(TableCell))>
             <WithStyles(ForwardRef(TableCell))
               align="center"
               className="tableCell"
@@ -471,10 +501,22 @@ exports[`pickTeam Snapshot renders teams 1`] = `
                 />
               </WithStyles(WithStyles(ForwardRef(Button)))>
             </WithStyles(ForwardRef(TableCell))>
+            <WithStyles(ForwardRef(TableCell))
+              align="center"
+              className="tableCellProb"
+            >
+              %
+            </WithStyles(ForwardRef(TableCell))>
           </WithStyles(ForwardRef(TableRow))>
           <WithStyles(ForwardRef(TableRow))
             key="Chelsea FC"
           >
+            <WithStyles(ForwardRef(TableCell))
+              align="center"
+              className="tableCellProb"
+            >
+              %
+            </WithStyles(ForwardRef(TableCell))>
             <WithStyles(ForwardRef(TableCell))
               align="center"
               className="tableCell"
@@ -526,6 +568,12 @@ exports[`pickTeam Snapshot renders teams 1`] = `
                   src="https://crests.football-data.org/67.svg"
                 />
               </WithStyles(WithStyles(ForwardRef(Button)))>
+            </WithStyles(ForwardRef(TableCell))>
+            <WithStyles(ForwardRef(TableCell))
+              align="center"
+              className="tableCellProb"
+            >
+              %
             </WithStyles(ForwardRef(TableCell))>
           </WithStyles(ForwardRef(TableRow))>
         </WithStyles(ForwardRef(TableBody))>

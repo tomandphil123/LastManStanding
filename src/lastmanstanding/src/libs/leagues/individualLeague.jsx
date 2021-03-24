@@ -71,7 +71,7 @@ const IndividualLeague = ({
             <div style={{backgroundColor: '#fff'}}>
               <Grid container direction='column' spacing={4}>
                 <Grid item xs={12} md={12}>
-                  <Alert severity='warning'>Due to a small game week ahead and FA cup the next deadline for picks is - 2nd April 21:00!</Alert>
+                  <Alert severity='warning'>Due to a small game week ahead and FA cup the next deadline for picks is - 10:30am 3rd April!</Alert>
                   {leagueInfo['data'][1][0]['Winner'] !== '-' ? (
                         <Alert severity='success'>🏆 Winner Winner Chicken Dinner {leagueInfo['data'][1][0]['Winner']} 🏆</Alert>
                     ) : (

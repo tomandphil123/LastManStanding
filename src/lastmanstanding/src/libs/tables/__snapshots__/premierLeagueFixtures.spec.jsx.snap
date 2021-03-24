@@ -336,6 +336,12 @@ exports[`premierLeagueFixtures Snapshot renders 1`] = `
         >
           <WithStyles(ForwardRef(TableCell))
             align="center"
+            className="tableCellProb"
+          >
+            %
+          </WithStyles(ForwardRef(TableCell))>
+          <WithStyles(ForwardRef(TableCell))
+            align="center"
             className="tableCell"
             height="auto"
           >
@@ -362,6 +368,12 @@ exports[`premierLeagueFixtures Snapshot renders 1`] = `
             <h1>
               Away Team
             </h1>
+          </WithStyles(ForwardRef(TableCell))>
+          <WithStyles(ForwardRef(TableCell))
+            align="center"
+            className="tableCellProb"
+          >
+            %
           </WithStyles(ForwardRef(TableCell))>
         </WithStyles(ForwardRef(TableRow))>
       </WithStyles(ForwardRef(TableHead))>
