@@ -15,7 +15,7 @@ build:
   
 backendTest:
     stage: backendTest
-    image: python3
+    image: python
     script:
       - cd ./src/lastmanstanding/tests
       - echo "Testing Backend"
