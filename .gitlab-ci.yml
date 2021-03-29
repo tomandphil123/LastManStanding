@@ -13,7 +13,7 @@ build:
       - npm build
       - echo "Build successfully!"
   
- backendTest:
+backendTest:
     stage: backendTest
     image: python3
     script:
