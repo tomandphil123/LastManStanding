@@ -10,7 +10,7 @@ def getTeams(tableName):
 def handler(event, context):
     print('received event:')
     print(event)
-    dynamodb = boto3.resource('dynamodb')
+    dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 
     teamsTable = dynamodb.Table('PlTeamsDB-develop')
     teams = getTeams(teamsTable)

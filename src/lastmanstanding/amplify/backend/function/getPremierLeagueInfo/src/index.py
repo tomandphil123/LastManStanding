@@ -11,7 +11,7 @@ def scanTable(table, sorter):
 	return data
 
 def handler(event, context):
-	dynamodb = boto3.resource('dynamodb')
+	dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 
 	table1 = dynamodb.Table('PlStandingsDB-develop')
 	standingsData = scanTable(table1, 'position')

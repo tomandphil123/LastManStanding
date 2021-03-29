@@ -43,7 +43,7 @@ def handler(event, context):
 		'West Bromwich Albion FC': 'https://crests.football-data.org/74.svg',
 	}
 
-	dynamodb = boto3.resource('dynamodb')
+	dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 	schedulerDB = 'SchedulerDB-develop'
 	schedulerTable = dynamodb.Table(schedulerDB)
 	schedulerScan = schedulerTable.scan()
@@ -106,7 +106,7 @@ def handler(event, context):
 				}
 			)
 		
-		dynamodb = boto3.resource('dynamodb')
+		dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 		tableName1 = 'PLFixturesDB-develop'
 		FixturesTable = dynamodb.Table(tableName1)
 		tableName2 = 'PLResultsDB-develop'

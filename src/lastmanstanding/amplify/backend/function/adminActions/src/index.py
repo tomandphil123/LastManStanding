@@ -5,7 +5,7 @@ from boto3.dynamodb.conditions import Key
 def deleteLeague(result):
   leagueID = result['leagueID']
 
-  dynamodb = boto3.resource('dynamodb')
+  dynamodb = boto3.resource('dynamodb', 'eu-west-1')
   # delete league from leaguesDB
   leaguesDB = dynamodb.Table('LeaguesDB-develop')
   leaguesDB.delete_item(
@@ -63,7 +63,7 @@ def toggleLeague(result):
     #unlockLeague
     status = 'Yes'
 
-  dynamodb = boto3.resource('dynamodb')
+  dynamodb = boto3.resource('dynamodb', 'eu-west-1')
   leaguesDB = dynamodb.Table('LeaguesDB-develop')
   leaguesDB.update_item(
     Key={
@@ -86,7 +86,7 @@ def removePlayer(result):
   leagueID = leaguePlayerID.split('/')[0]
   sub = leaguePlayerID.split('/')[1]
 
-  dynamodb = boto3.resource('dynamodb')
+  dynamodb = boto3.resource('dynamodb', 'eu-west-1')
   leaguePlayerDB = dynamodb.Table('LeaguePlayerDB-develop')
   leaguePlayerDB.delete_item(
     Key={
@@ -137,7 +137,7 @@ def removePlayer(result):
 def resetLeague(result):
   leagueID = result['leagueID']
 
-  dynamodb = boto3.resource('dynamodb')
+  dynamodb = boto3.resource('dynamodb', 'eu-west-1')
   # reset each player in league
   leaguePlayerDB = dynamodb.Table('LeaguePlayerDB-develop')
   counter = 0

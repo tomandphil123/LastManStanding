@@ -21,7 +21,7 @@ def handler(event, context):
 	username = result['username']
 	lmsEmail = 'mylastmanstanding123@gmail.com'
 
-	dynamodb = boto3.resource('dynamodb')
+	dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 
 	# Creating League in the leagues Database
 	tableName = 'LeaguesDB-develop'

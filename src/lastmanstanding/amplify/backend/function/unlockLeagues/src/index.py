@@ -3,7 +3,7 @@ import json
 from boto3.dynamodb.conditions import Key
 
 def updateWinner(leagueID):
-  dynamodb = boto3.resource('dynamodb')
+  dynamodb = boto3.resource('dynamodb', 'eu-west-1')
   leaguePlayerDB = dynamodb.Table('LeaguePlayerDB-develop')
   leaguePlayerData = leaguePlayerDB.query(
 		IndexName = 'LeagueID-LeaguePlayerID-index',
@@ -58,7 +58,7 @@ def updateWinner(leagueID):
 def handler(event, context):
   print('received event:')
   print(event)
-  dynamodb = boto3.resource('dynamodb')
+  dynamodb = boto3.resource('dynamodb', 'eu-west-1')
   leagueDics = {}
 
   abbreviations = {

@@ -23,7 +23,7 @@ def handler(event, context):
 	leagueID = result['leagueId']
 	ret_lst = []
 
-	dynamodb = boto3.resource('dynamodb')
+	dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 
 	# Query to get all players in a league
 	LPtable = dynamodb.Table('LeaguePlayerDB-develop')

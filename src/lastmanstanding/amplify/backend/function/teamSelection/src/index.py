@@ -26,7 +26,7 @@ def handler(event, context):
 	leagueID = result["leagueID"]
 	primaryKey = leagueID + "/" + sub
 
-	dynamodb = boto3.resource('dynamodb')
+	dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 
 	table = dynamodb.Table('LeaguePlayerDB-develop')
 	res = selectTeam(primaryKey, table, selectedTeam)

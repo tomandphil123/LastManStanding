@@ -5,7 +5,7 @@ import random
 def handler(event, context):
     print('received event:')
     print(event)
-    dynamodb = boto3.resource('dynamodb')
+    dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 
     teamsTable = dynamodb.Table('LeaguesDB-develop')
     response = teamsTable.scan()
