@@ -52,7 +52,6 @@ def deleteLeague(result):
           ReturnValues='UPDATED_NEW'
     )
 
-
   return 'Successfully Deleted League'
 
 def toggleLeague(result):
@@ -78,9 +77,9 @@ def toggleLeague(result):
   )
 
   if status == 'Yes':
-    return 'Sucessfully Set League to Joinable'
+    return 'Successfully Set League to Joinable'
   
-  return 'Sucessfully Set League to Not Joinable'
+  return 'Successfully Set League to Not Joinable'
 
 def removePlayer(result):
   leaguePlayerID = result['leaguePlayerID']

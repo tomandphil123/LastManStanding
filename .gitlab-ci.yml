@@ -1,6 +1,7 @@
 stages:
     - build
-    - test
+    - backendTest
+    - frontendTest
   
 build:
     stage: build
@@ -12,13 +13,27 @@ build:
       - npm build
       - echo "Build successfully!"
   
-test:
-    stage: test
+ backendTest:
+    stage: backendTest
+    image: python3
+    script:
+      - cd ./src/lastmanstanding/tests
+      - echo "Testing Backend"
+      - pip install boto3 moto pytest
+      - pytest test_adminActions.py
+      - pytest test_getLeagueInfo.py
+      - pytest test_getPremInfo.py
+      - pytest test_teamInfo.py
+      - pytest test_teamSelection.py
+      - echo "Backend tested successfully!"
+
+frontendTest:
+    stage: frontendTest
     image: node
     script:
       - cd ./src/lastmanstanding
-      - echo "Testing App"
+      - echo "Testing Frontend"
       - npm install
       - rm -rf node_modules/eslint
       - CI=true npm test
-      - echo "Test successfully!"
+      - echo "Frontend tested successfully!"

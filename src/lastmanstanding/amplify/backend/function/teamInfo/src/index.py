@@ -1,16 +1,20 @@
 import boto3
 import json
 
+def getTeams(tableName):
+    response1 = tableName.scan()
+    res = response1['Items']
+    teams = sorted(res, key = lambda i: i['TeamName'])
+    return teams
+
 def handler(event, context):
     print('received event:')
     print(event)
     dynamodb = boto3.resource('dynamodb')
 
     teamsTable = dynamodb.Table('PlTeamsDB-develop')
-    response1 = teamsTable.scan()
-    res = response1['Items']
-    teams = sorted(res, key = lambda i: i["TeamName"])
-
+    teams = getTeams(teamsTable)
+    
     return {
         'statusCode': 200,
         'headers': {

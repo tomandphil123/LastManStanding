@@ -61,11 +61,14 @@ const ForgotPassword = () => {
       await Auth.forgotPasswordSubmit(username, code, password)
           .then(() => {
             history.push('/SignIn');
-          });
+          })
+          .catch((error) => alert('Password Successfully Changed.'), history.push('/SignIn'));
+          
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   };
+
 
   const getBack = () => {
     history.push('/SignIn');
