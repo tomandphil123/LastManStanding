@@ -1,23 +1,26 @@
 import boto3
 import json
 
+def scanTable(table, sorter):
+	response = table.scan()
+	res = response['Items']
+	if sorter == 'position':
+		data = sorted(res, key = lambda i: int(i[sorter]))
+	else:
+		data = sorted(res, key = lambda i: i[sorter])
+	return data
+
 def handler(event, context):
-	dynamodb = boto3.resource('dynamodb')
+	dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 
 	table1 = dynamodb.Table('PlStandingsDB-develop')
-	response1 = table1.scan()
-	res = response1['Items']
-	standingsData = sorted(res, key = lambda i: int(i['position']))
-	print(standingsData)
+	standingsData = scanTable(table1, 'position')
 
 	table2 = dynamodb.Table('PLFixturesDB-develop')
-	response2 = table2.scan()
-	fixturesData = response2['Items']
-	fixtures = sorted(fixturesData, key = lambda i: i['startTime'])
+	fixtures = scanTable(table2, 'startTime')
 
 	table3 = dynamodb.Table('PLResultsDB-develop')
-	response3 = table3.scan()
-	resultsData = response3['Items']
+	resultsData = scanTable(table3, 'createdTime')
 
 	lst = [standingsData, fixtures, resultsData]
 

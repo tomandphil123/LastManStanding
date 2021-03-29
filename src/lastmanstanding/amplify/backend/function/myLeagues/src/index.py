@@ -8,7 +8,7 @@ def handler(event, context):
 	result = json.loads(event['body'])
 	sub = result['sub']
 
-	dynamodb = boto3.resource('dynamodb')
+	dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 
 	# Query Player DB for active leagues
 	Ptable = dynamodb.Table('PlayerDB-develop')

@@ -5,7 +5,7 @@ from boto3.dynamodb.conditions import Key
 def deleteLeague(result):
   leagueID = result['leagueID']
 
-  dynamodb = boto3.resource('dynamodb')
+  dynamodb = boto3.resource('dynamodb', 'eu-west-1')
   # delete league from leaguesDB
   leaguesDB = dynamodb.Table('LeaguesDB-develop')
   leaguesDB.delete_item(
@@ -52,7 +52,6 @@ def deleteLeague(result):
           ReturnValues='UPDATED_NEW'
     )
 
-
   return 'Successfully Deleted League'
 
 def toggleLeague(result):
@@ -64,7 +63,7 @@ def toggleLeague(result):
     #unlockLeague
     status = 'Yes'
 
-  dynamodb = boto3.resource('dynamodb')
+  dynamodb = boto3.resource('dynamodb', 'eu-west-1')
   leaguesDB = dynamodb.Table('LeaguesDB-develop')
   leaguesDB.update_item(
     Key={
@@ -78,16 +77,16 @@ def toggleLeague(result):
   )
 
   if status == 'Yes':
-    return 'Sucessfully Set League to Joinable'
+    return 'Successfully Set League to Joinable'
   
-  return 'Sucessfully Set League to Not Joinable'
+  return 'Successfully Set League to Not Joinable'
 
 def removePlayer(result):
   leaguePlayerID = result['leaguePlayerID']
   leagueID = leaguePlayerID.split('/')[0]
   sub = leaguePlayerID.split('/')[1]
 
-  dynamodb = boto3.resource('dynamodb')
+  dynamodb = boto3.resource('dynamodb', 'eu-west-1')
   leaguePlayerDB = dynamodb.Table('LeaguePlayerDB-develop')
   leaguePlayerDB.delete_item(
     Key={
@@ -138,7 +137,7 @@ def removePlayer(result):
 def resetLeague(result):
   leagueID = result['leagueID']
 
-  dynamodb = boto3.resource('dynamodb')
+  dynamodb = boto3.resource('dynamodb', 'eu-west-1')
   # reset each player in league
   leaguePlayerDB = dynamodb.Table('LeaguePlayerDB-develop')
   counter = 0

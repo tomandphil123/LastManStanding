@@ -4,7 +4,7 @@ from datetime import datetime
 from boto3.dynamodb.conditions import Key
 
 def queryTable(leagueCode):
-  dynamodb = boto3.resource('dynamodb')
+  dynamodb = boto3.resource('dynamodb', 'eu-west-1')
   leaguesDB = dynamodb.Table('LeaguesDB-develop')
   data = leaguesDB.query(
     IndexName = 'invitationCode-LeagueID-index',
@@ -28,7 +28,7 @@ def checkUser(leagueID, sub, playerDB):
   return ''
 
 def handler(event, context):
-  dynamodb = boto3.resource('dynamodb')
+  dynamodb = boto3.resource('dynamodb', 'eu-west-1')
   result = json.loads(event['body'])
   leagueCode = result['leagueCode']
   sub = result['sub']
