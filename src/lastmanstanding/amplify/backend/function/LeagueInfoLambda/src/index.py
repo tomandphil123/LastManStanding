@@ -168,15 +168,30 @@ def handler(event, context):
 
 				homeTeam = fixture['homeTeam']['name']
 				lastMatch = homeTeam
+				homeTeamOdds = fixture['odds']['homeWin']
+				
+				drawOdds = fixture['odds']['draw']
+				
 				homeTeamCrest2 = crests[homeTeam]
 				awayTeam = fixture['awayTeam']['name']
+				awayTeamOdds = fixture['odds']['awayWin']
+				
+				overallOdds = 1/homeTeamOdds + 1/awayTeamOdds + 1/drawOdds
+				overRound = overallOdds - 1
+				
+				homeTeamProb = 100 / (homeTeamOdds * 100) 
+				awayTeamProb = 100 / (awayTeamOdds * 100)
+				drawProb = 100 / (drawOdds * 100)
+				
+				homeTeamProb = (homeTeamProb - (homeTeamProb * overRound)) * 100
+				awayTeamProb = (awayTeamProb - (awayTeamProb * overRound)) * 100
+				drawProb = (drawProb - (drawProb * overRound)) * 100
+				
 				awayTeamCrest2 = crests[awayTeam]
 				if homeTeam in abbreviations:
 					homeTeam = abbreviations[homeTeam]
 				if awayTeam in abbreviations:
 					awayTeam = abbreviations[awayTeam]
-				gameWeek = fixture['season']['currentMatchday']
-
 
 				FixturesTable.put_item(
 					Item={
@@ -188,7 +203,10 @@ def handler(event, context):
 						'GameWeek': str(nextGameWeek),
 						'createdTime': str(datetime.today()),
 						'startTime': str(startTime2),
-						'startDate': str(startDate)
+						'startDate': str(startDate),
+						'homeTeamProb': str(round(homeTeamProb)),
+						'awayTeamProb': str(round(awayTeamProb)),
+						'drawProb': str(round(drawProb))
 					}
 				)
 		
@@ -239,7 +257,7 @@ def handler(event, context):
 			]
 		)
 		try:
-			lambda_client.add_permission(
+			client.add_permission(
 				FunctionName="arn:aws:lambda:eu-west-1:706350010776:function:lockLeagues-develop",
 				StatementId="MyRuleID",
 				Action="lambda:InvokeFunction",
@@ -253,4 +271,3 @@ def handler(event, context):
 	return {
 	'message': 'Hello from your new Amplify Python lambda!'
 	}
-
