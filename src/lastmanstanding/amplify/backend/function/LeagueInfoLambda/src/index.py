@@ -271,4 +271,3 @@ def handler(event, context):
 	return {
 	'message': 'Hello from your new Amplify Python lambda!'
 	}
-
