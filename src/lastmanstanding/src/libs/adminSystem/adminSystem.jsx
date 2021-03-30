@@ -1,4 +1,6 @@
+/* eslint-disable max-len */
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 import LockIcon from '@material-ui/icons/Lock';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -56,7 +58,9 @@ const AdminSystem = ({
 
   return (
     playerRemoval ? (
-      <IconButton onClick={() => { if (window.confirm('Are you sure you want to remove this user from the league?')) deleteUser() } }>
+      <IconButton onClick={() => {
+        if (window.confirm('Are you sure you want to remove this user from the league?')) deleteUser();
+      }}>
         <DeleteIcon style={{color: 'red'}}/>
       </IconButton>
     ) : (
@@ -65,7 +69,7 @@ const AdminSystem = ({
           title={lockLeague ? ('Unlock League') : ('Lock League')}
           placement="top"
         >
-            { lockLeague ? (
+          { lockLeague ? (
               <Button onClick={() => { if (window.confirm('Are you sure you want to unlock the league?')) toggleLeague() } }>
                 <LockIcon style={{color: 'white'}}/>
               </Button>
@@ -76,18 +80,32 @@ const AdminSystem = ({
             )}
         </Tooltip>
         <Tooltip title="Reset League" placement="top">
-        <Button onClick={() => { if (window.confirm('Are you sure you want to reset the league?')) resetLeague() } }>
+          <Button onClick={() => { if (window.confirm('Are you sure you want to reset the league?')) resetLeague() } }>
             <RotateLeftIcon style={{color: '#ffffff'}}/>
-        </Button>
+          </Button>
         </Tooltip>
         <Tooltip title="Delete League" placement="top">
-        <Button onClick={() => { if (window.confirm('Are you sure you want to delete the league?')) deleteLeague() } }>
+          <Button onClick={() => { if (window.confirm('Are you sure you want to delete the league?')) deleteLeague() } }>
             <DeleteIcon style={{color: '#ffffff'}}/>
-        </Button>
+          </Button>
         </Tooltip>
       </div>
     )
   );
 };
+
+AdminSystem.propTypes = {
+  leagueStatus: PropTypes.bool.isRequired,
+  leagueID: PropTypes.string.isRequired,
+  playerRemoval: PropTypes.bool.isRequired,
+  leaguePlayerID: PropTypes.string.isRequired,
+  setRender: PropTypes.func.isRequired,
+};
+
+// AdminSystem.defaultProps = {
+//   user: {},
+//   results: {},
+// };
+
 
 export default AdminSystem;
