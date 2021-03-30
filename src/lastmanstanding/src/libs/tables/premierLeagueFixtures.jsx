@@ -19,6 +19,9 @@ function getFixtures(results) {
           <Table aria-label="customized table" className="table">
             <TableHead>
               <TableRow className="tableRowTitles">
+                <TableCell align="center" className='tableCellProb'>
+                %
+                </TableCell>
                 <TableCell align="center" height="auto" className='tableCell'>
                   <h1>Home Team</h1>
                 </TableCell>
@@ -28,11 +31,17 @@ function getFixtures(results) {
                 <TableCell align="center" className='tableCell'>
                   <h1>Away Team</h1>
                 </TableCell>
+                <TableCell align="center" className='tableCellProb'>
+                  %
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody className='tableBody' style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
               {results[1].map((item) => (
                 <TableRow key={item.HomeTeam}>
+                  <TableCell align="center" className='tableCellProb'>
+                    {item.homeTeamProb}%
+                  </TableCell>
                   <TableCell align="center" className='tableCell'>
                     {item.HomeTeam}
                   </TableCell>
@@ -45,6 +54,9 @@ function getFixtures(results) {
                   </TableCell>
                   <TableCell align="center" className='tableCell'>
                     {item.AwayTeam}
+                  </TableCell>
+                  <TableCell align="center" className='tableCellProb'>
+                    {item.awayTeamProb}%
                   </TableCell>
                 </TableRow>))}
             </TableBody>

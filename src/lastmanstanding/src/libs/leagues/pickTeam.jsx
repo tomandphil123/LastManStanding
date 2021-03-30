@@ -80,6 +80,9 @@ const PickTeam = ({
           <Table aria-label='customized table' className='table'>
             <TableHead>
               <TableRow className='tableRowTitles'>
+                <TableCell align="center" className='tableCellProb'>
+                  %
+                </TableCell>
                 <TableCell align='center' height='auto' className='tableCell'>
                   <h1>Home Team</h1>
                 </TableCell>
@@ -89,11 +92,17 @@ const PickTeam = ({
                 <TableCell align='center' className='tableCell'>
                   <h1>Away Team</h1>
                 </TableCell>
+                <TableCell align="center" className='tableCellProb'>
+                  %
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody className='tableBody' style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
               {fixtures['data'][1].map((item) => (
                 <TableRow key={item.HomeTeam}>
+                  <TableCell align="center" className='tableCellProb'>
+                    {item.homeTeamProb}%
+                  </TableCell>
                   <TableCell align='center' className='tableCell'>
                     {teams.includes(item.HomeTeam) ? (
                     <BootstrapButton
@@ -154,6 +163,9 @@ const PickTeam = ({
                     ) : (
                       item.AwayTeam
                   ))}
+                  </TableCell>
+                  <TableCell align="center" className='tableCellProb'>
+                    {item.awayTeamProb}%
                   </TableCell>
                 </TableRow>))}
             </TableBody>
