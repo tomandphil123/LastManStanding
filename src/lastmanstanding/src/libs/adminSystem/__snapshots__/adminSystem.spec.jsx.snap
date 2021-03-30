@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`leagues Snapshot renders admin tools with league locked 1`] = `
+<div>
+  <WithStyles(ForwardRef(Tooltip))
+    placement="top"
+    title="Unlock League"
+  >
+    <WithStyles(ForwardRef(Button))
+      data-automation="unlockLeague"
+      onClick={[Function]}
+    >
+      <Memo(ForwardRef(LockIcon))
+        style={
+          Object {
+            "color": "white",
+          }
+        }
+      />
+    </WithStyles(ForwardRef(Button))>
+  </WithStyles(ForwardRef(Tooltip))>
+  <WithStyles(ForwardRef(Tooltip))
+    placement="top"
+    title="Reset League"
+  >
+    <WithStyles(ForwardRef(Button))
+      onClick={[Function]}
+    >
+      <Memo(ForwardRef(RotateLeftIcon))
+        style={
+          Object {
+            "color": "#ffffff",
+          }
+        }
+      />
+    </WithStyles(ForwardRef(Button))>
+  </WithStyles(ForwardRef(Tooltip))>
+  <WithStyles(ForwardRef(Tooltip))
+    placement="top"
+    title="Delete League"
+  >
+    <WithStyles(ForwardRef(Button))
+      onClick={[Function]}
+    >
+      <Memo(ForwardRef(DeleteIcon))
+        style={
+          Object {
+            "color": "#ffffff",
+          }
+        }
+      />
+    </WithStyles(ForwardRef(Button))>
+  </WithStyles(ForwardRef(Tooltip))>
+</div>
+`;
+
+exports[`leagues Snapshot renders admin tools with league unlocked 1`] = `
+<div>
+  <WithStyles(ForwardRef(Tooltip))
+    placement="top"
+    title="Lock League"
+  >
+    <WithStyles(ForwardRef(Button))
+      onClick={[Function]}
+    >
+      <Memo(ForwardRef(LockOpenIcon))
+        style={
+          Object {
+            "color": "white",
+          }
+        }
+      />
+    </WithStyles(ForwardRef(Button))>
+  </WithStyles(ForwardRef(Tooltip))>
+  <WithStyles(ForwardRef(Tooltip))
+    placement="top"
+    title="Reset League"
+  >
+    <WithStyles(ForwardRef(Button))
+      onClick={[Function]}
+    >
+      <Memo(ForwardRef(RotateLeftIcon))
+        style={
+          Object {
+            "color": "#ffffff",
+          }
+        }
+      />
+    </WithStyles(ForwardRef(Button))>
+  </WithStyles(ForwardRef(Tooltip))>
+  <WithStyles(ForwardRef(Tooltip))
+    placement="top"
+    title="Delete League"
+  >
+    <WithStyles(ForwardRef(Button))
+      onClick={[Function]}
+    >
+      <Memo(ForwardRef(DeleteIcon))
+        style={
+          Object {
+            "color": "#ffffff",
+          }
+        }
+      />
+    </WithStyles(ForwardRef(Button))>
+  </WithStyles(ForwardRef(Tooltip))>
+</div>
+`;
+
+exports[`leagues Snapshot renders player removal 1`] = `
+<WithStyles(ForwardRef(IconButton))
+  data-automation="removePlayer"
+  onClick={[Function]}
+>
+  <Memo(ForwardRef(DeleteIcon))
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  />
+</WithStyles(ForwardRef(IconButton))>
+`;

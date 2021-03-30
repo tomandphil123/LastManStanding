@@ -60,7 +60,9 @@ const AdminSystem = ({
     playerRemoval ? (
       <IconButton onClick={() => {
         if (window.confirm('Are you sure you want to remove this user from the league?')) deleteUser();
-      }}>
+      }}
+      data-automation="removePlayer"
+      >
         <DeleteIcon style={{color: 'red'}}/>
       </IconButton>
     ) : (
@@ -70,7 +72,7 @@ const AdminSystem = ({
           placement="top"
         >
           { lockLeague ? (
-              <Button onClick={() => { if (window.confirm('Are you sure you want to unlock the league?')) toggleLeague() } }>
+              <Button onClick={() => { if (window.confirm('Are you sure you want to unlock the league?')) toggleLeague() } } data-automation="unlockLeague">
                 <LockIcon style={{color: 'white'}}/>
               </Button>
             ) : (
