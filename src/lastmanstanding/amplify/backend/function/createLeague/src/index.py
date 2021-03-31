@@ -81,13 +81,12 @@ def updatePlayerDB(tableName, result, leagueID):
 
 
 def handler(event, context):
+	dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 	result = json.loads(event['body'])
 
 	# Take in info from front end post request
 	leagueID = result['leagueName'] +'#'+ str(randint(100000, 999999)) 
 	invitationCode = str(randint(100000, 999999))
-
-	dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 
 	# Creating League in the leagues Database
 	leaguesDB = dynamodb.Table('LeaguesDB-develop')
