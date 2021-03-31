@@ -76,7 +76,7 @@ const AdminSystem = ({
                 <LockIcon style={{color: 'white'}}/>
               </Button>
             ) : (
-              <Button onClick={() => { if (window.confirm('Are you sure you want to lock the league?')) toggleLeague() } }>
+              <Button onClick={() => { if (window.confirm('Are you sure you want to lock the league?')) toggleLeague() } } data-automation="lockLeague">
                 <LockOpenIcon style={{color: 'white'}}/>
               </Button>
             )}

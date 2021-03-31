@@ -2,15 +2,22 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import AdminSystem from './adminSystem';
 import axios from 'axios';
-import { trackUpdate } from 'aws-amplify-react';
-
-jest.mock('axios');
 
 const mockSetState = jest.fn();
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
   useState: (initial) => [initial, mockSetState],
+}));
+
+jest.mock('axios', () => ({
+  post: jest.fn((_url, _body) => {
+    return new Promise((resolve) => {
+      url = '';
+      body = {};
+      resolve(true);
+    });
+  }),
 }));
 
 describe('leagues', () => {
@@ -59,21 +66,40 @@ describe('leagues', () => {
       expect(component).toMatchSnapshot();
     });
   });
-  // describe('Button Clicks', () => {
-  //   it('deletes player', async () => {
-  //     const props = {
-  //       leagueStatus: true,
-  //       leagueID: 'TestID',
-  //       playerRemoval: false,
-  //       leaguePlayerID: 'TestplayerID',
-  //       setRender: jest.fn(),
-  //     };
-  //     const component = shallow(
-  //         <AdminSystem {...props}/>,
-  //     );
-  //     global.confirm = () => true;
-  //     component.find('[data-automation="unlockLeague"]').simulate('click');
-  //     expect(mockSetState).toHaveBeenCalled();
-  //   });
-  // });
+  describe('Button Clicks', () => {
+    it('unlock league', async () => {
+      const props = {
+        leagueStatus: true,
+        leagueID: 'TestID',
+        playerRemoval: false,
+        leaguePlayerID: 'TestplayerID',
+        setRender: jest.fn(),
+      };
+      const component = shallow(
+          <AdminSystem {...props}/>,
+      );
+      const response = 'Successfully unlocked League';
+      global.confirm = () => true;
+      axios.post.mockImplementationOnce(() => Promise.resolve(response));
+      component.find('[data-automation="unlockLeague"]').simulate('click');
+      expect(axios.post).toHaveBeenCalled();
+    });
+    it('lock league', async () => {
+      const props = {
+        leagueStatus: false,
+        leagueID: 'TestID',
+        playerRemoval: false,
+        leaguePlayerID: 'TestplayerID',
+        setRender: jest.fn(),
+      };
+      const component = shallow(
+          <AdminSystem {...props}/>,
+      );
+      const response = 'Successfully locked League';
+      global.confirm = () => true;
+      axios.post.mockImplementationOnce(() => Promise.resolve(response));
+      component.find('[data-automation="lockLeague"]').simulate('click');
+      expect(axios.post).toHaveBeenCalled();
+    });
+  });
 });
