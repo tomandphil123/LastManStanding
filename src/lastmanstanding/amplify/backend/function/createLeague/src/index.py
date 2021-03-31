@@ -4,36 +4,14 @@ import boto3
 from boto3.dynamodb.conditions import Key
 from random import randint
 
-def handler(event, context):
-	result = json.loads(event['body'])
-
-	# Take in info from front end post request
-	leagueID = result['leagueName'] +'#'+ str(randint(100000, 999999))
-	leagueName = result['leagueName']
-	admin = result['sub']
-	sub = result['sub']
-	email = result['email']
-	fname = result['firstName']
-	lname = result['lastName']
-	fullName = fname + ' ' + lname
-	createdDate = str(datetime.today())
-	invitationCode = str(randint(100000, 999999))
-	username = result['username']
-	lmsEmail = 'mylastmanstanding123@gmail.com'
-
-	dynamodb = boto3.resource('dynamodb', 'eu-west-1')
-
-	# Creating League in the leagues Database
-	tableName = 'LeaguesDB-develop'
-	table = dynamodb.Table(tableName)
-
-	table.put_item(
+def createLeague(tableName, result, invitationCode,leagueID):
+	tableName.put_item(
 			Item={
 				'LeagueID': leagueID,
-				'LeagueName': leagueName,
-				'admin': admin,
-				'fullName': fullName,
-				'createdTime': createdDate,
+				'LeagueName': result['leagueName'],
+				'admin': result['sub'],
+				'fullName': result['firstName']+ ' ' +result['lastName'],
+				'createdTime': str(datetime.today()),
 				'invitationCode': invitationCode,
 				'LeagueStatus': 'Open',
 				'RemainingPlayers': '1',
@@ -41,19 +19,19 @@ def handler(event, context):
 				'Joinable': 'Yes',
 				'Winner': '-'
 			})
+	return 'Successfully added league to leaguesDB'
 
-	# Send confirmation email with invitation code for users to join the league
-	leaguePlayerID = leagueID +'/'+ result['sub']
+def sendEmail(result, leagueID, invitationCode):
 	boto3.client('ses', 'eu-west-1').send_email(
-		Source = lmsEmail,
+		Source = 'mylastmanstanding123@gmail.com',
 		Destination={
 			'ToAddresses': [
-				email
+				result['email']
 			]
 		},
 		Message={
 			'Subject': {
-				'Data': 'Successful League Creation: ' + leagueName
+				'Data': 'Successful League Creation: ' + result['leagueName']
 			},
 			'Body': {
 			'Text': {
@@ -61,35 +39,35 @@ def handler(event, context):
 			}
 		}
 	})
+	return 'Successfully sent email'
 
-	# User gets added to leaguePlayer database
-	tableName2 = 'LeaguePlayerDB-develop'
-	table2 = dynamodb.Table(tableName2)
-
-	table2.put_item(
+def createLeaguePlayer(tableName, result, leagueID):
+	leaguePlayerID = leagueID +'/'+ result['sub']
+	tableName.put_item(
 			Item={
 				'LeaguePlayerID': leaguePlayerID,
 				'LeagueID': leagueID,
 				'CurrentPick': '-',
 				'PickedTeams': [],
 				'Admin': 'Yes',
-				'fullName': fullName,
-				'Username': username,
+				'fullName': result['firstName']+ ' ' +result['lastName'],
+				'Username': result['username'],
 				'playerStatus': 'In',
-				'createdTime': createdDate,
+				'createdTime': str(datetime.today()),
 				'UnpickedTeams': ['Manchester United FC','Manchester City FC','Leicester City FC','Liverpool FC','Tottenham Hotspur FC','Everton FC','Chelsea FC','Southampton FC','West Ham United FC','Sheffield United FC','Arsenal FC','Aston Villa FC','Leeds United FC','Crystal Palace FC','Wolves FC','Newcastle United FC','Brighton FC','Burnley FC','Fulham FC','West Brom FC']
 			})
-	
-	# League is added to User's list of leagues (PlayerDB)
-	table3 = dynamodb.Table('PlayerDB-develop')
-	data = table3.query(
+	return 'Successfully added leaguePlayer'
+
+def updatePlayerDB(tableName, result, leagueID):
+	sub = result['sub']
+	data = tableName.query(
 		KeyConditionExpression=Key('Sub').eq(sub)
 	)
 
 	resp = data['Items']
 	leagueIDs = resp[0]['leagueIDs']
 	leagueIDs.append(leagueID)
-	table3.update_item(
+	tableName.update_item(
 		Key={
             'Sub': sub
         },
@@ -99,6 +77,32 @@ def handler(event, context):
         },
         ReturnValues='UPDATED_NEW'
 	)
+	return 'Successfully updated players leagues'
+
+
+def handler(event, context):
+	result = json.loads(event['body'])
+
+	# Take in info from front end post request
+	leagueID = result['leagueName'] +'#'+ str(randint(100000, 999999)) 
+	invitationCode = str(randint(100000, 999999))
+
+	dynamodb = boto3.resource('dynamodb', 'eu-west-1')
+
+	# Creating League in the leagues Database
+	leaguesDB = dynamodb.Table('LeaguesDB-develop')
+	createLeague(leaguesDB, result, invitationCode, leagueID)
+
+	# Send confirmation email with invitation code for users to join the league
+	sendEmail(result, leagueID, invitationCode)
+
+	# User gets added to leaguePlayer database
+	leaguePlayerDB = dynamodb.Table('LeaguePlayerDB-develop')
+	createLeaguePlayer(leaguePlayerDB, result, leagueID)
+
+	# League is added to User's list of leagues (PlayerDB)
+	playerDB = dynamodb.Table('PlayerDB-develop')
+	updatePlayerDB(playerDB, result, leagueID)
 
 	return {
 	'statusCode': 200,
