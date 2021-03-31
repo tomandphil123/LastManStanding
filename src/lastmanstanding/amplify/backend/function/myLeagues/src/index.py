@@ -2,31 +2,36 @@ import json
 import boto3
 from boto3.dynamodb.conditions import Key
 
-def handler(event, context):
-	print('received event:')
-	print(event)
-	result = json.loads(event['body'])
-	sub = result['sub']
-
-	dynamodb = boto3.resource('dynamodb', 'eu-west-1')
-
-	# Query Player DB for active leagues
-	Ptable = dynamodb.Table('PlayerDB-develop')
-	playerData = Ptable.query(
-	KeyConditionExpression=Key('Sub').eq(sub)
+def queryPlayerDB(tableName, result):
+	playerData = tableName.query(
+		KeyConditionExpression=Key('Sub').eq(result['sub'])
 	)
 	resp = playerData['Items']
-	LeagueIDs = resp[0]['leagueIDs']
 
-	# Get information from each League
-	LPtable = dynamodb.Table('LeaguePlayerDB-develop')
+	return resp[0]['leagueIDs']
+
+def queryLeaguePlayerDB(tableName, result, leagueIDs):
 	resList = []
-	for m in LeagueIDs:
-		data = LPtable.query(
-			KeyConditionExpression=Key('LeaguePlayerID').eq(m + "/" + sub)
+	# Get info from all of users leagues
+	for league in leagueIDs:
+		data = tableName.query(
+			KeyConditionExpression=Key('LeaguePlayerID').eq(league + "/" + result['sub'])
 		)
 		resList.append(data['Items'])
+	
+	return resList
 
+def handler(event, context):
+	dynamodb = boto3.resource('dynamodb', 'eu-west-1')
+	result = json.loads(event['body'])
+
+	# Query Player DB for active leagues
+	playerDB = dynamodb.Table('PlayerDB-develop')
+	leagueIDs = queryPlayerDB(playerDB, result)
+
+	# Get information from each League
+	leaguePlayerDB = dynamodb.Table('LeaguePlayerDB-develop')
+	resList = queryLeaguePlayerDB(leaguePlayerDB, result, leagueIDs)
 
 	return {
 		'statusCode': 200,
