@@ -51,8 +51,6 @@ def handler(event, context):
             pickedTeams.append(currentPick)
             break
         
-        
-
       leaguePlayerTable.update_item(
         Key={
             'LeaguePlayerID': player['LeaguePlayerID']
