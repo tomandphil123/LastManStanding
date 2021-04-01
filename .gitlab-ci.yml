@@ -17,14 +17,15 @@ backendTest:
     stage: backendTest
     image: python
     script:
-      - cd ./src/lastmanstanding/tests
+      - cd ./src
+      - echo "Setting up virtual env"
+      - python3.8 -m venv venv3.8
+      - source venv3.8/bin/activate
+      - cd lastmanstanding
+      - pip install -r requirements.txt
+      - pip install --upgrade pip
       - echo "Testing Backend"
-      - pip install boto3 moto pytest
-      - pytest test_adminActions.py
-      - pytest test_getLeagueInfo.py
-      - pytest test_getPremInfo.py
-      - pytest test_teamInfo.py
-      - pytest test_teamSelection.py
+      - PYTHONPATH=:$(echo $PWD) python -m pytest -s
       - echo "Backend tested successfully!"
 
 frontendTest:

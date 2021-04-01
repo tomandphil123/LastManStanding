@@ -1,5 +1,8 @@
 # Add files names (and patterns) you want git to ignore here.
 
+# venv
+venv3.8/
+
 # Ignore java .class files.
 *.class
 
