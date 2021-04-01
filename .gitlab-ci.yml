@@ -20,7 +20,7 @@ backendTest:
       - cd ./src
       - echo "Setting up virtual env"
       - python3 -m venv venv
-      - source venv3.8/bin/activate
+      - source venv/bin/activate
       - cd lastmanstanding
       - pip install -r requirements.txt
       - pip install --upgrade pip
