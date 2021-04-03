@@ -11,7 +11,7 @@ build:
       - echo "Start building App"
       - npm install
       - rm -rf node_modules/eslint
-      - npm run build
+      - npm build
       - echo "Build successfully!"
   
 backendTest:
