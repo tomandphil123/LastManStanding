@@ -71,7 +71,6 @@ const IndividualLeague = ({
             <div style={{backgroundColor: '#fff'}}>
               <Grid container direction='column' spacing={4}>
                 <Grid item xs={12} md={12}>
-                  <Alert severity='warning'>Due to a small game week ahead and FA cup the next deadline for picks is - 10:30am 3rd April!</Alert>
                   {leagueInfo['data'][1][0]['Winner'] !== '-' ? (
                         <Alert severity='success'>🏆 Winner Winner Chicken Dinner {leagueInfo['data'][1][0]['Winner']} 🏆</Alert>
                     ) : (
@@ -80,7 +79,7 @@ const IndividualLeague = ({
                   {leagueInfo['data'][1][0]['LeagueStatus'] === 'Closed' ? (
                         <Alert severity='warning'>Matches in progress - Picks are disabled!</Alert>
                     ) : (
-                      null
+                        <Alert severity='warning'>Deadline for picks TBC!</Alert>
                     )}
                   {leagueInfo['data'][0].map((item) => (
                     <div key={item['Username']}>
