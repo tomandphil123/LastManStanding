@@ -10,7 +10,7 @@ build:
       - cd ./src/lastmanstanding 
       - echo "Start building App"
       - npm install
-      - npm build
+      - npm run build
       - echo "Build successfully!"
   
 backendTest:
