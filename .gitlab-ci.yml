@@ -10,7 +10,6 @@ build:
       - cd ./src/lastmanstanding 
       - echo "Start building App"
       - npm install
-      - rm -rf node_modules/eslint
       - npm run-script build
       - echo "Build successfully!"
   
