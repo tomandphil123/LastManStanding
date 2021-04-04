@@ -72,7 +72,7 @@ const IndividualLeague = ({
               <Grid container direction='column' spacing={4}>
                 <Grid item xs={12} md={12}>
                   {leagueInfo['data'][1][0]['Winner'] !== '-' ? (
-                        <Alert severity='success'>🏆 Winner Winner Chicken Dinner {leagueInfo['data'][1][0]['Winner']} 🏆</Alert>
+                        <Alert severity='success'><span role="img" aria-label="Trophy">🏆</span> Winner Winner Chicken Dinner {leagueInfo['data'][1][0]['Winner']} <span role="img" aria-label="Trophy">🏆</span></Alert>
                     ) : (
                       null
                     )}
@@ -84,7 +84,7 @@ const IndividualLeague = ({
                   {leagueInfo['data'][0].map((item) => (
                     <div key={item['Username']}>
                       {username === item['Username'] && item['playerStatus'] === 'Out' ? (
-                        <Alert severity='error'>💩 You have been knocked out - try again next round! 💩</Alert>
+                        <Alert severity='error'><span role="img" aria-label="Poo Emoji">💩</span> You have been knocked out - try again next round! <span role="img" aria-label="Poo Emoji">💩</span></Alert>
                     ) : (
                       null
                     )}
@@ -246,6 +246,7 @@ const IndividualLeague = ({
                                   teams={item['UnpickedTeams']}
                                   setPickButton={setPickButton}
                                   setPick={setPick}
+                                  pick={pick}
                                   sub={sub}
                                   leagueID={leagueInfo['data'][0][0]['LeagueID']}
                                   setPermPick={setPermPick}

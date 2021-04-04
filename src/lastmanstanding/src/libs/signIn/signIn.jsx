@@ -57,7 +57,7 @@ const SignIn = ({
       history.push('/');
     } catch (error) {
       console.log(error.message)
-      if (error.message == 'User is not confirmed.'){
+      if (error.message === 'User is not confirmed.'){
         alert('Email address is not verified. Please verify your email.')
       } else{
         alert(error.message);

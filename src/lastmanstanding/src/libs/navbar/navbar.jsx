@@ -105,10 +105,10 @@ const Navbar = ({
   }
 
   const [screenWidth, setScreenWidth] = useState(null);
-
   useEffect(() => {
     setScreenWidth(window.screen.width);
-  }, window.addEventListener('resize', handleResize));
+    // eslint-disable-next-line
+  }, [window.addEventListener('resize', handleResize)]);
 
   return (
     auth.isAuthenticated ?
