@@ -11,6 +11,7 @@ build:
       - echo "Start building App"
       - npm install
       - rm -rf node_modules/eslint
+      - rm -rf node_modules/react-scripts/node_modules/eslint-config-react-app
       - npm run-script build
       - echo "Build successfully!"
   
