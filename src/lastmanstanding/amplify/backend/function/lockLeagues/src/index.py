@@ -69,7 +69,7 @@ def handler(event, context):
       # if user does not pick, select highest ranked unpicked team
       else:
         for team in standingsData:
-          if team['TeamName'] in unPickedTeams:
+          if team['TeamName'] in unPickedTeams and currentPick != 'Eliminated':
             currentPick = team['TeamName']
             unPickedTeams.remove(currentPick)
             pickedTeams.append(currentPick)

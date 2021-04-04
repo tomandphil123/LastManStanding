@@ -12,7 +12,7 @@ export default function WhatIsLmsCard() {
       <Grid item xs={12} md={6} align='center'>
         <Card className='ruleCard'>
           <div style={{height: '155px', width: 'auto', background: '#000481'}}>
-            <img src={require('../../images/skysports-premier-league-predictions_5147427 (1).jpg')} height='155px' width='auto'/>
+            <img src={require('../../images/skysports-premier-league-predictions_5147427 (1).jpg')} height='155px' width='auto' alt='Premier League Players' />
           </div>
           <CardContent>
             <Typography gutterBottom variant='h5' component='h2'>
@@ -30,6 +30,7 @@ export default function WhatIsLmsCard() {
             <img
               src={require('../../images/skysports-salah-sterling-pogba_4614126.jpg')}
               height='155px' width='auto'
+              alt='Premier League Players 2'
             />
           </div>
           <CardContent>
