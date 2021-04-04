@@ -149,12 +149,13 @@ def handler(event, context):
   leaguePlayerResults = scanTable(leaguePlayerDB)
 
   for player in leaguePlayerResults:
-    if player['CurrentPick'] not in winners:
-      updateEliminatedPlayer(leaguePlayerDB, player)
-      leagueDics[player['LeagueID']] += 1
+    if player['CurrentPick'] != 'Eliminated':
+      if player['CurrentPick'] not in winners:
+        updateEliminatedPlayer(leaguePlayerDB, player)
+        leagueDics[player['LeagueID']] += 1
 
-    else:
-      updateSuccessfulPlayer(leaguePlayerDB, player)
+      else:
+        updateSuccessfulPlayer(leaguePlayerDB, player)
 
   # update remaining and eliminated players
   for k,v in leagueDics.items():
