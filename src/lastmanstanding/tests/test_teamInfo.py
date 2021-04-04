@@ -1,9 +1,7 @@
 import boto3
 import pytest
 from moto import mock_dynamodb2
-import sys
-sys.path.insert(1,'../amplify/backend/function/teamInfo/src/')
-from index import *
+from amplify.backend.function.teamInfo.src.index import getTeams
 
 # mock AWS services
 @mock_dynamodb2

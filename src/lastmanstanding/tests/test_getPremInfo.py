@@ -1,9 +1,7 @@
 import boto3
 import pytest
 from moto import mock_dynamodb2
-import sys
-sys.path.insert(1,'../amplify/backend/function/getPremierLeagueInfo/src/')
-from index import *
+from amplify.backend.function.getPremierLeagueInfo.src.index import scanTable
 
 # mock AWS services
 @mock_dynamodb2
@@ -38,7 +36,6 @@ def test_scanTable():
     sorter = 'position'
     # call the function on mock table
     func_response = scanTable(fixturesTable, sorter)
-    print(func_response)
     
     # check it worked correctly
     assert func_response[0]['FixtureID'] == 'Arsenal FC-Liverpool FC'
