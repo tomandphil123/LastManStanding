@@ -8,6 +8,7 @@ const SplashScreen = () => {
       <img
         src={LMSLogo}
         className='splashScreenImage'
+        alt="splash screen logo"
       />
     </div>
   );
