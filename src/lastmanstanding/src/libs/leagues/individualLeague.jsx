@@ -79,7 +79,7 @@ const IndividualLeague = ({
                   {leagueInfo['data'][1][0]['LeagueStatus'] === 'Closed' ? (
                         <Alert severity='warning'>Matches in progress - Picks are disabled!</Alert>
                     ) : (
-                        <Alert severity='warning'>Deadline for picks TBC!</Alert>
+                        <Alert severity='warning'>Deadline for picks 19:00 on the 9th April! </Alert>
                     )}
                   {leagueInfo['data'][0].map((item) => (
                     <div key={item['Username']}>

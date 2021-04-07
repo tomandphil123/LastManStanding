@@ -40,5 +40,3 @@ def test_toggleLeague():
 
     # check it worked correctly (False)
     assert func_response_false == 'Successfully Set League to Not Joinable'
-
-
