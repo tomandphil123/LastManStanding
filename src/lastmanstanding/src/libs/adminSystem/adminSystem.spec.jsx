@@ -101,5 +101,59 @@ describe('leagues', () => {
       component.find('[data-automation="lockLeague"]').simulate('click');
       expect(axios.post).toHaveBeenCalled();
     });
+    it('Reset league', async () => {
+      const props = {
+        leagueStatus: true,
+        leagueID: 'TestID',
+        playerRemoval: false,
+        leaguePlayerID: 'TestplayerID',
+        setRender: jest.fn(),
+      };
+      const component = shallow(
+          <AdminSystem {...props}/>,
+      );
+      const response = 'Successfully Reset League';
+      global.confirm = () => true;
+      global.alert = () => true;
+      axios.post.mockImplementationOnce(() => Promise.resolve(response));
+      component.find('[data-automation="ResetLeague"]').simulate('click');
+      expect(axios.post).toHaveBeenCalled();
+    });
+    it('Deletes league', async () => {
+      const props = {
+        leagueStatus: true,
+        leagueID: 'TestID',
+        playerRemoval: false,
+        leaguePlayerID: 'TestplayerID',
+        setRender: jest.fn(),
+      };
+      const component = shallow(
+          <AdminSystem {...props}/>,
+      );
+      const response = 'Successfully Delete League';
+      global.confirm = () => true;
+      global.alert = () => true;
+      axios.post.mockImplementationOnce(() => Promise.resolve(response));
+      component.find('[data-automation="DeleteLeague"]').simulate('click');
+      expect(axios.post).toHaveBeenCalled();
+    });
+    it('Removes player', async () => {
+      const props = {
+        leagueStatus: true,
+        leagueID: 'TestID',
+        playerRemoval: true,
+        leaguePlayerID: 'TestplayerID',
+        setRender: jest.fn(),
+      };
+      const component = shallow(
+          <AdminSystem {...props}/>,
+      );
+      const response = 'Successfully Removes Player';
+      global.confirm = () => true;
+      global.alert = () => true;
+      axios.post.mockImplementationOnce(() => Promise.resolve(response));
+      component.find('[data-automation="removePlayer"]').simulate('click');
+      expect(axios.post).toHaveBeenCalled();
+    });
   });
 });

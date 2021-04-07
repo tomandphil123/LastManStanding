@@ -72,22 +72,34 @@ const AdminSystem = ({
           placement="top"
         >
           { lockLeague ? (
-              <Button onClick={() => { if (window.confirm('Are you sure you want to unlock the league?')) toggleLeague() } } data-automation="unlockLeague">
+              <Button onClick={() => {
+                  if (window.confirm('Are you sure you want to unlock the league?')) toggleLeague() 
+                }} 
+                data-automation="unlockLeague">
                 <LockIcon style={{color: 'white'}}/>
               </Button>
             ) : (
-              <Button onClick={() => { if (window.confirm('Are you sure you want to lock the league?')) toggleLeague() } } data-automation="lockLeague">
+              <Button onClick={() => {
+                  if (window.confirm('Are you sure you want to lock the league?')) toggleLeague()
+                }}
+                data-automation="lockLeague">
                 <LockOpenIcon style={{color: 'white'}}/>
               </Button>
             )}
         </Tooltip>
         <Tooltip title="Reset League" placement="top">
-          <Button onClick={() => { if (window.confirm('Are you sure you want to reset the league?')) resetLeague() } }>
+          <Button onClick={() => {
+              if (window.confirm('Are you sure you want to reset the league?')) resetLeague()
+            }}
+            data-automation="ResetLeague">
             <RotateLeftIcon style={{color: '#ffffff'}}/>
           </Button>
         </Tooltip>
         <Tooltip title="Delete League" placement="top">
-          <Button onClick={() => { if (window.confirm('Are you sure you want to delete the league?')) deleteLeague() } }>
+          <Button onClick={() => {
+              if (window.confirm('Are you sure you want to delete the league?')) deleteLeague()
+            }}
+            data-automation="DeleteLeague">
             <DeleteIcon style={{color: '#ffffff'}}/>
           </Button>
         </Tooltip>
@@ -103,11 +115,6 @@ AdminSystem.propTypes = {
   leaguePlayerID: PropTypes.string.isRequired,
   setRender: PropTypes.func.isRequired,
 };
-
-// AdminSystem.defaultProps = {
-//   user: {},
-//   results: {},
-// };
 
 
 export default AdminSystem;
