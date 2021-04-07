@@ -1,4 +1,6 @@
+/* eslint-disable max-len */
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 import LockIcon from '@material-ui/icons/Lock';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -56,7 +58,11 @@ const AdminSystem = ({
 
   return (
     playerRemoval ? (
-      <IconButton onClick={() => { if (window.confirm('Are you sure you want to remove this user from the league?')) deleteUser() } }>
+      <IconButton onClick={() => {
+        if (window.confirm('Are you sure you want to remove this user from the league?')) deleteUser();
+      }}
+      data-automation="removePlayer"
+      >
         <DeleteIcon style={{color: 'red'}}/>
       </IconButton>
     ) : (
@@ -65,29 +71,50 @@ const AdminSystem = ({
           title={lockLeague ? ('Unlock League') : ('Lock League')}
           placement="top"
         >
-            { lockLeague ? (
-              <Button onClick={() => { if (window.confirm('Are you sure you want to unlock the league?')) toggleLeague() } }>
+          { lockLeague ? (
+              <Button onClick={() => {
+                  if (window.confirm('Are you sure you want to unlock the league?')) toggleLeague() 
+                }} 
+                data-automation="unlockLeague">
                 <LockIcon style={{color: 'white'}}/>
               </Button>
             ) : (
-              <Button onClick={() => { if (window.confirm('Are you sure you want to lock the league?')) toggleLeague() } }>
+              <Button onClick={() => {
+                  if (window.confirm('Are you sure you want to lock the league?')) toggleLeague()
+                }}
+                data-automation="lockLeague">
                 <LockOpenIcon style={{color: 'white'}}/>
               </Button>
             )}
         </Tooltip>
         <Tooltip title="Reset League" placement="top">
-        <Button onClick={() => { if (window.confirm('Are you sure you want to reset the league?')) resetLeague() } }>
+          <Button onClick={() => {
+              if (window.confirm('Are you sure you want to reset the league?')) resetLeague()
+            }}
+            data-automation="ResetLeague">
             <RotateLeftIcon style={{color: '#ffffff'}}/>
-        </Button>
+          </Button>
         </Tooltip>
         <Tooltip title="Delete League" placement="top">
-        <Button onClick={() => { if (window.confirm('Are you sure you want to delete the league?')) deleteLeague() } }>
+          <Button onClick={() => {
+              if (window.confirm('Are you sure you want to delete the league?')) deleteLeague()
+            }}
+            data-automation="DeleteLeague">
             <DeleteIcon style={{color: '#ffffff'}}/>
-        </Button>
+          </Button>
         </Tooltip>
       </div>
     )
   );
 };
+
+AdminSystem.propTypes = {
+  leagueStatus: PropTypes.bool.isRequired,
+  leagueID: PropTypes.string.isRequired,
+  playerRemoval: PropTypes.bool.isRequired,
+  leaguePlayerID: PropTypes.string.isRequired,
+  setRender: PropTypes.func.isRequired,
+};
+
 
 export default AdminSystem;
