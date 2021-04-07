@@ -53,9 +53,12 @@ def test_updateDB():
                 'Wins': '1'
 			})
 
-    updatePlayerDB_func_response = updatePlayerDB(PlayerTable, '124567', 3, 'wins')
+    updatePlayerDB_func_response = updatePlayerDB(PlayerTable, '124567', 3, 'Wins')
+
+    response = PlayerTable.scan()
 
     assert updatePlayerDB_func_response == 'Successfully updated playerDB'
+    assert response['Items'][0]['Wins'] == '3'
 
 @mock_dynamodb2
 def test_updateRemainingAndEliminated():
@@ -81,7 +84,9 @@ def test_updateRemainingAndEliminated():
 			})
 
     updateRandE_func_response = updateRemainingAndEliminated(LeaguesTable, 'TomsLeague', 3, 3)
+    response = LeaguesTable.scan()
 
+    assert response['Items'][0]['RemainingPlayers'] == '3'
     assert updateRandE_func_response == 'Successfully updated remaining and eliminated players'
 
 @mock_dynamodb2
@@ -102,7 +107,7 @@ def test_updateSuccessfulAndEliminated():
     LeaguePlayerTable = dynamodb.Table(table_name)
     LeaguePlayerTable.put_item(
 			Item={
-				'LeaguePlayerID': 'Tom12345',
+				'LeaguePlayerID': 'TomsLeague',
                 'CurrentPick': 'Manchester United'
 			})
 
@@ -111,7 +116,11 @@ def test_updateSuccessfulAndEliminated():
     }
 
     updateSuccessful_func_response = updateSuccessfulPlayer(LeaguePlayerTable, mock_player)
+    successfulResponse = LeaguePlayerTable.scan()
+    assert successfulResponse['Items'][0]['CurrentPick'] == '-'
+    
     updateEliminated_func_response = updateEliminatedPlayer(LeaguePlayerTable, mock_player)
-
+    eliminatedResponse = LeaguePlayerTable.scan()
+    assert eliminatedResponse['Items'][0]['CurrentPick'] == 'Eliminated'
     assert updateSuccessful_func_response == 'Successfully updated successful player'
     assert updateEliminated_func_response == 'Successfully updated eliminated player'
