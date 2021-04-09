@@ -47,6 +47,7 @@ const IndividualLeague = ({
   const [leagueInfo, setLeagueInfo] = useState();
   const [render, setRender] = useState();
   const [pickButton, setPickButton] = useState(false);
+  const [previewButton, setPreviewButton] = useState(false);
 
   useEffect(() => {
     if (typeof leagueId !== undefined) {
@@ -78,12 +79,65 @@ const IndividualLeague = ({
                       null
                     )}
                   {leagueInfo['data'][1][0]['LeagueStatus'] === 'Closed' ? (
-                      <>
-                        <Alert severity='warning'>Matches in progress - Picks are disabled! </Alert>
-                        <Button>Picks Preview</Button>
-                      </>
+                      <div className="lockedHeader">
+                        <div className="leagueLockAlert">
+                          <Alert severity='warning'>Matches in progress - Picks are disabled! </Alert>
+                        </div>
+                        {previewButton === true ? (
+                          <>
+                            <Backdrop className={classes.backdrop} open={previewButton}>
+                              <Card className='pickTeamCard'>
+                                  <CardContent>
+                                  <div align='right'>
+                                      <Button onClick={() => setPreviewButton(false)}>
+                                      <CloseIcon/>
+                                      </Button>
+                                  </div>
+                                  {console.log(leagueInfo['data'][2])}
+                                    <TableContainer component={Paper} className='tableContainer'>
+                                    <h1 className='h1'>Picks Preview</h1>
+                                    <Table aria-label='customized table' className='table'>
+                                      <TableHead>
+                                        <TableRow className='tableRowTitles'>
+                                          <TableCell align="center" className='tableCellProb'>
+                                            Team
+                                          </TableCell>
+                                          <TableCell align="center" className='tableCellProb'>
+                                            Picked
+                                          </TableCell>
+                                        </TableRow>
+                                      </TableHead>
+                                      { leagueInfo['data'][2].map(item => (
+                                        <TableBody className='tableBody' style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
+                                            <TableRow key={item}>
+                                              <TableCell align="center" className='tableCellProb'>
+                                              {item[0]}
+                                              </TableCell>
+                                              <TableCell align="center" className='tableCellProb'>
+                                              {item[1]}
+                                              </TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                      ))}
+                                    </Table>
+                                  </TableContainer>
+                                  </CardContent>
+                              </Card>
+                            </Backdrop>
+                          </>
+                        ) : (
+                          <div className="previewPickButton">
+                            <Button 
+                              style={{backgroundColor: '#490050', color: '#fff', fontSize: "13px", height: "45px", fontWeight: "bold"}}
+                              onClick={() => setPreviewButton(true)}
+                              >
+                                Picks Preview
+                            </Button>
+                          </div>
+                        )}
+                      </div>
                     ) : (
-                        <Alert severity='warning'>Deadline for picks 19:00 on the 9th April! </Alert>
+                        <Alert severity='warning'>Deadline for picks: {leagueInfo['data'][3]} </Alert>
                     )}
                   {leagueInfo['data'][0].map((item) => (
                     <div key={item['Username']}>

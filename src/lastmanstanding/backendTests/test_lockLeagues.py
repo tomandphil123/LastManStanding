@@ -22,7 +22,8 @@ def test_ScanTableAndUpdateDB():
     leaguesTable.put_item(
 			Item={
 				'LeagueID': 'TestingScan',
-                'LeagueStatus': 'Open'
+                'LeagueStatus': 'Open',
+                'Joinable': 'Yes'
 			})
 
     leagues = [{'LeagueID': 'TestingScan'}]
@@ -32,6 +33,7 @@ def test_ScanTableAndUpdateDB():
 
     assert scanDB_func_response[0]['LeagueID'] == 'TestingScan'
     assert scanDB_func_response[0]['LeagueStatus'] == 'Closed'
+    assert scanDB_func_response[0]['Joinable'] == 'No'
     assert updateLeagueStatus_func_response == 'Successfuly updated league status'
 
 @mock_dynamodb2

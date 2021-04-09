@@ -15,10 +15,12 @@ def queryWithIndex(tableName, indexName, leagueID):
 	)
 	return leaguePlayerData['Items']
 
+def scanDB(tableName):
+	response = tableName.scan()
+	res = response['Items']
+	return res
 
 def handler(event, context):
-	print('received event:')
-	print(event)
 	result = json.loads(event['body'])
 	leagueID = result['leagueId']
 	ret_lst = []
@@ -44,7 +46,16 @@ def handler(event, context):
 	leagueData = queryDB(Ltable, leagueID)
 	ret_lst.append(leagueData)
 
-	ret_lst.append(picksPreview)
+	# sort picksPreview by number of picks
+	sorted_picksPreview = sorted(picksPreview.items(), key=lambda x: x[1], reverse=True)
+	ret_lst.append(sorted_picksPreview)
+
+	schedulerTable = dynamodb.Table('SchedulerDB-develop')
+	schedulerData = scanDB(schedulerTable)
+	deadlineTime = schedulerData[0]['Deadline'].split(':')
+	gmtDeadlineTime = int(deadlineTime[0]) + 1
+	deadline = str(gmtDeadlineTime) + ':' + deadlineTime[1]
+	ret_lst.append(deadline)
 
 	return {
 		'statusCode': 200,

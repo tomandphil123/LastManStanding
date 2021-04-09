@@ -21,3 +21,19 @@ div.MuiPaper-root.MuiCard-root.pickTeamCard.MuiPaper-elevation1.MuiPaper-rounded
         width: 100%;
     }
 }
+
+.lockedHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 3;
+}
+
+.leagueLockAlert{
+    flex: 2;
+    margin-right: 8px;
+}
+
+.previewButton{
+    flex: 1;
+}

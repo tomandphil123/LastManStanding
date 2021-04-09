@@ -205,6 +205,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "SchedulerDB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     },

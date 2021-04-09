@@ -19,6 +19,12 @@
         "read",
         "update",
         "delete"
+      ],
+      "SchedulerDB": [
+        "create",
+        "read",
+        "update",
+        "delete"
       ]
     }
   }

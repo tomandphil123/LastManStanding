@@ -33,6 +33,14 @@
     "storageLeaguePlayerDBArn": {
       "Type": "String",
       "Default": "storageLeaguePlayerDBArn"
+    },
+    "storageSchedulerDBName": {
+      "Type": "String",
+      "Default": "storageSchedulerDBName"
+    },
+    "storageSchedulerDBArn": {
+      "Type": "String",
+      "Default": "storageSchedulerDBArn"
     }
   },
   "Conditions": {
@@ -97,6 +105,12 @@
             },
             "STORAGE_LEAGUEPLAYERDB_ARN": {
               "Ref": "storageLeaguePlayerDBArn"
+            },
+            "STORAGE_SCHEDULERDB_NAME": {
+              "Ref": "storageSchedulerDBName"
+            },
+            "STORAGE_SCHEDULERDB_ARN": {
+              "Ref": "storageSchedulerDBArn"
             }
           }
         },
@@ -111,7 +125,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
-          "S3Key": "amplify-builds/getLeagueInfo-7854544b614e61515632-build.zip"
+          "S3Key": "amplify-builds/getLeagueInfo-304b465a657176685961-build.zip"
         }
       }
     },
@@ -304,6 +318,39 @@
                     [
                       {
                         "Ref": "storageLeaguePlayerDBArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*",
+                "dynamodb:Delete*"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageSchedulerDBArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageSchedulerDBArn"
                       },
                       "index/*"
                     ]

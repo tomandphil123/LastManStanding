@@ -13,9 +13,10 @@ def updateLeagueStatus(tableName, leagues):
       Key={
               'LeagueID': leagueID
           },
-          UpdateExpression='set LeagueStatus=:s',
+          UpdateExpression='set LeagueStatus=:val1, Joinable=:val2',
           ExpressionAttributeValues={
-              ':s': 'Closed'
+              ':val1': 'Closed',
+              ':val2': 'No'
           },
           ReturnValues="UPDATED_NEW"
     )
