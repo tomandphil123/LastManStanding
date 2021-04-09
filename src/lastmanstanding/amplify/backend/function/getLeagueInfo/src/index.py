@@ -22,6 +22,7 @@ def handler(event, context):
 	result = json.loads(event['body'])
 	leagueID = result['leagueId']
 	ret_lst = []
+	picksPreview = {}
 
 	dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 
@@ -32,11 +33,18 @@ def handler(event, context):
 	# Sort list of players by status
 	leaguePlayerData.sort(key=lambda s: s['playerStatus'])
 	ret_lst.append(leaguePlayerData)
+	for player in leaguePlayerData:
+		if player['CurrentPick'] in picksPreview:
+			picksPreview[player['CurrentPick']] += 1
+		else:
+			picksPreview[player['CurrentPick']] = 1
 
-	# Get deague data
+	# Get league data
 	Ltable = dynamodb.Table('LeaguesDB-develop')
 	leagueData = queryDB(Ltable, leagueID)
 	ret_lst.append(leagueData)
+
+	ret_lst.append(picksPreview)
 
 	return {
 		'statusCode': 200,

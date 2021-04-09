@@ -53,6 +53,7 @@ const IndividualLeague = ({
       axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/getLeagueInfo', {leagueId: leagueId})
           .then((response) => {
             setLeagueInfo(response);
+            console.log(response)
           });
     }
   }, [leagueId, permPick, render]);
@@ -77,7 +78,10 @@ const IndividualLeague = ({
                       null
                     )}
                   {leagueInfo['data'][1][0]['LeagueStatus'] === 'Closed' ? (
-                        <Alert severity='warning'>Matches in progress - Picks are disabled!</Alert>
+                      <>
+                        <Alert severity='warning'>Matches in progress - Picks are disabled! </Alert>
+                        <Button>Picks Preview</Button>
+                      </>
                     ) : (
                         <Alert severity='warning'>Deadline for picks 19:00 on the 9th April! </Alert>
                     )}
