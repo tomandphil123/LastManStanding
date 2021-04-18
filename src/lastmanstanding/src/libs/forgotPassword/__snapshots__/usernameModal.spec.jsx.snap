@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`usernameModal Snapshot renders correctly 1`] = `
+<WithStyles(ForwardRef(Container))
+  component="main"
+  maxWidth="xs"
+>
+  <div
+    className="makeStyles-paper-1"
+  >
+    <WithStyles(ForwardRef(Avatar))
+      className="makeStyles-avatar-2"
+    >
+      <Memo(ForwardRef(LockOutlinedIcon)) />
+    </WithStyles(ForwardRef(Avatar))>
+    <WithStyles(ForwardRef(Typography))
+      component="h1"
+      variant="h5"
+    >
+      Forgot Password
+    </WithStyles(ForwardRef(Typography))>
+    <form
+      className="makeStyles-form-3"
+      noValidate={true}
+    >
+      <WithStyles(ForwardRef(TextField))
+        autoComplete="uname"
+        autoFocus={true}
+        fullWidth={true}
+        id="email"
+        label="Username"
+        margin="normal"
+        name="Username"
+        onChange={[Function]}
+        required={true}
+        variant="outlined"
+      />
+      <WithStyles(ForwardRef(Button))
+        className="makeStyles-submit-4"
+        color="primary"
+        fullWidth={true}
+        onClick={[Function]}
+        type="submit"
+        variant="contained"
+      >
+        Submit
+      </WithStyles(ForwardRef(Button))>
+    </form>
+    <Link
+      onClick={[Function]}
+    >
+      Back to Sign In
+    </Link>
+  </div>
+</WithStyles(ForwardRef(Container))>
+`;
