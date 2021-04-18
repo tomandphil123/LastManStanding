@@ -125,7 +125,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
-          "S3Key": "amplify-builds/getLeagueInfo-304b465a657176685961-build.zip"
+          "S3Key": "amplify-builds/getLeagueInfo-6278617a61314572512b-build.zip"
         }
       }
     },

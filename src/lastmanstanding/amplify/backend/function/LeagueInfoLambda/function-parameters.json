@@ -12,6 +12,12 @@
         "read",
         "update",
         "delete"
+      ],
+      "deadlineReminder": [
+        "create",
+        "read",
+        "update",
+        "delete"
       ]
     },
     "storage": {
