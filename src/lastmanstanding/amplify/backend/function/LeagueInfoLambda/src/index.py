@@ -54,6 +54,34 @@ def createCron(client, myCron):
 	
 	return 'Successfully set up cron'
 
+def createEmailCron(client, myEmailCron):
+	rule = client.put_rule(
+		Name="MyRuleId2",
+		ScheduleExpression=myEmailCron,
+		State="ENABLED",
+	)
+	client.put_targets(
+		Rule="MyRuleId2",
+		Targets=[
+			{
+				"Id": "MyTargetId2",
+				"Arn": "arn:aws:lambda:eu-west-1:706350010776:function:deadlineReminder-develop",
+			}
+		]
+	)
+	try:
+		client.add_permission(
+			FunctionName="arn:aws:lambda:eu-west-1:706350010776:function:deadlineReminder-develop",
+			StatementId="MyRuleID2",
+			Action="lambda:InvokeFunction",
+			Principal="events.amazonaws.com",
+			SourceArn=rule["RuleArn"]
+		)
+	except:
+		print('Error occured, but dont worry about it.')
+	
+	return 'Successfully set up email cron'
+
 def addResults(tableName, match, homeTeam, awayTeam, crests, currentGameWeek, winner):
 	tableName.put_item(
 		Item={
@@ -113,19 +141,20 @@ def updatedStandingsDB(tableName, team, TeamName):
 	)
 	return 'Successfully updated standings'
 
-def updateSchedulerDB(tableName, nextGameWeek, currentGameWeek, firstGameTime, lastMatch, deadline, firstGameDate):
+def updateSchedulerDB(tableName, nextGameWeek, currentGameWeek, firstGameTime, lastMatch, lastMatchStartTime, deadline, firstGameDate):
 	tableName.update_item(
 		Key={
 		'GamePeriod': 'Testing'
 		},
-		UpdateExpression='set CurrentGameWeek=:val1, FirstGameTime=:val2, NextGameWeek=:val3, PreviousGameWeek=:val4, LastGame=:val5, Deadline=:val6',
+		UpdateExpression='set CurrentGameWeek=:val1, FirstGameTime=:val2, NextGameWeek=:val3, PreviousGameWeek=:val4, LastGame=:val5, LastMatchStartTime=:val6, Deadline=:val7',
 		ExpressionAttributeValues={
 			':val1': str(nextGameWeek),
 			':val2': str(firstGameTime),
 			':val3': str(int(nextGameWeek)+1),
 			':val4': str(currentGameWeek),
 			':val5': str(lastMatch),
-			':val6': str(deadline + " " + firstGameDate)
+			':val6': str(lastMatchStartTime),
+			':val7': str(deadline + " " + firstGameDate)
 		},
 		ReturnValues='UPDATED_NEW'
 	)
@@ -176,11 +205,17 @@ def handler(event, context):
 	currentGameWeek = scheduler[0]['CurrentGameWeek']
 	nextGameWeek = scheduler[0]['NextGameWeek']
 	lastMatch = scheduler[0]['LastGame']
+	lastMatchStartTimer = scheduler[0]['LastMatchStartTime']
+	updateTime = int(lastMatchStartTimer.split(':')[0]) + 3
+
+	now = datetime.now()
+	current_time = now.strftime("%H:%M:%S")
+	currTime = current_time.split(':')[0]
 
 	# check if API has been updated
 	updated = False
 	for match in matchesResponse['matches']:
-		if str(match['matchday']) == str(currentGameWeek) and str(match['homeTeam']['name']) == str(lastMatch) and str(match['score']['fullTime']['homeTeam']) != 'None':
+		if int(currTime) >= updateTime and str(match['matchday']) == str(currentGameWeek) and str(match['homeTeam']['name']) == str(lastMatch) and str(match['score']['fullTime']['homeTeam']) != 'None':
 			updated = True
 			break
 
@@ -250,6 +285,8 @@ def handler(event, context):
 
 				# store tmp value
 				lastMatch = match['homeTeam']['name']
+				lastMatchTime = match['utcDate'].split('T')[1].split(':')
+				lastMatchStartTime = str(int(lastMatchTime[0]) + 1) +':'+ lastMatchTime[1]
 
 				# get probabilities of match
 				probabilities = getProbability(match)
@@ -270,7 +307,7 @@ def handler(event, context):
 		# )
 		
 		# update sheduler DB
-		updateSchedulerDB(schedulerDB, nextGameWeek, currentGameWeek, firstGameTime, lastMatch, deadline, firstGameDate)
+		updateSchedulerDB(schedulerDB, nextGameWeek, currentGameWeek, firstGameTime, lastMatch, lastMatchStartTime, deadline, firstGameDate)
 
 		# set up cron
 		minutes = firstGameTime.split(':')[1]
@@ -284,6 +321,11 @@ def handler(event, context):
 		# create cron 
 		client = boto3.client('events')
 		createCron(client, myCron)
+
+		# set up email cron for reminding about deadline
+		emailHours = str(int(hours)-1)
+		myEmailCron = "cron({} {} {} {} ? {})".format(minutes,emailHours,dayOfMonth,month,year)
+		createEmailCron(client, myEmailCron)
 
 	return {
 	'message': 'Updated!'

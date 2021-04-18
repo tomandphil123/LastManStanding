@@ -127,12 +127,13 @@ def test_updateSchedulerDB():
             'FirstGameTime':'14:00', 
             'NextGameWeek':'30', 
             'PreviousGameWeek':'28', 
-            'LastGame':'Manchester United FC', 
+            'LastGame':'Manchester United FC',
+            'LastMatchStartTime':'19:00',
             'Deadline':'15:00 14/04/2021'
         })
 
     # call the function on mock table
-    func_response = updateSchedulerDB(SchedulerTable, 31, 30, '14:00', 'Manchester United FC', '15:00', '21/04/2021')
+    func_response = updateSchedulerDB(SchedulerTable, 31, 30, '14:00', '19:00', 'Manchester United FC', '15:00', '21/04/2021')
 
     tableData = SchedulerTable.scan()
 

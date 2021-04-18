@@ -107,16 +107,22 @@ const IndividualLeague = ({
                                         </TableRow>
                                       </TableHead>
                                       { leagueInfo['data'][2].map(item => (
-                                        <TableBody className='tableBody' style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
-                                            <TableRow key={item}>
-                                              <TableCell align="center" className='tableCellProb'>
-                                              {item[0]}
-                                              </TableCell>
-                                              <TableCell align="center" className='tableCellProb'>
-                                              {item[1]}
-                                              </TableCell>
-                                            </TableRow>
-                                        </TableBody>
+                                        <>
+                                          {item[0] !== 'Eliminated' ? (
+                                            <TableBody className='tableBody' style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
+                                                <TableRow key={item}>
+                                                  <TableCell align="center" className='tableCellProb'>
+                                                  {item[0]}
+                                                  </TableCell>
+                                                  <TableCell align="center" className='tableCellProb'>
+                                                  {item[1]}
+                                                  </TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                          ):(
+                                            null
+                                          )}
+                                        </>
                                       ))}
                                     </Table>
                                   </TableContainer>
