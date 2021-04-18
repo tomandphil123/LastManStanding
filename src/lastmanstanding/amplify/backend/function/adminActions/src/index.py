@@ -2,17 +2,27 @@ import json
 import boto3
 from boto3.dynamodb.conditions import Key
 
+def deleteLeagueFromDB(tableName, dbKey, val):
+  tableName.delete_item(
+    Key={
+        dbKey : val
+    }
+  )
+  return 'Successfully removed from League'
+
+def queryDB(tableName, dbKey, val):
+	data = tableName.query(
+		KeyConditionExpression=Key(dbKey).eq(val)
+	)
+	return data['Items']
+
 def deleteLeague(result):
   leagueID = result['leagueID']
 
   dynamodb = boto3.resource('dynamodb', 'eu-west-1')
   # delete league from leaguesDB
   leaguesDB = dynamodb.Table('LeaguesDB-develop')
-  leaguesDB.delete_item(
-    Key={
-        'LeagueID': leagueID
-    }
-  )
+  deleteLeagueFromDB(leaguesDB, 'LeagueID', leagueID)
 
   # delete players from leaguePlayerDB from that league
   subs = []
@@ -23,23 +33,14 @@ def deleteLeague(result):
 	)
   for player in leaguePlayerData['Items']:
     subs.append(player['LeaguePlayerID'].split('/')[1])
-    leaguePlayerDB.delete_item(
-      Key={
-          'LeaguePlayerID': player['LeaguePlayerID']
-      }
-    )
+    deleteLeagueFromDB(leaguePlayerDB, 'LeaguePlayerID', player['LeaguePlayerID'])
 
   # delete leagueID from list of LeaguesIDs in playerDB
   playerDB = dynamodb.Table('PlayerDB-develop')
   for sub in subs:
-    data = playerDB.query(
-      KeyConditionExpression=Key('Sub').eq(sub)
-    )
-
-    resp = data['Items']
+    resp = queryDB(playerDB, 'Sub', sub)
     leagueIDs = resp[0]['leagueIDs']
     leagueIDs.remove(leagueID)
-
 
     playerDB.update_item(
       Key={
@@ -88,18 +89,11 @@ def removePlayer(result):
 
   dynamodb = boto3.resource('dynamodb', 'eu-west-1')
   leaguePlayerDB = dynamodb.Table('LeaguePlayerDB-develop')
-  leaguePlayerDB.delete_item(
-    Key={
-        'LeaguePlayerID': leaguePlayerID
-    }
-  )
+  deleteLeagueFromDB(leaguePlayerDB, 'LeaguePlayerID', leaguePlayerID)
 
   playerDB = dynamodb.Table('PlayerDB-develop')
-  data = playerDB.query(
-    KeyConditionExpression=Key('Sub').eq(sub)
-  )
 
-  resp = data['Items']
+  resp = queryDB(playerDB, 'Sub', sub)
   leagueIDs = resp[0]['leagueIDs']
   leagueIDs.remove(leagueID)
 
@@ -115,10 +109,7 @@ def removePlayer(result):
   )
 
   leaguesDB = dynamodb.Table('LeaguesDB-develop')
-  leagueData = leaguesDB.query(
-      KeyConditionExpression=Key('LeagueID').eq(leagueID)
-    )
-  resp = leagueData['Items']
+  resp = queryDB(leaguesDB, 'LeagueID', leagueID)
   remainingPlayers = int(resp[0]['RemainingPlayers']) - 1
 
   leaguesDB.update_item(
@@ -164,7 +155,6 @@ def resetLeague(result):
   
   # reset league
   leaguesDB = dynamodb.Table('LeaguesDB-develop')
-
   leaguesDB.update_item(
       Key={
               'LeagueID': leagueID

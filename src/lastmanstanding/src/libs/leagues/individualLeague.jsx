@@ -73,12 +73,12 @@ const IndividualLeague = ({
             <div style={{backgroundColor: '#fff'}}>
               <Grid container direction='column' spacing={4}>
                 <Grid item xs={12} md={12}>
-                  {leagueInfo['data'][1][0]['Winner'] !== '-' ? (
+                  {leagueInfo['data'][1][0]['Winner'] !== '-' && typeof leagueInfo !== 'undefined' ? (
                         <Alert severity='success'><span role="img" aria-label="Trophy">🏆</span> Winner Winner Chicken Dinner {leagueInfo['data'][1][0]['Winner']} <span role="img" aria-label="Trophy">🏆</span></Alert>
                     ) : (
                       null
                     )}
-                  {leagueInfo['data'][1][0]['LeagueStatus'] === 'Closed' ? (
+                  {leagueInfo['data'][1][0]['LeagueStatus'] === 'Closed' && typeof leagueInfo !== 'undefined' ? (
                       <div className="lockedHeader">
                         <div className="leagueLockAlert">
                           <Alert severity='warning'>Matches in progress - Picks are disabled! </Alert>
@@ -93,7 +93,6 @@ const IndividualLeague = ({
                                       <CloseIcon/>
                                       </Button>
                                   </div>
-                                  {console.log(leagueInfo['data'][2])}
                                     <TableContainer component={Paper} className='tableContainer'>
                                     <h1 className='h1'>Picks Preview</h1>
                                     <Table aria-label='customized table' className='table'>
@@ -108,16 +107,22 @@ const IndividualLeague = ({
                                         </TableRow>
                                       </TableHead>
                                       { leagueInfo['data'][2].map(item => (
-                                        <TableBody className='tableBody' style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
-                                            <TableRow key={item}>
-                                              <TableCell align="center" className='tableCellProb'>
-                                              {item[0]}
-                                              </TableCell>
-                                              <TableCell align="center" className='tableCellProb'>
-                                              {item[1]}
-                                              </TableCell>
-                                            </TableRow>
-                                        </TableBody>
+                                        <>
+                                          {item[0] !== 'Eliminated' ? (
+                                            <TableBody className='tableBody' style={{minHeight: 'auto', backgroundColor: 'white', color: 'black'}}>
+                                                <TableRow key={item}>
+                                                  <TableCell align="center" className='tableCellProb'>
+                                                  {item[0]}
+                                                  </TableCell>
+                                                  <TableCell align="center" className='tableCellProb'>
+                                                  {item[1]}
+                                                  </TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                          ):(
+                                            null
+                                          )}
+                                        </>
                                       ))}
                                     </Table>
                                   </TableContainer>
