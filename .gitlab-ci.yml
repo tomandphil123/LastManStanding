@@ -10,6 +10,7 @@ build:
       - cd ./src/lastmanstanding 
       - echo "Start building App"
       - npm install
+      - npm install @aws-amplify/cache
       - npm run-script build
       - echo "Build successfully!"
   
