@@ -31,7 +31,7 @@ const ProfilePage = () => {
                   <>
                     <ListItem>
                     <Card>
-                      <img src={item['imgsrc']} alt= "news image" height="auto" width="auto"/>
+                      <img src={item['imgsrc']} alt= "news" height="auto" width="auto"/>
                     <CardContent>
                       <h3>{item["title"]}</h3>
                       <p>{item["shortdesc"]}</p>
