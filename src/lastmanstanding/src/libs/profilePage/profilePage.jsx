@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import List from '@material-ui/core/List';
@@ -60,9 +61,9 @@ const ProfilePage = ({
                   {console.log(myInfo)}
                   {typeof myInfo !== 'undefined' ? (
                     <>
-                      <p>Username: {myInfo[0]['Username']}</p>
-                      <p>Email: {myInfo[0]['email']}</p>
-                      <p>Favourite Team: {myInfo[0]['favouriteTeam']}</p>
+                      <ListItem>Username: {myInfo[0]['Username']}</ListItem>
+                      <ListItem>Email: {myInfo[0]['email']}</ListItem>
+                      <ListItem>Favourite Team: {myInfo[0]['favouriteTeam']}</ListItem>
                     </>
                   ) : (
                     <CircularProgress style={{color: '#490050'}}/>
@@ -80,8 +81,8 @@ const ProfilePage = ({
                 <List>
                   {typeof myInfo !== 'undefined' ? (
                     <>
-                      <p>Wins: {myInfo[0]['wins']}</p>
-                      <p>Losses: {myInfo[0]['losses']}</p>
+                      <ListItem>Wins: {myInfo[0]['wins']}</ListItem>
+                      <ListItem>Losses: {myInfo[0]['losses']}</ListItem>
                     </>
                   ) : (
                     <CircularProgress style={{color: '#490050'}}/>
@@ -99,10 +100,9 @@ const ProfilePage = ({
                   {typeof myInfo !== 'undefined' ? (
                     <>
                       <h1>Leagues:</h1>
-                      {console.log(myInfo[0]['leagueIDs'])}
                       { myInfo[0]['leagueIDs'].map(item => (
                         <>
-                          {item}<br />
+                          <ListItem>{item}</ListItem>
                         </>
                       ))}
                     </>
@@ -119,10 +119,9 @@ const ProfilePage = ({
               <CardHeader title='Your Favourite Teams News!'/>
               <Divider/>
               <CardContent>
-                <List>
                   {typeof teamInfo !== 'undefined' ? (
                     teamInfo.map(item => (
-                      <>
+                      <List>
                         <ListItem alignItems='flex-start'>
                           <ListItemAvatar>
                             <Avatar variant='square' alt='News' src={item['imgsrc']} className={classes.square}/>
@@ -140,17 +139,29 @@ const ProfilePage = ({
                               </React.Fragment>}/>
                         </ListItem>
                         <Divider light />
-                      </>
+                      </List>
                     ))
                   ) : (
-                    <CircularProgress style={{color: '#490050'}}/>
+                    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '60vh'}}>
+                      <CircularProgress style={{color: '#490050', marginRight:'12px'}}/>
+                      <p>Loading news</p>
+                    </div>
                   )}
-                  </List>
                 </CardContent>
             </Card>
           </Grid>
         </Grid>
     )
 }
+
+ProfilePage.propTypes = {
+  user: PropTypes.object,
+  results: PropTypes.object,
+};
+
+ProfilePage.defaultProps = {
+  user: {},
+  results: {},
+};
 
 export default ProfilePage;
