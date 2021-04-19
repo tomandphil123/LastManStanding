@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`crestBar Snapshot renders 1`] = `
+exports[`crests Snapshot renders 1`] = `
 <div
   style={
     Object {

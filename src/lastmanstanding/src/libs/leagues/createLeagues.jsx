@@ -53,7 +53,6 @@ const CreateLeagues = ({
 
   return (
     <>
-      {/* eslint-disable-next-line max-len */}
       <Container component="main" maxWidth="xs" style={{backgroundColor: '#fff'}}>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
@@ -75,6 +74,7 @@ const CreateLeagues = ({
                   label="First Name"
                   autoFocus
                   onChange= {(event) => setFirstName(event.target.value)}
+                  inputProps={{'data-testid': 'firstName'}}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -87,6 +87,7 @@ const CreateLeagues = ({
                   name="lastName"
                   autoComplete="lname"
                   onChange= {(event) => setSurname(event.target.value)}
+                  inputProps={{'data-testid': 'lastName'}}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -100,6 +101,7 @@ const CreateLeagues = ({
                   name="leagueName"
                   autoComplete="uname"
                   onChange= {(event) => setleagueName(event.target.value)}
+                  inputProps={{'data-testid': 'leagueName'}}
                 />
               </Grid>
             </Grid>
@@ -121,7 +123,7 @@ const CreateLeagues = ({
 };
 
 CreateLeagues.propTypes = {
-  user: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
   setCreateLeague: PropTypes.func.isRequired,
   setRender: PropTypes.func.isRequired,
 };

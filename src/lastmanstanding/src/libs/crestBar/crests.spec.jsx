@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import Crests from './crests';
 
-describe('crestBar', () => {
+describe('crests', () => {
   const props = {
     screenWidth: 1000,
     crests: [

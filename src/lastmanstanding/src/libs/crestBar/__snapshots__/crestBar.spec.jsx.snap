@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`crestBar Snapshot renders 1`] = `
+<Crests
+  crests={Array []}
+  screenWidth={null}
+/>
+`;
