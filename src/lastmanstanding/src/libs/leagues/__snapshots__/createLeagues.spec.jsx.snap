@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateLeagues Snapshot renders 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(Container))
+    component="main"
+    maxWidth="xs"
+    style={
+      Object {
+        "backgroundColor": "#fff",
+      }
+    }
+  >
+    <div
+      className="makeStyles-paper-1"
+    >
+      <WithStyles(ForwardRef(Avatar))
+        className="makeStyles-avatar-2"
+      >
+        <Memo(ForwardRef(LockOutlinedIcon)) />
+      </WithStyles(ForwardRef(Avatar))>
+      <WithStyles(ForwardRef(Typography))
+        component="h1"
+        variant="h5"
+      >
+        Create League
+      </WithStyles(ForwardRef(Typography))>
+      <form
+        className="makeStyles-form-3"
+        noValidate={true}
+      >
+        <WithStyles(ForwardRef(Grid))
+          container={true}
+          spacing={2}
+        >
+          <WithStyles(ForwardRef(Grid))
+            item={true}
+            sm={6}
+            xs={12}
+          >
+            <WithStyles(ForwardRef(TextField))
+              autoComplete="fname"
+              autoFocus={true}
+              fullWidth={true}
+              id="firstName"
+              inputProps={
+                Object {
+                  "data-testid": "firstName",
+                }
+              }
+              label="First Name"
+              name="firstName"
+              onChange={[Function]}
+              required={true}
+              variant="outlined"
+            />
+          </WithStyles(ForwardRef(Grid))>
+          <WithStyles(ForwardRef(Grid))
+            item={true}
+            sm={6}
+            xs={12}
+          >
+            <WithStyles(ForwardRef(TextField))
+              autoComplete="lname"
+              fullWidth={true}
+              id="lastName"
+              inputProps={
+                Object {
+                  "data-testid": "lastName",
+                }
+              }
+              label="Last Name"
+              name="lastName"
+              onChange={[Function]}
+              required={true}
+              variant="outlined"
+            />
+          </WithStyles(ForwardRef(Grid))>
+          <WithStyles(ForwardRef(Grid))
+            item={true}
+            xs={12}
+          >
+            <WithStyles(ForwardRef(TextField))
+              autoComplete="uname"
+              fullWidth={true}
+              id="leagueName"
+              inputProps={
+                Object {
+                  "data-testid": "leagueName",
+                }
+              }
+              label="League Name"
+              margin="normal"
+              name="leagueName"
+              onChange={[Function]}
+              required={true}
+              variant="outlined"
+            />
+          </WithStyles(ForwardRef(Grid))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Button))
+          className="makeStyles-submit-4"
+          color="primary"
+          fullWidth={true}
+          onClick={[Function]}
+          type="submit"
+          variant="contained"
+        >
+          Create League
+        </WithStyles(ForwardRef(Button))>
+      </form>
+    </div>
+  </WithStyles(ForwardRef(Container))>
+</Fragment>
+`;
