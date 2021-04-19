@@ -14,6 +14,10 @@ import CardHeader from '@material-ui/core/CardHeader';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import { Divider } from '@material-ui/core';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import AssessmentIcon from '@material-ui/icons/Assessment';
+import AnnouncementIcon from '@material-ui/icons/Announcement';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(9),
     height: theme.spacing(9),
     paddingRight: '8px'
+  },
+  avatar: {
+    backgroundColor: '#490050',
   },
 }));
 
@@ -54,7 +61,12 @@ const ProfilePage = ({
         <Grid container direction='row' spacing={2}>
           <Grid item xs={12} md={3}>
             <Card >
-              <CardHeader title='Profile!'/>
+              <CardHeader avatar={
+                <Avatar aria-label='account' className={classes.avatar}>
+                  <AccountCircleIcon/>
+                </Avatar>} 
+                title='Account'
+              />
               <Divider/>
               <CardContent>
                 <List>
@@ -74,7 +86,12 @@ const ProfilePage = ({
           <Grid item xs={12} md={3}>
             <Grid item xs={12} md={12}>
             <Card>
-              <CardHeader title='Record!'/>
+              <CardHeader avatar={
+                <Avatar aria-label='results' className={classes.avatar}>
+                  <AssessmentIcon/>
+                </Avatar>} 
+                title='Results'
+              />
               <Divider/>
               <CardContent>
                 <List>
@@ -92,7 +109,12 @@ const ProfilePage = ({
             </Grid>
             <Grid item xs={12} md={12}>
             <Card >
-              <CardHeader title='Active Competitions!'/>
+            <CardHeader avatar={
+                <Avatar aria-label='active competitions' className={classes.avatar}>
+                  <CheckCircleIcon/>
+                </Avatar>} 
+                title='Active Competitions'
+            />
               <Divider/>
               <CardContent>
                 <List>
@@ -115,7 +137,12 @@ const ProfilePage = ({
           </Grid>
           <Grid item xs={12} md={6}>
             <Card style={{overflow: 'scroll', height: '650px'}}>
-              <CardHeader title='Your Favourite Teams News!'/>
+              <CardHeader avatar={
+                <Avatar aria-label='team news' className={classes.avatar}>
+                  <AnnouncementIcon/>
+                </Avatar>} 
+                title='Your Favourite Teams News!'
+              />
               <Divider/>
               <CardContent>
                   {typeof teamInfo !== 'undefined' ? (
