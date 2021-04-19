@@ -48,7 +48,7 @@ const ProfilePage = ({
               })
             }
         });
-    },[])
+    },[user])
     
     return (
         <Grid container direction='row' spacing={2}>
@@ -58,7 +58,6 @@ const ProfilePage = ({
               <Divider/>
               <CardContent>
                 <List>
-                  {console.log(myInfo)}
                   {typeof myInfo !== 'undefined' ? (
                     <>
                       <ListItem>Username: {myInfo[0]['Username']}</ListItem>
