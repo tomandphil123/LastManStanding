@@ -70,6 +70,13 @@
             "privacy": {
                 "open": true
             }
+        },
+        {
+            "name": "/profileInfo",
+            "lambdaFunction": "getProfile",
+            "privacy": {
+                "open": true
+            }
         }
     ],
     "resourceName": "LastManStandingAPI",
@@ -104,6 +111,9 @@
         },
         {
             "lambdaFunction": "adminActions"
+        },
+        {
+            "lambdaFunction": "getProfile"
         }
     ],
     "privacy": {
@@ -192,7 +202,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getProfile",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "c6efe545"
+    "uuid": "05d36a38"
 }

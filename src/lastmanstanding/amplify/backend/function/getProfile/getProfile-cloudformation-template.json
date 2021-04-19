@@ -10,13 +10,13 @@
     "env": {
       "Type": "String"
     },
-    "storageLeaguesDBName": {
+    "storagePlayerDBName": {
       "Type": "String",
-      "Default": "storageLeaguesDBName"
+      "Default": "storagePlayerDBName"
     },
-    "storageLeaguesDBArn": {
+    "storagePlayerDBArn": {
       "Type": "String",
-      "Default": "storageLeaguesDBArn"
+      "Default": "storagePlayerDBArn"
     },
     "storageLeaguePlayerDBName": {
       "Type": "String",
@@ -25,14 +25,6 @@
     "storageLeaguePlayerDBArn": {
       "Type": "String",
       "Default": "storageLeaguePlayerDBArn"
-    },
-    "storagePlStandingsDBName": {
-      "Type": "String",
-      "Default": "storagePlStandingsDBName"
-    },
-    "storagePlStandingsDBArn": {
-      "Type": "String",
-      "Default": "storagePlStandingsDBArn"
     }
   },
   "Conditions": {
@@ -57,12 +49,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lockLeagues",
+            "getProfile",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lockLeagues",
+                  "getProfile",
                   "-",
                   {
                     "Ref": "env"
@@ -80,23 +72,17 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "STORAGE_LEAGUESDB_NAME": {
-              "Ref": "storageLeaguesDBName"
+            "STORAGE_PLAYERDB_NAME": {
+              "Ref": "storagePlayerDBName"
             },
-            "STORAGE_LEAGUESDB_ARN": {
-              "Ref": "storageLeaguesDBArn"
+            "STORAGE_PLAYERDB_ARN": {
+              "Ref": "storagePlayerDBArn"
             },
             "STORAGE_LEAGUEPLAYERDB_NAME": {
               "Ref": "storageLeaguePlayerDBName"
             },
             "STORAGE_LEAGUEPLAYERDB_ARN": {
               "Ref": "storageLeaguePlayerDBArn"
-            },
-            "STORAGE_PLSTANDINGSDB_NAME": {
-              "Ref": "storagePlStandingsDBName"
-            },
-            "STORAGE_PLSTANDINGSDB_ARN": {
-              "Ref": "storagePlStandingsDBArn"
             }
           }
         },
@@ -111,7 +97,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
-          "S3Key": "amplify-builds/lockLeagues-4d4a326d6930576e5235-build.zip"
+          "S3Key": "amplify-builds/getProfile-3664314e4d4a44773650-build.zip"
         }
       }
     },
@@ -121,12 +107,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lastmanstandingLambdaRole4d48bfeb",
+            "lastmanstandingLambdaRole2363cc79",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lastmanstandingLambdaRole4d48bfeb",
+                  "lastmanstandingLambdaRole2363cc79",
                   "-",
                   {
                     "Ref": "env"
@@ -230,14 +216,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storageLeaguesDBArn"
+                  "Ref": "storagePlayerDBArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storageLeaguesDBArn"
+                        "Ref": "storagePlayerDBArn"
                       },
                       "index/*"
                     ]
@@ -271,39 +257,6 @@
                     [
                       {
                         "Ref": "storageLeaguePlayerDBArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*",
-                "dynamodb:Delete*"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storagePlStandingsDBArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storagePlStandingsDBArn"
                       },
                       "index/*"
                     ]

@@ -36,6 +36,7 @@ frontendTest:
       - cd ./src/lastmanstanding
       - echo "Testing Frontend"
       - npm install
+      - npm install @aws-amplify/cache
       - rm -rf node_modules/eslint
       - CI=true npm test
       - echo "Frontend tested successfully!"

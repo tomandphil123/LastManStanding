@@ -12,6 +12,7 @@ import Leagues from './libs/leagues/leagues';
 import CrestBar from './libs/crestBar/crestBar';
 import SplashScreen from './libs/splashScreen/splashScreen';
 import ProfilePage from './libs/profilePage/profilePage';
+
 class App extends Component {
   state = {
     isAuthenticated: false,
@@ -79,7 +80,7 @@ class App extends Component {
                 <SignUp/>
               </Route>
               <Route path="/Profile">
-                <ProfilePage/>
+                <ProfilePage user={authProps.user}/>
               </Route>
               <Route path="/MyLeagues">
                 <Leagues user={authProps.user} results={this.state.premierLeagueInfo}/>
