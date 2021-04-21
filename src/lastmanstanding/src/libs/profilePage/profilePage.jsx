@@ -11,13 +11,45 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
-import { makeStyles } from '@material-ui/core/styles';
+import {withStyles, makeStyles} from '@material-ui/core/styles';
 import axios from 'axios';
 import { Divider } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import AnnouncementIcon from '@material-ui/icons/Announcement';
+import Button from '@material-ui/core/Button';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import CloseIcon from '@material-ui/icons/Close';
+import Backdrop from '@material-ui/core/Backdrop';
+
+const BootstrapButton = withStyles({
+  root: {
+    'fontSize': 16,
+    'padding': '6px 12px',
+    'border': '1px solid',
+    'lineHeight': 1.5,
+    'backgroundColor': '#ffff',
+    'color': '#490050',
+    'borderColor': '#490050',
+    '&:hover': {
+      backgroundColor: '#490050',
+      color: '#ffff',
+      borderColor: '#490050',
+      boxShadow: '#490050',
+    },
+    '&:active': {
+      color: '#ffff',
+      backgroundColor: '#490050',
+      borderColor: '#490050',
+    },
+    '&:focus': {
+      color: '#ffff',
+      borderColor: '#490050',
+      backgroundColor: '#490050',
+    },
+  },
+})(Button);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,6 +66,15 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: '#490050',
   },
+  margin:{
+    height:'26px',
+    fontSize: '13px'
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+    overflow: 'scroll',
+  },
 }));
 
 const ProfilePage = ({
@@ -42,10 +83,35 @@ const ProfilePage = ({
 
     const [teamInfo, setTeamInfo] = useState();
     const [myInfo, setmyInfo] = useState();
+    const [myTeam, setmyTeam] = useState(false);
+
     const classes = useStyles();
 
+    const teams = {
+        'Arsenal FC': 'arsenal',
+        'Aston Villa FC': 'astonvilla',
+        'Brighton & Hove Albion FC': 'brightonandhovealbion',
+        'Burnley FC': 'burnley',
+        'Chelsea FC': 'chelsea',
+        'Crystal Palace FC': 'crystalpalace',
+        'Everton FC': 'everton',
+        'Fulham FC' : 'fulham',
+        'Leeds United FC': 'leedsunited',
+        'Leicester City FC': 'leicestercity',
+        'Liverpool FC': 'liverpool',
+        'Manchester City FC': 'manchestercity',
+        'Manchester United FC': 'manchesterunited',
+        'Newcastle United FC': 'newcastleunited',
+        'Sheffield United FC': 'sheffieldunited',
+        'Southampton FC': 'southampton',
+        'Totenham Hotspur FC': 'totenhamhotspur',
+        'West Bromwich Albion FC': 'westbromwichalbion',
+        'West Ham United FC': 'westhamunited',
+        'Wolverhampton Wanderers FC': 'wolverhamptonwanderers',
+    }
+
     useEffect(() => {
-        axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/profileInfo', {sub: user['attributes']['sub']})
+        axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/profileInfo', {sub: user['attributes']['sub'], flag: 'getTeam'})
         .then(response => {
             setmyInfo(response['data']);
             if (response['data'][0]['favouriteTeam'] !== '-'){
@@ -55,7 +121,20 @@ const ProfilePage = ({
               })
             }
         });
-    },[user])
+    },[user, teamInfo])
+
+    const selectTeam = (team) => {
+      axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/profileInfo', {sub: user['attributes']['sub'], team: teams[team], flag: 'setTeam'})
+        .then(response => {
+          alert(response['data']);
+        });
+
+      axios.get(`https://skysportsapi.herokuapp.com/sky/football/getteamnews/${teams[team]}/v1.0/`)
+        .then(response => {
+            setTeamInfo(response['data'])
+        })
+      console.log(team);
+    }
     
     return (
         <Grid container direction='row' spacing={2}>
@@ -74,7 +153,16 @@ const ProfilePage = ({
                     <>
                       <ListItem>Username: {myInfo[0]['Username']}</ListItem>
                       <ListItem>Email: {myInfo[0]['email']}</ListItem>
-                      <ListItem>Favourite Team: {myInfo[0]['favouriteTeam']}</ListItem>
+                      {myInfo[0]['favouriteTeam'] === '-' ? (
+                        <ListItem>Favourite Team: Select your favourite team!</ListItem>
+                      ):(
+                        <ListItem>Favourite Team: {Object.keys(teams).find(key => teams[key] === myInfo[0]['favouriteTeam'])}
+                        <Button
+                        onClick={() => setmyTeam(true)}
+                        style={{minWidth: '36px'}}>
+                        <AddCircleOutlineIcon/>
+                      </Button></ListItem>
+                      )}
                     </>
                   ) : (
                     <CircularProgress style={{color: '#490050'}}/>
@@ -120,7 +208,6 @@ const ProfilePage = ({
                 <List>
                   {typeof myInfo !== 'undefined' ? (
                     <>
-                      <h1>Leagues:</h1>
                       { myInfo[0]['leagueIDs'].map(item => (
                         <>
                           <ListItem>{item}</ListItem>
@@ -145,36 +232,90 @@ const ProfilePage = ({
               />
               <Divider/>
               <CardContent>
-                  {typeof teamInfo !== 'undefined' ? (
-                    teamInfo.map(item => (
-                      <List>
-                        <ListItem alignItems='flex-start'>
-                          <ListItemAvatar>
-                            <Avatar variant='square' alt='News' src={item['imgsrc']} className={classes.square}/>
-                          </ListItemAvatar>
-                          <ListItemText
-                            primary={<a href={item['link']}>{item['title']}</a>}
-                            secondary={
-                              <React.Fragment>
-                                <Typography
-                                  component='span'
-                                  variant='body2'
-                                  color='textPrimary'>
-                                  <p>{item['shortdesc']}</p>
-                                </Typography>
-                              </React.Fragment>}/>
-                        </ListItem>
-                        <Divider light />
-                      </List>
-                    ))
+                  {typeof myInfo !== 'undefined' ? (
+                    myInfo[0]['favouriteTeam'] !== '-' ? (
+                      typeof teamInfo !== 'undefined' ? (
+                        teamInfo.map(item => (
+                          <List>
+                            <ListItem alignItems='flex-start'>
+                              <ListItemAvatar>
+                                <Avatar variant='square' alt='News' src={item['imgsrc']} className={classes.square}/>
+                              </ListItemAvatar>
+                              <ListItemText
+                                primary={<a href={item['link']}>{item['title']}</a>}
+                                secondary={
+                                  <React.Fragment>
+                                    <Typography
+                                      component='span'
+                                      variant='body2'
+                                      color='textPrimary'>
+                                      <p>{item['shortdesc']}</p>
+                                    </Typography>
+                                  </React.Fragment>}/>
+                            </ListItem>
+                            <Divider light />
+                          </List>
+                        ))
+                      ) : (
+                        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '60vh'}}>
+                          <CircularProgress style={{color: '#490050', marginRight:'12px'}}/>
+                          <p>Loading news</p>
+                        </div>
+                      )
                   ) : (
                     <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '60vh'}}>
+                      <h1>Choose your favourite team!</h1>
+                      <Button onClick={() => setmyTeam(true)}>
+                        <AddCircleOutlineIcon/>
+                      </Button>
+                    </div>
+                  )) : (
+                    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '60vh'}}>
                       <CircularProgress style={{color: '#490050', marginRight:'12px'}}/>
-                      <p>Loading news</p>
                     </div>
                   )}
                 </CardContent>
             </Card>
+            {myTeam ? (
+              <Backdrop className={classes.backdrop} open={myTeam}>
+                <Card style={{overflow: 'scroll', height: '650px'}}>
+                  <CardHeader avatar={
+                    <Avatar aria-label='team news' className={classes.avatar}>
+                      <AnnouncementIcon/>
+                    </Avatar>} 
+                    title='Pick Team'
+                    action={
+                      <div align='right' style={{paddingTop: '10px'}}>
+                        <Button onClick={() => setmyTeam(!myTeam)}>
+                          <CloseIcon/>
+                        </Button>
+                      </div>
+                    }
+                  />
+                  <Divider/>
+                  <CardContent>
+                    <List>
+                      { Object.keys(teams).map((item, i) => (
+                        <>
+                          <ListItem>
+                          <BootstrapButton
+                            key={item}
+                            variant='contained'
+                            disableRipple
+                            className={classes.margin}
+                            onClick={() => {selectTeam(item); setmyTeam(false)}}
+                          >
+                              {item}
+                          </BootstrapButton>
+                          </ListItem>
+                        </>
+                      ))}
+                    </List>
+                  </CardContent>
+                </Card>
+              </Backdrop>
+            ) : (null)}
+            
           </Grid>
         </Grid>
     )

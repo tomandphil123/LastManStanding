@@ -8,14 +8,37 @@ def queryDB(tableName, sub):
   )
   return playerData['Items']
 
+def updateDB(tableName, sub, team):
+  try:
+    tableName.update_item(
+		Key={
+            'Sub': sub
+        },
+        UpdateExpression='set favouriteTeam=:l',
+        ExpressionAttributeValues={
+            ':l': team
+        },
+        ReturnValues='UPDATED_NEW'
+	)
+    return "Successfully Updated Favourite Team!"
+  except:
+    return "Pick Failed Please Try Again"
+
 
 def handler(event, context):
   result = json.loads(event['body'])
+  flag = result['flag']
   dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 
-  # Query playerDB for info
+  # return flag
+  response = ''
   PlayerDB = dynamodb.Table('PlayerDB-develop')
-  profileInfo = queryDB(PlayerDB, result['sub'])
+  if flag == 'getTeam':
+    # Query playerDB for info
+    profileInfo = queryDB(PlayerDB, result['sub'])
+    response = json.dumps(profileInfo)
+  else:
+    response = updateDB(PlayerDB, result['sub'], result['team']) 
 
   return {
     'statusCode': 200,
@@ -24,5 +47,5 @@ def handler(event, context):
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
     },
-    'body': json.dumps(profileInfo)
+    'body': response
   }
