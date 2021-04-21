@@ -30,6 +30,7 @@ exports.handler = (event, context, callback) => {
             'Username': username,
             'email': email,
             'leagueIDs': [],
+            'favouriteTeam': '-',
             'wins': '0',
             'losses': '0',
           },
