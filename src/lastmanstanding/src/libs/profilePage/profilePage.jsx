@@ -115,10 +115,10 @@ const ProfilePage = ({
         .then(response => {
             setmyInfo(response['data']);
             if (response['data'][0]['favouriteTeam'] !== '-'){
-              axios.get(`https://skysportsapi.herokuapp.com/sky/football/getteamnews/${response['data'][0]['favouriteTeam']}/v1.0/`)
+              axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/getNews', {team: response['data'][0]['favouriteTeam']})
               .then(response => {
-                  setTeamInfo(response['data'])
-              })
+                setTeamInfo(response['data'])
+              });
             }
         });
     },[user, teamInfo])
@@ -129,11 +129,10 @@ const ProfilePage = ({
           alert(response['data']);
         });
 
-      axios.get(`https://skysportsapi.herokuapp.com/sky/football/getteamnews/${teams[team]}/v1.0/`)
+        axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/getNews', {team: teams[team]})
         .then(response => {
-            setTeamInfo(response['data'])
-        })
-      console.log(team);
+          setTeamInfo(response['data'])
+        });
     }
     
     return (

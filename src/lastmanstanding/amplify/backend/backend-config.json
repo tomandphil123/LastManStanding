@@ -422,6 +422,11 @@
           ]
         }
       ]
+    },
+    "getNews": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "auth": {
@@ -564,6 +569,14 @@
         {
           "category": "function",
           "resourceName": "getProfile",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "getNews",
           "attributes": [
             "Name",
             "Arn"
