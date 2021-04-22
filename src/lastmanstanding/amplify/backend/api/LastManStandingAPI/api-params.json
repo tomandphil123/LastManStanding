@@ -77,6 +77,13 @@
             "privacy": {
                 "open": true
             }
+        },
+        {
+            "name": "/getNews",
+            "lambdaFunction": "getNews",
+            "privacy": {
+                "open": true
+            }
         }
     ],
     "resourceName": "LastManStandingAPI",
@@ -114,6 +121,9 @@
         },
         {
             "lambdaFunction": "getProfile"
+        },
+        {
+            "lambdaFunction": "getNews"
         }
     ],
     "privacy": {
@@ -210,7 +220,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "getNews",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "05d36a38"
+    "uuid": "4983d81b"
 }

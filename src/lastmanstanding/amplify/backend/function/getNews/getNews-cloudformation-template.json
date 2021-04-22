@@ -9,14 +9,6 @@
     },
     "env": {
       "Type": "String"
-    },
-    "storageLeaguePlayerDBName": {
-      "Type": "String",
-      "Default": "storageLeaguePlayerDBName"
-    },
-    "storageLeaguePlayerDBArn": {
-      "Type": "String",
-      "Default": "storageLeaguePlayerDBArn"
     }
   },
   "Conditions": {
@@ -41,12 +33,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "teamSelection",
+            "getNews",
             {
               "Fn::Join": [
                 "",
                 [
-                  "teamSelection",
+                  "getNews",
                   "-",
                   {
                     "Ref": "env"
@@ -63,12 +55,6 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
-            },
-            "STORAGE_LEAGUEPLAYERDB_NAME": {
-              "Ref": "storageLeaguePlayerDBName"
-            },
-            "STORAGE_LEAGUEPLAYERDB_ARN": {
-              "Ref": "storageLeaguePlayerDBArn"
             }
           }
         },
@@ -80,10 +66,10 @@
         },
         "Runtime": "python3.8",
         "Layers": [],
-        "Timeout": "25",
+        "Timeout": "100",
         "Code": {
           "S3Bucket": "amplify-lastmanstanding-develop-225620-deployment",
-          "S3Key": "amplify-builds/teamSelection-46574c4d344e76746d2f-build.zip"
+          "S3Key": "amplify-builds/getNews-312f464c4f7a394f3578-build.zip"
         }
       }
     },
@@ -93,12 +79,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lastmanstandingLambdaRole98695377",
+            "lastmanstandingLambdaRole91d5c86c",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lastmanstandingLambdaRole98695377",
+                  "lastmanstandingLambdaRole91d5c86c",
                   "-",
                   {
                     "Ref": "env"
@@ -164,58 +150,6 @@
                   }
                 ]
               }
-            }
-          ]
-        }
-      }
-    },
-    "AmplifyResourcesPolicy": {
-      "DependsOn": [
-        "LambdaExecutionRole"
-      ],
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "amplify-lambda-execution-policy",
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ],
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:Put*",
-                "dynamodb:Create*",
-                "dynamodb:BatchWriteItem",
-                "dynamodb:Get*",
-                "dynamodb:BatchGetItem",
-                "dynamodb:List*",
-                "dynamodb:Describe*",
-                "dynamodb:Scan",
-                "dynamodb:Query",
-                "dynamodb:Update*",
-                "dynamodb:RestoreTable*",
-                "dynamodb:Delete*"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storageLeaguePlayerDBArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storageLeaguePlayerDBArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
             }
           ]
         }

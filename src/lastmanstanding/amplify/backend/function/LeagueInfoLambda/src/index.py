@@ -300,12 +300,6 @@ def handler(event, context):
 				# add fixtures to DB
 				addFixtures(FixturesDB, homeTeam, awayTeam, crests, nextGameWeek, startTime, startDate, probabilities)
 
-		
-		# lambda_client = boto3.client('lambda')
-		# lambda_client.invoke(
-		# 	FunctionName = 'arn:aws:lambda:eu-west-1:706350010776:function:unlockLeagues-develop',
-		# )
-		
 		# update sheduler DB
 		updateSchedulerDB(schedulerDB, nextGameWeek, currentGameWeek, firstGameTime, lastMatch, lastMatchStartTime, deadline, firstGameDate)
 
@@ -326,6 +320,11 @@ def handler(event, context):
 		emailHours = str(int(hours)-1)
 		myEmailCron = "cron({} {} {} {} ? {})".format(minutes,emailHours,dayOfMonth,month,year)
 		createEmailCron(client, myEmailCron)
+
+		# lambda_client = boto3.client('lambda')
+		# lambda_client.invoke(
+		# 	FunctionName = 'arn:aws:lambda:eu-west-1:706350010776:function:unlockLeagues-develop',
+		# )
 
 	return {
 	'message': 'Updated!'
