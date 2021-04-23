@@ -231,7 +231,7 @@ def handler(event, context):
 				print(match['homeTeam']['name'],match['awayTeam']['name'] )
 				firstGame = match['utcDate'].split('T')[1].split(':')
 				firstGameTime = str(int(firstGame[0]) + 1) + ':' + firstGame[1]
-				deadline = str(int(firstGame[0]) - 1) + ':' + firstGame[1]
+				deadline = str(firstGame[0]) + ':' + firstGame[1]
 				firstGameDate = match['utcDate'].split('T')[0]
 				print("This is the deadline: " + deadline + firstGameDate)
 				break
@@ -314,8 +314,7 @@ def handler(event, context):
 		print("first game time: " + firstGameTime)
 		print("first game date: " + firstGameDate)
 		minutes = firstGameTime.split(':')[1]
-		hours = firstGameTime.split(':')[0]
-		hours = str(int(hours) - 2)
+		hours = str(int(firstGameTime.split(':')[0]) - 1)
 		dayOfMonth = firstGameDate.split('-')[2]
 		month = firstGameDate.split('-')[1]
 		year = firstGameDate.split('-')[0]

@@ -52,10 +52,8 @@ def handler(event, context):
 
 	schedulerTable = dynamodb.Table('SchedulerDB-develop')
 	schedulerData = scanDB(schedulerTable)
-	deadlineTime = schedulerData[0]['Deadline'].split(':')
-	gmtDeadlineTime = int(deadlineTime[0]) + 1
-	deadline = str(gmtDeadlineTime) + ':' + deadlineTime[1]
-	ret_lst.append(deadline)
+	deadlineTime = schedulerData[0]['Deadline']
+	ret_lst.append(deadlineTime)
 
 	return {
 		'statusCode': 200,
