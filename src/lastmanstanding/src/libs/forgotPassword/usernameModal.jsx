@@ -8,6 +8,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Auth} from 'aws-amplify';
 import {Link} from 'react-router-dom';
+import alertify from 'alertifyjs';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -46,7 +47,8 @@ const UsernameModal = ({
           await Auth.forgotPassword(username);
           handleCodeSent();
         } catch (error) {
-          alert(error.message);
+          alertify.set('notifier','position', 'top-center');
+          alertify.error(error.message);
         }
       };
 

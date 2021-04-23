@@ -10,6 +10,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
+import alertify from 'alertifyjs';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,9 +47,10 @@ const JoinLeagues = ({
     event.preventDefault();
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/joinLeague', {leagueCode: leagueCode, sub: user['attributes']['sub'], username: user['username'], firstName: firstName, lastName: surname})
         .then((response) => {
-          alert(response['data']);
           setRender({});
           setJoinLeague(false);
+          alertify.set('notifier','position', 'top-center')
+          alertify.success(response['data'])
         });
   };
 
@@ -56,7 +58,6 @@ const JoinLeagues = ({
     <>
       <Container component="main" maxWidth="xs" style={{backgroundColor: '#fff'}}>
         <div className={classes.paper}>
-          {/* <Button color="primary" onClick={() => leagueJoin()}><CloseIcon/></Button> */}
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>

@@ -89,6 +89,8 @@ const Leagues = ({
                   table={myLeaguesInfo}
                   setLeagueId={setLeagueId}
                   setIndividualLeague={setIndividualLeague}
+                  setRender={setRender}
+                  render={render}
                 />
               ) : (
                 <div className="leaguesLoading">
@@ -106,6 +108,7 @@ const Leagues = ({
                 setIndividualLeague={setIndividualLeague}
                 individualLeague={individualLeague}
                 fixtures = {results}
+                setRender={setRender}
               />
             </Grid>
           ) : (

@@ -2,6 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import AdminSystem from './adminSystem';
 import axios from 'axios';
+import alertify from 'alertifyjs';
 
 const mockSetState = jest.fn();
 
@@ -79,7 +80,7 @@ describe('leagues', () => {
           <AdminSystem {...props}/>,
       );
       const response = 'Successfully unlocked League';
-      global.confirm = () => true;
+      // global.confirm = () => true;
       axios.post.mockImplementationOnce(() => Promise.resolve(response));
       component.find('[data-automation="unlockLeague"]').simulate('click');
       expect(axios.post).toHaveBeenCalled();

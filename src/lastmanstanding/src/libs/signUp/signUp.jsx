@@ -9,6 +9,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Auth} from 'aws-amplify';
 import {useHistory, Link} from 'react-router-dom';
+import alertify from 'alertifyjs';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -50,11 +51,13 @@ const SignUp = () => {
           email: email,
         },
       }).then((response) => {
-        alert('Please verify email before attempting sign in.')
+        alertify.set('notifier','position', 'top-center')
+        alertify.warning('Please verify email before attempting sign in.')
         history.push('/SignIn');
       });
     } catch (e) {
-      alert(e.message);
+      alertify.set('notifier','position', 'top-center')
+      alertify.error(e.message)
     }
   };
 

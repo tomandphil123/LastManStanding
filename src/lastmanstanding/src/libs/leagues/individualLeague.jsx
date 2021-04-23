@@ -40,12 +40,13 @@ const IndividualLeague = ({
   individualLeague,
   setIndividualLeague,
   fixtures,
+  setRender
 }) => {
   const classes = useStyles();
   const [pick, setPick] = useState();
   const [permPick, setPermPick] = useState();
   const [leagueInfo, setLeagueInfo] = useState();
-  const [render, setRender] = useState();
+  const [individualRender, setIndividualRender] = useState();
   const [pickButton, setPickButton] = useState(false);
   const [previewButton, setPreviewButton] = useState(false);
 
@@ -54,10 +55,9 @@ const IndividualLeague = ({
       axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/getLeagueInfo', {leagueId: leagueId})
           .then((response) => {
             setLeagueInfo(response);
-            console.log(response)
           });
     }
-  }, [leagueId, permPick, render]);
+  }, [leagueId, permPick, individualRender]);
 
   return (
     individualLeague ? (
@@ -73,7 +73,7 @@ const IndividualLeague = ({
             <div style={{backgroundColor: '#fff'}}>
               <Grid container direction='column' spacing={4}>
                 <Grid item xs={12} md={12}>
-                  {leagueInfo['data'][1][0]['Winner'] !== '-' && typeof leagueInfo !== 'undefined' ? (
+                  {typeof leagueInfo !== 'undefined'&&  leagueInfo['data'][1][0]['Winner'] !== '-' ? (
                         <Alert severity='success'><span role="img" aria-label="Trophy">🏆</span> Winner Winner Chicken Dinner {leagueInfo['data'][1][0]['Winner']} <span role="img" aria-label="Trophy">🏆</span></Alert>
                     ) : (
                       null
@@ -164,7 +164,7 @@ const IndividualLeague = ({
                       </div>
                       <div style={{right: '90%', paddingTop: '3px', marginLeft: 'auto'}}>
                         {leagueInfo['data'][1][0]['admin'] === sub ? (
-                        <AdminSystem leagueStatus={leagueInfo['data'][1][0]['Joinable'] === 'No' ? (true) : (false)} leagueID = {leagueId} setRender={setRender}/>
+                        <AdminSystem leagueStatus={leagueInfo['data'][1][0]['Joinable'] === 'No' ? (true) : (false)} leagueID = {leagueId} setIndividualRender={setIndividualRender} setIndividualLeague={setIndividualLeague} setRender={setRender}/>
                         ) : (null)}
                       </div>
                     </div>
@@ -278,7 +278,7 @@ const IndividualLeague = ({
                             {leagueInfo['data'][1][0]['admin'] === sub ? (
                               item['Admin'] !== 'Yes'? (
                                 <TableCell align='center'>
-                                  <AdminSystem playerRemoval={true} leaguePlayerID={item['LeaguePlayerID']} setRender={setRender}/>
+                                  <AdminSystem playerRemoval={true} leaguePlayerID={item['LeaguePlayerID']} setIndividualRender={setIndividualRender} setRender={setRender}/>
                                 </TableCell>
                               ): (
                                 <TableCell style={{height: '50px'}} align='center'/>

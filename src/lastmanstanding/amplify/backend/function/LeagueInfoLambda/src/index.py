@@ -82,7 +82,7 @@ def createEmailCron(client, myEmailCron):
 	
 	return 'Successfully set up email cron'
 
-def addResults(tableName, match, homeTeam, awayTeam, crests, currentGameWeek, winner):
+def addResults(tableName, match, homeTeam, awayTeam, homeTeamScore, awayTeamScore, crests, currentGameWeek, winner):
 	tableName.put_item(
 		Item={
 			'MatchID': homeTeam + '-' + awayTeam,
@@ -92,8 +92,8 @@ def addResults(tableName, match, homeTeam, awayTeam, crests, currentGameWeek, wi
 			'AwayTeamCrest': crests[awayTeam],
 			'GameWeek': str(currentGameWeek),
 			'Winner': winner,
-			'HomeScore': str(match['score']['fullTime']['homeTeam']),
-			'AwayScore': str(match['score']['fullTime']['awayTeam']),
+			'HomeScore': homeTeamScore,
+			'AwayScore': awayTeamScore,
 			'createdTime': str(datetime.today())
 		}
 	)
@@ -170,6 +170,9 @@ def handler(event, context):
 	connection.request('GET', '/v2/competitions/PL/matches', None, headers )
 	matchesResponse = json.loads(connection.getresponse().read().decode())
 
+	# returned string
+	r = 'No new info!'
+
 	abbreviations = {
 		'West Bromwich Albion FC': 'West Brom FC',
 		'Wolverhampton Wanderers FC': 'Wolves FC',
@@ -206,11 +209,13 @@ def handler(event, context):
 	nextGameWeek = scheduler[0]['NextGameWeek']
 	lastMatch = scheduler[0]['LastGame']
 	lastMatchStartTimer = scheduler[0]['LastMatchStartTime']
-	updateTime = int(lastMatchStartTimer.split(':')[0]) + 3
+	updateTime = int(lastMatchStartTimer.split(':')[0]) + 2
 
 	now = datetime.now()
 	current_time = now.strftime("%H:%M:%S")
 	currTime = current_time.split(':')[0]
+	print(updateTime)
+	print(currTime)
 
 	# check if API has been updated
 	updated = False
@@ -223,10 +228,12 @@ def handler(event, context):
 	if updated == True:
 		for match in matchesResponse['matches']:
 			if str(match['matchday']) == str(nextGameWeek):
+				print(match['homeTeam']['name'],match['awayTeam']['name'] )
 				firstGame = match['utcDate'].split('T')[1].split(':')
 				firstGameTime = str(int(firstGame[0]) + 1) + ':' + firstGame[1]
 				deadline = str(int(firstGame[0]) - 1) + ':' + firstGame[1]
 				firstGameDate = match['utcDate'].split('T')[0]
+				print("This is the deadline: " + deadline + firstGameDate)
 				break
 
 		for team in standingsResponse['standings'][0]['table']:
@@ -272,7 +279,7 @@ def handler(event, context):
 				else:
 					winner = 'Draw'
 
-				addResults(ResultsDB, match, homeTeam, awayTeam, crests, currentGameWeek, winner)
+				addResults(ResultsDB, match, homeTeam, awayTeam, homeTeamScore, awayTeamScore, crests, currentGameWeek, winner)
 
 			# Fixtures
 			if str(match['matchday']) == str(nextGameWeek):
@@ -304,6 +311,8 @@ def handler(event, context):
 		updateSchedulerDB(schedulerDB, nextGameWeek, currentGameWeek, firstGameTime, lastMatch, lastMatchStartTime, deadline, firstGameDate)
 
 		# set up cron
+		print("first game time: " + firstGameTime)
+		print("first game date: " + firstGameDate)
 		minutes = firstGameTime.split(':')[1]
 		hours = firstGameTime.split(':')[0]
 		hours = str(int(hours) - 2)
@@ -311,6 +320,7 @@ def handler(event, context):
 		month = firstGameDate.split('-')[1]
 		year = firstGameDate.split('-')[0]
 		myCron = "cron({} {} {} {} ? {})".format(minutes,hours,dayOfMonth,month,year)
+		print("this is my cron: " + myCron)
 
 		# create cron 
 		client = boto3.client('events')
@@ -319,6 +329,7 @@ def handler(event, context):
 		# set up email cron for reminding about deadline
 		emailHours = str(int(hours)-1)
 		myEmailCron = "cron({} {} {} {} ? {})".format(minutes,emailHours,dayOfMonth,month,year)
+		print("this is email cron: " + myEmailCron)
 		createEmailCron(client, myEmailCron)
 
 		# lambda_client = boto3.client('lambda')
@@ -326,6 +337,8 @@ def handler(event, context):
 		# 	FunctionName = 'arn:aws:lambda:eu-west-1:706350010776:function:unlockLeagues-develop',
 		# )
 
+		r = 'Updated!'
+	print(r)
 	return {
-	'message': 'Updated!'
+	'message': r
 	}

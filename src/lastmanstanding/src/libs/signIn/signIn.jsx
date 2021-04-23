@@ -11,6 +11,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Auth} from 'aws-amplify';
 import {Link, useHistory} from 'react-router-dom';
+import alertify from 'alertifyjs';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -58,9 +59,11 @@ const SignIn = ({
     } catch (error) {
       console.log(error.message)
       if (error.message === 'User is not confirmed.'){
-        alert('Email address is not verified. Please verify your email.')
+        alertify.set('notifier','position', 'top-center')
+        alertify.warning('Email address is not verified.\n Please verify your email.')
       } else{
-        alert(error.message);
+        alertify.set('notifier','position', 'top-center')
+        alertify.error(error.message)
       }
     }
   };

@@ -22,6 +22,7 @@ import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import CloseIcon from '@material-ui/icons/Close';
 import Backdrop from '@material-ui/core/Backdrop';
+import alertify from 'alertifyjs';
 
 const BootstrapButton = withStyles({
   root: {
@@ -126,7 +127,8 @@ const ProfilePage = ({
     const selectTeam = (team) => {
       axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/profileInfo', {sub: user['attributes']['sub'], team: teams[team], flag: 'setTeam'})
         .then(response => {
-          alert(response['data']);
+          alertify.set('notifier','position', 'top-center')
+          alertify.success(response['data'])
         });
 
         axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/getNews', {team: teams[team]})
