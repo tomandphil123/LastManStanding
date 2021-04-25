@@ -58,7 +58,7 @@ const IndividualLeague = ({
           });
     }
   }, [leagueId, permPick, render]);
-
+  console.log(leagueInfo)
   return (
     individualLeague ? (
     <div style={{paddingTop: '30px'}}>
@@ -341,7 +341,6 @@ const IndividualLeague = ({
 
 IndividualLeague.propTypes = {
   leagueInfo: PropTypes.object,
-  closeLeague: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   sub: PropTypes.string.isRequired,
   leagueId: PropTypes.string.isRequired,
