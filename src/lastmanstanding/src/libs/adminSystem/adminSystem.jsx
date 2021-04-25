@@ -26,10 +26,10 @@ const AdminSystem = ({
   const toggleLeague = () => {
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/adminActions', {flag: 'toggleLeague', leagueID: leagueID, lockLeague: lockLeague})
         .then((response) => {
-          setLockLeague(!lockLeague);
-          setIndividualRender({});
           alertify.set('notifier','position', 'top-center');
           alertify.success(response['data']);
+          setLockLeague(!lockLeague);
+          setIndividualRender({});
         });
   };
 
@@ -64,7 +64,7 @@ const AdminSystem = ({
   return (
     playerRemoval ? (
       <IconButton onClick={() => {
-        if (alertify.confirm('Attention!','Are you sure you want to remove this user from the league?',function(){deleteUser()}, function(){}));
+        if (alertify.confirm('Attention!','Are you sure you want to remove this user from the league?')) {deleteUser()};
       }}
       data-automation="removePlayer"
       >
@@ -78,14 +78,14 @@ const AdminSystem = ({
         >
           { lockLeague ? (
               <Button onClick={() => {
-                  if (alertify.confirm('Attention!','Are you sure you want to unlock the league?',function(){toggleLeague()}, function(){})); 
+                  if (alertify.confirm('Attention!','Are you sure you want to unlock the league?', toggleLeague(), function(){})); 
                 }} 
                 data-automation="unlockLeague">
                 <LockIcon style={{color: 'white'}}/>
               </Button>
             ) : (
               <Button onClick={() => {
-                  if (alertify.confirm('Attention!','Are you sure you want to lock the league?',function(){toggleLeague()}, function(){})); 
+                  if (alertify.confirm('Attention!','Are you sure you want to lock the league?',toggleLeague(), function(){})); 
                 }}
                 data-automation="lockLeague">
                 <LockOpenIcon style={{color: 'white'}}/>
@@ -94,7 +94,7 @@ const AdminSystem = ({
         </Tooltip>
         <Tooltip title="Reset League" placement="top">
           <Button onClick={() => {
-              if (alertify.confirm('Attention!','Are you sure you want to reset the league?',function(){resetLeague()}, function(){})); 
+              if (alertify.confirm('Attention!','Are you sure you want to reset the league?', resetLeague(), function(){})); 
             }}
             data-automation="ResetLeague">
             <RotateLeftIcon style={{color: '#ffffff'}}/>
@@ -102,7 +102,7 @@ const AdminSystem = ({
         </Tooltip>
         <Tooltip title="Delete League" placement="top">
           <Button onClick={() => {
-              if (alertify.confirm('Attention!','Are you sure you want to delete the league?',function(){deleteLeague()}, function(){})); 
+              if (alertify.confirm('Attention!','Are you sure you want to delete the league?', deleteLeague(), function(){})); 
             }}
             data-automation="DeleteLeague">
             <DeleteIcon style={{color: '#ffffff'}}/>

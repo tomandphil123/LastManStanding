@@ -2,9 +2,10 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import AdminSystem from './adminSystem';
 import axios from 'axios';
-import alertify from 'alertifyjs';
 
 const mockSetState = jest.fn();
+global.scrollTo = jest.fn()
+const alertify = jest.fn();
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
@@ -34,6 +35,8 @@ describe('leagues', () => {
         playerRemoval: true,
         leaguePlayerID: 'TestplayerID',
         setRender: jest.fn(),
+        setIndividualLeague: jest.fn(),
+        setIndividualRender: jest.fn(),
       };
       const component = shallow(
           <AdminSystem {...props}/>,
@@ -47,6 +50,8 @@ describe('leagues', () => {
         playerRemoval: false,
         leaguePlayerID: 'TestplayerID',
         setRender: jest.fn(),
+        setIndividualLeague: jest.fn(),
+        setIndividualRender: jest.fn(),
       };
       const component = shallow(
           <AdminSystem {...props}/>,
@@ -60,6 +65,8 @@ describe('leagues', () => {
         playerRemoval: false,
         leaguePlayerID: 'TestplayerID',
         setRender: jest.fn(),
+        setIndividualLeague: jest.fn(),
+        setIndividualRender: jest.fn(),
       };
       const component = shallow(
           <AdminSystem {...props}/>,
@@ -75,12 +82,13 @@ describe('leagues', () => {
         playerRemoval: false,
         leaguePlayerID: 'TestplayerID',
         setRender: jest.fn(),
+        setIndividualLeague: jest.fn(),
+        setIndividualRender: jest.fn(),
       };
       const component = shallow(
           <AdminSystem {...props}/>,
       );
       const response = 'Successfully unlocked League';
-      // global.confirm = () => true;
       axios.post.mockImplementationOnce(() => Promise.resolve(response));
       component.find('[data-automation="unlockLeague"]').simulate('click');
       expect(axios.post).toHaveBeenCalled();
@@ -92,12 +100,13 @@ describe('leagues', () => {
         playerRemoval: false,
         leaguePlayerID: 'TestplayerID',
         setRender: jest.fn(),
+        setIndividualLeague: jest.fn(),
+        setIndividualRender: jest.fn(),
       };
       const component = shallow(
           <AdminSystem {...props}/>,
       );
       const response = 'Successfully locked League';
-      global.confirm = () => true;
       axios.post.mockImplementationOnce(() => Promise.resolve(response));
       component.find('[data-automation="lockLeague"]').simulate('click');
       expect(axios.post).toHaveBeenCalled();
@@ -109,13 +118,13 @@ describe('leagues', () => {
         playerRemoval: false,
         leaguePlayerID: 'TestplayerID',
         setRender: jest.fn(),
+        setIndividualLeague: jest.fn(),
+        setIndividualRender: jest.fn(),
       };
       const component = shallow(
           <AdminSystem {...props}/>,
       );
       const response = 'Successfully Reset League';
-      global.confirm = () => true;
-      global.alert = () => true;
       axios.post.mockImplementationOnce(() => Promise.resolve(response));
       component.find('[data-automation="ResetLeague"]').simulate('click');
       expect(axios.post).toHaveBeenCalled();
@@ -127,13 +136,13 @@ describe('leagues', () => {
         playerRemoval: false,
         leaguePlayerID: 'TestplayerID',
         setRender: jest.fn(),
+        setIndividualLeague: jest.fn(),
+        setIndividualRender: jest.fn(),
       };
       const component = shallow(
           <AdminSystem {...props}/>,
       );
       const response = 'Successfully Delete League';
-      global.confirm = () => true;
-      global.alert = () => true;
       axios.post.mockImplementationOnce(() => Promise.resolve(response));
       component.find('[data-automation="DeleteLeague"]').simulate('click');
       expect(axios.post).toHaveBeenCalled();
@@ -145,13 +154,13 @@ describe('leagues', () => {
         playerRemoval: true,
         leaguePlayerID: 'TestplayerID',
         setRender: jest.fn(),
+        setIndividualLeague: jest.fn(),
+        setIndividualRender: jest.fn(),
       };
       const component = shallow(
           <AdminSystem {...props}/>,
       );
       const response = 'Successfully Removes Player';
-      global.confirm = () => true;
-      global.alert = () => true;
       axios.post.mockImplementationOnce(() => Promise.resolve(response));
       component.find('[data-automation="removePlayer"]').simulate('click');
       expect(axios.post).toHaveBeenCalled();
