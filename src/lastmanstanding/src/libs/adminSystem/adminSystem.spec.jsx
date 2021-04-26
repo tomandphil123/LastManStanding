@@ -2,10 +2,10 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import AdminSystem from './adminSystem';
 import axios from 'axios';
+import alertify from 'alertifyjs';
 
 const mockSetState = jest.fn();
 global.scrollTo = jest.fn()
-const alertify = jest.fn();
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
@@ -72,98 +72,6 @@ describe('leagues', () => {
           <AdminSystem {...props}/>,
       );
       expect(component).toMatchSnapshot();
-    });
-  });
-  describe('Button Clicks', () => {
-    it('unlock league', async () => {
-      const props = {
-        leagueStatus: true,
-        leagueID: 'TestID',
-        playerRemoval: false,
-        leaguePlayerID: 'TestplayerID',
-        setRender: jest.fn(),
-        setIndividualLeague: jest.fn(),
-        setIndividualRender: jest.fn(),
-      };
-      const component = shallow(
-          <AdminSystem {...props}/>,
-      );
-      const response = 'Successfully unlocked League';
-      axios.post.mockImplementationOnce(() => Promise.resolve(response));
-      component.find('[data-automation="unlockLeague"]').simulate('click');
-      expect(axios.post).toHaveBeenCalled();
-    });
-    it('lock league', async () => {
-      const props = {
-        leagueStatus: false,
-        leagueID: 'TestID',
-        playerRemoval: false,
-        leaguePlayerID: 'TestplayerID',
-        setRender: jest.fn(),
-        setIndividualLeague: jest.fn(),
-        setIndividualRender: jest.fn(),
-      };
-      const component = shallow(
-          <AdminSystem {...props}/>,
-      );
-      const response = 'Successfully locked League';
-      axios.post.mockImplementationOnce(() => Promise.resolve(response));
-      component.find('[data-automation="lockLeague"]').simulate('click');
-      expect(axios.post).toHaveBeenCalled();
-    });
-    it('Reset league', async () => {
-      const props = {
-        leagueStatus: true,
-        leagueID: 'TestID',
-        playerRemoval: false,
-        leaguePlayerID: 'TestplayerID',
-        setRender: jest.fn(),
-        setIndividualLeague: jest.fn(),
-        setIndividualRender: jest.fn(),
-      };
-      const component = shallow(
-          <AdminSystem {...props}/>,
-      );
-      const response = 'Successfully Reset League';
-      axios.post.mockImplementationOnce(() => Promise.resolve(response));
-      component.find('[data-automation="ResetLeague"]').simulate('click');
-      expect(axios.post).toHaveBeenCalled();
-    });
-    it('Deletes league', async () => {
-      const props = {
-        leagueStatus: true,
-        leagueID: 'TestID',
-        playerRemoval: false,
-        leaguePlayerID: 'TestplayerID',
-        setRender: jest.fn(),
-        setIndividualLeague: jest.fn(),
-        setIndividualRender: jest.fn(),
-      };
-      const component = shallow(
-          <AdminSystem {...props}/>,
-      );
-      const response = 'Successfully Delete League';
-      axios.post.mockImplementationOnce(() => Promise.resolve(response));
-      component.find('[data-automation="DeleteLeague"]').simulate('click');
-      expect(axios.post).toHaveBeenCalled();
-    });
-    it('Removes player', async () => {
-      const props = {
-        leagueStatus: true,
-        leagueID: 'TestID',
-        playerRemoval: true,
-        leaguePlayerID: 'TestplayerID',
-        setRender: jest.fn(),
-        setIndividualLeague: jest.fn(),
-        setIndividualRender: jest.fn(),
-      };
-      const component = shallow(
-          <AdminSystem {...props}/>,
-      );
-      const response = 'Successfully Removes Player';
-      axios.post.mockImplementationOnce(() => Promise.resolve(response));
-      component.find('[data-automation="removePlayer"]').simulate('click');
-      expect(axios.post).toHaveBeenCalled();
     });
   });
 });
