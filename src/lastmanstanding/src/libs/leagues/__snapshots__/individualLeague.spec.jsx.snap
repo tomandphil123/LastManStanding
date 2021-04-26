@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Individual League Snapshot renders correctly 1`] = `
+<div
+  style={
+    Object {
+      "paddingTop": "30px",
+    }
+  }
+>
+  <WithStyles(ForwardRef(Card))
+    style={
+      Object {
+        "boxShadow": "6px 8px 8px 8px rgb(162, 162, 163)",
+        "padding": "12px",
+      }
+    }
+  >
+    <div
+      align="right"
+    >
+      <WithStyles(ForwardRef(Button))
+        onClick={[Function]}
+      >
+        <Memo(ForwardRef(CloseIcon)) />
+      </WithStyles(ForwardRef(Button))>
+    </div>
+    <WithStyles(ForwardRef(CardContent))>
+      <div
+        className="leagueLoading"
+      >
+        <WithStyles(ForwardRef(CircularProgress))
+          style={
+            Object {
+              "color": "#490050",
+            }
+          }
+        />
+      </div>
+    </WithStyles(ForwardRef(CardContent))>
+  </WithStyles(ForwardRef(Card))>
+</div>
+`;
