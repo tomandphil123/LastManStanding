@@ -19,6 +19,8 @@ import AnnouncementIcon from '@material-ui/icons/Announcement';
 import ResultsRatio from './resultsRatio';
 import News from './news';
 import SelectFavouriteTeam from './selectFavouriteTeam';
+import alertify from 'alertifyjs';
+import 'alertifyjs/build/css/alertify.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
