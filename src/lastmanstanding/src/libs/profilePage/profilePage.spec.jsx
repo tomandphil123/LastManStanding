@@ -1,7 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import ProfilePage from './profilePage';
-import axios from 'axios';
 
 describe('profilePage', () => {
   beforeAll(() => {

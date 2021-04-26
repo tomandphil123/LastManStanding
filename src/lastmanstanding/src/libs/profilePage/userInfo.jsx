@@ -7,7 +7,6 @@ const UserInfo = ({
   myInfo,
   setmyTeam,
 }) => {
-
   const teams = {
     'Arsenal FC': 'arsenal',
     'Aston Villa FC': 'astonvilla',
