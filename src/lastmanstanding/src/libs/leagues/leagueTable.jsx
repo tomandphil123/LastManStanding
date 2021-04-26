@@ -63,6 +63,7 @@ LeagueTable.propTypes = {
 
 LeagueTable.defaultProps = {
   table: {},
+  individualLeague: 'league'
 };
 
 export default LeagueTable;

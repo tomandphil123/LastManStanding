@@ -48,7 +48,7 @@ const News = ({
                       component='span'
                       variant='body2'
                       color='textPrimary'>
-                      <p>{item['shortdesc']}</p>
+                      {item['shortdesc']}
                     </Typography>
                   </React.Fragment>}/>
             </ListItem>

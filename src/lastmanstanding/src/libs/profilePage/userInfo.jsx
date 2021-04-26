@@ -35,7 +35,11 @@ const UserInfo = ({
       <ListItem>Username: {myInfo[0]['Username']}</ListItem>
       <ListItem>Email: {myInfo[0]['email']}</ListItem>
       {myInfo[0]['favouriteTeam'] === '-' ? (
-        <ListItem>Favourite Team: Select your favourite team!</ListItem>
+        <ListItem>Favourite Team: Select your favourite team!
+          <Button onClick={() => setmyTeam(true)} style={{minWidth: '36px'}}>
+            <AddCircleOutlineIcon/>
+          </Button>
+        </ListItem>
       ):(
         <ListItem>Favourite Team: {Object.keys(teams).find(key => teams[key] === myInfo[0]['favouriteTeam'])}
         <Button

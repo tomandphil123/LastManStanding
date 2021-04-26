@@ -79,29 +79,37 @@ def updatePlayerDB(tableName, result, leagueID):
 	)
 	return 'Successfully updated players leagues'
 
+def checkLeagueStatus(tableName):
+	item = tableName.scan()
+	return item['Items'][0]['LeagueStatus']
 
 def handler(event, context):
 	dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 	result = json.loads(event['body'])
+	response = 'Gameweek in progress, please try again soon.'
 
-	# Take in info from front end post request
-	leagueID = result['leagueName'] +'#'+ str(randint(100000, 999999)) 
-	invitationCode = str(randint(100000, 999999))
-
-	# Creating League in the leagues Database
 	leaguesDB = dynamodb.Table('LeaguesDB-develop')
-	createLeague(leaguesDB, result, invitationCode, leagueID)
+	leagueStatus = checkLeagueStatus(leaguesDB)
+	if leagueStatus == 'Open':
+		# Take in info from front end post request
+		leagueID = result['leagueName'] +'#'+ str(randint(100000, 999999)) 
+		invitationCode = str(randint(100000, 999999))
 
-	# Send confirmation email with invitation code for users to join the league
-	sendEmail(result, leagueID, invitationCode)
+		# Creating League in the leagues Database
+		createLeague(leaguesDB, result, invitationCode, leagueID)
 
-	# User gets added to leaguePlayer database
-	leaguePlayerDB = dynamodb.Table('LeaguePlayerDB-develop')
-	createLeaguePlayer(leaguePlayerDB, result, leagueID)
+		# Send confirmation email with invitation code for users to join the league
+		sendEmail(result, leagueID, invitationCode)
 
-	# League is added to User's list of leagues (PlayerDB)
-	playerDB = dynamodb.Table('PlayerDB-develop')
-	updatePlayerDB(playerDB, result, leagueID)
+		# User gets added to leaguePlayer database
+		leaguePlayerDB = dynamodb.Table('LeaguePlayerDB-develop')
+		createLeaguePlayer(leaguePlayerDB, result, leagueID)
+
+		# League is added to User's list of leagues (PlayerDB)
+		playerDB = dynamodb.Table('PlayerDB-develop')
+		updatePlayerDB(playerDB, result, leagueID)
+
+		response = 'Successfully created league!'
 
 	return {
 	'statusCode': 200,
@@ -110,5 +118,5 @@ def handler(event, context):
 	'Access-Control-Allow-Origin': '*',
 	'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
 	},
-	'body': invitationCode
+	'body': response
 	}

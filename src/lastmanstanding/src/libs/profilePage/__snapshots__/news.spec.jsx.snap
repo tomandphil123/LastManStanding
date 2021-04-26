@@ -31,9 +31,7 @@ exports[`News Snapshot renders correctly 1`] = `
               component="span"
               variant="body2"
             >
-              <p>
-                Manchester City only require two wins from their final five matches in order to clinch the Premier League title after Manchester United and Leeds played out a 0-0 draw.
-              </p>
+              Manchester City only require two wins from their final five matches in order to clinch the Premier League title after Manchester United and Leeds played out a 0-0 draw.
             </ForwardRef(WithStyles)>
           </React.Fragment>
         }
@@ -72,9 +70,7 @@ exports[`News Snapshot renders correctly 1`] = `
               component="span"
               variant="body2"
             >
-              <p>
-                Ole Gunnar Solskjaer felt it was two points dropped after Manchester United were held 0-0 by Leeds in an intense game of few chances at Elland Road.
-              </p>
+              Ole Gunnar Solskjaer felt it was two points dropped after Manchester United were held 0-0 by Leeds in an intense game of few chances at Elland Road.
             </ForwardRef(WithStyles)>
           </React.Fragment>
         }

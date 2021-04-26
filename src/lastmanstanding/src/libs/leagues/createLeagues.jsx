@@ -9,6 +9,10 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
+import alertify from 'alertifyjs';
+import 'alertifyjs/build/css/alertify.css';
+
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -45,7 +49,8 @@ const CreateLeagues = ({
     event.preventDefault();
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/createLeague', {leagueName: leagueName, sub: user['attributes']['sub'], email: user['attributes']['email'], username: user['username'], firstName: firstName, lastName: surname})
         .then((response) => {
-          alert('Successfully Created League!');
+          alertify.set('notifier','position', 'top-center');
+          response['data'] === 'Successfully created league!' ? (alertify.success(response['data'])):(alertify.error(response['data']));
           setRender({});
           setCreateLeague(false);
         });

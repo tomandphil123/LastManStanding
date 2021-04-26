@@ -19,6 +19,8 @@ import AnnouncementIcon from '@material-ui/icons/Announcement';
 import ResultsRatio from './resultsRatio';
 import News from './news';
 import SelectFavouriteTeam from './selectFavouriteTeam';
+import alertify from 'alertifyjs';
+import 'alertifyjs/build/css/alertify.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,7 +85,8 @@ const ProfilePage = ({
     const selectTeam = (team) => {
       axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/profileInfo', {sub: user['attributes']['sub'], team: teams[team], flag: 'setTeam'})
         .then(response => {
-          alert(response['data']);
+          alertify.set('notifier','position', 'top-center')
+          alertify.success(response['data'])
         });
 
         axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/getNews', {team: teams[team]})

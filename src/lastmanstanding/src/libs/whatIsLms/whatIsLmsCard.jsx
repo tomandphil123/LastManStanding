@@ -37,7 +37,7 @@ export default function WhatIsLmsCard() {
             <Typography gutterBottom variant='h5' component='h2'>
                 How to Get Started?
             </Typography>
-            <Typography variant='body2' component='p'>
+            <Typography variant='body2' component='ul'>
               <ul>
                 <ul>1. Create or join a league using the invitation code provided.</ul>
                 <ul>2. Make your pick for the given gameweek before the deadline.</ul>

@@ -8,6 +8,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Auth} from 'aws-amplify';
 import {Link, useHistory} from 'react-router-dom';
+import alertify from 'alertifyjs';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -50,7 +51,7 @@ const CodeModal = ({
               .then(() => {
                 history.push('/SignIn');
               })
-              .catch((error) => alert('Password Successfully Changed.'), history.push('/SignIn'));
+              .catch((error) => alertify.set('notifier','position', 'top-center'), alertify.success('Password Successfully Changed!'), history.push('/SignIn'));
               
         } catch (error) {
           console.log(error.message);

@@ -173,7 +173,7 @@ def test_addResults():
 		'Liverpool FC':'https://crests.football-data.org/64.svg',
 	}
     # call the function on mock table
-    func_response = addResults(ResultsTable, match, 'Manchester United FC', 'Liverpool FC', crests, 30, 'Manchester United FC')
+    func_response = addResults(ResultsTable, match, 'Manchester United FC', 'Liverpool FC','0','1', crests, 30, 'Manchester United FC')
 
     tableData = ResultsTable.scan()
 

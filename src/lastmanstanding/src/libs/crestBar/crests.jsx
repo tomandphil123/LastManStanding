@@ -28,12 +28,13 @@ const Crests = ({
 };
 
 Crests.propTypes = {
-  screenWidth: PropTypes.number.isRequired,
+  screenWidth: PropTypes.number,
   crests: PropTypes.array,
 };
 
 Crests.defaultProps = {
   crests: [],
+  screenWidth: 0
 };
 
 export default Crests;

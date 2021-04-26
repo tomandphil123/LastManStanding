@@ -105,6 +105,7 @@ const Navbar = ({
   }
 
   const [screenWidth, setScreenWidth] = useState(null);
+
   useEffect(() => {
     setScreenWidth(window.screen.width);
     // eslint-disable-next-line

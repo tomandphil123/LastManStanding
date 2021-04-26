@@ -9,6 +9,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import axios from 'axios';
+import alertify from 'alertifyjs';
 import './adminSystem.css';
 
 const AdminSystem = ({
@@ -17,49 +18,53 @@ const AdminSystem = ({
   playerRemoval,
   leaguePlayerID,
   setRender,
+  setIndividualLeague,
+  setIndividualRender
 }) => {
   const [lockLeague, setLockLeague] = useState(leagueStatus);
 
   const toggleLeague = () => {
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/adminActions', {flag: 'toggleLeague', leagueID: leagueID, lockLeague: lockLeague})
         .then((response) => {
-          console.log(response);
+          alertify.set('notifier','position', 'top-center');
+          alertify.success(response['data']);
           setLockLeague(!lockLeague);
-          setRender({});
+          setIndividualRender({});
         });
   };
 
   const deleteLeague = () => {
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/adminActions', {flag: 'deleteLeague', leagueID: leagueID})
         .then((response) => {
-          console.log(response);
-          alert(response['data']);
           setRender({});
+          setIndividualLeague(false);
+          alertify.set('notifier','position', 'top-center');
+          alertify.success(response['data']);
         });
   };
 
   const deleteUser = () => {
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/adminActions', {flag: 'removePlayer', leaguePlayerID: leaguePlayerID})
         .then((response) => {
-          console.log(response);
-          alert(response['data']);
-          setRender({});
+          setIndividualRender({});
+          alertify.set('notifier','position', 'top-center');
+          alertify.success(response['data']);
         });
   };
 
   const resetLeague = () => {
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/adminActions', {flag: 'resetLeague', leagueID: leagueID})
         .then((response) => {
-          console.log(response);
-          alert(response['data']);
-          setRender({});
+          setIndividualRender({});
+          alertify.set('notifier','position', 'top-center');
+          alertify.success(response['data']);
         });
   };
 
   return (
     playerRemoval ? (
       <IconButton onClick={() => {
-        if (window.confirm('Are you sure you want to remove this user from the league?')) deleteUser();
+        if (alertify.confirm('Attention!','Are you sure you want to remove this user from the league?',function(){deleteUser()}, function(){}));
       }}
       data-automation="removePlayer"
       >
@@ -73,14 +78,14 @@ const AdminSystem = ({
         >
           { lockLeague ? (
               <Button onClick={() => {
-                  if (window.confirm('Are you sure you want to unlock the league?')) toggleLeague() 
+                  if (alertify.confirm('Attention!','Are you sure you want to unlock the league?',function(){toggleLeague()}, function(){}));
                 }} 
                 data-automation="unlockLeague">
                 <LockIcon style={{color: 'white'}}/>
               </Button>
             ) : (
               <Button onClick={() => {
-                  if (window.confirm('Are you sure you want to lock the league?')) toggleLeague()
+                  if (alertify.confirm('Attention!','Are you sure you want to lock the league?',function(){toggleLeague()}, function(){})); 
                 }}
                 data-automation="lockLeague">
                 <LockOpenIcon style={{color: 'white'}}/>
@@ -89,7 +94,7 @@ const AdminSystem = ({
         </Tooltip>
         <Tooltip title="Reset League" placement="top">
           <Button onClick={() => {
-              if (window.confirm('Are you sure you want to reset the league?')) resetLeague()
+              if (alertify.confirm('Attention!','Are you sure you want to reset the league?',function(){resetLeague()}, function(){}));  
             }}
             data-automation="ResetLeague">
             <RotateLeftIcon style={{color: '#ffffff'}}/>
@@ -97,7 +102,7 @@ const AdminSystem = ({
         </Tooltip>
         <Tooltip title="Delete League" placement="top">
           <Button onClick={() => {
-              if (window.confirm('Are you sure you want to delete the league?')) deleteLeague()
+              if (alertify.confirm('Attention!','Are you sure you want to delete the league?',function(){deleteLeague()}, function(){}));
             }}
             data-automation="DeleteLeague">
             <DeleteIcon style={{color: '#ffffff'}}/>
@@ -114,6 +119,7 @@ AdminSystem.propTypes = {
   playerRemoval: PropTypes.bool.isRequired,
   leaguePlayerID: PropTypes.string.isRequired,
   setRender: PropTypes.func.isRequired,
+  setIndividualLeague: PropTypes.func.isRequired
 };
 
 
