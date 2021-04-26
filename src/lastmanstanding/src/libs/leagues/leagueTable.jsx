@@ -15,7 +15,6 @@ const LeagueTable = ({
   table,
   setLeagueId,
   setIndividualLeague,
-  individualLeague,
 }) => {
   return (
     <TableContainer component={Paper} className='tableContainer'>
@@ -32,7 +31,7 @@ const LeagueTable = ({
           {table.map((item) => (
             <TableRow key={item[0]['LeagueID']}>
               <TableCell align='left' style={{paddingLeft: '12px'}}>
-                <Link className="pointer" onClick={() => {
+                <Link className="pointer" data-automation="IndividualLeagueLink" onClick={() => {
                   setLeagueId(item[0]['LeagueID']); setIndividualLeague(true);
                 }}>
                   <>
@@ -60,7 +59,6 @@ LeagueTable.propTypes = {
   table: PropTypes.array,
   setLeagueId: PropTypes.func.isRequired,
   setIndividualLeague: PropTypes.func,
-  individualLeague: PropTypes.string,
 };
 
 LeagueTable.defaultProps = {
