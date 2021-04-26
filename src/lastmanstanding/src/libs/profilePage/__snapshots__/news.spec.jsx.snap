@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`News Snapshot renders correctly 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(List))
+    key=" Leeds and Man Utd frustrated in stalemate "
+  >
+    <WithStyles(ForwardRef(ListItem))
+      alignItems="flex-start"
+    >
+      <WithStyles(ForwardRef(ListItemAvatar))>
+        <WithStyles(ForwardRef(Avatar))
+          alt="News"
+          className="makeStyles-square-1"
+          src="https://e0.365dm.com/21/04/384x216/skysports-marcus-rashford-luke-ayling_5355568.jpg?20210425142012"
+          variant="square"
+        />
+      </WithStyles(ForwardRef(ListItemAvatar))>
+      <WithStyles(ForwardRef(ListItemText))
+        primary={
+          <a
+            href="https://www.skysports.com/football/leeds-united-vs-manchester-united/report/429160"
+          >
+             Leeds and Man Utd frustrated in stalemate 
+          </a>
+        }
+        secondary={
+          <React.Fragment>
+            <ForwardRef(WithStyles)
+              color="textPrimary"
+              component="span"
+              variant="body2"
+            >
+              Manchester City only require two wins from their final five matches in order to clinch the Premier League title after Manchester United and Leeds played out a 0-0 draw.
+            </ForwardRef(WithStyles)>
+          </React.Fragment>
+        }
+      />
+    </WithStyles(ForwardRef(ListItem))>
+    <WithStyles(ForwardRef(Divider))
+      light={true}
+    />
+  </WithStyles(ForwardRef(List))>
+  <WithStyles(ForwardRef(List))
+    key=" Ole: Two points dropped | Bielsa: It was a demanding game"
+  >
+    <WithStyles(ForwardRef(ListItem))
+      alignItems="flex-start"
+    >
+      <WithStyles(ForwardRef(ListItemAvatar))>
+        <WithStyles(ForwardRef(Avatar))
+          alt="News"
+          className="makeStyles-square-1"
+          src="https://e1.365dm.com/21/04/384x216/skysports-man-utd-leeds-premier-league_5355777.jpg?20210425165240"
+          variant="square"
+        />
+      </WithStyles(ForwardRef(ListItemAvatar))>
+      <WithStyles(ForwardRef(ListItemText))
+        primary={
+          <a
+            href="https://www.skysports.com/football/news/11661/12286631/ole-gunnar-solskjaer-disappointed-as-man-utd-drop-two-points-at-leeds"
+          >
+             Ole: Two points dropped | Bielsa: It was a demanding game
+          </a>
+        }
+        secondary={
+          <React.Fragment>
+            <ForwardRef(WithStyles)
+              color="textPrimary"
+              component="span"
+              variant="body2"
+            >
+              Ole Gunnar Solskjaer felt it was two points dropped after Manchester United were held 0-0 by Leeds in an intense game of few chances at Elland Road.
+            </ForwardRef(WithStyles)>
+          </React.Fragment>
+        }
+      />
+    </WithStyles(ForwardRef(ListItem))>
+    <WithStyles(ForwardRef(Divider))
+      light={true}
+    />
+  </WithStyles(ForwardRef(List))>
+</Fragment>
+`;
+
+exports[`News Snapshot renders loading 1`] = `
+<Fragment>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": "60vh",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <WithStyles(ForwardRef(CircularProgress))
+      style={
+        Object {
+          "color": "#490050",
+          "marginRight": "12px",
+        }
+      }
+    />
+    <p>
+      Loading news
+    </p>
+  </div>
+</Fragment>
+`;
+
+exports[`News Snapshot renders selectFavouriteTeam button 1`] = `
+<Fragment>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "height": "60vh",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <h1>
+      Choose your favourite team!
+    </h1>
+    <WithStyles(ForwardRef(Button))
+      onClick={[Function]}
+    >
+      <Memo(ForwardRef(AddCircleOutlineIcon)) />
+    </WithStyles(ForwardRef(Button))>
+  </div>
+</Fragment>
+`;
