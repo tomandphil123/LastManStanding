@@ -60,11 +60,12 @@ LeagueTable.propTypes = {
   table: PropTypes.array,
   setLeagueId: PropTypes.func.isRequired,
   setIndividualLeague: PropTypes.func,
-  individualLeague: PropTypes.string.isRequired,
+  individualLeague: PropTypes.string,
 };
 
 LeagueTable.defaultProps = {
   table: {},
+  individualLeague: 'league'
 };
 
 export default LeagueTable;

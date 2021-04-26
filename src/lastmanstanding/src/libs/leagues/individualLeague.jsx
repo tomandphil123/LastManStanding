@@ -341,7 +341,7 @@ const IndividualLeague = ({
 
 IndividualLeague.propTypes = {
   leagueInfo: PropTypes.object,
-  closeLeague: PropTypes.func.isRequired,
+  closeLeague: PropTypes.func,
   username: PropTypes.string.isRequired,
   sub: PropTypes.string.isRequired,
   leagueId: PropTypes.string.isRequired,

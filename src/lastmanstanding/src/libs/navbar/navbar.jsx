@@ -107,7 +107,6 @@ const Navbar = ({
   const [screenWidth, setScreenWidth] = useState(null);
   useEffect(() => {
     setScreenWidth(window.screen.width);
-    // eslint-disable-next-line
   }, [window.addEventListener('resize', handleResize)]);
 
   return (
@@ -115,7 +114,7 @@ const Navbar = ({
     (
       <>
         { screenWidth > 800 ? (
-        <AppBar position='static' className={classes.header}>
+        <AppBar position='static' className={classes.header} value={null}>
           <Tabs>
             <Tab label={<div><img src={require('../../images/logo4.png')} className={classes.logo} alt='logo' textcolor='inherit'></img></div>} className={classes.tabs} component={Link} to='/'/>
             <Tab label={<div><AccountCircleIcon style={{verticalAlign: 'middle', paddingBottom: '4px'}}/> My Profile </div>} className={classes.tabs} component={Link} to='/Profile' />
