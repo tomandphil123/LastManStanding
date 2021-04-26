@@ -50,7 +50,7 @@ const CreateLeagues = ({
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/createLeague', {leagueName: leagueName, sub: user['attributes']['sub'], email: user['attributes']['email'], username: user['username'], firstName: firstName, lastName: surname})
         .then((response) => {
           alertify.set('notifier','position', 'top-center');
-          {response['data'] === 'Successfully created league!' ? (alertify.success(response['data'])):(alertify.error(response['data']))}
+          response['data'] === 'Successfully created league!' ? (alertify.success(response['data'])):(alertify.error(response['data']));
           setRender({});
           setCreateLeague(false);
         });
