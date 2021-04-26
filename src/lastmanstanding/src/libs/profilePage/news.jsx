@@ -35,7 +35,7 @@ const News = ({
     {myInfo[0]['favouriteTeam'] !== '-' ? (
       typeof teamInfo !== 'undefined' ? (
         teamInfo.map(item => (
-          <List>
+          <List key={item['title']}>
             <ListItem alignItems='flex-start'>
               <ListItemAvatar>
                 <Avatar variant='square' alt='News' src={item['imgsrc']} className={classes.square}/>
