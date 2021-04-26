@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`profilePage Snapshot renders correctly 1`] = `
+<WithStyles(ForwardRef(Grid))
+  container={true}
+  direction="row"
+  spacing={2}
+>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    md={3}
+    xs={12}
+  >
+    <WithStyles(ForwardRef(Card))>
+      <WithStyles(ForwardRef(CardHeader))
+        avatar={
+          <ForwardRef(WithStyles)
+            aria-label="account"
+            className="makeStyles-avatar-2"
+          >
+            <UNDEFINED />
+          </ForwardRef(WithStyles)>
+        }
+        title="Account"
+      />
+      <WithStyles(ForwardRef(Divider)) />
+      <WithStyles(ForwardRef(CardContent))>
+        <WithStyles(ForwardRef(List))>
+          <WithStyles(ForwardRef(CircularProgress))
+            style={
+              Object {
+                "color": "#490050",
+              }
+            }
+          />
+        </WithStyles(ForwardRef(List))>
+      </WithStyles(ForwardRef(CardContent))>
+    </WithStyles(ForwardRef(Card))>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    md={3}
+    xs={12}
+  >
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      md={12}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(Card))>
+        <WithStyles(ForwardRef(CardHeader))
+          avatar={
+            <ForwardRef(WithStyles)
+              aria-label="results"
+              className="makeStyles-avatar-2"
+            >
+              <UNDEFINED />
+            </ForwardRef(WithStyles)>
+          }
+          title="Results"
+        />
+        <WithStyles(ForwardRef(Divider)) />
+        <WithStyles(ForwardRef(CardContent))>
+          <WithStyles(ForwardRef(List))>
+            <WithStyles(ForwardRef(CircularProgress))
+              style={
+                Object {
+                  "color": "#490050",
+                }
+              }
+            />
+          </WithStyles(ForwardRef(List))>
+        </WithStyles(ForwardRef(CardContent))>
+      </WithStyles(ForwardRef(Card))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      md={12}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(Card))>
+        <WithStyles(ForwardRef(CardHeader))
+          avatar={
+            <ForwardRef(WithStyles)
+              aria-label="active competitions"
+              className="makeStyles-avatar-2"
+            >
+              <UNDEFINED />
+            </ForwardRef(WithStyles)>
+          }
+          title="Active Competitions"
+        />
+        <WithStyles(ForwardRef(Divider)) />
+        <WithStyles(ForwardRef(CardContent))>
+          <WithStyles(ForwardRef(List))>
+            <WithStyles(ForwardRef(CircularProgress))
+              style={
+                Object {
+                  "color": "#490050",
+                }
+              }
+            />
+          </WithStyles(ForwardRef(List))>
+        </WithStyles(ForwardRef(CardContent))>
+      </WithStyles(ForwardRef(Card))>
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    md={6}
+    xs={12}
+  >
+    <WithStyles(ForwardRef(Card))
+      style={
+        Object {
+          "height": "650px",
+          "overflow": "scroll",
+        }
+      }
+    >
+      <WithStyles(ForwardRef(CardHeader))
+        avatar={
+          <ForwardRef(WithStyles)
+            aria-label="team news"
+            className="makeStyles-avatar-2"
+          >
+            <UNDEFINED />
+          </ForwardRef(WithStyles)>
+        }
+        title="Your Favourite Teams News!"
+      />
+      <WithStyles(ForwardRef(Divider)) />
+      <WithStyles(ForwardRef(CardContent))>
+        <div
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "height": "60vh",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <WithStyles(ForwardRef(CircularProgress))
+            style={
+              Object {
+                "color": "#490050",
+                "marginRight": "12px",
+              }
+            }
+          />
+        </div>
+      </WithStyles(ForwardRef(CardContent))>
+    </WithStyles(ForwardRef(Card))>
+    <SelectFavouriteTeam
+      myTeam={false}
+      selectTeam={[Function]}
+      setmyTeam={[Function]}
+      teams={
+        Object {
+          "Arsenal FC": "arsenal",
+          "Aston Villa FC": "astonvilla",
+          "Brighton & Hove Albion FC": "brightonandhovealbion",
+          "Burnley FC": "burnley",
+          "Chelsea FC": "chelsea",
+          "Crystal Palace FC": "crystalpalace",
+          "Everton FC": "everton",
+          "Fulham FC": "fulham",
+          "Leeds United FC": "leedsunited",
+          "Leicester City FC": "leicestercity",
+          "Liverpool FC": "liverpool",
+          "Manchester City FC": "manchestercity",
+          "Manchester United FC": "manchesterunited",
+          "Newcastle United FC": "newcastleunited",
+          "Sheffield United FC": "sheffieldunited",
+          "Southampton FC": "southampton",
+          "Totenham Hotspur FC": "totenhamhotspur",
+          "West Bromwich Albion FC": "westbromwichalbion",
+          "West Ham United FC": "westhamunited",
+          "Wolverhampton Wanderers FC": "wolverhamptonwanderers",
+        }
+      }
+    />
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Grid))>
+`;
