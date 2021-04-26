@@ -1,0 +1,251 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectFavouriteTeam Snapshot renders correctly 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(Backdrop))
+    className="makeStyles-backdrop-1"
+    open={true}
+  >
+    <WithStyles(ForwardRef(Card))
+      style={
+        Object {
+          "height": "650px",
+          "overflow": "scroll",
+        }
+      }
+    >
+      <WithStyles(ForwardRef(CardHeader))
+        action={
+          <div
+            align="right"
+            style={
+              Object {
+                "paddingTop": "10px",
+              }
+            }
+          >
+            <ForwardRef(WithStyles)
+              onClick={[Function]}
+            >
+              <UNDEFINED />
+            </ForwardRef(WithStyles)>
+          </div>
+        }
+        avatar={
+          <ForwardRef(WithStyles)
+            aria-label="team news"
+          >
+            <UNDEFINED />
+          </ForwardRef(WithStyles)>
+        }
+        title="Pick Team"
+      />
+      <WithStyles(ForwardRef(Divider)) />
+      <WithStyles(ForwardRef(CardContent))>
+        <WithStyles(ForwardRef(List))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Arsenal FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Arsenal FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Aston Villa FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Aston Villa FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Brighton & Hove Albion FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Brighton & Hove Albion FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Burnley FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Burnley FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Chelsea FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Chelsea FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Crystal Palace FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Crystal Palace FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Everton FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Everton FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Fulham FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Fulham FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Leeds United FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Leeds United FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Leicester City FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Leicester City FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Liverpool FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Liverpool FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Manchester City FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Manchester City FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Manchester United FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Manchester United FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Newcastle United FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Newcastle United FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Sheffield United FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Sheffield United FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Southampton FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Southampton FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Totenham Hotspur FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Totenham Hotspur FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="West Bromwich Albion FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              West Bromwich Albion FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="West Ham United FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              West Ham United FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+          <WithStyles(ForwardRef(ListItem))>
+            <WithStyles(WithStyles(ForwardRef(Button)))
+              disableRipple={true}
+              key="Wolverhampton Wanderers FC"
+              onClick={[Function]}
+              variant="contained"
+            >
+              Wolverhampton Wanderers FC
+            </WithStyles(WithStyles(ForwardRef(Button)))>
+          </WithStyles(ForwardRef(ListItem))>
+        </WithStyles(ForwardRef(List))>
+      </WithStyles(ForwardRef(CardContent))>
+    </WithStyles(ForwardRef(Card))>
+  </WithStyles(ForwardRef(Backdrop))>
+</Fragment>
+`;

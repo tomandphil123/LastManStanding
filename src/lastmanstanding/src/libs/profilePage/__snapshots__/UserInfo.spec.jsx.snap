@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserInfo Snapshot renders correctly 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(ListItem))>
+    Username: 
+    philip
+  </WithStyles(ForwardRef(ListItem))>
+  <WithStyles(ForwardRef(ListItem))>
+    Email: 
+    philip.donnelly28@mail.dcu.ie
+  </WithStyles(ForwardRef(ListItem))>
+  <WithStyles(ForwardRef(ListItem))>
+    Favourite Team: 
+    Manchester United FC
+    <WithStyles(ForwardRef(Button))
+      onClick={[Function]}
+      style={
+        Object {
+          "minWidth": "36px",
+        }
+      }
+    >
+      <Memo(ForwardRef(AddCircleOutlineIcon)) />
+    </WithStyles(ForwardRef(Button))>
+  </WithStyles(ForwardRef(ListItem))>
+</Fragment>
+`;
