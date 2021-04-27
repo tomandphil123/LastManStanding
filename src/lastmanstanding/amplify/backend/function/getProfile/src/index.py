@@ -30,15 +30,11 @@ def handler(event, context):
   flag = result['flag']
   dynamodb = boto3.resource('dynamodb', 'eu-west-1')
 
-  # return flag
-  response = ''
   PlayerDB = dynamodb.Table('PlayerDB-develop')
-  if flag == 'getTeam':
-    # Query playerDB for info
-    profileInfo = queryDB(PlayerDB, result['sub'])
-    response = json.dumps(profileInfo)
-  else:
-    response = updateDB(PlayerDB, result['sub'], result['team']) 
+  if flag == 'setTeam':
+    updateDB(PlayerDB, result['sub'], result['team'])
+    
+  profileInfo = queryDB(PlayerDB, result['sub'])
 
   return {
     'statusCode': 200,
@@ -47,5 +43,5 @@ def handler(event, context):
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
     },
-    'body': response
+    'body': json.dumps(profileInfo)
   }
