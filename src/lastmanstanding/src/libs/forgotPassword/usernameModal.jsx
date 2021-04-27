@@ -42,13 +42,17 @@ const UsernameModal = ({
 
     const getCode = async (event) => {
         event.preventDefault();
-    
-        try {
-          await Auth.forgotPassword(username);
-          handleCodeSent();
-        } catch (error) {
-          alertify.set('notifier','position', 'top-center');
-          alertify.error(error.message);
+        if (username === '') {
+          alertify.set('notifier','position', 'top-center')
+          alertify.warning('Please enter your username');
+        } else {
+          try {
+            await Auth.forgotPassword(username);
+            handleCodeSent();
+          } catch (error) {
+            alertify.set('notifier','position', 'top-center');
+            alertify.error(error.message);
+          }
         }
       };
 
