@@ -92,8 +92,8 @@ def addResults(tableName, match, homeTeam, awayTeam, homeTeamScore, awayTeamScor
 			'AwayTeamCrest': crests[awayTeam],
 			'GameWeek': str(currentGameWeek),
 			'Winner': winner,
-			'HomeScore': homeTeamScore,
-			'AwayScore': awayTeamScore,
+			'HomeScore': str(homeTeamScore),
+			'AwayScore': str(awayTeamScore),
 			'createdTime': str(datetime.today())
 		}
 	)
@@ -220,7 +220,7 @@ def handler(event, context):
 	# check if API has been updated
 	updated = False
 	for match in matchesResponse['matches']:
-		if int(currTime) >= updateTime and str(match['matchday']) == str(currentGameWeek) and str(match['homeTeam']['name']) == str(lastMatch) and str(match['score']['fullTime']['homeTeam']) != 'None':
+		if (int(currTime)+1) >= updateTime and str(match['matchday']) == str(currentGameWeek) and str(match['homeTeam']['name']) == str(lastMatch) and str(match['score']['fullTime']['homeTeam']) != 'None':
 			updated = True
 			break
 
@@ -314,7 +314,7 @@ def handler(event, context):
 		print("first game time: " + firstGameTime)
 		print("first game date: " + firstGameDate)
 		minutes = firstGameTime.split(':')[1]
-		hours = str(int(firstGameTime.split(':')[0]) - 1)
+		hours = str(int(firstGameTime.split(':')[0]) - 2)
 		dayOfMonth = firstGameDate.split('-')[2]
 		month = firstGameDate.split('-')[1]
 		year = firstGameDate.split('-')[0]
