@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Splash Screen Snapshot renders 1`] = `
+<div
+  className="splashScreen"
+  style={
+    Object {
+      "background": "#ffffff",
+    }
+  }
+>
+  <img
+    alt="splash screen logo"
+    className="splashScreenImage"
+    src="LMS2.gif"
+  />
+</div>
+`;
