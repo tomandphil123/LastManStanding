@@ -43,22 +43,33 @@ const SignUp = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    try {
-      await Auth.signUp({
-        username,
-        password,
-        attributes: {
-          email: email,
-        },
-      }).then((response) => {
-        alertify.set('notifier','position', 'top-center')
-        alertify.warning('Please verify email before attempting sign in.')
-        history.push('/SignIn');
-      });
-    } catch (e) {
+    if (password === '') {
       alertify.set('notifier','position', 'top-center')
-      alertify.error(e.message)
+      alertify.warning('Please enter a password');
+    } else if (username === '') {
+      alertify.set('notifier','position', 'top-center')
+      alertify.warning('Please enter a username');
+    } else if (email === '') {
+      alertify.set('notifier','position', 'top-center')
+      alertify.warning('Please enter an email');
+    }
+    else {
+      try {
+        await Auth.signUp({
+          username,
+          password,
+          attributes: {
+            email: email,
+          },
+        }).then((response) => {
+          alertify.set('notifier','position', 'top-center')
+          alertify.warning('Please verify email before attempting sign in.')
+          history.push('/SignIn');
+        });
+      } catch (e) {
+        alertify.set('notifier','position', 'top-center')
+        alertify.error(e.message)
+      }
     }
   };
 
