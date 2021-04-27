@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Splash Screen Snapshot renders 1`] = `
+<WithStyles(ForwardRef(Grid))
+  container={true}
+  direction="row"
+  spacing={2}
+>
+  <WithStyles(ForwardRef(Grid))
+    align="center"
+    item={true}
+    md={6}
+    xs={12}
+  >
+    <WithStyles(ForwardRef(Card))
+      className="ruleCard"
+    >
+      <div
+        style={
+          Object {
+            "background": "#000481",
+            "height": "155px",
+            "width": "auto",
+          }
+        }
+      >
+        <img
+          alt="Premier League Players"
+          height="155px"
+          src="skysports-premier-league-predictions_5147427 (1).jpg"
+          width="auto"
+        />
+      </div>
+      <WithStyles(ForwardRef(CardContent))>
+        <WithStyles(ForwardRef(Typography))
+          component="h2"
+          gutterBottom={true}
+          variant="h5"
+        >
+          What is Last Man Standing?
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          component="p"
+          variant="body2"
+        >
+          Last Man Standing is a competition based on the Premier League. Users join/create leagues. You simply pick ONE Premier League team you fancy to win in round 1. If they win pick again next week, lose or draw and you're out. You can't pick the same team twice. The last person standing wins the competition.
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(CardContent))>
+    </WithStyles(ForwardRef(Card))>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    align="center"
+    item={true}
+    md={6}
+    xs={12}
+  >
+    <WithStyles(ForwardRef(Card))
+      className="ruleCard"
+    >
+      <div
+        style={
+          Object {
+            "background": "#0a0e71",
+            "height": "155px",
+            "width": "auto",
+          }
+        }
+      >
+        <img
+          alt="Premier League Players 2"
+          height="155px"
+          src="skysports-salah-sterling-pogba_4614126.jpg"
+          width="auto"
+        />
+      </div>
+      <WithStyles(ForwardRef(CardContent))>
+        <WithStyles(ForwardRef(Typography))
+          component="h2"
+          gutterBottom={true}
+          variant="h5"
+        >
+          How to Get Started?
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          component="ul"
+          variant="body2"
+        >
+          <ul>
+            <ul>
+              1. Create or join a league using the invitation code provided.
+            </ul>
+            <ul>
+              2. Make your pick for the given gameweek before the deadline.
+            </ul>
+            <ul>
+              3. If your team wins you proceed to the next round.
+            </ul>
+            <ul>
+              4. Forget to make a pick? The team highest in the table is selected.
+            </ul>
+            <ul>
+              5. Once you pick a team, you won't be able to pick the team again.
+            </ul>
+          </ul>
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(CardContent))>
+    </WithStyles(ForwardRef(Card))>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Grid))>
+`;
