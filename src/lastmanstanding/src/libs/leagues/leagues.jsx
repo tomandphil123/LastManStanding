@@ -99,7 +99,7 @@ const Leagues = ({
               )}
             </div>
           </Grid>
-          { leagueId !== undefined ? (
+          { (leagueId !== undefined && user !== null) ? (
             <Grid item xs={12} md={8}>
               <IndividualLeague
                 username={user['username']}

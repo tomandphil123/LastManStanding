@@ -199,8 +199,8 @@ Resources:
       UserPoolName: !If [ShouldNotCreateEnvResources, !Ref userPoolName, !Join ['',[!Ref userPoolName, '-', !Ref env]]]
       VerificationMessageTemplate:
         DefaultEmailOption: CONFIRM_WITH_LINK
-      EmailVerificationSubject: verify your email id for ${ApplicationName}
-      EmailVerificationMessage: Please click the link below to verify your email address. {####}
+      EmailVerificationSubject: Reset password for mylastmanstanding.xyz!
+      EmailVerificationMessage: Here is your reset password code {####}.
 
       
       Schema:
