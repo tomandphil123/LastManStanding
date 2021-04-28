@@ -1,33 +1,33 @@
 stages:
-    - build
-    - backendTest
+    # - build
+    # - backendTest
     - frontendTest
   
-build:
-    stage: build
-    image: node
-    script:
-      - cd ./src/lastmanstanding 
-      - echo "Start building App"
-      - npm install
-      - npm install @aws-amplify/cache
-      - npm run-script build
-      - echo "Build successfully!"
+# build:
+#     stage: build
+#     image: node
+#     script:
+#       - cd ./src/lastmanstanding 
+#       - echo "Start building App"
+#       - npm install
+#       - npm install @aws-amplify/cache
+#       - npm run-script build
+#       - echo "Build successfully!"
   
-backendTest:
-    stage: backendTest
-    image: python
-    script:
-      - cd ./src
-      - echo "Setting up virtual env"
-      - python3 -m venv venv
-      - source venv/bin/activate
-      - cd lastmanstanding
-      - pip install -r requirements.txt
-      - pip install --upgrade pip
-      - echo "Testing Backend"
-      - PYTHONPATH=:$(echo $PWD) python -m pytest -s
-      - echo "Backend tested successfully!"
+# backendTest:
+#     stage: backendTest
+#     image: python
+#     script:
+#       - cd ./src
+#       - echo "Setting up virtual env"
+#       - python3 -m venv venv
+#       - source venv/bin/activate
+#       - cd lastmanstanding
+#       - pip install -r requirements.txt
+#       - pip install --upgrade pip
+#       - echo "Testing Backend"
+#       - PYTHONPATH=:$(echo $PWD) python -m pytest -s
+#       - echo "Backend tested successfully!"
 
 frontendTest:
     stage: frontendTest
@@ -51,4 +51,5 @@ Mid-Level Test:
       - npm install @aws-amplify/cache
       - rm -rf node_modules/eslint
       - npm run-script cypress:open
+      - npm run e2e
       - echo "Frontend tested successfully!"
