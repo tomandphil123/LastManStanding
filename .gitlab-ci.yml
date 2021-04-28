@@ -40,3 +40,16 @@ frontendTest:
       - rm -rf node_modules/eslint
       - CI=true npm test
       - echo "Frontend tested successfully!"
+
+  Mid-Level Test:
+    stage: frontendTest
+    image: node
+    script:
+      - cd ./src/lastmanstanding
+      - echo "Starting Mid-Level Tests"
+      - npm install
+      - npm install @aws-amplify/cache
+      - rm -rf node_modules/eslint
+      - npm run start:ci &
+      - npm run e2e
+      - echo "Frontend tested successfully!"
