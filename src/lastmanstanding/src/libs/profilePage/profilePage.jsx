@@ -81,7 +81,9 @@ const ProfilePage = ({
               });
             }
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
+
     const selectTeam = (team) => {
       axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/profileInfo', {sub: user['attributes']['sub'], team: teams[team], flag: 'setTeam'})
         .then(response => {
