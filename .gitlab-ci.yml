@@ -50,6 +50,5 @@ Mid-Level Test:
       - npm install
       - npm install @aws-amplify/cache
       - rm -rf node_modules/eslint
-      - npm run-script cypress:open &
-      - npm run e2e
-      - echo "Frontend tested successfully!"
+      - npm run-script cypress:runHeadless
+      - echo "Mid Level tested successfully!"
