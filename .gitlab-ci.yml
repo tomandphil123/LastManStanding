@@ -41,7 +41,7 @@ frontendTest:
       - CI=true npm test
       - echo "Frontend tested successfully!"
 
-  Mid-Level Test:
+Mid-Level Test:
     stage: frontendTest
     image: node
     script:
