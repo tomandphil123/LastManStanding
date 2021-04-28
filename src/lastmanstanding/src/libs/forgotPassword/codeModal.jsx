@@ -46,15 +46,23 @@ const CodeModal = ({
 
     const handleCodeSubmit = async (event) => {
         event.preventDefault();
-        try {
-          await Auth.forgotPasswordSubmit(username, code, password)
-              .then(() => {
-                history.push('/SignIn');
-              })
-              .catch((error) => alertify.set('notifier','position', 'top-center'), alertify.success('Password Successfully Changed!'), history.push('/SignIn'));
-              
-        } catch (error) {
-          console.log(error.message);
+        if (code === '') {
+          alertify.set('notifier','position', 'top-center')
+          alertify.warning('Please enter a code');
+        } else if (password === '') {
+          alertify.set('notifier','position', 'top-center')
+          alertify.warning('Please enter a password');
+        } else {
+          try {
+            await Auth.forgotPasswordSubmit(username, code, password)
+                .then(() => {
+                  history.push('/SignIn');
+                })
+                .catch((error) => alertify.set('notifier','position', 'top-center'), alertify.success('Password Successfully Changed!'), history.push('/SignIn'));
+                
+          } catch (error) {
+            console.log(error.message);
+          }
         }
     };
 
