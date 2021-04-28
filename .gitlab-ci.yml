@@ -43,7 +43,7 @@ frontendTest:
 
 Mid-Level Test:
     stage: frontendTest
-    image: node
+    image: cypress/base:10
     script:
       - cd ./src/lastmanstanding
       - echo "Starting Mid-Level Tests"
