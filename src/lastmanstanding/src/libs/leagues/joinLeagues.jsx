@@ -45,6 +45,16 @@ const JoinLeagues = ({
   const classes = useStyles();
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (firstName === '') {
+      alertify.set('notifier','position', 'top-center')
+      alertify.warning('Please enter your first name');
+    } else if (surname === '') {
+      alertify.set('notifier','position', 'top-center')
+      alertify.warning('Please enter your last name');
+    } else if (leagueCode === '') {
+      alertify.set('notifier','position', 'top-center')
+      alertify.warning('Please enter the league code');
+    }  else {
     axios.post('https://ida5es25ne.execute-api.eu-west-1.amazonaws.com/develop/joinLeague', {leagueCode: leagueCode, sub: user['attributes']['sub'], username: user['username'], firstName: firstName, lastName: surname})
         .then((response) => {
           setRender({});
@@ -52,6 +62,7 @@ const JoinLeagues = ({
           alertify.set('notifier','position', 'top-center')
           alertify.success(response['data'])
         });
+    }
   };
 
   return (

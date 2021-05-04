@@ -47,23 +47,31 @@ const SignIn = ({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    try {
-      const user = await Auth.signIn({
-        username,
-        password,
-      });
-      setIsLoggedIn();
-      setUser(user);
-      history.push('/');
-    } catch (error) {
-      console.log(error.message)
-      if (error.message === 'User is not confirmed.'){
-        alertify.set('notifier','position', 'top-center')
-        alertify.warning('Email address is not verified.\n Please verify your email.')
-      } else{
-        alertify.set('notifier','position', 'top-center')
-        alertify.error(error.message)
+    if (password === '') {
+      alertify.set('notifier','position', 'top-center')
+      alertify.warning('Please enter a password');
+    } else if (username === '') {
+      alertify.set('notifier','position', 'top-center')
+      alertify.warning('Please enter a username');
+    }
+    else {
+      try {
+        const user = await Auth.signIn({
+          username,
+          password,
+        });
+        setIsLoggedIn();
+        setUser(user);
+        history.push('/');
+      } catch (error) {
+        console.log(error.message)
+        if (error.message === 'User is not confirmed.'){
+          alertify.set('notifier','position', 'top-center')
+          alertify.warning('Email address is not verified.\n Please verify your email.')
+        } else{
+          alertify.set('notifier','position', 'top-center')
+          alertify.error(error.message)
+        }
       }
     }
   };
