@@ -1,4 +1,4 @@
-Video Walkthroguh link: https://drive.google.com/file/d/1W3HMxi8VFJvTf9IeyziDk-EOaGEr3pVv/view?usp=sharing
+Video Walkthrough link: https://drive.google.com/file/d/1W3HMxi8VFJvTf9IeyziDk-EOaGEr3pVv/view?usp=sharing
 
 Instructions:
 1. Upload your video walk through to Google Drive.
