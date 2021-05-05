@@ -1,9 +1,6 @@
-<!--
-The video walk through is [here](FIX-ME).
--->
+Video Walkthrough link: https://drive.google.com/file/d/1W3HMxi8VFJvTf9IeyziDk-EOaGEr3pVv/view?usp=sharing
 
 Instructions:
-
 1. Upload your video walk through to Google Drive.
 2. Under sharing, allow anyone with the link to view the video.
 3. Place a link to the video above, and uncomment those lines.
